@@ -1,0 +1,33 @@
+{
+ "claim_id": "CLM-2026019",
+ "form": {
+  "claimed_amount": 31200,
+  "policy_no": "MGI-MOT-1008",
+  "incident_date": "2026-09-15",
+  "narrative": "Rear ended at a traffic signal by another vehicle. The car was being driven by the insured's friend, who does not hold a driving licence.",
+  "claim_id": "CLM-2026019",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Patel",
+  "vehicle_reg": "KA15FC1916",
+  "report_date": "2026-09-16"
+ },
+ "photo": {
+  "source": "29.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "hood"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper and hood of the vehicle show visible damage, including dents and deformation.",
+  "summary": "This image shows a close-up view of the front of a silver car with visible damage. The car's front bumper is dented, and there is a noticeable crease along the hood. The headlight on the left side is intact and appears to be functioning, as it is illuminated. The license plate is partially visible on the lower left side of the bumper. The car is parked on a dirt surface, suggesting it might be in a less urban or possibly rural area."
+ }
+}

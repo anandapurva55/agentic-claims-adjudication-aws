@@ -1,0 +1,16 @@
+{
+ "held_out_first_blueprint": {
+  "precision": 1.0,
+  "recall": 0.474,
+  "f1": 0.643,
+  "photos": 35,
+  "headlamp_recall": 0.074
+ },
+ "held_out_revised_blueprint": {
+  "precision": 0.981,
+  "recall": 0.537,
+  "f1": 0.694,
+  "photos": 35,
+  "headlamp_recall": 0.37
+ }
+}

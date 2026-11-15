@@ -1,0 +1,32 @@
+{
+ "claim_id": "CLM-2026033",
+ "form": {
+  "claimed_amount": 34300,
+  "policy_no": "MGI-MOT-1011",
+  "incident_date": "2027-01-31",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026033",
+  "police_fir": "Not applicable",
+  "holder": "Isha Nair",
+  "vehicle_reg": "KA09ED2489",
+  "report_date": "2027-02-01"
+ },
+ "photo": {
+  "source": "24.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the car is visibly damaged with a dent and deformation.",
+  "summary": "This image shows a silver car parked on the side of the road with visible damage to its rear bumper. The car's license plate is partially visible. There are two individuals standing nearby, one of them is wearing a red shirt. In the background, there is a red vehicle with the text \"BOWBE\" visible on it. The scene appears to be at night, with some ambient lighting illuminating the area."
+ }
+}

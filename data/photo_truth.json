@@ -1,0 +1,494 @@
+{
+ "CLM-2026001": {
+  "source": "53.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "headlamp",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026002": {
+  "source": "14.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ]
+ },
+ "CLM-2026003": {
+  "source": "2.jpg",
+  "dataset_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "door",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026004": {
+  "source": "20.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "hood"
+  ]
+ },
+ "CLM-2026005": {
+  "source": "37.jpg",
+  "dataset_parts": [
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026006": {
+  "source": "21.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "headlamp"
+  ]
+ },
+ "CLM-2026007": {
+  "source": "16.jpg",
+  "dataset_parts": [
+   "door"
+  ],
+  "estimate_parts": [
+   "door"
+  ]
+ },
+ "CLM-2026008": {
+  "source": "26.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "headlamp",
+   "hood"
+  ]
+ },
+ "CLM-2026012": {
+  "source": "32.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026013": {
+  "source": "36.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026014": {
+  "source": "38.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026015": {
+  "source": "5.jpg",
+  "dataset_parts": [
+   "front_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026016": {
+  "source": "25.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "door",
+   "headlamp",
+   "hood"
+  ]
+ },
+ "CLM-2026017": {
+  "source": "64.jpg",
+  "dataset_parts": [
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "hood",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026018": {
+  "source": "9.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper"
+  ],
+  "estimate_parts": [
+   "door",
+   "front_bumper"
+  ]
+ },
+ "CLM-2026019": {
+  "source": "29.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "hood"
+  ]
+ },
+ "CLM-2026020": {
+  "source": "19.jpg",
+  "dataset_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026032": {
+  "source": "46.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "hood"
+  ]
+ },
+ "CLM-2026033": {
+  "source": "24.jpg",
+  "dataset_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "door",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026034": {
+  "source": "1.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "headlamp",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026035": {
+  "source": "57.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026036": {
+  "source": "61.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026037": {
+  "source": "71.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "estimate_parts": [
+   "front_bumper"
+  ]
+ },
+ "CLM-2026038": {
+  "source": "10.jpg",
+  "dataset_parts": [
+   "door"
+  ],
+  "estimate_parts": [
+   "door",
+   "front_bumper"
+  ]
+ },
+ "CLM-2026039": {
+  "source": "63.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026040": {
+  "source": "23.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "hood",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026044": {
+  "source": "47.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "hood"
+  ]
+ },
+ "CLM-2026045": {
+  "source": "27.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "door",
+   "headlamp",
+   "hood"
+  ]
+ },
+ "CLM-2026046": {
+  "source": "73.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026047": {
+  "source": "22.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026048": {
+  "source": "52.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper"
+  ]
+ },
+ "CLM-2026049": {
+  "source": "13.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026050": {
+  "source": "30.jpg",
+  "dataset_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026051": {
+  "source": "59.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "hood"
+  ]
+ },
+ "CLM-2026053": {
+  "source": "31.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "headlamp",
+   "hood"
+  ]
+ },
+ "CLM-2026055": {
+  "source": "17.jpg",
+  "dataset_parts": [
+   "door"
+  ],
+  "estimate_parts": [
+   "door"
+  ]
+ },
+ "CLM-2026056": {
+  "source": "34.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "hood"
+  ]
+ },
+ "CLM-2026057": {
+  "source": "15.jpg",
+  "dataset_parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "headlamp",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026058": {
+  "source": "4.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "headlamp"
+  ]
+ },
+ "CLM-2026059": {
+  "source": "18.jpg",
+  "dataset_parts": [
+   "door"
+  ],
+  "estimate_parts": [
+   "door"
+  ]
+ },
+ "CLM-2026060": {
+  "source": "55.jpg",
+  "dataset_parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "headlamp",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026061": {
+  "source": "40.jpg",
+  "dataset_parts": [
+   "door"
+  ],
+  "estimate_parts": [
+   "door"
+  ]
+ },
+ "CLM-2026062": {
+  "source": "3.jpg",
+  "dataset_parts": [
+   "door",
+   "headlamp",
+   "rear_bumper"
+  ],
+  "estimate_parts": [
+   "door",
+   "rear_bumper"
+  ]
+ },
+ "CLM-2026063": {
+  "source": "43.jpg",
+  "dataset_parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "estimate_parts": [
+   "front_bumper",
+   "hood"
+  ]
+ }
+}

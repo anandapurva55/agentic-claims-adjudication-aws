@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026013",
+ "form": {
+  "claimed_amount": 1800,
+  "policy_no": "MGI-MOT-1004",
+  "incident_date": "2026-09-17",
+  "narrative": "Minor scrape while parking.",
+  "claim_id": "CLM-2026013",
+  "police_fir": "Not applicable",
+  "holder": "Diya Verma",
+  "vehicle_reg": "KA07CC5333",
+  "report_date": "2026-09-18"
+ },
+ "photo": {
+  "source": "36.jpg",
+  "parts": [
+   "door",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "door",
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle shows visible dents and deformation.",
+  "summary": "This image shows the rear of a silver Volkswagen Golf TDI car with visible damage. The car's rear bumper is dented, and there is a noticeable scrape along the lower part of the trunk. The Volkswagen logo is prominently displayed on the trunk, and the model name \"GOLF\" and engine type \"TDI\" are inscribed on the left side of the rear. The car's tail lights are red and are located on either side of the trunk. The image also shows part of another vehicle on the left side, but the focus is primarily on the damaged Volkswagen."
+ }
+}

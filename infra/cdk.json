@@ -1,0 +1,8 @@
+{
+  "app": "python app.py",
+  "context": {
+    "@aws-cdk/core:bootstrapQualifier": "claimsadj",
+    "project": "claimsadj",
+    "availability-zones:account=000000000000:region=us-east-1": ["us-east-1a", "us-east-1b"]
+  }
+}

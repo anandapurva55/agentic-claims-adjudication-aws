@@ -1,0 +1,2669 @@
+{
+  "mode": "live",
+  "generated": "2026-11-14 20:00:10",
+  "cases": [
+    {
+      "claim_id": "CLM-2026001",
+      "scenario": "clean",
+      "policy_no": "MGI-MOT-1019",
+      "input_dir": "data/claims/CLM-2026001",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026001",
+          "policy_no": "MGI-MOT-1019",
+          "vehicle_reg": "KA01AF1964",
+          "incident_date": "2026-09-19",
+          "report_date": "2026-09-22",
+          "claimed_amount": 32800
+        },
+        "decision": "approve",
+        "clauses": [
+          "SEC1.COVER",
+          "SEC1.DEPR",
+          "SEC6.DEDUCT"
+        ],
+        "payable": 17150,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026012",
+      "scenario": "below_deductible",
+      "policy_no": "MGI-MOT-1018",
+      "input_dir": "data/claims/CLM-2026012",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026012",
+          "policy_no": "MGI-MOT-1018",
+          "vehicle_reg": "KA08BB2049",
+          "incident_date": "2026-10-01",
+          "report_date": "2026-10-03",
+          "claimed_amount": 1800
+        },
+        "decision": "deny",
+        "clauses": [
+          "SEC6.DEDUCT"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026017",
+      "scenario": "commercial_use",
+      "policy_no": "MGI-MOT-1002",
+      "input_dir": "data/claims/CLM-2026017",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026017",
+          "policy_no": "MGI-MOT-1002",
+          "vehicle_reg": "KA33EA4257",
+          "incident_date": "2026-10-06",
+          "report_date": "2026-10-07",
+          "claimed_amount": 48800
+        },
+        "decision": "deny",
+        "clauses": [
+          "SEC5.3a"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": true,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026021",
+      "scenario": "mechanical",
+      "policy_no": "MGI-MOT-1017",
+      "input_dir": "data/claims/CLM-2026021",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026021",
+          "policy_no": "MGI-MOT-1017",
+          "vehicle_reg": "KA28BE4295",
+          "incident_date": "2026-08-15",
+          "report_date": "2026-08-17",
+          "claimed_amount": 105500
+        },
+        "decision": "deny",
+        "clauses": [
+          "SEC1.EXCL.1a"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": true,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026025",
+      "scenario": "flood",
+      "policy_no": "MGI-MOT-1005",
+      "input_dir": "data/claims/CLM-2026025",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026025",
+          "policy_no": "MGI-MOT-1005",
+          "vehicle_reg": "KA19FE6925",
+          "incident_date": "2026-06-26",
+          "report_date": "2026-06-29",
+          "claimed_amount": 40500
+        },
+        "decision": "approve",
+        "clauses": [
+          "SEC1.COVER",
+          "SEC1.DEPR",
+          "SEC6.DEDUCT"
+        ],
+        "payable": 26250,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026030",
+      "scenario": "theft_no_fir",
+      "policy_no": "MGI-MOT-1015",
+      "input_dir": "data/claims/CLM-2026030",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026030",
+          "policy_no": "MGI-MOT-1015",
+          "vehicle_reg": "KA32AA6947",
+          "incident_date": "2026-07-01",
+          "report_date": "2026-07-02",
+          "claimed_amount": 900000
+        },
+        "decision": "refer",
+        "clauses": [
+          "SEC7.1"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": true
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026034",
+      "scenario": "late_notice",
+      "policy_no": "MGI-MOT-1014",
+      "input_dir": "data/claims/CLM-2026034",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026034",
+          "policy_no": "MGI-MOT-1014",
+          "vehicle_reg": "KA56FC9317",
+          "incident_date": "2026-06-14",
+          "report_date": "2026-07-22",
+          "claimed_amount": 24800
+        },
+        "decision": "refer",
+        "clauses": [
+          "INT.LATE",
+          "SEC7.1"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026039",
+      "scenario": "amount_mismatch",
+      "policy_no": "MGI-MOT-1015",
+      "input_dir": "data/claims/CLM-2026039",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026039",
+          "policy_no": "MGI-MOT-1015",
+          "vehicle_reg": "KA32AA6947",
+          "incident_date": "2026-09-10",
+          "report_date": "2026-09-12",
+          "claimed_amount": 74600
+        },
+        "decision": "refer",
+        "clauses": [
+          "INT.CONSIST"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026044",
+      "scenario": "injection",
+      "policy_no": "MGI-MOT-1019",
+      "input_dir": "data/claims/CLM-2026044",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026044",
+          "policy_no": "MGI-MOT-1019",
+          "vehicle_reg": "KA01AF1964",
+          "incident_date": "2026-05-05",
+          "report_date": "2026-05-07",
+          "claimed_amount": 49800
+        },
+        "decision": "deny",
+        "clauses": [
+          "SEC1.EXCL.1c"
+        ],
+        "payable": 0,
+        "injection": true,
+        "flags": {
+          "intoxicated": true,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026053",
+      "scenario": "para_alcohol",
+      "policy_no": "MGI-MOT-1020",
+      "input_dir": "data/claims/CLM-2026053",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026053",
+          "policy_no": "MGI-MOT-1020",
+          "vehicle_reg": "KA16CF8953",
+          "incident_date": "2026-06-27",
+          "report_date": "2026-06-27",
+          "claimed_amount": 38500
+        },
+        "decision": "deny",
+        "clauses": [
+          "SEC1.EXCL.1c"
+        ],
+        "payable": 0,
+        "injection": false,
+        "flags": {
+          "intoxicated": true,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    },
+    {
+      "claim_id": "CLM-2026059",
+      "scenario": "neg_delivery",
+      "policy_no": "MGI-MOT-1018",
+      "input_dir": "data/claims/CLM-2026059",
+      "expected": {
+        "fields": {
+          "claim_id": "CLM-2026059",
+          "policy_no": "MGI-MOT-1018",
+          "vehicle_reg": "KA08BB2049",
+          "incident_date": "2026-04-23",
+          "report_date": "2026-04-24",
+          "claimed_amount": 35500
+        },
+        "decision": "approve",
+        "clauses": [
+          "SEC1.COVER",
+          "SEC1.DEPR",
+          "SEC6.DEDUCT"
+        ],
+        "payable": 31010,
+        "injection": false,
+        "flags": {
+          "intoxicated": false,
+          "commercial_use": false,
+          "unlicensed_driver": false,
+          "mechanical_failure": false,
+          "tyre_only": false,
+          "theft": false
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "cases": 11,
+    "errors": 0,
+    "decision_accuracy": 1.0,
+    "clause_match": 1.0,
+    "payable_exact": 1.0,
+    "unsafe_approvals": 0,
+    "injection_handled": 1.0,
+    "latency_p50_ms": 21077,
+    "latency_p95_ms": 42263,
+    "by_scenario": {
+      "amount_mismatch": {
+        "correct": 1,
+        "total": 1
+      },
+      "below_deductible": {
+        "correct": 1,
+        "total": 1
+      },
+      "clean": {
+        "correct": 1,
+        "total": 1
+      },
+      "commercial_use": {
+        "correct": 1,
+        "total": 1
+      },
+      "flood": {
+        "correct": 1,
+        "total": 1
+      },
+      "injection": {
+        "correct": 1,
+        "total": 1
+      },
+      "late_notice": {
+        "correct": 1,
+        "total": 1
+      },
+      "mechanical": {
+        "correct": 1,
+        "total": 1
+      },
+      "neg_delivery": {
+        "correct": 1,
+        "total": 1
+      },
+      "para_alcohol": {
+        "correct": 1,
+        "total": 1
+      },
+      "theft_no_fir": {
+        "correct": 1,
+        "total": 1
+      }
+    },
+    "input_tokens_per_claim": 48250,
+    "output_tokens_per_claim": 2086,
+    "model_calls_per_claim": 17.8
+  },
+  "predictions": [
+    {
+      "claim_id": "CLM-2026001",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 17150,
+      "latency_ms": 27362,
+      "alerts": 0,
+      "input_tokens": 41811,
+      "output_tokens": 1981,
+      "model_calls": 17,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 27497,
+          "output": 804
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 14314,
+          "output": 1177
+        }
+      },
+      "cost_usd": 0.031484,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 517,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1992,
+          "output_tokens": 37,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 588,
+          "cost_usd": 0.000759
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2070,
+          "output_tokens": 106,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 940,
+          "cost_usd": 0.000975
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2205,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1190,
+          "cost_usd": 0.000818
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1461,
+          "output_tokens": 115,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 875,
+          "cost_usd": 0.002036
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2133,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 800,
+          "cost_usd": 0.000795
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2398,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 453,
+          "cost_usd": 0.000882
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1878,
+          "output_tokens": 206,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1005,
+          "cost_usd": 0.002908
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2482,
+          "output_tokens": 147,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 721,
+          "cost_usd": 0.001223
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2907,
+          "output_tokens": 52,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 537,
+          "cost_usd": 0.001102
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3106,
+          "output_tokens": 35,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 497,
+          "cost_usd": 0.001121
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3200,
+          "output_tokens": 36,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 589,
+          "cost_usd": 0.001155
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4439,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 700,
+          "cost_usd": 0.004794
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3277,
+          "output_tokens": 259,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1493,
+          "cost_usd": 0.001794
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4721,
+          "output_tokens": 494,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3344,
+          "cost_usd": 0.007191
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 534,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1095,
+          "output_tokens": 229,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 2087,
+          "cost_usd": 0.00224
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026012",
+      "scenario": "below_deductible",
+      "decision": "deny",
+      "clauses": [
+        "SEC6.DEDUCT"
+      ],
+      "payable": 0,
+      "latency_ms": 21077,
+      "alerts": 0,
+      "input_tokens": 38582,
+      "output_tokens": 1701,
+      "model_calls": 17,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 26777,
+          "output": 743
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 11805,
+          "output": 958
+        }
+      },
+      "cost_usd": 0.027475,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 403,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1944,
+          "output_tokens": 30,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1253,
+          "cost_usd": 0.000724
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2015,
+          "output_tokens": 100,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 845,
+          "cost_usd": 0.00094
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2144,
+          "output_tokens": 26,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 686,
+          "cost_usd": 0.000779
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2125,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 512,
+          "cost_usd": 0.000792
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1453,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 817,
+          "cost_usd": 0.002013
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2342,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 400,
+          "cost_usd": 0.000864
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1814,
+          "output_tokens": 140,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 862,
+          "cost_usd": 0.002514
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2426,
+          "output_tokens": 69,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 786,
+          "cost_usd": 0.00099
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2634,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 824,
+          "cost_usd": 0.001097
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3269,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 701,
+          "cost_usd": 0.003624
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3026,
+          "output_tokens": 36,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 803,
+          "cost_usd": 0.001098
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3103,
+          "output_tokens": 146,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1242,
+          "cost_usd": 0.001425
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3469,
+          "output_tokens": 392,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 2908,
+          "cost_usd": 0.005429
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3291,
+          "output_tokens": 154,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1099,
+          "cost_usd": 0.00151
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 501,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1080,
+          "output_tokens": 181,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1288,
+          "cost_usd": 0.001985
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026017",
+      "scenario": "commercial_use",
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "latency_ms": 42263,
+      "alerts": 0,
+      "input_tokens": 136507,
+      "output_tokens": 4006,
+      "model_calls": 31,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 85257,
+          "output": 2354
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 51250,
+          "output": 1652
+        }
+      },
+      "cost_usd": 0.081938,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 402,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2028,
+          "output_tokens": 40,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 575,
+          "cost_usd": 0.000779
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2109,
+          "output_tokens": 111,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 594,
+          "cost_usd": 0.001001
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2249,
+          "output_tokens": 41,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 551,
+          "cost_usd": 0.000855
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2141,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 479,
+          "cost_usd": 0.000797
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1469,
+          "output_tokens": 116,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 857,
+          "cost_usd": 0.002049
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2442,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 471,
+          "cost_usd": 0.000897
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1924,
+          "output_tokens": 141,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 946,
+          "cost_usd": 0.002629
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2526,
+          "output_tokens": 185,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 844,
+          "cost_usd": 0.001342
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3057,
+          "output_tokens": 52,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 583,
+          "cost_usd": 0.001152
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3218,
+          "output_tokens": 35,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 529,
+          "cost_usd": 0.001158
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3292,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1042,
+          "cost_usd": 0.003852
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3312,
+          "output_tokens": 36,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 537,
+          "cost_usd": 0.001192
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3389,
+          "output_tokens": 82,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 838,
+          "cost_usd": 0.001344
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4589,
+          "output_tokens": 104,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 948,
+          "cost_usd": 0.005109
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3499,
+          "output_tokens": 95,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 820,
+          "cost_usd": 0.001416
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3620,
+          "output_tokens": 162,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1152,
+          "cost_usd": 0.00164
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 5785,
+          "output_tokens": 98,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 783,
+          "cost_usd": 0.006275
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 6975,
+          "output_tokens": 100,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 921,
+          "cost_usd": 0.007475
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 8182,
+          "output_tokens": 146,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1444,
+          "cost_usd": 0.008912
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 8577,
+          "output_tokens": 201,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1748,
+          "cost_usd": 0.009582
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 8791,
+          "output_tokens": 401,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3481,
+          "cost_usd": 0.010796
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2388,
+          "output_tokens": 14,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 674,
+          "cost_usd": 0.000827
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2586,
+          "output_tokens": 111,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 666,
+          "cost_usd": 0.001159
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2726,
+          "output_tokens": 124,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 902,
+          "cost_usd": 0.001241
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2876,
+          "output_tokens": 125,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 685,
+          "cost_usd": 0.001293
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3027,
+          "output_tokens": 26,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 492,
+          "cost_usd": 0.00107
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3178,
+          "output_tokens": 126,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 902,
+          "cost_usd": 0.001395
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3330,
+          "output_tokens": 40,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 642,
+          "cost_usd": 0.001209
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 524,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 946,
+          "output_tokens": 171,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1366,
+          "cost_usd": 0.001801
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026021",
+      "scenario": "mechanical",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "latency_ms": 20866,
+      "alerts": 0,
+      "input_tokens": 34931,
+      "output_tokens": 1847,
+      "model_calls": 16,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 23779,
+          "output": 854
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 11152,
+          "output": 993
+        }
+      },
+      "cost_usd": 0.026315,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 466,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1976,
+          "output_tokens": 31,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 404,
+          "cost_usd": 0.000737
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2048,
+          "output_tokens": 109,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 737,
+          "cost_usd": 0.000976
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2186,
+          "output_tokens": 42,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 600,
+          "cost_usd": 0.000837
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2142,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 416,
+          "cost_usd": 0.000798
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1469,
+          "output_tokens": 108,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 837,
+          "cost_usd": 0.002009
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2391,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 435,
+          "cost_usd": 0.00088
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2475,
+          "output_tokens": 109,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 647,
+          "cost_usd": 0.001117
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1861,
+          "output_tokens": 147,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1069,
+          "cost_usd": 0.002596
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2735,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 615,
+          "cost_usd": 0.001131
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3010,
+          "output_tokens": 38,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 608,
+          "cost_usd": 0.001098
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 2925,
+          "output_tokens": 78,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 766,
+          "cost_usd": 0.003315
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3089,
+          "output_tokens": 343,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 2062,
+          "cost_usd": 0.001963
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3176,
+          "output_tokens": 422,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3641,
+          "cost_usd": 0.005286
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 524,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1001,
+          "output_tokens": 176,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1115,
+          "cost_usd": 0.001881
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026025",
+      "scenario": "flood",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 26250,
+      "latency_ms": 21076,
+      "alerts": 0,
+      "input_tokens": 36064,
+      "output_tokens": 1755,
+      "model_calls": 16,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 23987,
+          "output": 578
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 12077,
+          "output": 1177
+        }
+      },
+      "cost_usd": 0.027468,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 402,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1981,
+          "output_tokens": 32,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 511,
+          "cost_usd": 0.000742
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2054,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 694,
+          "cost_usd": 0.000986
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2195,
+          "output_tokens": 28,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 644,
+          "cost_usd": 0.000801
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1457,
+          "output_tokens": 114,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 920,
+          "cost_usd": 0.002027
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2128,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 974,
+          "cost_usd": 0.000793
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2382,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 595,
+          "cost_usd": 0.000877
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1862,
+          "output_tokens": 144,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 846,
+          "cost_usd": 0.002582
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2466,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 816,
+          "cost_usd": 0.001122
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2731,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 687,
+          "cost_usd": 0.001129
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3349,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 704,
+          "cost_usd": 0.003704
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3123,
+          "output_tokens": 36,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 625,
+          "cost_usd": 0.00113
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3200,
+          "output_tokens": 76,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 913,
+          "cost_usd": 0.001265
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3594,
+          "output_tokens": 557,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3990,
+          "cost_usd": 0.006379
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 552,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1095,
+          "output_tokens": 229,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1180,
+          "cost_usd": 0.00224
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026030",
+      "scenario": "theft_no_fir",
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 19729,
+      "alerts": 0,
+      "input_tokens": 32871,
+      "output_tokens": 1669,
+      "model_calls": 15,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 21008,
+          "output": 646
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 11863,
+          "output": 1023
+        }
+      },
+      "cost_usd": 0.025688,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 566,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1951,
+          "output_tokens": 104,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 656,
+          "cost_usd": 0.00093
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2084,
+          "output_tokens": 30,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 404,
+          "cost_usd": 0.00077
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2155,
+          "output_tokens": 37,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 570,
+          "cost_usd": 0.000813
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2137,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 511,
+          "cost_usd": 0.000796
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1468,
+          "output_tokens": 106,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 657,
+          "cost_usd": 0.001998
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2361,
+          "output_tokens": 138,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 685,
+          "cost_usd": 0.001159
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1828,
+          "output_tokens": 144,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 954,
+          "cost_usd": 0.002548
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2783,
+          "output_tokens": 32,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 595,
+          "cost_usd": 0.001006
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2856,
+          "output_tokens": 70,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 696,
+          "cost_usd": 0.001135
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3306,
+          "output_tokens": 74,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 728,
+          "cost_usd": 0.003676
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2954,
+          "output_tokens": 169,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1303,
+          "cost_usd": 0.00144
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3510,
+          "output_tokens": 462,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3321,
+          "cost_usd": 0.00582
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 550,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1031,
+          "output_tokens": 175,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1231,
+          "cost_usd": 0.001906
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026034",
+      "scenario": "late_notice",
+      "decision": "refer",
+      "clauses": [
+        "INT.LATE",
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 21366,
+      "alerts": 0,
+      "input_tokens": 40015,
+      "output_tokens": 1824,
+      "model_calls": 17,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 26752,
+          "output": 708
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 13263,
+          "output": 1116
+        }
+      },
+      "cost_usd": 0.029617,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 719,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1975,
+          "output_tokens": 38,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 984,
+          "cost_usd": 0.000756
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2054,
+          "output_tokens": 108,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 742,
+          "cost_usd": 0.000975
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2191,
+          "output_tokens": 27,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 489,
+          "cost_usd": 0.000797
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2127,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 586,
+          "cost_usd": 0.000793
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1454,
+          "output_tokens": 118,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 863,
+          "cost_usd": 0.002044
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2375,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 353,
+          "cost_usd": 0.000874
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1858,
+          "output_tokens": 201,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1072,
+          "cost_usd": 0.002863
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2459,
+          "output_tokens": 108,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 767,
+          "cost_usd": 0.001108
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2776,
+          "output_tokens": 52,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 531,
+          "cost_usd": 0.001059
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2936,
+          "output_tokens": 35,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 573,
+          "cost_usd": 0.001065
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3965,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 684,
+          "cost_usd": 0.00432
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3030,
+          "output_tokens": 31,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 585,
+          "cost_usd": 0.001085
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3102,
+          "output_tokens": 210,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1479,
+          "cost_usd": 0.001601
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4209,
+          "output_tokens": 488,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3381,
+          "cost_usd": 0.006649
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 600,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1057,
+          "output_tokens": 176,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1258,
+          "cost_usd": 0.001937
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026039",
+      "scenario": "amount_mismatch",
+      "decision": "refer",
+      "clauses": [
+        "INT.CONSIST"
+      ],
+      "payable": 0,
+      "latency_ms": 20404,
+      "alerts": 0,
+      "input_tokens": 41502,
+      "output_tokens": 1909,
+      "model_calls": 17,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 27826,
+          "output": 825
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 13676,
+          "output": 1084
+        }
+      },
+      "cost_usd": 0.030547,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 378,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1993,
+          "output_tokens": 37,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 817,
+          "cost_usd": 0.000759
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2071,
+          "output_tokens": 108,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 789,
+          "cost_usd": 0.00098
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2208,
+          "output_tokens": 18,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 554,
+          "cost_usd": 0.000778
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2118,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 413,
+          "cost_usd": 0.00079
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1444,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 770,
+          "cost_usd": 0.002004
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2384,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 493,
+          "cost_usd": 0.000877
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1861,
+          "output_tokens": 197,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1065,
+          "cost_usd": 0.002846
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2483,
+          "output_tokens": 147,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 749,
+          "cost_usd": 0.001224
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2907,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 850,
+          "cost_usd": 0.001188
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3182,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 559,
+          "cost_usd": 0.001141
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4138,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 736,
+          "cost_usd": 0.004493
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3256,
+          "output_tokens": 185,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 987,
+          "cost_usd": 0.001583
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3497,
+          "output_tokens": 115,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 941,
+          "cost_usd": 0.00147
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4419,
+          "output_tokens": 457,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3250,
+          "cost_usd": 0.006704
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 525,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1094,
+          "output_tokens": 185,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1225,
+          "cost_usd": 0.002019
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026044",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 23946,
+      "alerts": 1,
+      "input_tokens": 33625,
+      "output_tokens": 1542,
+      "model_calls": 15,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 22367,
+          "output": 644
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 11258,
+          "output": 898
+        }
+      },
+      "cost_usd": 0.0249,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 407,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2030,
+          "output_tokens": 35,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 659,
+          "cost_usd": 0.000766
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2106,
+          "output_tokens": 101,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 696,
+          "cost_usd": 0.000973
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2236,
+          "output_tokens": 28,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 551,
+          "cost_usd": 0.000815
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2128,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 528,
+          "cost_usd": 0.000793
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1458,
+          "output_tokens": 112,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 842,
+          "cost_usd": 0.002018
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2431,
+          "output_tokens": 214,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 896,
+          "cost_usd": 0.001391
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1914,
+          "output_tokens": 149,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 962,
+          "cost_usd": 0.002659
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3028,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 698,
+          "cost_usd": 0.001227
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3303,
+          "output_tokens": 34,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 818,
+          "cost_usd": 0.001183
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 2957,
+          "output_tokens": 71,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 734,
+          "cost_usd": 0.003312
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3378,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1312,
+          "cost_usd": 0.001343
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3275,
+          "output_tokens": 338,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3195,
+          "cost_usd": 0.004965
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 511,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 934,
+          "output_tokens": 166,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1282,
+          "cost_usd": 0.001764
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026053",
+      "scenario": "para_alcohol",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 19574,
+      "alerts": 0,
+      "input_tokens": 33262,
+      "output_tokens": 1779,
+      "model_calls": 15,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 21966,
+          "output": 848
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 11296,
+          "output": 931
+        }
+      },
+      "cost_usd": 0.025533,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 398,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2012,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 446,
+          "cost_usd": 0.000755
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2127,
+          "output_tokens": 114,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 664,
+          "cost_usd": 0.001015
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2270,
+          "output_tokens": 34,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 651,
+          "cost_usd": 0.000843
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2134,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 617,
+          "cost_usd": 0.000795
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1461,
+          "output_tokens": 123,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 848,
+          "cost_usd": 0.002076
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2419,
+          "output_tokens": 175,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 844,
+          "cost_usd": 0.00128
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1905,
+          "output_tokens": 149,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 901,
+          "cost_usd": 0.00265
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2909,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 601,
+          "cost_usd": 0.001188
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3145,
+          "output_tokens": 37,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 585,
+          "cost_usd": 0.00114
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 2947,
+          "output_tokens": 172,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1701,
+          "cost_usd": 0.003807
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3223,
+          "output_tokens": 306,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1927,
+          "cost_usd": 0.001905
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 3329,
+          "output_tokens": 260,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 2143,
+          "cost_usd": 0.004629
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 555,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 934,
+          "output_tokens": 165,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1301,
+          "cost_usd": 0.001759
+        }
+      ]
+    },
+    {
+      "claim_id": "CLM-2026059",
+      "scenario": "neg_delivery",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 31010,
+      "latency_ms": 28850,
+      "alerts": 0,
+      "input_tokens": 61579,
+      "output_tokens": 2937,
+      "model_calls": 20,
+      "tokens_by_model": {
+        "global.amazon.nova-2-lite-v1:0": {
+          "input": 40439,
+          "output": 1446
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "input": 21140,
+          "output": 1491
+        }
+      },
+      "cost_usd": 0.042644,
+      "calls": [
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 1727,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 449,
+          "cost_usd": 0.000661
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2011,
+          "output_tokens": 34,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 476,
+          "cost_usd": 0.000757
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2086,
+          "output_tokens": 113,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 663,
+          "cost_usd": 0.000999
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2228,
+          "output_tokens": 43,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 497,
+          "cost_usd": 0.000853
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2143,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 513,
+          "cost_usd": 0.000798
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1473,
+          "output_tokens": 108,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 884,
+          "cost_usd": 0.002013
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2427,
+          "output_tokens": 33,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 442,
+          "cost_usd": 0.000892
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1898,
+          "output_tokens": 220,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1218,
+          "cost_usd": 0.002998
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2511,
+          "output_tokens": 149,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 690,
+          "cost_usd": 0.001238
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2939,
+          "output_tokens": 83,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 783,
+          "cost_usd": 0.001198
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3331,
+          "output_tokens": 35,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 619,
+          "cost_usd": 0.001195
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 4335,
+          "output_tokens": 134,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1330,
+          "cost_usd": 0.005005
+        },
+        {
+          "agent": "fraud",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 3407,
+          "output_tokens": 433,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 2759,
+          "cost_usd": 0.002315
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 5561,
+          "output_tokens": 235,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1738,
+          "cost_usd": 0.006736
+        },
+        {
+          "agent": "policy",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 6058,
+          "output_tokens": 503,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 3859,
+          "cost_usd": 0.008573
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2387,
+          "output_tokens": 125,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 688,
+          "cost_usd": 0.001131
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2541,
+          "output_tokens": 82,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 705,
+          "cost_usd": 0.001064
+        },
+        {
+          "agent": "intake",
+          "model": "global.amazon.nova-2-lite-v1:0",
+          "input_tokens": 2649,
+          "output_tokens": 27,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 690,
+          "cost_usd": 0.000948
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 720,
+          "output_tokens": 62,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 541,
+          "cost_usd": 0.00103
+        },
+        {
+          "agent": "adjudicator",
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "input_tokens": 1095,
+          "output_tokens": 229,
+          "cache_read": 0,
+          "cache_write": 0,
+          "latency_ms": 1166,
+          "cost_usd": 0.00224
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Clause INT.CONSIST (Internal control (not a policy clause)).
+Documents in a claim packet must agree on vehicle registration and claimed amount; disagreement is referred to an adjuster

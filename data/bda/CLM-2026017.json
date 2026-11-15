@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026017",
+ "form": {
+  "claimed_amount": 48800,
+  "policy_no": "MGI-MOT-1002",
+  "incident_date": "2026-10-06",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The vehicle was carrying food delivery orders for an app at the time of the collision.",
+  "claim_id": "CLM-2026017",
+  "police_fir": "Not applicable",
+  "holder": "Meera Nair",
+  "vehicle_reg": "KA33EA4257",
+  "report_date": "2026-10-07"
+ },
+ "photo": {
+  "source": "64.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "minor",
+  "description": "There is a minor scratch on the rear bumper of the vehicle.",
+  "summary": "This image shows the rear of a silver Chevrolet vehicle with visible damage on the bumper. The Chevrolet logo is prominently displayed on the trunk, and there is a sticker labeled \"Forest.Co\" on the lower part of the trunk. The license plate is partially visible on the top right corner, showing some text and numbers. The car appears to be parked in a garage or repair shop, indicated by the surrounding environment and the condition of the vehicle."
+ }
+}

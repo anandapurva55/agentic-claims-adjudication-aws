@@ -1,0 +1,33 @@
+{
+ "claim_id": "CLM-2026051",
+ "form": {
+  "claimed_amount": 39800,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-06-27",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian. The driver had not consumed any alcohol and the breath test at the scene was negative.",
+  "claim_id": "CLM-2026051",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-06-29"
+ },
+ "photo": {
+  "source": "59.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "minor",
+  "description": "The front bumper of the car has minor scratches and scuffs.",
+  "summary": "This image shows a close-up view of the front bumper of a silver car with noticeable damage. The damage includes scratches and dents on the lower part of the bumper. The car is parked in a parking lot with a yellow line marking the parking space. The front wheel of the car is visible, featuring a silver alloy wheel. In the background, there are other cars parked, and a building with stairs and a red railing can be seen."
+ }
+}

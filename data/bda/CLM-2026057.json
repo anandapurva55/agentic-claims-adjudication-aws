@@ -1,0 +1,27 @@
+{
+ "claim_id": "CLM-2026057",
+ "form": {
+  "claimed_amount": 38800,
+  "policy_no": "MGI-MOT-1003",
+  "incident_date": "2026-08-02",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian. The owner was ferrying paying passengers through a mobile app at the time.",
+  "claim_id": "CLM-2026057",
+  "police_fir": "Not applicable",
+  "holder": "Aarav Reddy",
+  "vehicle_reg": "KA45DC5552",
+  "report_date": "2026-08-02"
+ },
+ "photo": {
+  "source": "15.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "none",
+  "description": "No visible damage is observed on the rear of the vehicle.",
+  "summary": "This image shows the rear of a white Nissan vehicle parked on a gravel surface. The license plate is partially visible with the letter \"E\" and some obscured characters. The vehicle has a black rear bumper and a silver Nissan logo on the trunk. The model name \"CASHOA142\" is printed on the lower left side of the trunk. The rear lights are red, and the trunk appears to have a slight dent on the left side."
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "claim_id": "CLM-2026032",
+ "form": {
+  "claimed_amount": 31700,
+  "policy_no": "MGI-MOT-1009",
+  "incident_date": "2027-02-24",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026032",
+  "police_fir": "Not applicable",
+  "holder": "Rohan lyer",
+  "vehicle_reg": "KA14EF6155",
+  "report_date": "2027-02-27"
+ },
+ "photo": {
+  "source": "46.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "severe",
+  "description": "The car has severe damage including a shattered windshield, a dented hood, and a damaged front bumper and headlamp.",
+  "summary": "This image shows a damaged blue car parked inside a garage. The front windshield of the car is shattered, with cracks and broken glass visible. The car's front bumper and hood also appear to be damaged. The license plate is visible on the front of the car. Various tools and equipment are scattered around the garage, indicating that some form of repair or maintenance work is being done. The walls of the garage have a blue and black color scheme."
+ }
+}

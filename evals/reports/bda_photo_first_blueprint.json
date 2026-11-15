@@ -1,0 +1,36 @@
+{
+ "photos": 70,
+ "recognised_as_vehicle": 70,
+ "precision": 0.955,
+ "recall": 0.44,
+ "f1": 0.603,
+ "exact_set_match": 12,
+ "per_part": {
+  "door": {
+   "precision": 1.0,
+   "recall": 0.39,
+   "photos_with_part": 41
+  },
+  "front_bumper": {
+   "precision": 0.939,
+   "recall": 0.838,
+   "photos_with_part": 37
+  },
+  "headlamp": {
+   "precision": 1.0,
+   "recall": 0.035,
+   "photos_with_part": 57
+  },
+  "hood": {
+   "precision": 0.889,
+   "recall": 0.516,
+   "photos_with_part": 31
+  },
+  "rear_bumper": {
+   "precision": 1.0,
+   "recall": 0.741,
+   "photos_with_part": 27
+  }
+ },
+ "mean_seconds": 13.2
+}

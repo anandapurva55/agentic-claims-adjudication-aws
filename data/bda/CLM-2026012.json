@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026012",
+ "form": {
+  "claimed_amount": 1800,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-10-01",
+  "narrative": "Minor scrape while parking.",
+  "claim_id": "CLM-2026012",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-10-03"
+ },
+ "photo": {
+  "source": "32.jpg",
+  "parts": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "headlamp",
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the car is visibly damaged with dents and cracks.",
+  "summary": "This image shows the rear of a blue car with visible damage to the bumper and trunk area. The license plate on the car is partially obscured but shows the letters \"ZG\" and \"M\" with a European flag symbol. The car has dual exhaust pipes. Next to this car, there is a person inspecting the damage, and another car is parked nearby. The ground is paved with concrete, and there are some small objects scattered around the damaged car, possibly parts or debris from the accident."
+ }
+}

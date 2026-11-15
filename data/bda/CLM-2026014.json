@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026014",
+ "form": {
+  "claimed_amount": 24800,
+  "policy_no": "MGI-MOT-1017",
+  "incident_date": "2026-09-07",
+  "narrative": "Rear ended at a traffic signal by another vehicle. The driver admitted to having had several drinks at a party before the trip.",
+  "claim_id": "CLM-2026014",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Rao",
+  "vehicle_reg": "KA28BE4295",
+  "report_date": "2026-09-09"
+ },
+ "photo": {
+  "source": "38.jpg",
+  "parts": [
+   "hood",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "hood",
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle shows a moderate dent.",
+  "summary": "This image shows the rear end of a white car with visible damage. The car's trunk is open, revealing the interior. The rear bumper is dented and misaligned, suggesting it has been involved in a collision. The tail lights are intact and visible, with the right tail light showing both red and orange sections. The car is parked on a paved surface with a yellow line marking the edge of the parking space."
+ }
+}

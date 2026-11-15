@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026002",
+ "form": {
+  "claimed_amount": 51800,
+  "policy_no": "MGI-MOT-1012",
+  "incident_date": "2026-10-07",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026002",
+  "police_fir": "Not applicable",
+  "holder": "Nisha lyer",
+  "vehicle_reg": "KA25DE8668",
+  "report_date": "2026-10-10"
+ },
+ "photo": {
+  "source": "14.jpg",
+  "parts": [
+   "front_bumper"
+  ],
+  "parts_bda": [
+   "front_bumper"
+  ],
+  "parts_vision": [
+   "front_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper of the vehicle has a noticeable dent and some scratches.",
+  "summary": "This image shows a close-up view of the front bumper of a silver Toyota car. The Toyota logo is visible on the top left of the bumper. The car has a license plate on the front bumper, though the text on it is not clearly legible. There is a noticeable dent and some scratches on the right side of the bumper. The headlight is positioned above the bumper, and part of the front wheel is visible on the right side of the image."
+ }
+}

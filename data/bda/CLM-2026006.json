@@ -1,0 +1,32 @@
+{
+ "claim_id": "CLM-2026006",
+ "form": {
+  "claimed_amount": 27000,
+  "policy_no": "MGI-MOT-1010",
+  "incident_date": "2026-09-29",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026006",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Reddy",
+  "vehicle_reg": "KA16FE9830",
+  "report_date": "2026-10-02"
+ },
+ "photo": {
+  "source": "21.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle has a noticeable dent.",
+  "summary": "This image shows a close-up view of the rear side of a silver car, focusing on the area around the fuel tank cap and the rear wheel. The car has a noticeable dent on the rear quarter panel, suggesting it has been involved in a minor collision. The fuel tank cap is circular and located on the top left of the car's rear. The rear wheel is partially visible, showing a silver alloy wheel with multiple spokes and a black tire. The car's exhaust pipe is also visible at the bottom right of the image. The background appears to be a tiled floor, possibly indicating that the car is in a garage or repair shop."
+ }
+}

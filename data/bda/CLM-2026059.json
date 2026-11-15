@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026059",
+ "form": {
+  "claimed_amount": 35500,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-04-23",
+  "narrative": "Rear ended at a traffic signal by another vehicle. The owner was returning home after collecting a parcel that a friend had delivered to a nearby shop.",
+  "claim_id": "CLM-2026059",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-04-24"
+ },
+ "photo": {
+  "source": "18.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "moderate",
+  "description": "The side door of the car has a noticeable dent and crack.",
+  "summary": "This image shows a white car with visible damage on the side, including a crumpled door and a dented fender. The license plate on the car reads \"81028XX\". The car is parked in a lot with other vehicles visible in the background. The scene appears to be outdoors, with a paved surface and some structures in the distance. The damage to the car suggests it may have been involved in a collision."
+ }
+}

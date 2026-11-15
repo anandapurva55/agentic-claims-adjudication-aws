@@ -1,0 +1,37 @@
+{
+ "claim_id": "CLM-2026008",
+ "form": {
+  "claimed_amount": 45000,
+  "policy_no": "MGI-MOT-1006",
+  "incident_date": "2026-09-15",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026008",
+  "police_fir": "Not applicable",
+  "holder": "Diya Nair",
+  "vehicle_reg": "KA56AD5554",
+  "report_date": "2026-09-15"
+ },
+ "photo": {
+  "source": "26.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "severe",
+  "description": "The front bumper, hood, and headlamp of the vehicle are severely damaged.",
+  "summary": "This image shows a severely damaged car, likely the result of a collision. The front bumper is crumpled, and the hood is bent upwards. The headlights are intact but appear to be misaligned. The license plate is partially visible but obscured by damage. The car is parked on a paved surface, and another vehicle is visible in the background."
+ }
+}

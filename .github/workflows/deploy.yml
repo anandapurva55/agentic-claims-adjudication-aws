@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode: { description: "replay or live", default: "live", type: choice, options: [live, replay] }
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip, cache-dependency-path: requirements-dev.txt }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/generate_data.py
+      - run: cd frontend && npm ci && npm run build
+      - name: Deploy both stacks
+        working-directory: infra
+        run: npx --yes aws-cdk@2 deploy --all --require-approval never -c mode=${{ inputs.mode }}

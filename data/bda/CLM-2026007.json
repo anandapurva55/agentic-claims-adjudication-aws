@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026007",
+ "form": {
+  "claimed_amount": 25700,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-04-19",
+  "narrative": "Rear ended at a traffic signal by another vehicle.",
+  "claim_id": "CLM-2026007",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-04-21"
+ },
+ "photo": {
+  "source": "16.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "minor",
+  "description": "There is a scratch on the side door of the vehicle.",
+  "summary": "This image shows a white car parked in a dark area, likely a garage. The car has visible damage on the side, including scratches and dents. The front wheel and part of the front bumper are also visible. The interior of the car is dark, suggesting that the photo was taken with limited lighting. The concrete floor of the garage is visible in the lower part of the image."
+ }
+}

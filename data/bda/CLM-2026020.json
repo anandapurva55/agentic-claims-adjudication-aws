@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026020",
+ "form": {
+  "claimed_amount": 45500,
+  "policy_no": "MGI-MOT-1010",
+  "incident_date": "2026-08-10",
+  "narrative": "Rear ended at a traffic signal by another vehicle. The car was being driven by the insured's friend, who does not hold a driving licence.",
+  "claim_id": "CLM-2026020",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Reddy",
+  "vehicle_reg": "KA16FE9830",
+  "report_date": "2026-08-11"
+ },
+ "photo": {
+  "source": "19.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "minor",
+  "description": "There are visible scratches and scuffs on the rear bumper of the vehicle.",
+  "summary": "This image shows the rear of a gray car with its trunk open. The car has a visible bumper with some scratches and a black tire on the right side. The tire has silver rims and the word \"JEVERB\" is printed on the side of the tire. The car's tail light is red and is located above the license plate area, which is not visible in this image. The ground beneath the car is covered with small stones and dirt."
+ }
+}

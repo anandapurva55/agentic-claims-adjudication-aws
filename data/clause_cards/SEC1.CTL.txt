@@ -1,0 +1,2 @@
+Clause SEC1.CTL (Section I, Sum Insured).
+The insured vehicle shall be treated as a CTL if the aggregate cost of retrieval and / or repair of the vehicle, subject to terms and conditions of the policy, exceeds 75% of the IDV of the vehicle

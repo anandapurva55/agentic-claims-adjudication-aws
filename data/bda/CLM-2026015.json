@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026015",
+ "form": {
+  "claimed_amount": 38500,
+  "policy_no": "MGI-MOT-1005",
+  "incident_date": "2026-10-18",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The driver admitted to having had several drinks at a party before the trip.",
+  "claim_id": "CLM-2026015",
+  "police_fir": "Not applicable",
+  "holder": "Diya Patel",
+  "vehicle_reg": "KA19FE6925",
+  "report_date": "2026-10-20"
+ },
+ "photo": {
+  "source": "5.jpg",
+  "parts": [
+   "door",
+   "front_bumper"
+  ],
+  "parts_bda": [
+   "front_bumper"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper of the vehicle has visible scratches and scuffs.",
+  "summary": "This image shows a close-up view of the front bumper of a silver car. The bumper has noticeable damage, including scratches and dents, particularly on the right side. The car's headlight is visible at the top, with the grille and part of the lower bumper area showing the damage. The left side of the image includes part of the car's wheel, which appears to be in good condition with no visible damage. The overall condition of the car suggests it has been involved in a minor collision or has experienced some form of impact."
+ }
+}

@@ -1,0 +1,17 @@
+# Runtime dependencies of the API and the agent graph. This file is what the container image installs.
+
+# Agents and tools
+strands-agents==1.65.0      # agent graph, hooks, Bedrock model provider
+mcp==2.3.0                  # Model Context Protocol servers and client (stdio)
+
+# AWS SDK. One client library covers every AWS service the system calls:
+# Bedrock runtime and Guardrails, Bedrock Knowledge Bases (agent runtime), Bedrock Data Automation,
+# Bedrock AgentCore Memory, S3, DynamoDB, CloudWatch and Athena.
+boto3==1.44.3
+
+# API and configuration
+fastapi==0.163.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+pypdf==7.1.0                # deterministic claim form parser

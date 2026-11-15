@@ -1,0 +1,35 @@
+{
+ "claim_id": "CLM-2026056",
+ "form": {
+  "claimed_amount": 36800,
+  "policy_no": "MGI-MOT-1016",
+  "incident_date": "2026-09-15",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian. The owner was ferrying paying passengers through a mobile app at the time.",
+  "claim_id": "CLM-2026056",
+  "police_fir": "Not applicable",
+  "holder": "Diya Das",
+  "vehicle_reg": "KA53AE3060",
+  "report_date": "2026-09-15"
+ },
+ "photo": {
+  "source": "34.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "severe",
+  "description": "The front bumper, hood, and headlamp of the vehicle show severe damage with parts missing and deformation.",
+  "summary": "This image shows a silver car that has been involved in a collision. The front bumper is severely damaged, with parts of it hanging off. The headlight on the left side is also damaged, and the hood shows signs of impact. The left front wheel is intact but appears to be misaligned. The car's front left side is crumpled, indicating a significant impact. The ground around the car is visible, suggesting the image was taken outdoors."
+ }
+}

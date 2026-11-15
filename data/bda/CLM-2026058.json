@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026058",
+ "form": {
+  "claimed_amount": 45000,
+  "policy_no": "MGI-MOT-1010",
+  "incident_date": "2026-06-28",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The owner was ferrying paying passengers through a mobile app at the time.",
+  "claim_id": "CLM-2026058",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Reddy",
+  "vehicle_reg": "KA16FE9830",
+  "report_date": "2026-06-28"
+ },
+ "photo": {
+  "source": "4.jpg",
+  "parts": [
+   "front_bumper",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "hood"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper of the vehicle has a noticeable dent.",
+  "summary": "This image shows a close-up view of the front bumper of a white car. The bumper has a noticeable dent on the right side. The car's license plate is visible on the left side of the bumper. There is a small yellow sticker with some text on the bumper, located towards the center-left. The car's headlight and part of the wheel are also visible in the image. The background shows a blurred outdoor setting with some greenery."
+ }
+}

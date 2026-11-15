@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026061",
+ "form": {
+  "claimed_amount": 38000,
+  "policy_no": "MGI-MOT-1005",
+  "incident_date": "2026-07-15",
+  "narrative": "Rear ended at a traffic signal by another vehicle. The owner was returning home after collecting a parcel that a friend had delivered to a nearby shop.",
+  "claim_id": "CLM-2026061",
+  "police_fir": "Not applicable",
+  "holder": "Diya Patel",
+  "vehicle_reg": "KA19FE6925",
+  "report_date": "2026-07-16"
+ },
+ "photo": {
+  "source": "40.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "moderate",
+  "description": "There is a moderate dent and rust on the side door of the vehicle.",
+  "summary": "This image shows a close-up view of a green car with visible damage on the lower part of its body. The damage includes rust and peeling paint, particularly noticeable around the wheel arch. The wheel itself is partially visible, showing a silver rim and a black tire with some wear. The car's body has a smooth, glossy finish where the paint is intact. The overall condition suggests that the vehicle has sustained some form of impact or has been exposed to environmental elements that have caused the deterioration."
+ }
+}

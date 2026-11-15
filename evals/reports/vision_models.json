@@ -1,0 +1,29 @@
+{
+ "nova-2-lite": {
+  "photos": 70,
+  "precision": 0.927,
+  "recall": 0.591,
+  "f1": 0.722,
+  "exact_set_match": 20,
+  "mean_seconds": 1.4,
+  "headlamp_recall": 0.456
+ },
+ "claude-haiku-4.5": {
+  "photos": 70,
+  "precision": 0.863,
+  "recall": 0.684,
+  "f1": 0.763,
+  "exact_set_match": 20,
+  "mean_seconds": 0.8,
+  "headlamp_recall": 0.561
+ },
+ "claude-sonnet-4.6": {
+  "photos": 70,
+  "precision": 0.944,
+  "recall": 0.606,
+  "f1": 0.738,
+  "exact_set_match": 19,
+  "mean_seconds": 2.2,
+  "headlamp_recall": 0.386
+ }
+}

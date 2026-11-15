@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026038",
+ "form": {
+  "claimed_amount": 42300,
+  "policy_no": "MGI-MOT-1001",
+  "incident_date": "2026-05-03",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026038",
+  "police_fir": "Not applicable",
+  "holder": "Priya Gupta",
+  "vehicle_reg": "KA16BB2679",
+  "report_date": "2026-05-06"
+ },
+ "photo": {
+  "source": "10.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "moderate",
+  "description": "The side door of the vehicle has a moderate dent and some scratches.",
+  "summary": "This image shows a close-up view of the side of a silver car with noticeable damage. The car has a large dent on the side door, which appears to be quite deep and has caused some paint to chip away. The car's door handle is visible, and the car's wheel is partially seen in the lower right corner. The image also includes a watermark with the text \"mercadoracing.org\" in the top left corner. The lighting in the image is dim, suggesting that the photo was taken in a low-light environment."
+ }
+}

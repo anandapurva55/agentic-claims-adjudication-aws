@@ -1,0 +1,2 @@
+Clause INT.AGENT (Internal control (not a policy clause)).
+If the AI agents do not complete their assessment, the claim is referred to a human adjuster. The system never guesses a decision.

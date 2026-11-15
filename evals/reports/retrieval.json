@@ -1,0 +1,279 @@
+{
+  "generated": "2026-11-14 19:32:11",
+  "questions": 48,
+  "variants": {
+    "c300 (baseline)": {
+      "kb": "E9AV8PW3UB",
+      "recall@1": 0.354,
+      "recall@3": 0.667,
+      "recall@5": 0.771,
+      "mrr@5": 0.52,
+      "by_clause_recall@5": {
+        "SEC1.COVER": 0.25,
+        "SEC1.DEPR": 1.0,
+        "SEC1.EXCL.1a": 0.5,
+        "SEC1.EXCL.1b": 0.0,
+        "SEC1.EXCL.1c": 1.0,
+        "SEC1.CTL": 1.0,
+        "SEC5.3a": 0.75,
+        "SEC5.3b": 1.0,
+        "SEC6.DEDUCT": 1.0,
+        "SEC7.1": 1.0,
+        "SEC7.3a": 1.0,
+        "PERIOD": 0.75
+      },
+      "misses": [
+        {
+          "clause": "SEC1.COVER",
+          "question": "Is my car covered if it is damaged in a flood or storm?"
+        },
+        {
+          "clause": "SEC1.COVER",
+          "question": "Does the policy pay if the vehicle is stolen?"
+        },
+        {
+          "clause": "SEC1.COVER",
+          "question": "What perils does Section I protect the insured vehicle against?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "Will the insurer pay for an engine failure or mechanical breakdown?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "My gearbox failed on the highway with no collision, is that covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "Is damage to only the tyres covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "How much of the tyre replacement cost does the company pay when the vehicle is also damaged?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "I hit a pothole and burst two tyres but nothing else is damaged, can I claim?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "What is the rule for tyres and tubes under own damage?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "My car was carrying paying passengers through a ride app at the time, is that covered?"
+        },
+        {
+          "clause": "PERIOD",
+          "question": "Is an accident outside the policy period covered?"
+        }
+      ]
+    },
+    "c150": {
+      "kb": "709BQRX5PF",
+      "recall@1": 0.521,
+      "recall@3": 0.667,
+      "recall@5": 0.729,
+      "mrr@5": 0.6,
+      "by_clause_recall@5": {
+        "SEC1.COVER": 0.5,
+        "SEC1.DEPR": 1.0,
+        "SEC1.EXCL.1a": 0.75,
+        "SEC1.EXCL.1b": 0.0,
+        "SEC1.EXCL.1c": 1.0,
+        "SEC1.CTL": 1.0,
+        "SEC5.3a": 0.25,
+        "SEC5.3b": 0.75,
+        "SEC6.DEDUCT": 1.0,
+        "SEC7.1": 1.0,
+        "SEC7.3a": 0.75,
+        "PERIOD": 0.75
+      },
+      "misses": [
+        {
+          "clause": "SEC1.COVER",
+          "question": "What kinds of accidents and events does the own damage section of a private car policy cover?"
+        },
+        {
+          "clause": "SEC1.COVER",
+          "question": "Does the policy pay if the vehicle is stolen?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "My gearbox failed on the highway with no collision, is that covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "Is damage to only the tyres covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "How much of the tyre replacement cost does the company pay when the vehicle is also damaged?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "I hit a pothole and burst two tyres but nothing else is damaged, can I claim?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "What is the rule for tyres and tubes under own damage?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "Is a claim payable if a private car was used for hire or delivery?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "My car was carrying paying passengers through a ride app at the time, is that covered?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "Which exclusion applies to commercial use of a private vehicle?"
+        },
+        {
+          "clause": "SEC5.3b",
+          "question": "A friend without a licence was driving when the accident happened, is that covered?"
+        },
+        {
+          "clause": "SEC7.3a",
+          "question": "How is salvage treated when the car is written off?"
+        },
+        {
+          "clause": "PERIOD",
+          "question": "My policy expired last week and the accident was after that, can I claim?"
+        }
+      ]
+    },
+    "c800": {
+      "kb": "SW1B8SSYCO",
+      "recall@1": 0.458,
+      "recall@3": 0.688,
+      "recall@5": 0.708,
+      "mrr@5": 0.564,
+      "by_clause_recall@5": {
+        "SEC1.COVER": 0.25,
+        "SEC1.DEPR": 1.0,
+        "SEC1.EXCL.1a": 0.5,
+        "SEC1.EXCL.1b": 1.0,
+        "SEC1.EXCL.1c": 1.0,
+        "SEC1.CTL": 1.0,
+        "SEC5.3a": 0.25,
+        "SEC5.3b": 1.0,
+        "SEC6.DEDUCT": 0.75,
+        "SEC7.1": 1.0,
+        "SEC7.3a": 0.5,
+        "PERIOD": 0.25
+      },
+      "misses": [
+        {
+          "clause": "SEC1.COVER",
+          "question": "Is my car covered if it is damaged in a flood or storm?"
+        },
+        {
+          "clause": "SEC1.COVER",
+          "question": "Does the policy pay if the vehicle is stolen?"
+        },
+        {
+          "clause": "SEC1.COVER",
+          "question": "What perils does Section I protect the insured vehicle against?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "Will the insurer pay for an engine failure or mechanical breakdown?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "My gearbox failed on the highway with no collision, is that covered?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "Is a claim payable if a private car was used for hire or delivery?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "What does the policy say about using the vehicle outside its limitations as to use?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "My car was carrying paying passengers through a ride app at the time, is that covered?"
+        },
+        {
+          "clause": "SEC6.DEDUCT",
+          "question": "What happens if my claim amount is less than the deductible?"
+        },
+        {
+          "clause": "SEC7.3a",
+          "question": "How much is paid for a total loss of the vehicle?"
+        },
+        {
+          "clause": "SEC7.3a",
+          "question": "What is the liability limit for a constructive total loss?"
+        },
+        {
+          "clause": "PERIOD",
+          "question": "Is an accident outside the policy period covered?"
+        },
+        {
+          "clause": "PERIOD",
+          "question": "Does the policy only cover loss that happens during the period of insurance?"
+        },
+        {
+          "clause": "PERIOD",
+          "question": "Which words limit cover to the policy's validity dates?"
+        }
+      ]
+    },
+    "c300 + clause cards": {
+      "kb": "<knowledge-base-id>",
+      "recall@1": 0.604,
+      "recall@3": 0.792,
+      "recall@5": 0.854,
+      "mrr@5": 0.695,
+      "by_clause_recall@5": {
+        "SEC1.COVER": 0.75,
+        "SEC1.DEPR": 1.0,
+        "SEC1.EXCL.1a": 0.5,
+        "SEC1.EXCL.1b": 0.5,
+        "SEC1.EXCL.1c": 1.0,
+        "SEC1.CTL": 1.0,
+        "SEC5.3a": 0.75,
+        "SEC5.3b": 0.75,
+        "SEC6.DEDUCT": 1.0,
+        "SEC7.1": 1.0,
+        "SEC7.3a": 1.0,
+        "PERIOD": 1.0
+      },
+      "misses": [
+        {
+          "clause": "SEC1.COVER",
+          "question": "Does the policy pay if the vehicle is stolen?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "Will the insurer pay for an engine failure or mechanical breakdown?"
+        },
+        {
+          "clause": "SEC1.EXCL.1a",
+          "question": "My gearbox failed on the highway with no collision, is that covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "Is damage to only the tyres covered?"
+        },
+        {
+          "clause": "SEC1.EXCL.1b",
+          "question": "I hit a pothole and burst two tyres but nothing else is damaged, can I claim?"
+        },
+        {
+          "clause": "SEC5.3a",
+          "question": "My car was carrying paying passengers through a ride app at the time, is that covered?"
+        },
+        {
+          "clause": "SEC5.3b",
+          "question": "A friend without a licence was driving when the accident happened, is that covered?"
+        }
+      ]
+    }
+  },
+  "hybrid_search": "not supported on S3 Vectors: HYBRID search type is not supported for search operation on index E9AV8PW3UB. Retry your request with a different search"
+}

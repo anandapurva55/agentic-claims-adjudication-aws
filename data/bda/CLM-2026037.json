@@ -1,0 +1,34 @@
+{
+ "claim_id": "CLM-2026037",
+ "form": {
+  "claimed_amount": 24300,
+  "policy_no": "MGI-MOT-1013",
+  "incident_date": "2026-10-03",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026037",
+  "police_fir": "Not applicable",
+  "holder": "Karan Menon",
+  "vehicle_reg": "KA08CD3591",
+  "report_date": "2026-10-04"
+ },
+ "photo": {
+  "source": "71.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper and headlamp area show moderate damage with visible dents and cracks.",
+  "summary": "This image shows a close-up view of the front bumper of a vehicle, specifically focusing on the area around the headlight and the lower part of the bumper. The bumper appears to have some damage, with visible scratches and a dent on the right side. The headlight is partially visible, showing the reflective surface and the orange indicator light. The vehicle's wheel and part of the tire tread are also visible on the left side of the image. The overall condition suggests that the vehicle has undergone some form of impact or collision."
+ }
+}

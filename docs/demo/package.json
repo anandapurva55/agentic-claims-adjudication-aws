@@ -1,0 +1,9 @@
+{
+  "name": "demo-recorder",
+  "private": true,
+  "type": "module",
+  "description": "Records the demo GIFs and stills from the running site: node record.mjs <baseUrl> <framesDir> <stillsDir>. Needs Google Chrome.",
+  "dependencies": {
+    "puppeteer-core": "24.43.1"
+  }
+}

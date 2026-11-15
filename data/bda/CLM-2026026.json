@@ -1,0 +1,15 @@
+{
+ "claim_id": "CLM-2026026",
+ "form": {
+  "claimed_amount": 42000,
+  "policy_no": "MGI-MOT-1007",
+  "incident_date": "2026-10-06",
+  "narrative": "The car was parked in a basement that flooded during heavy rain. Water entered the cabin.",
+  "claim_id": "CLM-2026026",
+  "police_fir": "Not applicable",
+  "holder": "Meera Gupta",
+  "vehicle_reg": "KA45FF2169",
+  "report_date": "2026-10-08"
+ },
+ "photo": null
+}

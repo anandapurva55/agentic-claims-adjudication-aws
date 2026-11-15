@@ -1,0 +1,117 @@
+[
+ {
+  "check": "CloudFormation stacks",
+  "pass": true,
+  "evidence": "{\"ClaimsAdjudicationData\": \"UPDATE_COMPLETE\", \"ClaimsAdjudicationApp\": \"UPDATE_COMPLETE\"}"
+ },
+ {
+  "check": "ECS Fargate service",
+  "pass": true,
+  "evidence": "running 1/1, launch FARGATE"
+ },
+ {
+  "check": "CloudFront serves the frontend",
+  "pass": true,
+  "evidence": "https://dpt9lbsj1abam.cloudfront.net -> 200, title ok"
+ },
+ {
+  "check": "ALB refuses direct access",
+  "pass": true,
+  "evidence": "direct request refused (URLError)"
+ },
+ {
+  "check": "API health and mode",
+  "pass": true,
+  "evidence": "{\"status\": \"ok\", \"mode\": \"live\", \"region\": \"us-east-1\", \"models\": {\"orchestrator\": \"global.anthropic.claude-sonnet-4-6\", \"fast\": \"global.amazon.nova-2"
+ },
+ {
+  "check": "API unknown claim is a real 404",
+  "pass": true,
+  "evidence": "HTTP 404"
+ },
+ {
+  "check": "Bedrock models (3 invocations)",
+  "pass": true,
+  "evidence": "replies ['ok', 'ok', 'ok']"
+ },
+ {
+  "check": "Bedrock Guardrails blocks an attack",
+  "pass": true,
+  "evidence": "e4lwhmnn0zp7 action=GUARDRAIL_INTERVENED"
+ },
+ {
+  "check": "Knowledge bases return clauses (4 KBs)",
+  "pass": true,
+  "evidence": "{\"Retrievalc800KbId\": 3, \"KnowledgeBaseId\": 3, \"RetrievalcardsKbId\": 3, \"Retrievalc150KbId\": 3}"
+ },
+ {
+  "check": "Knowledge base ingestion complete",
+  "pass": true,
+  "evidence": "5 data sources checked, problems: none"
+ },
+ {
+  "check": "AgentCore Memory recall",
+  "pass": true,
+  "evidence": "claims_adjudication_memory-zJTpyICGKM recalled 1 lesson(s)"
+ },
+ {
+  "check": "Bedrock Data Automation project",
+  "pass": true,
+  "evidence": "claims-adjudication-claim-packets status=COMPLETED, 2 custom blueprints"
+ },
+ {
+  "check": "BDA job (real invocation)",
+  "pass": true,
+  "evidence": "15.2s, blueprint=vehicle_damage_photo, parts=['door']"
+ },
+ {
+  "check": "DynamoDB tables hold data",
+  "pass": true,
+  "evidence": "{\"Policies\": 20, \"Claims\": 63, \"Audit\": 42, \"Metrics\": 615}"
+ },
+ {
+  "check": "S3 buckets (claims, KB, telemetry)",
+  "pass": true,
+  "evidence": "{\"ClaimsBucketName\": 1, \"PolicyDocsBucketName\": 1, \"TelemetryBucketName\": 1}"
+ },
+ {
+  "check": "CloudWatch alarms and dashboard",
+  "pass": true,
+  "evidence": "3 alarms, dashboard ClaimsAdjudication"
+ },
+ {
+  "check": "Athena query over telemetry",
+  "pass": true,
+  "evidence": "97 runs in the lake"
+ },
+ {
+  "check": "QuickSight source and dashboard",
+  "pass": true,
+  "evidence": "data source UPDATE_SUCCESSFUL, dashboard CREATION_SUCCESSFUL"
+ },
+ {
+  "check": "SageMaker training job record",
+  "pass": true,
+  "evidence": "Completed on ml.g5.2xlarge, 968 billable s"
+ },
+ {
+  "check": "Human review is saved to DynamoDB",
+  "pass": true,
+  "evidence": "42 rows, actions ['decision', 'human_review', 'outcome']"
+ },
+ {
+  "check": "Security API (attacks, scan)",
+  "pass": true,
+  "evidence": "30 attacks served, scan removed 1 sentence(s) via bedrock-guardrails"
+ },
+ {
+  "check": "LIVE claim end to end (all agents)",
+  "pass": true,
+  "evidence": "decision=deny, nodes seen=13, memory/bda/guardrail all active"
+ },
+ {
+  "check": "Repo has no stale names or ids",
+  "pass": true,
+  "evidence": "clean"
+ }
+]

@@ -1,0 +1,2 @@
+Clause INT.AUTH (Internal authority matrix (not a policy clause)).
+Payable amounts above INR 200,000 require senior adjuster approval

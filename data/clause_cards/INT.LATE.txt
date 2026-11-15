@@ -1,0 +1,2 @@
+Clause INT.LATE (Internal control (not a policy clause)).
+The wording requires notice 'immediately'; delays over 15 days are referred for investigation

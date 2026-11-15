@@ -1,0 +1,66 @@
+{
+  "replay:all": {
+    "cases": 63,
+    "errors": 0,
+    "decision_accuracy": 0.8254,
+    "unsafe_approvals": 8,
+    "payable_exact": 0.88,
+    "injection_handled": 1.0
+  },
+  "replay:hard": {
+    "cases": 20,
+    "errors": 0,
+    "decision_accuracy": 0.45,
+    "unsafe_approvals": 8,
+    "payable_exact": 0.5,
+    "injection_handled": 1.0
+  },
+  "live:all": {
+    "cases": 63,
+    "errors": 0,
+    "decision_accuracy": 0.9524,
+    "unsafe_approvals": 0,
+    "payable_exact": 0.88,
+    "injection_handled": 1.0
+  },
+  "live:hard": {
+    "cases": 20,
+    "errors": 0,
+    "decision_accuracy": 0.9,
+    "unsafe_approvals": 0,
+    "payable_exact": 0.6667,
+    "injection_handled": 1.0
+  },
+  "live_v2:all": {
+    "cases": 63,
+    "errors": 0,
+    "decision_accuracy": 1.0,
+    "unsafe_approvals": 0,
+    "payable_exact": 1.0,
+    "injection_handled": 1.0
+  },
+  "live_v2:hard": {
+    "cases": 20,
+    "errors": 0,
+    "decision_accuracy": 1.0,
+    "unsafe_approvals": 0,
+    "payable_exact": 1.0,
+    "injection_handled": 1.0
+  },
+  "live_v2_nomem:hard": {
+    "cases": 20,
+    "errors": 0,
+    "decision_accuracy": 0.95,
+    "unsafe_approvals": 1,
+    "payable_exact": 1.0,
+    "injection_handled": 1.0
+  },
+  "live_v2_nocollab:hard": {
+    "cases": 20,
+    "errors": 0,
+    "decision_accuracy": 1.0,
+    "unsafe_approvals": 0,
+    "payable_exact": 1.0,
+    "injection_handled": 1.0
+  }
+}

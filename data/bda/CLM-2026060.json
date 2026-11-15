@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026060",
+ "form": {
+  "claimed_amount": 36800,
+  "policy_no": "MGI-MOT-1010",
+  "incident_date": "2026-10-07",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The owner was returning home after collecting a parcel that a friend had delivered to a nearby shop.",
+  "claim_id": "CLM-2026060",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Reddy",
+  "vehicle_reg": "KA16FE9830",
+  "report_date": "2026-10-07"
+ },
+ "photo": {
+  "source": "55.jpg",
+  "parts": [
+   "door",
+   "front_bumper"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The car has a moderate dent on the side door.",
+  "summary": "This image shows a silver car with significant damage to its side, parked on the side of a street. The car's door is crumpled and the paint is scratched. There are several people standing around the car, seemingly observing the damage. In the background, there is a brick wall and some greenery. The scene appears to be in a residential area with a mix of brick and concrete structures. There is a watermark with the text \"Za\" prominently displayed in the bottom left corner of the image."
+ }
+}

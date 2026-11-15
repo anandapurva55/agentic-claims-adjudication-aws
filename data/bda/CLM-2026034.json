@@ -1,0 +1,31 @@
+{
+ "claim_id": "CLM-2026034",
+ "form": {
+  "claimed_amount": 24800,
+  "policy_no": "MGI-MOT-1014",
+  "incident_date": "2026-06-14",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026034",
+  "police_fir": "Not applicable",
+  "holder": "Arjun lyer",
+  "vehicle_reg": "KA56FC9317",
+  "report_date": "2026-07-22"
+ },
+ "photo": {
+  "source": "1.jpg",
+  "parts": [
+   "door",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "door",
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "There is a noticeable dent on the rear bumper of the vehicle.",
+  "summary": "This image shows the rear end of a light-colored car parked on a paved surface. The car has a noticeable dent on the right side of the bumper. The license plate is not visible. The car's tail lights are red, and the rear lights are visible. The pavement has a white line marking the parking space. In the background, there is a grassy area with some weeds and a chain-link fence."
+ }
+}

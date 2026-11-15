@@ -1,0 +1,36 @@
+{
+ "claim_id": "CLM-2026063",
+ "form": {
+  "claimed_amount": 47700,
+  "policy_no": "MGI-MOT-1003",
+  "incident_date": "2026-06-10",
+  "narrative": "Side swiped by an auto rickshaw on a narrow road. The car was being driven by the insured's cousin, whose learner permit had expired a year earlier.",
+  "claim_id": "CLM-2026063",
+  "police_fir": "Not applicable",
+  "holder": "Aarav Reddy",
+  "vehicle_reg": "KA45DC5552",
+  "report_date": "2026-06-13"
+ },
+ "photo": {
+  "source": "43.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper and headlamp of the vehicle show significant damage, including dents and cracks.",
+  "summary": "This image shows a close-up view of the front right side of a black car that has sustained significant damage. The front bumper is severely dented and cracked, with parts of the headlight housing broken. The right front tire appears intact but is covered in dirt and debris. The car's paint is chipped and scratched in several places, indicating a collision. The license plate is partially visible on the lower left side of the bumper. The scene text \"PRIM\" is faintly visible on the tire, likely part of the tire's brand name."
+ }
+}

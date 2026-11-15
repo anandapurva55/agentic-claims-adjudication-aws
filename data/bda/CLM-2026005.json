@@ -1,0 +1,23 @@
+{
+ "claim_id": "CLM-2026005",
+ "form": {
+  "claimed_amount": 23300,
+  "policy_no": "MGI-MOT-1016",
+  "incident_date": "2026-09-21",
+  "narrative": "Rear ended at a traffic signal by another vehicle.",
+  "claim_id": "CLM-2026005",
+  "police_fir": "Not applicable",
+  "holder": "Diya Das",
+  "vehicle_reg": "KA53AE3060",
+  "report_date": "2026-09-24"
+ },
+ "photo": {
+  "source": "37.jpg",
+  "parts": [],
+  "parts_bda": [],
+  "parts_vision": [],
+  "severity": "none",
+  "description": "No visible damage on the rear of the vehicle.",
+  "summary": "This image shows the rear of a black Audi A8L sedan parked on the side of a road. The Audi logo is prominently displayed on the trunk. Below the logo, the model designation \"A8L\" is written. There are multiple instances of the text \"SRB\" on the car, indicating the country code for Serbia. The license plate at the bottom right corner has the text \"PORSCHE\" and \"NOVI SAD,\" suggesting the car is registered in Novi Sad, Serbia. The tail lights are visible, with the brake light illuminated in red."
+ }
+}

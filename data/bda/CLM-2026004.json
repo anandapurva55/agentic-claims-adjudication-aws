@@ -1,0 +1,33 @@
+{
+ "claim_id": "CLM-2026004",
+ "form": {
+  "claimed_amount": 41000,
+  "policy_no": "MGI-MOT-1003",
+  "incident_date": "2026-09-21",
+  "narrative": "Rear ended at a traffic signal by another vehicle.",
+  "claim_id": "CLM-2026004",
+  "police_fir": "Not applicable",
+  "holder": "Aarav Reddy",
+  "vehicle_reg": "KA45DC5552",
+  "report_date": "2026-09-21"
+ },
+ "photo": {
+  "source": "20.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper of the car has a noticeable dent and paint damage.",
+  "summary": "This image shows a close-up view of the front left side of a blue car. The car has a noticeable dent on the bumper near the headlight. The headlight is partially visible, showing the clear lens and the housing. The front wheel is also visible, featuring a silver alloy rim with a hubcap displaying the Volkswagen logo. The car is parked on a paved surface with white markings."
+ }
+}

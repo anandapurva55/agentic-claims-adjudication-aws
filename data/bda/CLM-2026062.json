@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026062",
+ "form": {
+  "claimed_amount": 56600,
+  "policy_no": "MGI-MOT-1010",
+  "incident_date": "2026-10-03",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian. The car was being driven by the insured's cousin, whose learner permit had expired a year earlier.",
+  "claim_id": "CLM-2026062",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Reddy",
+  "vehicle_reg": "KA16FE9830",
+  "report_date": "2026-10-03"
+ },
+ "photo": {
+  "source": "3.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "minor",
+  "description": "Minor scratches and scuffs on the rear bumper.",
+  "summary": "This image shows the rear of a white vehicle with visible damage on the bumper. The license plate on the left side of the vehicle reads \"ZF\". There is a logo on the top left side of the bumper with the text \"6x6\" inside it. The ground appears to be a paved surface with some shadows cast on it. The vehicle's shadow is visible on the ground, indicating the position of the sun."
+ }
+}

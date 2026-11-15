@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026036",
+ "form": {
+  "claimed_amount": 26300,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-10-25",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026036",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-11-14"
+ },
+ "photo": {
+  "source": "61.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle shows a moderate dent.",
+  "summary": "This image shows the rear of a maroon Ford Mondeo car with visible damage on the bumper. The car is parked in a parking lot alongside other vehicles. The license plate is partially visible with the letter \"E\" discernible. The rear window displays a sticker indicating an \"Intelligent Protection System.\" The Ford logo is prominently displayed below the window. The car's model name, \"MONDEO,\" is printed on the tailgate."
+ }
+}

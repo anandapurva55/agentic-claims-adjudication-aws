@@ -1,0 +1,34 @@
+{
+ "claim_id": "CLM-2026040",
+ "form": {
+  "claimed_amount": 65000,
+  "policy_no": "MGI-MOT-1018",
+  "incident_date": "2026-04-17",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026040",
+  "police_fir": "Not applicable",
+  "holder": "Arjun Das",
+  "vehicle_reg": "KA08BB2049",
+  "report_date": "2026-04-19"
+ },
+ "photo": {
+  "source": "23.jpg",
+  "parts": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp"
+  ],
+  "parts_vision": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "moderate",
+  "description": "The front bumper and headlamp of the car are visibly damaged.",
+  "summary": "This image shows a blue BMW car with visible damage to the front bumper and grille. The car is parked inside a garage or repair shop, indicated by the surrounding environment. The license plate on the front of the car reads \"NewCAR.\" The BMW logo is prominently displayed on the hood of the car. The front headlight on the left side appears to be damaged, with parts of the housing broken or misaligned."
+ }
+}

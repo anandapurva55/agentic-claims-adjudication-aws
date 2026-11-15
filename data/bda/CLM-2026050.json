@@ -1,0 +1,38 @@
+{
+ "claim_id": "CLM-2026050",
+ "form": {
+  "claimed_amount": 39000,
+  "policy_no": "MGI-MOT-1013",
+  "incident_date": "2026-09-25",
+  "narrative": "Side swiped by an auto rickshaw on a narrow road. The driver had not consumed any alcohol and the breath test at the scene was negative.",
+  "claim_id": "CLM-2026050",
+  "police_fir": "Not applicable",
+  "holder": "Karan Menon",
+  "vehicle_reg": "KA08CD3591",
+  "report_date": "2026-09-26"
+ },
+ "photo": {
+  "source": "30.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood",
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "hood",
+   "rear_bumper"
+  ],
+  "severity": "severe",
+  "description": "The front bumper, hood, and headlamp of the red car are severely damaged with parts missing and visible deformation.",
+  "summary": "This image shows a red car with significant damage to its rear, including a crushed trunk and bent tail lights. The car is parked in a garage with a concrete floor. The garage has shelves on the right side with various items stored on them, including boxes and tools. There is a yellow and black striped line on the floor near the car. Another vehicle is partially visible in the background on the left side of the image."
+ }
+}

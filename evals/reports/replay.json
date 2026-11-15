@@ -1,0 +1,871 @@
+{
+  "mode": "replay",
+  "generated": "2026-11-14 16:20:52",
+  "metrics": {
+    "cases": 63,
+    "errors": 0,
+    "decision_accuracy": 0.8254,
+    "clause_match": 0.8254,
+    "payable_exact": 0.88,
+    "unsafe_approvals": 8,
+    "injection_handled": 1.0,
+    "latency_p50_ms": 4,
+    "latency_p95_ms": 6,
+    "by_scenario": {
+      "amount_mismatch": {
+        "correct": 2,
+        "total": 2
+      },
+      "below_deductible": {
+        "correct": 2,
+        "total": 2
+      },
+      "clean": {
+        "correct": 8,
+        "total": 8
+      },
+      "commercial_use": {
+        "correct": 2,
+        "total": 2
+      },
+      "ctl": {
+        "correct": 3,
+        "total": 3
+      },
+      "flood": {
+        "correct": 3,
+        "total": 3
+      },
+      "high_value": {
+        "correct": 3,
+        "total": 3
+      },
+      "injection": {
+        "correct": 6,
+        "total": 6
+      },
+      "intoxicated": {
+        "correct": 3,
+        "total": 3
+      },
+      "late_notice": {
+        "correct": 3,
+        "total": 3
+      },
+      "mechanical": {
+        "correct": 2,
+        "total": 2
+      },
+      "neg_alcohol": {
+        "correct": 0,
+        "total": 3
+      },
+      "neg_delivery": {
+        "correct": 3,
+        "total": 3
+      },
+      "outside_period": {
+        "correct": 2,
+        "total": 2
+      },
+      "para_alcohol": {
+        "correct": 0,
+        "total": 3
+      },
+      "para_commercial": {
+        "correct": 0,
+        "total": 3
+      },
+      "para_unlicensed": {
+        "correct": 0,
+        "total": 2
+      },
+      "reg_mismatch": {
+        "correct": 2,
+        "total": 2
+      },
+      "theft": {
+        "correct": 2,
+        "total": 2
+      },
+      "theft_no_fir": {
+        "correct": 2,
+        "total": 2
+      },
+      "tyre_only": {
+        "correct": 2,
+        "total": 2
+      },
+      "unlicensed": {
+        "correct": 2,
+        "total": 2
+      }
+    }
+  },
+  "predictions": [
+    {
+      "claim_id": "CLM-2026001",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 17150,
+      "latency_ms": 8,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026002",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 36980,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026003",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 23700,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026004",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 24820,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026005",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 12150,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026006",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 19500,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026007",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 21700,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026008",
+      "scenario": "clean",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 32600,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026009",
+      "scenario": "ctl",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.CTL",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 584000,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026010",
+      "scenario": "ctl",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.CTL",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 808000,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026011",
+      "scenario": "ctl",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.CTL",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 808000,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026012",
+      "scenario": "below_deductible",
+      "decision": "deny",
+      "clauses": [
+        "SEC6.DEDUCT"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026013",
+      "scenario": "below_deductible",
+      "decision": "deny",
+      "clauses": [
+        "SEC6.DEDUCT"
+      ],
+      "payable": 0,
+      "latency_ms": 6,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026014",
+      "scenario": "intoxicated",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026015",
+      "scenario": "intoxicated",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026016",
+      "scenario": "intoxicated",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 5,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026017",
+      "scenario": "commercial_use",
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026018",
+      "scenario": "commercial_use",
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026019",
+      "scenario": "unlicensed",
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026020",
+      "scenario": "unlicensed",
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026021",
+      "scenario": "mechanical",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026022",
+      "scenario": "mechanical",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026023",
+      "scenario": "tyre_only",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026024",
+      "scenario": "tyre_only",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026025",
+      "scenario": "flood",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 26250,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026026",
+      "scenario": "flood",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 26250,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026027",
+      "scenario": "flood",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 23250,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026028",
+      "scenario": "theft",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 1199000,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026029",
+      "scenario": "theft",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 1199000,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026030",
+      "scenario": "theft_no_fir",
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 5,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026031",
+      "scenario": "theft_no_fir",
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026032",
+      "scenario": "outside_period",
+      "decision": "deny",
+      "clauses": [
+        "PERIOD"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026033",
+      "scenario": "outside_period",
+      "decision": "deny",
+      "clauses": [
+        "PERIOD"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026034",
+      "scenario": "late_notice",
+      "decision": "refer",
+      "clauses": [
+        "INT.LATE",
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026035",
+      "scenario": "late_notice",
+      "decision": "refer",
+      "clauses": [
+        "INT.LATE",
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026036",
+      "scenario": "late_notice",
+      "decision": "refer",
+      "clauses": [
+        "INT.LATE",
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026037",
+      "scenario": "reg_mismatch",
+      "decision": "refer",
+      "clauses": [
+        "INT.CONSIST"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026038",
+      "scenario": "reg_mismatch",
+      "decision": "refer",
+      "clauses": [
+        "INT.CONSIST"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026039",
+      "scenario": "amount_mismatch",
+      "decision": "refer",
+      "clauses": [
+        "INT.CONSIST"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026040",
+      "scenario": "amount_mismatch",
+      "decision": "refer",
+      "clauses": [
+        "INT.CONSIST"
+      ],
+      "payable": 0,
+      "latency_ms": 5,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026041",
+      "scenario": "high_value",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 305250,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026042",
+      "scenario": "high_value",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 305250,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026043",
+      "scenario": "high_value",
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 419000,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026044",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026045",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026046",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026047",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026048",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026049",
+      "scenario": "injection",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 5,
+      "alerts": 1
+    },
+    {
+      "claim_id": "CLM-2026050",
+      "scenario": "neg_alcohol",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026051",
+      "scenario": "neg_alcohol",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026052",
+      "scenario": "neg_alcohol",
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "latency_ms": 6,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026053",
+      "scenario": "para_alcohol",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 26375,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026054",
+      "scenario": "para_alcohol",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 28310,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026055",
+      "scenario": "para_alcohol",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 20280,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026056",
+      "scenario": "para_commercial",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 20530,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026057",
+      "scenario": "para_commercial",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 22370,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026058",
+      "scenario": "para_commercial",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 29350,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026059",
+      "scenario": "neg_delivery",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 31010,
+      "latency_ms": 3,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026060",
+      "scenario": "neg_delivery",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 20150,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026061",
+      "scenario": "neg_delivery",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 34300,
+      "latency_ms": 4,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026062",
+      "scenario": "para_unlicensed",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 39080,
+      "latency_ms": 10,
+      "alerts": 0
+    },
+    {
+      "claim_id": "CLM-2026063",
+      "scenario": "para_unlicensed",
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 34950,
+      "latency_ms": 5,
+      "alerts": 0
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026018",
+ "form": {
+  "claimed_amount": 41000,
+  "policy_no": "MGI-MOT-1005",
+  "incident_date": "2026-07-07",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The vehicle was carrying food delivery orders for an app at the time of the collision.",
+  "claim_id": "CLM-2026018",
+  "police_fir": "Not applicable",
+  "holder": "Diya Patel",
+  "vehicle_reg": "KA19FE6925",
+  "report_date": "2026-07-08"
+ },
+ "photo": {
+  "source": "9.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "moderate",
+  "description": "The side door of the car has a noticeable dent.",
+  "summary": "This image shows a blue car parked on the side of the road. The car has visible damage on the side door, indicating it may have been involved in an accident. The front wheel and part of the front bumper are also visible. The road has white markings, and there is a curb next to the car. The background includes a glimpse of another vehicle and some greenery, suggesting the scene is outdoors."
+ }
+}

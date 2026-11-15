@@ -1,0 +1,33 @@
+{
+ "claim_id": "CLM-2026001",
+ "form": {
+  "claimed_amount": 32800,
+  "policy_no": "MGI-MOT-1019",
+  "incident_date": "2026-09-19",
+  "narrative": "Hit a stationary truck while reversing in a parking lot.",
+  "claim_id": "CLM-2026001",
+  "police_fir": "Not applicable",
+  "holder": "Nisha Nair",
+  "vehicle_reg": "KA01AF1964",
+  "report_date": "2026-09-22"
+ },
+ "photo": {
+  "source": "53.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "headlamp"
+  ],
+  "severity": "moderate",
+  "description": "The side door of the car shows moderate damage with a visible dent and deformation.",
+  "summary": "This image shows a silver car with significant damage to its side, parked on the side of a road. The car's side door is crumpled, and there is a noticeable dent along the side panel. In the background, there is a white police vehicle with the word \"POLICIA\" visible on its side. Another car is parked further back on the street. The scene is set in an urban environment with trees and a building with a red-tiled roof visible in the background."
+ }
+}

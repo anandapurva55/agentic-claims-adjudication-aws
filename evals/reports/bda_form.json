@@ -1,0 +1,14 @@
+{
+ "forms": 63,
+ "field_accuracy": {
+  "claim_id": 1.0,
+  "policy_no": 1.0,
+  "holder": 0.921,
+  "vehicle_reg": 1.0,
+  "incident_date": 1.0,
+  "report_date": 1.0,
+  "claimed_amount": 1.0
+ },
+ "all_fields_correct": 58,
+ "mean_seconds": 26.9
+}

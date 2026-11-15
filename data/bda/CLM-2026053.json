@@ -1,0 +1,37 @@
+{
+ "claim_id": "CLM-2026053",
+ "form": {
+  "claimed_amount": 38500,
+  "policy_no": "MGI-MOT-1020",
+  "incident_date": "2026-06-27",
+  "narrative": "Hit a stationary truck while reversing in a parking lot. The driver had a few whiskeys at a wedding reception earlier that evening and was feeling tipsy.",
+  "claim_id": "CLM-2026053",
+  "police_fir": "Not applicable",
+  "holder": "Diya Patel",
+  "vehicle_reg": "KA16CF8953",
+  "report_date": "2026-06-27"
+ },
+ "photo": {
+  "source": "31.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "severe",
+  "description": "The front bumper, hood, and headlamp of the red BMW car are severely damaged.",
+  "summary": "This image shows a red BMW car with significant front-end damage, including a crushed bumper and a broken headlight. The car is parked in a garage or repair shop, indicated by the presence of tools, shelves, and other vehicles in the background. The BMW logo is visible on the front grille of the car. There is also visible text on the tire sidewall that reads \"NEUS PRIMER,\" suggesting the type of tire or its condition. The overall scene suggests that the car is undergoing repairs or assessment following an accident."
+ }
+}

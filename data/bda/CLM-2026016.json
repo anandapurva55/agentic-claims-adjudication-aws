@@ -1,0 +1,37 @@
+{
+ "claim_id": "CLM-2026016",
+ "form": {
+  "claimed_amount": 56300,
+  "policy_no": "MGI-MOT-1005",
+  "incident_date": "2026-09-24",
+  "narrative": "Side swiped by an auto rickshaw on a narrow road. The driver admitted to having had several drinks at a party before the trip.",
+  "claim_id": "CLM-2026016",
+  "police_fir": "Not applicable",
+  "holder": "Diya Patel",
+  "vehicle_reg": "KA19FE6925",
+  "report_date": "2026-09-24"
+ },
+ "photo": {
+  "source": "25.jpg",
+  "parts": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_bda": [
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "parts_vision": [
+   "door",
+   "front_bumper",
+   "headlamp",
+   "hood"
+  ],
+  "severity": "severe",
+  "description": "The front bumper, hood, and headlamp of the vehicle show severe damage with crushed and missing parts.",
+  "summary": "This image shows a damaged silver BMW car parked on a wet surface. The front bumper and hood of the car are severely dented and crumpled, indicating a significant collision. The front right wheel is also damaged, with visible scrapes and dents. The car's headlights and grille are intact but show signs of impact. In the background, there are other vehicles and a metal fence, suggesting the location might be a parking lot or a repair shop."
+ }
+}

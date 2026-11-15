@@ -1,0 +1,66 @@
+{
+  "SEC1.COVER": {
+    "source": "Section I",
+    "quote": "The Company will indemnify the insured against loss or damage to the vehicle insured hereunder and / or its accessories whilst hereon; i. by fire explosion self ignition or lightning; ii. by burglary housebreaking or theft; v. by flood typhoon hurricane storm tempest inundation cyclone hailstorm frost; vi. by accidental external means"
+  },
+  "SEC1.DEPR": {
+    "source": "Section I",
+    "quote": "Subject to a deduction for depreciation at the rates mentioned below in respect of parts replaced: rubber/nylon/plastic parts, tyres and tubes, batteries, and air bags 50%; fibre glass components 30%; parts made of glass Nil; all other parts per the age schedule"
+  },
+  "SEC1.EXCL.1a": {
+    "source": "Section I, exclusion 1(a)",
+    "quote": "The Company shall not be liable to make any payment in respect of: Consequential loss, depreciation, wear and tear, mechanical or electrical breakdown, failures or breakages"
+  },
+  "SEC1.EXCL.1b": {
+    "source": "Section I, exclusion 1(b)",
+    "quote": "Damage to tyres and tubes unless the vehicle is damaged at the same time in which case the liability of the company shall be limited to 50% of the cost of replacement"
+  },
+  "SEC1.EXCL.1c": {
+    "source": "Section I, exclusion 1(c)",
+    "quote": "any accidental loss or damage suffered whilst the insured or any person driving the vehicle with the knowledge and consent of the insured is under the influence of intoxicating liquor or drugs"
+  },
+  "SEC1.CTL": {
+    "source": "Section I, Sum Insured",
+    "quote": "The insured vehicle shall be treated as a CTL if the aggregate cost of retrieval and / or repair of the vehicle, subject to terms and conditions of the policy, exceeds 75% of the IDV of the vehicle"
+  },
+  "SEC5.3a": {
+    "source": "Section V, general exclusion 3(a)",
+    "quote": "any accidental loss damage and/or liability caused sustained or incurred whilst the vehicle insured herein is being used otherwise than in accordance with the 'Limitations as to Use'"
+  },
+  "SEC5.3b": {
+    "source": "Section V, general exclusion 3(b)",
+    "quote": "being driven by or is for the purpose of being driven by him/her in the charge of any person other than a Driver as stated in the Driver's Clause"
+  },
+  "SEC6.DEDUCT": {
+    "source": "Section VI",
+    "quote": "The Company shall not be liable for each and every claim under Section I of this Policy in respect of the deductible stated in the schedule. If the claim amount is less than the deductible, then claim will not be payable."
+  },
+  "SEC7.1": {
+    "source": "Section VII, condition 1",
+    "quote": "Notice shall be given in writing to the Company immediately upon the occurrence of any accidental loss or damage in the event of any claim. In case of theft or criminal act which may be the subject of a claim under this Policy the insured shall give immediate notice to the police"
+  },
+  "SEC7.3a": {
+    "source": "Section VII, condition 3(a)",
+    "quote": "for total loss / constructive total loss of the vehicle - the Insured's Declared Value (IDV) of the vehicle (including accessories thereon) as specified in the Schedule less the value of the wreck"
+  },
+  "PERIOD": {
+    "source": "Policy preamble",
+    "quote": "in respect of accidental loss or damage occurring during the period of insurance"
+  },
+  "INT.AUTH": {
+    "source": "Internal authority matrix (not a policy clause)",
+    "quote": "Payable amounts above INR 200,000 require senior adjuster approval"
+  },
+  "INT.CONSIST": {
+    "source": "Internal control (not a policy clause)",
+    "quote": "Documents in a claim packet must agree on vehicle registration and claimed amount; disagreement is referred to an adjuster"
+  },
+  "INT.AGENT": {
+    "source": "Internal control (not a policy clause)",
+    "quote": "If the AI agents do not complete their assessment, the claim is referred to a human adjuster. The system never guesses a decision."
+  },
+  "INT.LATE": {
+    "source": "Internal control (not a policy clause)",
+    "quote": "The wording requires notice 'immediately'; delays over 15 days are referred for investigation"
+  }
+}

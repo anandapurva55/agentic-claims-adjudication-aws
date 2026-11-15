@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026039",
+ "form": {
+  "claimed_amount": 74600,
+  "policy_no": "MGI-MOT-1015",
+  "incident_date": "2026-09-10",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026039",
+  "police_fir": "Not applicable",
+  "holder": "Nisha Menon",
+  "vehicle_reg": "KA32AA6947",
+  "report_date": "2026-09-12"
+ },
+ "photo": {
+  "source": "63.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle shows visible damage.",
+  "summary": "This image shows the rear of a silver car with visible damage on the left side, parked inside a garage. The license plate on the car reads \"DFW.\" The car's tail lights are illuminated, and the rear door is open. Various tools and equipment are scattered around the garage, indicating that some form of repair or maintenance work is being conducted. The garage floor is made of concrete, and there are shelves and storage boxes visible in the background."
+ }
+}

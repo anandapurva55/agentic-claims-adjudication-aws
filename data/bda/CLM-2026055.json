@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026055",
+ "form": {
+  "claimed_amount": 35500,
+  "policy_no": "MGI-MOT-1016",
+  "incident_date": "2026-09-14",
+  "narrative": "Side swiped by an auto rickshaw on a narrow road. The driver had a few whiskeys at a wedding reception earlier that evening and was feeling tipsy.",
+  "claim_id": "CLM-2026055",
+  "police_fir": "Not applicable",
+  "holder": "Diya Das",
+  "vehicle_reg": "KA53AE3060",
+  "report_date": "2026-09-14"
+ },
+ "photo": {
+  "source": "17.jpg",
+  "parts": [
+   "door"
+  ],
+  "parts_bda": [
+   "door"
+  ],
+  "parts_vision": [
+   "door"
+  ],
+  "severity": "moderate",
+  "description": "There is a moderate dent and crack on the side door of the vehicle.",
+  "summary": "This image shows a close-up view of the side of a white Volkswagen car, which is parked on the side of a road. The car has a noticeable dent and some paint damage on its side door. The Volkswagen logo is visible on the hubcap of the wheel. The pavement next to the car appears to be made of concrete with some visible cracks and a small piece of paper or debris lying on it. The car's interior is partially visible through the window, showing part of the dashboard and steering wheel."
+ }
+}

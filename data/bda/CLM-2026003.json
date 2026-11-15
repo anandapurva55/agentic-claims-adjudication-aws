@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026003",
+ "form": {
+  "claimed_amount": 31800,
+  "policy_no": "MGI-MOT-1008",
+  "incident_date": "2026-09-05",
+  "narrative": "Collided with a divider after swerving to avoid a pedestrian.",
+  "claim_id": "CLM-2026003",
+  "police_fir": "Not applicable",
+  "holder": "Rohan Patel",
+  "vehicle_reg": "KA15FC1916",
+  "report_date": "2026-09-06"
+ },
+ "photo": {
+  "source": "2.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle has a noticeable dent.",
+  "summary": "This image shows a close-up view of the rear side of a white SUV parked on a paved surface. The vehicle has visible damage on the rear bumper, with a noticeable dent and scrape. The rear lights are visible, with the brake light on the right side illuminated in red. There are reflections on the car's surface, possibly from nearby objects or the environment. Additionally, the image contains watermark text \"dreamstime\" in the bottom center."
+ }
+}

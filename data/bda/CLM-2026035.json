@@ -1,0 +1,29 @@
+{
+ "claim_id": "CLM-2026035",
+ "form": {
+  "claimed_amount": 30500,
+  "policy_no": "MGI-MOT-1019",
+  "incident_date": "2026-07-31",
+  "narrative": "Rear ended at a traffic signal by another vehicle.",
+  "claim_id": "CLM-2026035",
+  "police_fir": "Not applicable",
+  "holder": "Nisha Nair",
+  "vehicle_reg": "KA01AF1964",
+  "report_date": "2026-09-06"
+ },
+ "photo": {
+  "source": "57.jpg",
+  "parts": [
+   "rear_bumper"
+  ],
+  "parts_bda": [
+   "rear_bumper"
+  ],
+  "parts_vision": [
+   "rear_bumper"
+  ],
+  "severity": "moderate",
+  "description": "The rear bumper of the vehicle has a noticeable dent and some scratches.",
+  "summary": "This image shows the rear of a white Volkswagen Polo car with visible damage on the lower bumper. The car's license plate is partially obscured, showing only the letter \"E\" on a blue background. The Volkswagen logo is prominently displayed on the left side of the rear, and the word \"POLO\" is visible both above and below the license plate area. The car is parked on a rough, uneven surface with some grass and dirt visible."
+ }
+}
