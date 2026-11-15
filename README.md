@@ -1,6 +1,6 @@
 # Agentic Motor Claims Adjudication on AWS: Full-Stack Multi-Agent AI with RAG, MCP, Memory, Guardrails and Human in the Loop
 
-**Built with:** a **React** 18, **TypeScript** and **Vite** frontend; a **FastAPI** and **Python** backend; **Amazon Bedrock**, **Strands Agents**, **Bedrock AgentCore Memory**, **Bedrock Knowledge Bases** on **S3 Vectors** (**retrieval-augmented generation**), **Bedrock Guardrails** and **Bedrock Data Automation**; the **Model Context Protocol**; **QLoRA** **fine-tuning** on **Amazon SageMaker**; **Amazon ECS** on **Fargate**, **AWS CDK**, **Amazon Athena** and **Amazon QuickSight**.
+Built with: a **React** 18, **TypeScript** and **Vite** frontend; a **FastAPI** and **Python** backend; **Amazon Bedrock**, **Strands Agents**, **Bedrock AgentCore Memory**, **Bedrock Knowledge Bases** on **S3 Vectors** (**retrieval-augmented generation**), **Bedrock Guardrails** and **Bedrock Data Automation**; the **Model Context Protocol**; **QLoRA** **fine-tuning** on **Amazon SageMaker**; **Amazon ECS** on **Fargate**, **AWS CDK**, **Amazon Athena** and **Amazon QuickSight**.
 
 [![CI](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
@@ -618,16 +618,16 @@ agentic-claims-adjudication-aws/
 
 ## Data sources and references
 
-**Policy wording** (rules and **knowledge base**), fetched at setup and not redistributed:
+Policy wording (rules and **knowledge base**), fetched at setup and not redistributed:
 - [Universal Sompo Private Car Package Policy wording](https://www.universalsompo.com/assets/file/motor-private-car/motor-private-car-policy-wordings.pdf)
 - [Digit Private Car Package Policy](https://godigit.com/content/dam/godigit/directportal/en/downloads/car/policy-wordings-digit-private-car-package-policy-multi-year.pdf)
 - [Liberty Private Car Package Policy](https://www.libertyinsurance.in/Docx/Private%20Car%20Package%20Policy%20Wordings%20-%20V18%2017042019.pdf)
 
-**Damage photographs:** [Coco Car Damage Detection Dataset](https://www.kaggle.com/datasets/lplenka/coco-car-damage-detection-dataset) on **Kaggle**, licence CC0 1.0.
+Damage photographs: [Coco Car Damage Detection Dataset](https://www.kaggle.com/datasets/lplenka/coco-car-damage-detection-dataset) on **Kaggle**, licence CC0 1.0.
 
-**Generated data:** claim packets, policy schedules and narratives come from [scripts/generate_data.py](scripts/generate_data.py), seeded for reproducibility.
+Generated data: claim packets, policy schedules and narratives come from [scripts/generate_data.py](scripts/generate_data.py), seeded for reproducibility.
 
-**Models and methods:** [Qwen2.5-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct); Hu et al., "**LoRA**: Low-Rank Adaptation of Large Language Models" (2021); Dettmers et al., "**QLoRA**: Efficient Finetuning of Quantized LLMs" (2023); [Strands Agents](https://strandsagents.com); [Model Context Protocol](https://modelcontextprotocol.io).
+Models and methods: [Qwen2.5-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct); Hu et al., "**LoRA**: Low-Rank Adaptation of Large Language Models" (2021); Dettmers et al., "**QLoRA**: Efficient Finetuning of Quantized LLMs" (2023); [Strands Agents](https://strandsagents.com); [Model Context Protocol](https://modelcontextprotocol.io).
 
 ---
 
