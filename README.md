@@ -38,45 +38,30 @@ It is a full stack application. A React and TypeScript single page app streams a
 
 ## Contents
 
-**Context**
-
-- [Problem and scope](#problem-and-scope)
-- [Tenets](#tenets)
-
-**Solution**
-
-- [Solution architecture](#solution-architecture)
-- [Design decisions](#design-decisions)
-- [How a claim is decided](#how-a-claim-is-decided)
-- [Agents, MCP and memory](#agents-mcp-and-memory)
-- [Document and image understanding](#document-and-image-understanding)
-- [Retrieval-augmented generation (RAG)](#retrieval-augmented-generation-rag)
-- [Human in the loop](#human-in-the-loop)
-- [Security and red team testing](#security-and-red-team-testing)
-- [Frontend: the workbench UI](#frontend-the-workbench-ui)
-
-**Evidence**
-
-- [Evaluation](#evaluation)
-- [Cost, latency and observability](#cost-latency-and-observability)
-- [Fine-tuning a small model with QLoRA](#fine-tuning-a-small-model-with-qlora)
-
-**Build and operate**
-
-- [Deployment](#deployment)
-- [Operating the system](#operating-the-system)
-- [Quick start](#quick-start)
-
-**Reflection**
-
-- [Issues found and resolved](#issues-found-and-resolved)
-- [Limitations](#limitations)
-- [What I would do next](#what-i-would-do-next)
-
-**Reference**
-
-- [Repository layout](#repository-layout)
-- [Data sources and references](#data-sources-and-references)
+| Section | What it covers |
+|---|---|
+| [Problem and scope](#problem-and-scope) | The problem, the user, and what is in and out of scope |
+| [Tenets](#tenets) | The principles that settled the design questions |
+| [Solution architecture](#solution-architecture) | AWS services, the three paths and the release pipeline |
+| [Design decisions](#design-decisions) | Each choice, the alternatives considered and what it costs |
+| [How a claim is decided](#how-a-claim-is-decided) | The flow from claim packet to human decision |
+| [Agents, MCP and memory](#agents-mcp-and-memory) | The Strands agent graph, MCP servers and two tiers of memory |
+| [Document and image understanding](#document-and-image-understanding) | Bedrock Data Automation on forms and real damage photos, with measurements |
+| [Retrieval-augmented generation (RAG)](#retrieval-augmented-generation-rag) | Chunking, embeddings, metadata, retrieval and its evaluation |
+| [Human in the loop](#human-in-the-loop) | The sign-off gate that the API enforces |
+| [Security and red team testing](#security-and-red-team-testing) | Threat model, defence layers and 30 attacks with controls |
+| [Frontend: the workbench UI](#frontend-the-workbench-ui) | React and TypeScript app with a live agent graph |
+| [Evaluation](#evaluation) | Golden and held-out sets, ablations and the quality gate |
+| [Cost, latency and observability](#cost-latency-and-observability) | Telemetry lake, measured optimisations and alerting |
+| [Fine-tuning a small model with QLoRA](#fine-tuning-a-small-model-with-qlora) | Method, results and when fine-tuning pays off |
+| [Deployment](#deployment) | Acceptance test, console evidence and deploy commands |
+| [Operating the system](#operating-the-system) | Alarms, failure modes and responses |
+| [Quick start](#quick-start) | Run it locally |
+| [Issues found and resolved](#issues-found-and-resolved) | Diagnoses and fixes |
+| [Limitations](#limitations) | Open gaps and how to close them |
+| [What I would do next](#what-i-would-do-next) | Next steps |
+| [Repository layout](#repository-layout) | Where things live |
+| [Data sources and references](#data-sources-and-references) | Datasets, policy wordings and papers |
 
 ---
 
