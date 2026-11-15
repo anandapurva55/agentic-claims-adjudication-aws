@@ -18,7 +18,7 @@
 
 This repository implements a decision support system for motor insurance claims. A team of AI agents reads the claim packet, reads the damage photo, retrieves policy clauses with retrieval-augmented generation (RAG), checks records over the Model Context Protocol (MCP), recalls lessons from earlier cases and recommends a decision. Deterministic code calculates the payable amount and makes the final recommendation. A human adjuster approves, overrides or escalates it, and the system records every step.
 
-It is a full stack application. A React and TypeScript single page app streams a live agent run from a FastAPI backend that hosts the Strands agent graph, and the whole system runs on AWS and is defined in AWS CDK. It uses synthetic claim data, real policy wording and real damage photographs. Status: built, deployed, verified end to end by an automated check, and measured against held-out claims, a red team suite and a cost model. The stack has since been destroyed to avoid ongoing cost, and the evidence recorded from it (reports, screenshots, GIFs and the verification results) is in this repository.
+It is a full stack application. A React and TypeScript single page app streams a live agent run from a FastAPI backend that hosts the Strands agent graph, and the whole system runs on AWS and is defined in AWS CDK. It uses synthetic claim data, real policy wording and real damage photographs. Status: built, deployed, verified end to end by an automated check, and measured against held-out claims, a red team suite and a cost model.
 
 ![A live run on the deployed system: Bedrock Data Automation and a vision model read the photo, agents use memory and MCP tools, risk signals appear, and a person decides](docs/images/demo/photo_evidence_and_signals.gif)
 
@@ -59,7 +59,7 @@ It is a full stack application. A React and TypeScript single page app streams a
 | [Quick start](#quick-start) | Run it locally |
 | [Issues found and resolved](#issues-found-and-resolved) | Diagnoses and fixes |
 | [Limitations](#limitations) | Open gaps and how to close them |
-| [What I would do next](#what-i-would-do-next) | Next steps |
+| [What I would do next](#what-i-would-do-next) | Planned improvements across retrieval, ingestion, identity and the fine-tuning study |
 | [Repository layout](#repository-layout) | Where things live |
 | [Data sources and references](#data-sources-and-references) | Datasets, policy wordings and papers |
 
@@ -238,8 +238,6 @@ Small chunks gave better recall at 1 and lost context by 5. Large chunks did the
 - A retrieval miss weakens the explanation and the citation. It cannot change a decision or a payout.
 - Ingestion allows one concurrent job per knowledge base, so the deployment runs them in sequence. Changing the embedding model means re-ingesting, which is cheap because the index is rebuilt from S3.
 - 48 questions over 16 clauses rank configurations. They do not establish production recall.
-
-**Next steps for retrieval.** A model-based query rewrite to close the vocabulary gap, a reranker over the top 10, and a comparison against hybrid search on cost and recall.
 
 ---
 
@@ -437,8 +435,6 @@ With 150 narratives the 95% uncertainty on an accuracy near 88% is about 5 point
 
 **Limits.** Errors cluster: 17 of the 32 wrong narratives (of 300) come from one unseen sentence ("The driver handed over a current licence when asked", read as unlicensed), and 6 more from one engine-failure paraphrase. The 300 narratives combine only about 60 distinct unseen sentences, so they overstate the evidence. Training loss fell to about 0.00001 by epoch 1.6, and the dev loss is just as small because dev shares phrase banks with train, so only the unseen-wording test can reveal overfitting. It is one run with one seed and no hyperparameter sweep, on synthetic compositional text.
 
-**Next steps.** Replace compositional data with paraphrases written by a strong model and checked by people, then real adjuster-labelled narratives. Repeat across seeds and sweep rank and learning rate with a reported spread. Distil from Haiku or Sonnet, the standard route when volume justifies self-hosting. Evaluate on the whole pipeline, not only the flag task.
-
 ![SageMaker training job record](docs/images/aws/sagemaker_training_job.png)
 
 ---
@@ -598,7 +594,7 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 5. Move agent hosting to Bedrock AgentCore Runtime, with AgentCore Observability for tracing.
 6. Add an LLM judge for memo quality, calibrated against hand graded samples.
 7. Add a voice note path using Bedrock Data Automation transcription.
-8. Distil the strong model's flag judgement into the small fine-tuned model if volume justifies self-hosting.
+8. Strengthen the fine-tuning study: replace the compositional training data with paraphrases checked by people and then real adjuster-labelled narratives, repeat across seeds with a rank and learning-rate sweep and a reported spread, distil from the strong model if volume justifies self-hosting, and evaluate on the whole pipeline.
 
 ---
 
