@@ -13,7 +13,7 @@ Built with: a **React** 19, **TypeScript** and **Vite** frontend; a **FastAPI** 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
 ![Cognito](https://img.shields.io/badge/Cognito-sign%20in-DD344C)
-![Tests](https://img.shields.io/badge/tests-416%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-431%20passing-brightgreen)
 
 ## Summary
 
@@ -34,7 +34,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 416 (393 Python, 23 frontend) | |
+| Automated tests | 431 (407 Python, 24 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -265,6 +265,7 @@ The AI recommends and a person decides. The **API** enforces this, so it cannot 
 | Nothing is settled without a human | A claim moves new, AI recommended, reviewed. The only exit from AI recommended is a recorded human decision. Reviewing before the agents ran returns 409 |
 | Four eyes above the authority limit | A payable above INR 200,000 can be approved only by a senior adjuster. An adjuster receives 403 and can always escalate |
 | Overrides need a reason | An override carries a final decision and a written reason of at least 10 characters, stored beside the AI recommendation |
+| A review names the run it looked at | Every review carries the id of the run the reviewer was shown, and the API refuses it with 409 if the latest recommendation has a different id, so "accept" always means the result on screen and not whatever a colleague produced a second later. A recommendation that came from another mode than the deployment's, or that predates run ids, cannot be approved either |
 | One decision per claim | A conditional DynamoDB write allows exactly one human review per claim. Two reviewers deciding at the same moment get one success and one 409, tested with eight concurrent writers and mutation checked, so the trail cannot be rewritten even with several tasks running |
 | Attributable | Each record holds who, their role, the AI recommendation and clauses, the final decision and the outcome. The name and role come from the sign in token, never from the request body, so a caller cannot promote themselves by editing JSON |
 | Never a dead end | Every referral names the next action: a senior adjuster, resubmitted documents when form and estimate disagree, a delay investigation, a police report for theft |
@@ -290,6 +291,7 @@ The audit log lives in **DynamoDB**, which is the single source of truth. Every 
 | 6. Human in the loop | Every recommendation is reviewed and logged |
 | 7. Sign in and input limits | Every route except the health check needs a valid Amazon Cognito ID token, checked for signature against the pool's keys, issuer, audience, expiry and token type. A caller in no group gets 403. Review actions, decisions and run modes are fixed value types, free text has length limits, and the reviewer's name is cleaned before it reaches the audit log |
 | 8. Private network | The load balancer has no public address. CloudFront reaches it through a VPC origin, and its security group admits only the group CloudFront attaches to that origin. The task role names the three models, the guardrail and the resources it uses |
+| 7b. One mode per deployment | A deployment runs in the mode its operator set. A live deployment refuses a replay run with 409, so the keyword baseline's answer can never be stored as the AI recommendation that a person then approves, and a replay deployment refuses live runs |
 | 9. Rate and spend limits | AWS WAF limits each address to 20 agent runs and 600 requests in 5 minutes. A daily spend limit (5 USD by default, summed from DynamoDB across all tasks) refuses new live runs with 429 and fails closed with 503 if the spend cannot be read |
 
 ![Attack lab: scan an attack and see exactly which sentence the guardrail removed](docs/images/demo/attack_lab.gif)
@@ -340,7 +342,7 @@ Signed out visitors see a sign in wall. The button sends them to **Amazon Cognit
 
 The mode badge states whether a run was the offline baseline or live on **Bedrock**.
 
-**Tests.** 23 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks) and the **API** layer against a fake server. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
+**Tests.** 24 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) and the **API** layer against a fake server. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
 
@@ -427,13 +429,14 @@ The two systems tie, and each falls for a different trap. The single call denied
 
 ### Where the agents do earn their place: investigating records
 
-Investigation is a different task: the facts live in records the narrative does not contain (repair cost benchmarks, a garage's flagged estimates, other claims on the policy, the police report). [evals/investigation](evals/investigation) plants problems in real claim PDFs and records and compares three contenders on the investigator's model (**Nova 2 Lite**), at temperature 0, with the same plain brief and no thresholds written into it:
+Investigation is a different task: the facts live in records the narrative does not contain (repair cost benchmarks, a garage's flagged estimates, other claims on the policy, the police report). [evals/investigation](evals/investigation) plants problems in real claim PDFs and records and compares four contenders on the investigator's model (**Nova 2 Lite**), at temperature 0, with the same plain brief and no thresholds written into it:
 
 | Contender | What it is given |
 |---|---|
 | One call, documents only | The claim packet and the narrative |
 | One call, records pasted in | The packet plus every reference record in the prompt, the strongest single-call baseline |
 | The investigator agent | The product's own agent with its tools and MCP servers, looking things up |
+| Rules only | The product's deterministic investigator (`services/signals.py`), with no model. It is also the source the answer keys were checked against, so it is the ceiling a well written rule set sets rather than a fair rival |
 
 There are 28 cases: 14 with a single problem (an inflated repair line, a flagged garage, a theft with no police report, documents that disagree) including controls where nothing is wrong, 4 repeat-claim cases, 4 that combine problems and 6 where the narrative tells the reviewer to skip its checks. Each answer key is checked against the product's own deterministic investigator, and the case design was corrected once before any full run, after a smoke test showed that a 5 day against 6 day pair scored the models on guessing an internal threshold they were never told.
 
@@ -443,8 +446,9 @@ There are 28 cases: 14 with a single problem (an inflated repair line, a flagged
 | One call, records pasted in | 69 of 72 (96%) | 53 of 84 | 31 of 84 | 0.0007 USD |
 | Investigator agent | 58 of 72 (81%) | 11 of 84 | 62 of 84 | 0.0080 USD |
 | Investigator agent plus the rule safety net | 69 of 72 (96%) | 11 of 84 | 73 of 84 | 0.0080 USD |
+| Rules only, no model | 57 of 72 (79%) | 0 of 84 | 69 of 84 | 0 USD |
 
-Each case ran three times. Pasting the records finds nearly everything and raises a false alarm in most runs: it mixes up other policies' rows, reporting "policy INV-00014 also had a claim two days before" for a claim on a different policy. The agent finds fewer but is right far more often, and found all 24 of the problems that needed several lookups combined. The last row applies `add_rule_signals` to the stored agent runs, as described in [Agents, MCP and memory](#agents-mcp-and-memory).
+Each case ran three times. Pasting the records finds nearly everything and raises a false alarm in most runs: it mixes up other policies' rows, reporting "policy INV-00014 also had a claim two days before" for a claim on a different policy. The agent finds fewer but is right far more often, and found all 24 of the problems that needed several lookups combined. The agent plus safety net row applies `add_rule_signals` to the stored agent runs, as described in [Agents, MCP and memory](#agents-mcp-and-memory).
 
 **Scale.** The claims history grows in real deployments, and pasting it into the prompt grows with it. The same history cases ran with 37, 1,037 and 10,037 claims on file:
 
@@ -458,14 +462,16 @@ The agent's cost does not move, because it does a point lookup. At 10,037 claims
 
 **The agent's weaknesses.** It recorded a lone flagged garage in 0 of 9 runs (and in a traced run claimed in its summary to have recorded it), and it filed an amount mismatch under the wrong kind of problem. In the injection group it found 10 of 15: the flagged garage was missed in all 3 runs and a repeat claim and a missing police report once each, with no false alarms. It was not steered into reporting things, but it may have been steered out of reporting some. The garage weakness is what `add_rule_signals` removes.
 
-**Limits.** One model, 28 cases written by the author, and a deterministic investigator in the product (`services/signals.py`) that solves this same task by construction, so the comparison is between the agent and stuffing the context. It does not show that the agent beats code. Costs were recomputed from the recorded tokens at prices checked against the **AWS** Price List.
+**What the rules alone show.** The rules-only row finds 79% with no false alarms and no cost, and at 1,037 and 10,037 claims on file it is exact in all 18 runs where the agent is exact in 14 or 15. On every problem a rule covers, the agent adds nothing and sometimes subtracts, by raising false alarms on 11 of 84 runs. What the agent adds in this experiment is the 12 problems the rules missed (of the 72 planted, the agent plus safety net found 69 and the rules 57): 6 in the single problem group, 3 in the multi step group and 3 in the injection group, which is also where its false alarms and misses cluster. So the case for the agent rests on findings that no rule covers, and this experiment cannot show that it finds them better than a rule written later would.
+
+**Limits.** One model, 28 cases written by the author, and a deterministic investigator in the product (`services/signals.py`) that solves this same task by construction, so the headline comparison is between the agent and stuffing the context. The rules-only row measures the rules against their own answer key and shows what the agent adds beyond them. It does not show that the agent beats code. Costs were recomputed from the recorded tokens at prices checked against the **AWS** Price List.
 
 ### What this means
 
 - On template and free-form narratives a single call is as accurate as the agent team at about one fiftieth of the cost. Accuracy does not justify the agents.
 - When the facts live in records, and the records grow, the agent holds its cost and its precision while a single call with everything pasted in degrades. That is the case for tool use, and it needed a code safety net to be reliable.
 - The agents also add what a single call cannot: citations from retrieval, long term memory fed by human review, a full audit trail of tool calls, and the cross-check between narrative and estimate that exposed the benchmark error above.
-- If the only job were reading narratives, a single call and a rules engine would be enough. The agents are justified by the investigation and audit work, and the evidence for that is the last experiment, with the limits stated there.
+- If the only job were reading narratives, a single call and a rules engine would be enough. The agents are justified by work no rule covers, such as unwritten patterns, judgement and explanation, and by the audit trail and memory. The last experiment shows that on rule-covered checks the rules do as well, so that justification rests on the next step in this document and not yet on measurement.
 
 ---
 
@@ -644,7 +650,7 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | Run cost above three times the median of the previous twenty | CloudWatch alarm `RunCostSpike` | Inspect the Observability tab for the agent or model that grew. Likely causes: a looping agent (bounded by the 40 call budget) or a prompt that grew |
 | Failure rate above 20% of recent runs | Alert rule | Check the error on the failing runs. Throttling shows as retries and latency, a permission change as an access denied |
 | API 5xx or p95 latency above 30 seconds | CloudWatch alarms | Check the ECS service events and task health |
-| Daily model spend reaches 5 USD (`CLAIMS_DAILY_BUDGET_USD`) | Hard limit and an alert | New live runs get 429 until tomorrow, and replay, viewing and reviewing keep working. The spend is summed from DynamoDB across every task. A run already going is never cut off, so a day can overshoot by one run per task. Review per call records in Athena |
+| Daily model spend reaches 5 USD (`CLAIMS_DAILY_BUDGET_USD`) | Hard limit and an alert | New live runs get 429 until tomorrow, and viewing and reviewing keep working (a live deployment does not run replay, see the mode rule in the security layers). The spend is summed from DynamoDB across every task. A run already going is never cut off, so a day can overshoot by one run per task. Review per call records in Athena |
 
 | Failure mode | Behaviour |
 |---|---|
@@ -653,6 +659,7 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | Bedrock Data Automation output is missing for a claim | The claim runs without photo evidence and the UI says so |
 | The knowledge base is unreachable | The coverage agent has no clause text. The engine still decides, and the citation panel is empty |
 | A task restarts | The audit log is read from DynamoDB, so nothing is lost, and metrics are restored from DynamoDB when the next task starts |
+| Several people start runs at once | Runs go one at a time per task. A waiting request is told its place in line every 10 seconds, which also keeps CloudFront's 60 second response timeout from cutting it off, and the page shows "Waiting, place n in line". With 5 runs already waiting, a new one gets 503 with a retry hint |
 | An attacker's text is flagged | The flagged sentence is removed and logged, and the rest of the narrative proceeds |
 | A token is missing, expired or invalid | 401, and the site sends the person back to sign in. A user in no group gets 403 |
 | Today's spend cannot be read | Live runs get 503 instead of risking the money. Replay and review keep working |
@@ -671,9 +678,9 @@ git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git &
 uv sync                                         # the locked environment, no virtualenv to activate
 uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
-uv run pytest                                   # 393 tests, no AWS needed (the 16 infrastructure tests need Node.js and a built frontend)
+uv run pytest                                   # 407 tests, no AWS needed (the 16 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
-(cd frontend && npm ci && npm test)             # 23 frontend tests
+(cd frontend && npm ci && npm test)             # 24 frontend tests
 
 # run the app locally, offline baseline, no AWS and no sign in needed
 CLAIMS_MODE=replay uv run uvicorn app.api.main:app --app-dir backend --port 8000 &
@@ -714,12 +721,14 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | The red team is written by the system's author: 30 attacks, one guardrail configuration | Unknown attack classes | An external red team, and attacks generated by a separate model |
 | Evaluation samples are small: 78 held-out claims and three runs per ablation | Wide intervals, and unverified mechanisms | More claims per effect and more repeats |
 | 19 of 63 claims have no usable photo | Fewer photo signals | Photos for every part type |
-| Live runs are serialised per task, about 2 to 3 claims a minute | Throughput per task | More tasks, or a queue with workers |
+| Live runs are serialised per task, about 2 to 3 claims a minute, with one task and no autoscaling. Waiting runs are told their place and a queue over 5 is refused with 503. This was tested on a local server, not load tested on AWS | Around 3 people running at the same moment is the comfortable ceiling. The rest wait, or are told to retry | More tasks with autoscaling, or a queue with workers |
+| There is no endpoint to submit a claim: claims are directories baked into the container image, and the run starts from one of them | The system adjudicates the demo claims, not new ones | A submission endpoint that stores the packet in S3 and starts ingestion, then the event driven workflow below |
+| Run metrics, call records and the alert history are read from local files when a task starts, so each task shows its own; the claim list reads the whole audit table with a consistent read on every call | Observability differs between tasks and the claim list slows as the audit log grows | Read metrics from DynamoDB and Athena, and keep a per claim stage item to list from |
 | Document ingestion is a batch script, not event driven | A new claim needs the script run before its photo and form check appear | An S3 event and a Step Functions workflow |
 | The deploy and live evaluation workflows have not run, because their OIDC role is not in the CDK app | Only CI is exercised on GitHub. Deployment is done from a workstation | Add the OIDC provider and role to the CDK app, then run both workflows |
 | Sign in uses Cognito's default hosted page, MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, keep tokens in memory with a refresh cookie, and style the hosted page |
 | The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user and reserve spend before a run |
-| The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context. It does not show it beats code | More models, cases that no rule covers, and real adjuster feedback |
+| The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context, and that rules alone find 79% at no cost. It does not show the agent finds problems no rule covers | More models, cases that no rule covers, and real adjuster feedback |
 | The free-form benchmark has 124 claims and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |
 | One region, one account, direct query QuickSight | Not a production topology | A second region, and SPICE for the dashboard |
 | No hybrid search on S3 Vectors | A vocabulary gap in retrieval | Evaluate a managed search cluster on cost and recall |

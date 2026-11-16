@@ -21,12 +21,13 @@ from app.pricing import call_cost  # noqa: E402
 from scoring import score_run, summarise  # noqa: E402
 
 REPORTS = ROOT / "evals" / "reports"
-NAMES = {"a": "one call, documents only", "b": "one call, records pasted in", "c": "investigator agent with tools", "d": "agent plus rule-based safety net"}
+NAMES = {"a": "one call, documents only", "b": "one call, records pasted in", "c": "investigator agent with tools", "d": "agent plus rule-based safety net", "e": "rules only, no model"}
 GROUPS = ("single", "history", "multistep", "injection")
 
 
-def merged_rows(rep: dict) -> list[dict]:
-    """Contender d: each stored agent run (c) with the product's add_rule_signals applied to the same claim records. No model is called: the merge is code, so
+def merged_rows(rep: dict, rules_only: bool = False) -> list[dict]:
+    """Contender e (rules_only): the same rule checks with no model and no agent signals, run once per stored case and repeat. It is the answer key the other
+    contenders are measured against, so it shows how much of the score the rules alone account for. Contender d: each stored agent run (c) with the product's add_rule_signals applied to the same claim records. No model is called: the merge is code, so
     this is exactly what the live path now delivers for that agent output."""
     import tempfile
 
@@ -47,10 +48,11 @@ def merged_rows(rep: dict) -> list[dict]:
     for r in rep["rows"]:
         if r["contender"] != "c":
             continue
-        s = RunState(ids[r["case"]], extracted=data.extract_claim(ids[r["case"]]), signals=[dict(g) for g in r["signals"]])
+        s = RunState(ids[r["case"]], extracted=data.extract_claim(ids[r["case"]]), signals=[] if rules_only else [dict(g) for g in r["signals"]])
         set_state(s)
         runner.add_rule_signals(s)
-        out.append({**r, **score_run(set(r["expected"]), s.signals), "contender": "d", "signals": s.signals})
+        out.append({**r, **score_run(set(r["expected"]), s.signals), "contender": "e" if rules_only else "d", "signals": s.signals,
+                    **({"input_tokens": 0, "output_tokens": 0, "seconds": 0.0, "tool_calls": 0} if rules_only else {})})
     return out
 
 
@@ -102,7 +104,7 @@ def main() -> None:
     result: dict = {}
     for path in sorted(REPORTS.glob("investigation_[0-9]*.json"), key=lambda p: int(p.stem.split("_")[1])):
         rep = json.loads(path.read_text())
-        rows, filler = rep["rows"] + merged_rows(rep), rep["filler_claims"]
+        rows, filler = rep["rows"] + merged_rows(rep) + merged_rows(rep, rules_only=True), rep["filler_claims"]
         result[filler] = {"claims_on_file": rep["claims_on_file"], "strict": view(rows, None), "medium_and_high_only": view(rows, "medium"),
                           "consistency": consistency(rows), "costs": costs(rows, rep["model"])}
         r = result[filler]
