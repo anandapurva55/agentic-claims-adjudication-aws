@@ -31,7 +31,7 @@ An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudicatio
 3. **Run the agents** and watch the graph and the trace.
 4. **Make the call** in the Decision panel: accept, override or escalate. Then open your initials, top right, and switch to senior adjuster to try the approval rule above INR 200,000.
 
-[Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
+The data is saved from the real backend when the site is built, and a small fetch layer in the frontend answers the app's calls from it, so nothing is sent anywhere. What the demo leaves out is listed under [Limitations](#limitations).
 
 ## Summary
 
@@ -52,7 +52,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 467 (409 Python, 58 frontend) | |
+| Automated tests | 469 (411 Python, 58 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -371,21 +371,9 @@ Signed out visitors see the sign in screen: the form on the left and a fixed exa
 
 The mode badge states whether a run was the offline baseline or live on **Bedrock**.
 
-**Tests.** 58 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) the **API** layer against a fake server, and the interactive demo's review rules and sign in (below). Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
+**Tests.** 58 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) the **API** layer against a fake server, and the interactive demo's review rules and sign in. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
-
-### Interactive demo on GitHub Pages
-
-GitHub Pages serves files, so it cannot run the **FastAPI** backend, **Cognito** or the agents. The Pages site is the same **React** app built in a demo mode that needs no server, and it is honest about that: a banner on every page, the sign-in screen included, says the agents are switched off to avoid cost.
-
-- **Data from the real backend.** `scripts/build_static_demo.py` runs the real backend once in replay mode and saves what it said: the 63 claims, the extracted fields, every claim's photo and PDFs, each claim's run as the exact event stream, the recommendation each run stores, the 30 sample attacks with the guardrail's answer, and the red team report. If the backend changes, running the script again changes the demo.
-- **A fetch layer instead of an API.** A small module in the frontend (`frontend/src/demo/staticBackend.ts`) answers the app's `/api` calls from that saved output. A run plays back at a natural pace, the graph lights up, and the recommendation is stored in the visitor's own browser, so a reload keeps their work and Reset demo clears it. Nothing is sent anywhere, and nothing starts by itself: the visitor picks the claim and presses Run agents.
-- **The same sign-off rules.** The review gate is a port of the server's: a review must name the run it looked at, an adjuster cannot approve above the authority limit but can escalate, an override needs a decision and a reason, and one decision settles a claim. 16 tests pin this, and nine deliberate breakages (no four eyes check, no run match, recording at the start of a run, a second decision allowed, a short reason accepted, claiming a lesson was stored, allowing a live run, trusting an old saved state, treating escalation as approval) were each caught.
-- **What it leaves out, and says so.** The agents do not run, so decisions come from the rule baseline. A reason typed for an override is not scanned for prompt attacks and is not stored as a long term lesson, and the response says no lesson was stored. The attack lab answers the sample attacks only. The Observability tab shows screenshots from the live deployment instead of invented numbers.
-- **A "Try it" strip.** A visitor does not know to pick a claim first, so the top of the workbench lists four steps: pick a claim, run the agents, make the call, and change roles from the account menu. Each step is ticked off as it is done and the next one is highlighted, with two suggested claims (CLM-2026044, which carries an injected instruction, and CLM-2026043, whose payout needs a senior). 4 tests pin the order and the ticking, and 5 deliberate breakages were each caught.
-- **Sign in is a stand-in that behaves like the real one.** The demo opens on the same sign-in screen as the live site, with its line that there is no sign up and that an administrator provides credentials. "Continue with your account" leads to a login page laid out like Cognito's, where any username works with any password that meets the real user pool's rule: 12 or more characters with upper and lower case letters, a digit and a symbol. The rule appears under the password box, once the person starts typing, as a checklist that is red until each requirement is met and turns green in real time, and signing in is refused until all five are green. A made-up user has no group to give them a role, so they start as an adjuster and switch to senior adjuster from the account menu (marked demo) to try the approval rule. Nothing typed leaves the browser, and the sign in protects nothing, because a public static site holds nothing to protect. A reload keeps the visitor signed in, and signing out returns to the sign-in screen. 13 tests cover the password rule, the sign in, the role switch (which does nothing outside the demo) and the saved session, and 16 deliberate breakages (the rule skipped, a shorter minimum, no symbol or digit required, an empty or uncleaned or over long username, a new user starting as senior, a switch that ignores the role or is not remembered or works signed out or outside the demo, sign out keeping the login, a reload losing it, a saved role not checked) were each caught.
-- **Cost.** None. The workflow `.github/workflows/pages.yml` saves the data from the backend, builds the site and publishes it on every push to `main`.
 
 ## Evaluation
 
@@ -700,7 +688,7 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | Bedrock Data Automation output is missing for a claim | The claim runs without photo evidence and the UI says so |
 | The knowledge base is unreachable | The coverage agent has no clause text. The engine still decides, and the citation panel is empty |
 | A task restarts | The audit log is read from DynamoDB, so nothing is lost, and metrics are restored from DynamoDB when the next task starts |
-| Several people start runs at once | Runs go one at a time per task. A waiting request is told its place in line every 10 seconds, which also keeps CloudFront's 60 second response timeout from cutting it off, and the page shows "Waiting, place n in line". With 5 runs already waiting, a new one gets 503 with a retry hint |
+| Several people start runs at once | Runs go one at a time per task, in the order the requests arrived. A waiting request is told its place in line every 10 seconds, and keeping its place never costs it its turn, which also keeps CloudFront's 60 second response timeout from cutting it off, and the page shows "Waiting, place n in line". With 5 runs already waiting, a new one gets 503 with a retry hint |
 | A user has no verified email | Password reset cannot send a code. Create the account with a verified email, or set one with an administrator call |
 | An attacker's text is flagged | The flagged sentence is removed and logged, and the rest of the narrative proceeds |
 | A token is missing, expired or invalid | 401, and the site sends the person back to sign in. A user in no group gets 403 |
@@ -720,7 +708,7 @@ git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git &
 uv sync                                         # the locked environment, no virtualenv to activate
 uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
-uv run pytest                                   # 409 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
+uv run pytest                                   # 411 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
 (cd frontend && npm ci && npm test)             # 58 frontend tests
 
@@ -764,14 +752,14 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | Evaluation samples are small: 78 held-out claims and three runs per ablation | Wide intervals, and unverified mechanisms | More claims per effect and more repeats |
 | 19 of 63 claims have no usable photo | Fewer photo signals | Photos for every part type |
 | Live runs are serialised per task, about 2 to 3 claims a minute, with one task and no autoscaling. Waiting runs are told their place and a queue over 5 is refused with 503. This was tested on a local server, not load tested on AWS | Around 3 people running at the same moment is the comfortable ceiling. The rest wait, or are told to retry | More tasks with autoscaling, or a queue with workers |
+| Document ingestion is a batch script, not event driven | A new claim needs the script run before its photo and form check appear | An S3 event and a Step Functions workflow |
 | There is no endpoint to submit a claim: claims are directories baked into the container image, and the run starts from one of them | The system adjudicates the demo claims, not new ones | A submission endpoint that stores the packet in S3 and starts ingestion, then the event driven workflow below |
 | Run metrics, call records and the alert history are read from local files when a task starts, so each task shows its own; the claim list reads the whole audit table with a consistent read on every call | Observability differs between tasks and the claim list slows as the audit log grows | Read metrics from DynamoDB and Athena, and keep a per claim stage item to list from |
-| Document ingestion is a batch script, not event driven | A new claim needs the script run before its photo and form check appear | An S3 event and a Step Functions workflow |
 | The deploy and live evaluation workflows have not run, because their OIDC role is not in the CDK app | Only CI is exercised on GitHub. Deployment is done from a workstation | Add the OIDC provider and role to the CDK app, then run both workflows |
 | MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, and keep tokens in memory with a refresh cookie |
 | Password reset uses Cognito's default email sender (about 50 emails a day, from a shared address) and needs a verified email on the account | Reset suits a handful of users, and a user without an email cannot reset | Amazon SES as the sender, and an administrator process that always sets the email |
 | The styled sign in page is defined in the CDK app and covered by template tests (managed login, the Essentials plan, the branding for the app's client, sign up off). It was checked in a browser on a standalone user pool built with the same settings, and has not yet been deployed as part of the full stack | A full deployment could still reject a property the tests cannot see | The next deployment confirms it, and its result belongs in the deployment evidence |
-| The interactive demo on GitHub Pages does not run the agents, the guardrail or memory, and its sign in accepts any username with a rule-meeting password, with the role switched from a menu | A visitor sees rule baseline runs, not live agent runs, cannot scan their own text, and the sign in protects nothing | Run the live deployment for anyone who needs the real thing, as the demos in this document show |
+| The interactive demo on GitHub Pages does not run the agents, the guardrail or memory. Its sign in accepts any username with a rule-meeting password and the role is switched from a menu, a typed override reason is neither scanned for prompt attacks nor kept as a lesson, the attack lab scans the sample attacks only, and the Observability tab shows screenshots from the live deployment | A visitor sees rule baseline runs, not live agent runs, cannot scan their own text, and the sign in protects nothing | Run the live deployment for anyone who needs the real thing, as the demos in this document show |
 | The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user and reserve spend before a run |
 | The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context, and that rules alone find 79% at no cost. It does not show the agent finds problems no rule covers | More models, cases that no rule covers, and real adjuster feedback |
 | The free-form benchmark has 124 claims and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |
