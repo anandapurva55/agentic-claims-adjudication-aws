@@ -21,6 +21,8 @@ jobs:
         run: python scripts/generate_data.py
       - name: Lint
         run: ruff check backend infra evals redteam scripts docs
+      - name: Types
+        run: mypy backend/app
       - name: All tests (backend, evaluation gate, fine-tuning data), exactly as a developer runs them
         run: pytest -q
       - name: Evaluate against the golden set

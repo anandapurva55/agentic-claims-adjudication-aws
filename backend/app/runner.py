@@ -26,6 +26,7 @@ def _clean(text: str) -> str:
 
 def _memo(s: RunState) -> str:
     d = s.decision
+    assert d is not None, "a memo is only written once there is a decision"
     head = {"approve": "APPROVE", "deny": "DENY", "refer": "REFER TO SENIOR ADJUSTER"}[d.decision]
     lines = [f"Decision: {head}. Payable: INR {d.payable:,}." if d.payable else f"Decision: {head}.",
              "Clauses: " + ", ".join(d.clauses) + ".", ""]
@@ -235,6 +236,8 @@ async def run_claim(claim_id: str, mode: str | None = None, speed: float | None 
             else:
                 await (_replay(s, speed) if mode == "replay" else _live(s))
             events.edge("adjudicator", "ddb", "audit record")
+            if s.decision is None:  # every path sets one: a missing decision is a bug, never an approval
+                raise RuntimeError("the run finished without a decision")
             stores.audit(claim_id, "ai", "decision", {"decision": s.decision.decision, "payable": s.decision.payable,
                                                       "clauses": s.decision.clauses, "mode": mode})
             events.edge("adjudicator", "human", "for review")

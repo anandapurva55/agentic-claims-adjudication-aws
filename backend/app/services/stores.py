@@ -109,7 +109,8 @@ def spend_today() -> float:
     if not settings.metrics_table:
         return round(sum(r.get("cost_usd", 0) for r in metrics() if r.get("day") == today and r.get("mode") == "live"), 6)
     from boto3.dynamodb.conditions import Key
-    table, total, kw = _table(settings.metrics_table), 0.0, {}
+    table, total = _table(settings.metrics_table), 0.0
+    kw: dict = {}
     while True:
         r = table.query(IndexName="by_day", KeyConditionExpression=Key("day").eq(today), **kw)
         total += sum(float(i.get("cost_usd", 0)) for i in r["Items"] if i.get("kind") == "run" and i.get("mode") == "live")
@@ -181,7 +182,9 @@ def _stamp(row: dict) -> dict:
 
 def _scan(table: str) -> list[dict]:
     import boto3
-    t, items, kw = boto3.resource("dynamodb", region_name=settings.region).Table(table), [], {}
+    t = boto3.resource("dynamodb", region_name=settings.region).Table(table)
+    items: list = []
+    kw: dict = {}
     while True:
         r = t.scan(**kw)
         items += r["Items"]

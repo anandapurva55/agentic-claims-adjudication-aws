@@ -10,3 +10,12 @@ ignore = ["E501", "B008", "UP037"]
 [tool.ruff.lint.per-file-ignores]
 "scripts/generate_data.py" = ["E701", "E702", "E741"]
 "backend/app/runner.py" = ["E702"]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "app.agents.graph"
+# Strands and the MCP client declare their callback and stream types more narrowly than they accept at run time (the agent graph tests run them), so these
+# argument-type errors come from the libraries' typing, not from this code. Only this module and only these two codes are relaxed.
+disable_error_code = ["arg-type", "misc"]

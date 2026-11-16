@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import date
 from functools import lru_cache
+from typing import Any
 
 from mcp.server.mcpserver import MCPServer
 
@@ -58,7 +59,7 @@ def get_claim_history(policy_no: str, exclude_claim_id: str = "") -> dict:
         policy_no: The policy number.
         exclude_claim_id: The claim currently being assessed, which is left out of the history.
     """
-    prior = [{"claim_id": cid, "incident_date": d, "claimed_amount": amt}
+    prior: list[dict[str, Any]] = [{"claim_id": cid, "incident_date": d, "claimed_amount": amt}
              for cid, pol, d, amt in _claims_index() if pol == policy_no and cid != exclude_claim_id]
     prior.sort(key=lambda r: r["incident_date"], reverse=True)
     days = None

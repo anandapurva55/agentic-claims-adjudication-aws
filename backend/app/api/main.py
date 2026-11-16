@@ -102,20 +102,20 @@ def _check_spend() -> None:
 async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(default=None)) -> StreamingResponse:
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
-    mode = mode or settings.mode
-    if mode == "live":
+    chosen = mode or settings.mode
+    if chosen == "live":
         _check_spend()  # refuse before any streaming starts, so the caller gets a real status code
 
     async def stream():
         async with _live_lock:
-            if mode == "live":  # runs queued behind another one are checked again once it is their turn
+            if chosen == "live":  # runs queued behind another one are checked again once it is their turn
                 try:
                     _check_spend()
                 except HTTPException as exc:
                     yield f"data: {json.dumps({'type': 'error', 'message': exc.detail})}\n\n"
                     yield "event: end\ndata: {}\n\n"
                     return
-            async for ev in run_claim(claim_id, mode):
+            async for ev in run_claim(claim_id, chosen):
                 yield f"data: {json.dumps(ev)}\n\n"
             yield "event: end\ndata: {}\n\n"
 
