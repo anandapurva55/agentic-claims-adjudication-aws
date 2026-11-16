@@ -41,7 +41,8 @@ from scoring import parse_flags  # noqa: E402
 
 MODELS = {"haiku": "global.anthropic.claude-haiku-4-5-20251001-v1:0", "nova": "global.amazon.nova-2-lite-v1:0"}
 SETS = {"golden": ("data", "evals/golden/cases.json"), "heldout_1": ("data/heldout", "evals/golden/heldout_cases.json"),
-        "heldout_2": ("data/heldout2", "evals/golden/heldout2_cases.json")}
+        "heldout_2": ("data/heldout2", "evals/golden/heldout2_cases.json"), "freeform": ("data/freeform", "evals/golden/freeform_cases.json")}
+DEFAULT_SETS = ("golden", "heldout_1", "heldout_2")  # the original comparison; freeform is the harder set written by other models (evals/freeform)
 FLAGS = ("intoxicated", "commercial_use", "unlicensed_driver", "mechanical_failure", "tyre_only", "theft")
 
 
@@ -55,6 +56,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="haiku", choices=list(MODELS))
     ap.add_argument("--zero-shot", action="store_true")
+    ap.add_argument("--sets", nargs="+", default=list(DEFAULT_SETS), choices=list(SETS), help="which claim sets to run")
     a = ap.parse_args()
     model_id = MODELS[a.model]
     train = [json.loads(line) for line in (ROOT / "finetune" / "data" / "train.jsonl").read_text().splitlines() if line.strip()]
@@ -66,7 +68,8 @@ def main() -> None:
     price = pricing.PRICES[model_id]
 
     report: dict = {"model": model_id, "few_shot": not a.zero_shot, "generated": time.strftime("%Y-%m-%d %H:%M:%S"), "sets": {}}
-    for name, (data_dir, cases_path) in SETS.items():
+    for name in a.sets:
+        data_dir, cases_path = SETS[name]
         settings.data_dir = ROOT / data_dir
         cases = json.loads((ROOT / cases_path).read_text())
         preds = []
@@ -92,7 +95,7 @@ def main() -> None:
                                 "mean_latency_s": round(sum(p["latency_ms"] for p in preds) / len(preds) / 1000, 2), "wrong": wrong, "predictions": preds}
         print(f"=== {name}: accuracy {m['decision_accuracy']}, unsafe approvals {m['unsafe_approvals']}, payable exact {m['payable_exact']}, "
               f"wrong {len(wrong)} of {len(cases)}", flush=True)
-        (ROOT / "evals" / "reports" / f"single_call_baseline_{a.model}{'_zero' if a.zero_shot else ''}.json").write_text(json.dumps(report, indent=1))
+        (ROOT / "evals" / "reports" / f"single_call_baseline_{a.model}{'_zero' if a.zero_shot else ''}{'' if tuple(a.sets) == DEFAULT_SETS else '_' + '_'.join(a.sets)}.json").write_text(json.dumps(report, indent=1))
 
 
 if __name__ == "__main__":

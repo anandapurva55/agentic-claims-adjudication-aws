@@ -1,0 +1,214 @@
+{
+ "corrected": {
+  "single call": {
+   "claims": 124,
+   "correct": 122,
+   "accuracy": 0.9839,
+   "unsafe_approvals": 1,
+   "mean_cost_usd": 0.000784,
+   "mean_latency_s": 0.77,
+   "calls_per_claim": 1,
+   "by_scenario": {
+    "ff_clean": "24/24",
+    "ff_clean_decoy": "15/16",
+    "ff_commercial_use": "9/9",
+    "ff_commercial_use_implicit": "6/6",
+    "ff_intoxicated": "10/10",
+    "ff_intoxicated_implicit": "3/3",
+    "ff_mechanical_failure": "8/8",
+    "ff_mechanical_failure_implicit": "8/8",
+    "ff_theft": "6/6",
+    "ff_theft_implicit": "6/6",
+    "ff_tyre_only": "6/6",
+    "ff_tyre_only_implicit": "5/5",
+    "ff_unlicensed_driver": "10/10",
+    "ff_unlicensed_driver_implicit": "6/7"
+   },
+   "wrong": [
+    {
+     "claim_id": "CLM-5000035",
+     "scenario": "ff_clean_decoy",
+     "expected": "approve",
+     "got": "deny"
+    },
+    {
+     "claim_id": "CLM-5000083",
+     "scenario": "ff_unlicensed_driver_implicit",
+     "expected": "deny",
+     "got": "approve"
+    }
+   ]
+  },
+  "agent team": {
+   "claims": 124,
+   "correct": 122,
+   "accuracy": 0.9839,
+   "unsafe_approvals": 1,
+   "mean_cost_usd": 0.04535,
+   "mean_latency_s": 22.5,
+   "calls_per_claim": 21.3,
+   "by_scenario": {
+    "ff_clean": "24/24",
+    "ff_clean_decoy": "15/16",
+    "ff_commercial_use": "9/9",
+    "ff_commercial_use_implicit": "6/6",
+    "ff_intoxicated": "10/10",
+    "ff_intoxicated_implicit": "3/3",
+    "ff_mechanical_failure": "8/8",
+    "ff_mechanical_failure_implicit": "8/8",
+    "ff_theft": "6/6",
+    "ff_theft_implicit": "6/6",
+    "ff_tyre_only": "6/6",
+    "ff_tyre_only_implicit": "5/5",
+    "ff_unlicensed_driver": "9/10",
+    "ff_unlicensed_driver_implicit": "7/7"
+   },
+   "wrong": [
+    {
+     "claim_id": "CLM-5000079",
+     "scenario": "ff_unlicensed_driver",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000032",
+     "scenario": "ff_clean_decoy",
+     "expected": "approve",
+     "got": "deny"
+    }
+   ]
+  }
+ },
+ "first_run_contradictory_estimates": {
+  "single call": {
+   "claims": 124,
+   "correct": 122,
+   "accuracy": 0.9839,
+   "unsafe_approvals": 1,
+   "mean_cost_usd": 0.000784,
+   "mean_latency_s": 0.77,
+   "calls_per_claim": 1,
+   "by_scenario": {
+    "ff_clean": "24/24",
+    "ff_clean_decoy": "15/16",
+    "ff_commercial_use": "9/9",
+    "ff_commercial_use_implicit": "6/6",
+    "ff_intoxicated": "10/10",
+    "ff_intoxicated_implicit": "3/3",
+    "ff_mechanical_failure": "8/8",
+    "ff_mechanical_failure_implicit": "8/8",
+    "ff_theft": "6/6",
+    "ff_theft_implicit": "6/6",
+    "ff_tyre_only": "6/6",
+    "ff_tyre_only_implicit": "5/5",
+    "ff_unlicensed_driver": "10/10",
+    "ff_unlicensed_driver_implicit": "6/7"
+   },
+   "wrong": [
+    {
+     "claim_id": "CLM-5000035",
+     "scenario": "ff_clean_decoy",
+     "expected": "approve",
+     "got": "deny"
+    },
+    {
+     "claim_id": "CLM-5000083",
+     "scenario": "ff_unlicensed_driver_implicit",
+     "expected": "deny",
+     "got": "approve"
+    }
+   ]
+  },
+  "agent team": {
+   "claims": 124,
+   "correct": 115,
+   "accuracy": 0.9274,
+   "unsafe_approvals": 9,
+   "mean_cost_usd": 0.04657,
+   "mean_latency_s": 23.9,
+   "calls_per_claim": 21.3,
+   "by_scenario": {
+    "ff_clean": "24/24",
+    "ff_clean_decoy": "16/16",
+    "ff_commercial_use": "9/9",
+    "ff_commercial_use_implicit": "6/6",
+    "ff_intoxicated": "10/10",
+    "ff_intoxicated_implicit": "3/3",
+    "ff_mechanical_failure": "7/8",
+    "ff_mechanical_failure_implicit": "8/8",
+    "ff_theft": "6/6",
+    "ff_theft_implicit": "6/6",
+    "ff_tyre_only": "1/6",
+    "ff_tyre_only_implicit": "2/5",
+    "ff_unlicensed_driver": "10/10",
+    "ff_unlicensed_driver_implicit": "7/7"
+   },
+   "wrong": [
+    {
+     "claim_id": "CLM-5000088",
+     "scenario": "ff_mechanical_failure",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000109",
+     "scenario": "ff_tyre_only",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000112",
+     "scenario": "ff_tyre_only_implicit",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000104",
+     "scenario": "ff_tyre_only",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000107",
+     "scenario": "ff_tyre_only",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000110",
+     "scenario": "ff_tyre_only_implicit",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000102",
+     "scenario": "ff_tyre_only",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000105",
+     "scenario": "ff_tyre_only_implicit",
+     "expected": "deny",
+     "got": "approve"
+    },
+    {
+     "claim_id": "CLM-5000111",
+     "scenario": "ff_tyre_only",
+     "expected": "deny",
+     "got": "approve"
+    }
+   ]
+  }
+ },
+ "benchmark": {
+  "writer": "mistral.mistral-large-3-675b-instruct",
+  "verifier": "openai.gpt-oss-120b-1:0",
+  "written": 140,
+  "kept": 124,
+  "dropped": 16,
+  "dropped_implicit": 15,
+  "kept_implicit": 35,
+  "negated_decoys_kept": 16
+ }
+}

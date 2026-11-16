@@ -30,3 +30,4 @@ data/heldout2/
 docs/demo/node_modules/
 .coverage
 htmlcov/
+data/freeform/

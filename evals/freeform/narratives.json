@@ -1,0 +1,3816 @@
+{
+ "writer": "mistral.mistral-large-3-675b-instruct",
+ "verifier": "openai.gpt-oss-120b-1:0",
+ "generated": "2026-11-16 16:04:09",
+ "written": 140,
+ "kept": 124,
+ "dropped": 16,
+ "by_label_kept": {
+  "clean": 24,
+  "intoxicated": 13,
+  "commercial_use": 15,
+  "unlicensed_driver": 17,
+  "mechanical_failure": 16,
+  "tyre_only": 11,
+  "theft": 12
+ },
+ "decoys_kept": 16,
+ "narratives": [
+  {
+   "id": "FF-001",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Another car rear-ended the driver at a red light. Nobody was hurt. The rear bumper is damaged.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Oh man, I was just sitting there at the light, minding my own business, you know? Waiting for it to turn green, probably messing with the radio or something, when\u2014BAM! Out of nowhere this car just slams right into me from behind. I jumped so hard I nearly hit my head on the steering wheel, honestly thought I was gonna have a heart attack for a second! The other driver was really apologetic, kept saying they didn\u2019t even see me, but my poor car\u2019s rear bumper is all messed up now\u2014looks like it\u2019s got a serious dent and the paint\u2019s scraped off too. No one got hurt, thank goodness, but still, what a way to ruin an otherwise perfectly fine day.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-002",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver hit a deep pothole on a rainy night and the front bumper and a headlamp cracked.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Oh man, you wouldn\u2019t believe the night I had\u2014so I was driving home, right? And it was pouring down like crazy, just sheets of rain, and I couldn\u2019t see squat. Then\u2014BAM!\u2014this massive pothole comes out of nowhere, like a freakin\u2019 crater, and I hit it dead-on. My poor car just\u2026 *sigh*\u2026 the front bumper\u2019s all cracked now, and the headlamp\u2019s busted too\u2014I could actually hear the plastic splintering. I just sat there for a sec thinking, *Why tonight, of all nights?* Ugh.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-003",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "While reversing out of a tight parking garage the driver scraped a concrete pillar with the rear bumper.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "This morning started off pretty normal\u2014I grabbed coffee on the way to the doctor\u2019s appointment, which as usual ran late, and then I swung by the grocery store to pick up some stuff for dinner. By the time I got back to the parking garage, my mind was already on getting home and unloading everything before the ice cream melted. I didn\u2019t notice how tight the space was until I was already backing out, and of course, that\u2019s when I heard the awful scraping noise\u2014I knew right away I\u2019d tagged one of the concrete pillars. The bump wasn\u2019t even that bad, but the sound made me wince, and I could see the scuff mark on the bumper when I got out to check. Typical end to an already long day, honestly.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-004",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A cyclist swerved in front of the car, the driver braked hard and scraped the left door against a wall.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving slowly down the narrow street when suddenly a cyclist came out from nowhere and swerved right in front of my car. I slammed the brakes to avoid hitting them, but because the road was so tight, my car\u2019s left door scraped hard against the wall on the side. The cyclist kept going without stopping, and I couldn\u2019t pull over immediately because of the traffic behind me. When I checked later, the door was scratched and a little dented. I\u2019m very sorry this happened and just wanted to report it properly.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-005",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A heavy branch fell during a storm and dented the bonnet while the car was parked at home.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I think the incident happened during that really bad storm we had last week\u2014there was so much wind and rain, it was hard to keep track of everything. My car was parked outside the house, on the driveway near the big tree, and I'm pretty sure a large branch came down at some point. When I went to check on the car afterwards, I noticed a dent on the bonnet, right near the windscreen. I\u2019m not completely certain it was that exact branch, but it definitely wasn\u2019t there before the storm, and the damage looks consistent with something heavy falling on it. I didn\u2019t hear anything at the time, so I can\u2019t say for sure when it actually happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-006",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "In a narrow lane the driver folded a side mirror and scratched a door on a parked truck.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "So I was squeezing through this tight lane, pulled in too close. Folded the mirror in but still clipped a parked truck. Scraped the door pretty good, didn\u2019t even see it until I got out. Whole side\u2019s messed up. My bad, just wasn\u2019t paying enough attention.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-007",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Another car rear-ended the driver at a red light. Nobody was hurt. The rear bumper is damaged.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was sitting at the red light on the corner of Maple Avenue and 5th Street around 3:45 PM, waiting to turn left, when I felt a sudden jolt from behind. I looked in my rearview mirror and saw a silver sedan had hit my back bumper. I pulled over to the side of the road, and we both got out to check the damage\u2014thankfully, no one was hurt, but my rear bumper is cracked and pushed in slightly. The other driver admitted they weren\u2019t paying attention because they were looking at their phone. We exchanged details, and I took a few photos of the damage before moving the cars out of traffic.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-008",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver hit a deep pothole on a rainy night and the front bumper and a headlamp cracked.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was just coming back from my cousin\u2019s place after dropping off some of those awful homemade cupcakes she insists on making\u2014seriously, they were like hockey pucks\u2014but the rain had been coming down all evening, you know? By the time I turned onto Maple Drive, the streetlights were flickering, and I was just trying to get home before the storm got worse. Then\u2014BAM\u2014I hit this massive pothole that I swear wasn\u2019t there last week, and suddenly the front of my car made this horrible crunching noise. I pulled over under a tree to check, and sure enough, the bumper was cracked and the headlamp was just\u2026 gone. Honestly, I\u2019m just glad I wasn\u2019t going faster, or who knows what else would\u2019ve happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-009",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "While reversing out of a tight parking garage the driver scraped a concrete pillar with the rear bumper.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "So I was backing out of this really tight spot in the parking garage. Misjudged the space, obviously. Hit the pillar with the rear bumper - felt it scrape right along the side. Didn\u2019t think it was that bad at first, but there\u2019s definitely some damage. Should\u2019ve taken it slower.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-010",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A cyclist swerved in front of the car, the driver braked hard and scraped the left door against a wall.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down Maple Lane around 4:15 PM yesterday when a cyclist suddenly swerved into my lane from the bike path on the left. I slammed on the brakes to avoid hitting them, but the car skidded slightly and the left door scraped hard against the low brick wall running alongside the road. The cyclist didn\u2019t stop, but I pulled over right away to check the damage, which left a long scratch and some paint transfer on the door panel. I was shaken up but thankfully no one was hurt\u2014just frustrated it happened so fast with no warning.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-011",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A heavy branch fell during a storm and dented the bonnet while the car was parked at home.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was at home when a severe storm developed suddenly. While my car was parked on the driveway, a large tree branch broke off and fell onto the vehicle. The impact caused a noticeable dent and some surface scratches on the bonnet. I was inside the house at the time and only discovered the damage after the storm had passed. There were no other vehicles or people involved in the incident.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-012",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "In a narrow lane the driver folded a side mirror and scratched a door on a parked truck.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down Oak Lane around 2:45 PM, trying to navigate the tight space between the parked cars. As I inched past a blue delivery truck, I folded my side mirror in to avoid hitting it, but I didn\u2019t realize how close I was. When I pulled through, I heard a scrape\u2014my passenger door grazed the truck\u2019s side, leaving a scratch near the rear wheel well. I immediately stopped to check the damage, but there was no one around, so I left a note on the truck\u2019s windshield just in case. I feel terrible about it\u2014I should\u2019ve taken it even slower in that lane.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-013",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Another car rear-ended the driver at a red light. Nobody was hurt. The rear bumper is damaged.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Oh my god, I still can\u2019t believe this just happened\u2014like, I was just sitting there at the red light, minding my own business, waiting for it to change, and then *BAM*! This car just plows right into the back of me. I about jumped out of my skin, I swear. No one got hurt, thank goodness, but my poor car\u2019s rear bumper is all messed up\u2014scratched, dented, the works. I\u2019m just so shaken up, you know? I mean, what was that guy even doing? There was no way I could\u2019ve seen that coming.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-014",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver hit a deep pothole on a rainy night and the front bumper and a headlamp cracked.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was absolutely shattered after back-to-back meetings all day\u2014honestly, my brain was fried by the time I finally jumped in the car. Had to drop my mate\u2019s birthday present off on the way home, which was already cutting it fine because I\u2019d forgotten to wrap it until the last minute. Then, of course, the heavens opened just as I hit that stretch of road near the old petrol station, the one where the council\u2019s been ignoring the potholes for months. Didn\u2019t stand a chance\u2014one second I\u2019m dodging puddles, the next there\u2019s this sickening crunch, and suddenly my bumper\u2019s hanging like it\u2019s taken offence to the world. The headlamp\u2019s proper knackered too, just my luck on a night like that.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-015",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "While reversing out of a tight parking garage the driver scraped a concrete pillar with the rear bumper.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was attempting to reverse my vehicle out of a narrow parking space in an underground garage when I misjudged the clearance on my left side. As a result, the rear bumper made contact with a concrete pillar, causing visible damage to the bumper. The garage was dimly lit, and the tight space made maneuvering difficult. I immediately stopped the vehicle and inspected the area to assess the extent of the damage.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-016",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A cyclist swerved in front of the car, the driver braked hard and scraped the left door against a wall.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving along when a cyclist suddenly swerved out right in front of me\u2014I think they came from a side street or maybe just lost control for a second. I slammed on the brakes to avoid hitting them, but I must have misjudged the space because the left side of the car caught the edge of a wall. I\u2019m not entirely sure how close the cyclist was, but it all happened so fast I didn\u2019t have time to react differently. There\u2019s a scrape down the door now, and I remember hearing a bit of a scrape as it happened, though I didn\u2019t feel any real impact. I\u2019m not sure if the cyclist even realized how close it was.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-017",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A heavy branch fell during a storm and dented the bonnet while the car was parked at home.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was at home on Maple Avenue when a sudden storm rolled in around 7:30 PM last night. Just minutes later, a massive branch from the old oak tree in my front yard snapped under the wind and came crashing down. It landed right on the bonnet of my car, parked alongside the curb, leaving a noticeable dent near the windscreen. I rushed outside as soon as it was safe, but the damage was already done\u2014I could see the paint was scratched too, where the branch had scraped across. The whole thing happened so fast, I barely had time to process it before the storm moved on.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-018",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "In a narrow lane the driver folded a side mirror and scratched a door on a parked truck.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down Maplewood Lane around 2:45 PM yesterday, trying to navigate the tight space between the parked cars and the curb. As I inched past a large delivery truck that was parked on the right, I folded in my side mirror to avoid hitting it, but I misjudged the distance. My passenger-side door scraped along the truck\u2019s rear panel, leaving a long scratch running from the wheel well toward the back bumper. I pulled over just past the truck to check the damage, and that\u2019s when I realized I\u2019d need to file this claim\u2014sorry it happened, but the lane was just too narrow to pass cleanly.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-019",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Another car rear-ended the driver at a red light. Nobody was hurt. The rear bumper is damaged.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "This morning started off fine\u2014I\u2019d just dropped the kids at school and was on my way to the post office to finally send off those birthday presents I\u2019ve been meaning to mail for weeks. Traffic was its usual snail-paced self, but I wasn\u2019t in a hurry, just bopping along to that podcast about cold cases I\u2019ve been hooked on. Then I stopped at a red light behind a line of cars, thinking about whether I had enough milk left for coffee tomorrow, when\u2014BAM!\u2014someone slammed into the back of me out of nowhere. Thankfully, no one was hurt, just my poor car\u2019s bumper looking like it had a bad day. I swear, I\u2019ve never seen someone look so shocked over spilled coffee\u2014apparently, their latte didn\u2019t survive the impact either.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-020",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver hit a deep pothole on a rainy night and the front bumper and a headlamp cracked.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Last night around 9:15 PM, I was driving down Maple Avenue during a heavy rainstorm when I unexpectedly hit a deep, unmarked pothole near the intersection with Elm Street. The jolt was sudden and forceful\u2014I didn\u2019t see it coming until it was too late to swerve. After pulling over to check the damage, I noticed the front bumper had a significant crack on the right side, and the passenger-side headlamp was completely shattered. The road was slick, and the streetlights were flickering, which made it even harder to spot hazards like that one. I\u2019m pretty sure the pothole wasn\u2019t there the last time I drove that route, or at least not that deep.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-021",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "While reversing out of a tight parking garage the driver scraped a concrete pillar with the rear bumper.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Just backed out of the garage, wasn\u2019t paying enough attention and side-swiped the pillar near the exit. Felt the bump, heard the scrape\u2014know it messed up the rear bumper. Parked it right after to check, saw the paint marks and a decent dent. Called it in straight away, no other cars involved.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-022",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A cyclist swerved in front of the car, the driver braked hard and scraped the left door against a wall.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down Oakwood Lane around 3:45 PM when a cyclist suddenly swerved right in front of me from the bike lane near the junction with Maple Street. I slammed the brakes hard to avoid hitting them, but the car skidded slightly and the left door scraped against the low garden wall of number 27. There wasn\u2019t enough space to correct the swerve safely because of the parked cars on the left. The cyclist didn\u2019t stop, but I pulled over right away to check the damage. It all happened so fast\u2014I\u2019m just relieved nobody was hurt.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-023",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A heavy branch fell during a storm and dented the bonnet while the car was parked at home.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Oh man, you\u2019re not gonna believe what happened\u2014it was just horrendous! I had parked my car right outside the house like I always do, and this storm just rolled in out of nowhere, right? Next thing I know, I hear this *massive* crack, like thunder but worse, and I look out the window, and there\u2019s this huge branch just *smashed* onto the bonnet\u2014total destruction! My poor car didn\u2019t stand a chance, it was just sitting there minding its own business, and now it looks like it went ten rounds with a tree. I nearly had a heart attack, I swear!",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-024",
+   "label": "clean",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "In a narrow lane the driver folded a side mirror and scratched a door on a parked truck.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down Maple Close around 3:15 PM yesterday, trying to navigate that really tight stretch near the bakery where the lane narrows. I\u2019d folded in my side mirror to squeeze through, but I misjudged the space\u2014just clipped the back of a parked white truck on the passenger side. There\u2019s a fresh scratch along the door, about halfway down, where my car must\u2019ve caught it as I edged past. I didn\u2019t see anyone around at the time, so I left a note under the truck\u2019s wiper with my details.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-025",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The accident was a minor collision at a junction. The driver stresses that there was no alcohol at all: a breath test at the scene was negative.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving along Maple Street heading towards the junction with Oak Avenue around 3:15 PM when another vehicle came out of Oak Avenue and collided with the front passenger side of my car. It was a slow-speed impact as I had already started braking when I saw the other car approaching. The driver stopped, we checked for any injuries, and the police arrived shortly after. They conducted a breath test on both of us at the scene, which came back negative for me, confirming I hadn\u2019t been drinking. Neither of us needed medical attention, but I did notice some minor damage to my front bumper and headlight.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-026",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision at a junction. The car is used only for the family. That day the driver was taking their own children to school, not carrying anyone for money.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving my car to drop my children at school, like usual. At the junction, I stopped to check for other cars, but did not see any coming. When I started moving, another car hit the side of my car suddenly. The other driver was going very fast, I think. Nobody was hurt, but my car is damaged now. This car is only for my family, not for any work or carrying passengers for money.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-027",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A scrape in a car park. The driver is the policyholder's spouse, who is a named permitted driver and holds a valid licence, shown to the police.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was backing out of our space in the multi-storey car park on Regent Street around quarter past three yesterday afternoon, just after picking up the groceries from the Tesco next door. My husband was driving, and I was double-checking the kids in the back when we heard a loud scrape\u2014he\u2019d clipped the rear passenger side against the concrete pillar between spaces 28 and 29. There\u2019s a clear scrape along the bumper and a small dent near the tail light, but nothing else seems damaged. The car park was pretty full, so visibility wasn\u2019t great, and I think he just misjudged the distance when turning. He showed his licence to the car park attendant who came over, and everything checked out fine.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-028",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision on a main road. The car had just been serviced and the accident was entirely the other driver's fault, nothing was wrong with the car.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving along the main road after getting my car serviced, just cruising normally. Some idiot in a blue hatchback came flying out of a side street and smashed straight into my passenger side. No warning, just totaled my door\u2014my car\u2019s fine otherwise, but theirs? Full blame, no doubt. Cops came, took statements, other driver admitted they didn\u2019t check.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-029",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying a birthday cake to a friend's party as a favour, nobody paid for it, when another car clipped the bumper.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving along Maple Street around 3:45 PM yesterday, heading to my friend Sarah\u2019s birthday party on Linden Avenue. I had a birthday cake on the passenger seat\u2014I\u2019d picked it up from the bakery as a favour, just trying to help out since she\u2019d been so busy. Right as I was stopped at the intersection of Maple and Oak, another car swung a little too wide on the turn and clipped my rear bumper. I didn\u2019t even see them coming until I heard the scrape, and by the time I pulled over, they\u2019d already taken off. The cake was fine, thank goodness, but now my bumper\u2019s got a pretty noticeable dent.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-030",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision damaged the front bumper and bonnet and also scuffed one tyre. The tyre still holds air.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Was pulling out of the car park and misjudged the space. Hit the kerb pretty hard, then clipped a bollard on the way out. Front bumper and bonnet took the worst of it, plus the tyre\u2019s got a scuff but still holds air. Wasn\u2019t going fast, just stupid moment.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-031",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The accident was a minor collision at a junction. The driver stresses that there was no alcohol at all: a breath test at the scene was negative.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I think I was approaching this junction a bit too quickly, not really expecting the other car to pull out like that. I\u2019m sure they didn\u2019t see me in time, or maybe I didn\u2019t brake early enough\u2014I\u2019m still not entirely sure how it all happened so fast. There wasn\u2019t much damage, just a little scrape, but I want to be honest\u2014I hadn\u2019t been drinking at all, and the police even did a breath test right there to confirm it. I feel awful about the whole thing, but I\u2019m pretty sure neither of us was really paying enough attention.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-032",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision at a junction. The car is used only for the family. That day the driver was taking their own children to school, not carrying anyone for money.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I think the accident happened at the junction near the primary school\u2014I was dropping my two kids off that morning, so I was a bit distracted trying to make sure they got out of the car safely. Another car came from the right, and I\u2019m not entirely sure if I stopped fully at the stop sign or if they just didn\u2019t see me. There was a bit of a bump, and I\u2019m pretty sure I might have misjudged how fast they were coming. No one was hurt, thankfully, and I wasn\u2019t doing anything unusual\u2014just the usual school run, nothing commercial or anything like that. I feel awful about it, especially since it\u2019s the first time something like this has happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-033",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A scrape in a car park. The driver is the policyholder's spouse, who is a named permitted driver and holds a valid licence, shown to the police.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was already running late for my dentist appointment when my husband called to say he\u2019d scraped the car in the supermarket car park\u2014typical, since I\u2019d specifically asked him to grab milk and bread, not redecorate the side panel. Turns out some idiot had parked way over the line, leaving barely enough room to squeeze out of the space, and in his usual \"I\u2019ve got this\" way, he misjudged the wing mirror against a concrete pillar. The scrape isn\u2019t huge, just a long, angry silver scratch along the passenger door, but it sticks out like a sore thumb next to the \"Baby on Board\" sticker the kids insisted on, which somehow makes it worse. By the time he finished explaining\u2014while showing me the shopping bag with three random courgettes instead of the bread\u2014I\u2019d completely forgotten about my filling and just sighed, because of course this would happen on the one day I\u2019d skipped my morning coffee. The police were lovely about it, though, and even chuckled when my husband sheepishly handed over his licence like he was expecting them to arrest him for dairy-related crimes.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-034",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision on a main road. The car had just been serviced and the accident was entirely the other driver's fault, nothing was wrong with the car.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "On a clear afternoon, I was driving my recently serviced car along the main road, adhering to the speed limit and road signs. Suddenly, another vehicle failed to stop at a junction and collided with the passenger side of my car. The impact was significant, causing visible damage to the door and rear panel. I immediately pulled over to a safe location and confirmed that the other driver admitted full responsibility for the incident. There were no mechanical issues with my car prior to or during the collision.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-035",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying a birthday cake to a friend's party as a favour, nobody paid for it, when another car clipped the bumper.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "Oh, it was just the worst timing\u2014my mate had texted me last minute asking if I could pick up this massive birthday cake for his party because he was stuck at work, and of course I said yes, right? So I\u2019m driving over there, being all careful because it\u2019s this huge, fancy cake in a box on the passenger seat, and I\u2019m literally going under the speed limit so nothing slides or tips. Then out of nowhere, this other car comes flying out of a side street and just clips my bumper\u2014like, barely even touched it, but enough to make me jump and the cake box go sliding! I was so gutted, not just because my car\u2019s all scraped now, but the cake looked *ruined*\u2014like, the icing was smooshed into the box, and I\u2019m just standing there thinking, \u201cHow am I gonna tell him the cake\u2019s a write-off?\u201d Absolute disaster.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-036",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision damaged the front bumper and bonnet and also scuffed one tyre. The tyre still holds air.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving down High Street around 3:45 PM yesterday when a car suddenly pulled out from Park Lane right in front of me. I slammed the brakes, but we still collided\u2014my front bumper took the worst of it, and the bonnet\u2019s got a good dent too. The impact shoved me a bit sideways, and my front driver-side tyre scraped against the kerb, leaving a scuff mark, but thankfully it\u2019s still holding air just fine. Traffic was heavy, so I pulled over onto Maple Avenue to exchange details with the other driver and check the damage. Wasn\u2019t a high-speed crash, but the front end\u2019s definitely messed up.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-037",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The accident was a minor collision at a junction. The driver stresses that there was no alcohol at all: a breath test at the scene was negative.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving carefully through the junction when suddenly another car came from the side and hit my front bumper. It was a small impact, but both cars stopped right away to check for damage. The other driver said sorry and we waited together for the police. They did a breath test on me at the scene and it was negative\u2014I had no alcohol before driving. Everything happened very fast, but luckily no one was hurt.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-038",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision at a junction. The car is used only for the family. That day the driver was taking their own children to school, not carrying anyone for money.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving my car to take my children to school this morning. At the junction, I was waiting to turn left when suddenly another vehicle came very fast and hit the side of my car. I did not see them coming because I was looking the other way for safe gap. It was my mistake, I think, because maybe I should have checked more carefully. The road was wet from rain, so my car slid a little after the collision. Nobody was hurt, only some damage to the door and wing of my car.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-039",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A scrape in a car park. The driver is the policyholder's spouse, who is a named permitted driver and holds a valid licence, shown to the police.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was carefully backing out of my parking space in the car park when my spouse accidentally scraped the side of another parked car. It happened very quickly, and we didn\u2019t realize right away because there wasn\u2019t a loud noise. My spouse stopped immediately, and we checked both cars\u2014ours has a small scratch, and the other car has a scrape along the door. The owner wasn\u2019t there, so my spouse left a note with our contact details. We also reported it to the police, who saw my spouse\u2019s valid driver\u2019s license. We\u2019re really sorry about the damage.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-040",
+   "label": "clean",
+   "decoy": true,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A collision on a main road. The car had just been serviced and the accident was entirely the other driver's fault, nothing was wrong with the car.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "",
+   "narrative": "I was driving home from picking up my dog, Biscuit, from the groomer\u2014he looked so fluffy, I couldn\u2019t resist taking him for an extra walk before heading back. Anyway, I was on my way, windows down, listening to my favorite playlist, when out of nowhere this silver hatchback just swerved right into my lane without signaling. I slammed the brakes, but it was too late\u2014we crunched into each other near the intersection by the big oak tree. My car handled fine, no weird noises or anything, which was a relief since I\u2019d just had it serviced last week. The other driver hopped out all flustered, waving their hands, but honestly, they were clearly distracted\u2014I saw them messing with their phone just before the crash.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-041",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had been drinking beer at a friend's wedding and misjudged a turn on the way home, hitting a divider.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "While driving home from a friend\u2019s wedding, I had consumed several beers and lost focus momentarily. As I attempted a turn, I misjudged the distance and struck a highway divider. The impact caused damage to the front and side of my vehicle. I accept full responsibility for the collision, as my impaired judgment led to the accident. I deeply regret the lapse in caution and will take steps to ensure it never happens again.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-042",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "After several whiskeys at a bar, the driver drove off and hit a parked auto-rickshaw.",
+   "style": "hedged and uncertain wording",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I think I might have been a bit off after leaving the bar last night\u2014I remember having a few glasses of something strong earlier. When I got into my car, I must have misjudged the space because I ended up scraping the side of a parked auto-rickshaw. I\u2019m not entirely sure how hard I hit it, but the front of my car definitely made contact, and I saw some scratches on both vehicles after I got out to check. The rickshaw was empty, thankfully, but I know I should\u2019ve been more careful. I\u2019m really kicking myself for not calling someone to drive me instead.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-043",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had smoked cannabis with friends and then drove, drifting into a roadside barrier.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I must explain what happened this evening, I feel very bad. Me and friends smoked some cannabis, I know is not good, but I did. After, I thought I can drive home, but my car went side to side and hit barrier on the road. I didn\u2019t see it coming, my head was not clear. Very sorry for this mistake, I understand now is very dangerous.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-044",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Returning from a bachelor party where the driver had a lot to drink, the car hit a tree.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "So, I was in the passenger seat, right? Coming back from my buddy's bachelor thing\u2014it was late, and we were all just kind of exhausted but also wired from the whole night. The guy driving had way too many cups of that bright blue punch stuff, the kind that sneaks up on you, and I guess I didn\u2019t realize how out of it he was until I saw him swerving just a little. Next thing I know, we\u2019re skidding, and then\u2014BAM\u2014there\u2019s this tree right in front of us, and everything went from loud laughs to just silence and the smell of smoke. I don\u2019t even know how we hit it straight-on like that, but suddenly the airbags went off, and I just sat there in shock, trying to figure out if everyone was okay. It all happened so fast, and now I just keep thinking about how stupid it was to let him take the wheel.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-045",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver admits two glasses of wine at dinner and then clipped a bollard while parking outside the restaurant.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "Oh man, I really messed up last night. I was out for dinner with some friends and, you know, one glass led to another\u2014I definitely had two glasses of wine, maybe even felt a bit too relaxed after. When it was time to leave, I just wasn\u2019t thinking straight, and as I was trying to park, I totally misjudged the space and scraped right into one of those stupid bollards outside the restaurant. I heard this awful crunch, and my stomach just dropped\u2014I knew I\u2019d done something bad. I feel terrible about it now, really do, but at the time, I was just too fuzzy to react properly.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-046",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had been drinking beer at a friend's wedding and misjudged a turn on the way home, hitting a divider.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I was just trying to get home after celebrating with everyone, you know? The roads looked so different in the dark, and I swear that turn came out of nowhere. My hands were shaking\u2014I don\u2019t even remember hitting the divider, but then there was just this awful noise and everything went sideways. I kept thinking, *How did this happen?*, like my brain couldn\u2019t catch up with what was right in front of me. Never felt more stupid in my life, just sitting there waiting for the cops, wishing I\u2019d just stayed put.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-047",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "After several whiskeys at a bar, the driver drove off and hit a parked auto-rickshaw.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I think I had a few too many whiskeys at the bar, and I must\u2019ve lost track of just how much I\u2019d had. I got behind the wheel\u2014I know, bad idea\u2014and honestly, I don\u2019t remember much after that. Somehow, I ended up hitting a parked auto-rickshaw, though I\u2019m not entirely sure how fast I was going or exactly how it happened. It all feels like a blur now, and I feel terrible about the whole thing. The auto-rickshaw was just parked there, and I didn\u2019t even see it until it was too late.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-048",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had smoked cannabis with friends and then drove, drifting into a roadside barrier.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I was driving home from my friend\u2019s place around 11:30 PM last night, taking the usual route down Willow Lane toward the intersection with Maple Street. As I turned onto Pine Avenue, I realized too late that I\u2019d started drifting toward the right side of the road. Before I could correct it, the front passenger side of my car clipped the barrier along the edge of the sidewalk. I\u2019d been feeling really unsteady and slow to react for the last few blocks, but I thought I could make it\u2014clearly, I was wrong.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-049",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Returning from a bachelor party where the driver had a lot to drink, the car hit a tree.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "This evening, I was returning from a friend\u2019s bachelor party where I had consumed a significant amount of alcohol. As I was driving, I lost control of the vehicle and collided with a tree on the side of the road. I believe my impaired judgment and delayed reaction time contributed to the accident. Fortunately, no other vehicles or individuals were involved, but the car sustained substantial damage. I take full responsibility for this incident and deeply regret my actions.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-050",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver admits two glasses of wine at dinner and then clipped a bollard while parking outside the restaurant.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I had just finished a meal at the restaurant when I attempted to park my vehicle in the space outside. While maneuvering into the spot, I misjudged the distance to a bollard on my right and made contact with it. I had consumed two glasses of a house beverage with my dinner prior to getting behind the wheel. The impact caused visible damage to the front passenger side of my car. I immediately checked for any potential harm to others or property and fortunately found none.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-051",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had been drinking beer at a friend's wedding and misjudged a turn on the way home, hitting a divider.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I was at my mate Dave\u2019s wedding\u2014just trying to celebrate, you know? Had a few too many beers, thought I was fine to drive, stupid me. Must\u2019ve zonned out or something because next thing I know, I\u2019m swerving and bam, I clipped that bloody divider. Felt the jolt, heard the scrape, and just sat there for a minute, heart pounding, realizing how badly I could\u2019ve messed everything up. Never should\u2019ve got behind the wheel, absolute idiot move, and now I\u2019ve got this mess to sort.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-052",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "After several whiskeys at a bar, the driver drove off and hit a parked auto-rickshaw.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "Yesterday evening, I went out with friends and had some drinks at a bar. Later, I took my car to go home, but I didn\u2019t see the auto-rickshaw parked on the side of the street. I accidentally hit it with my car while trying to drive past. I didn\u2019t realize how close it was until I heard the sound. I stopped immediately and checked the damage, feeling very sorry for what happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-053",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had smoked cannabis with friends and then drove, drifting into a roadside barrier.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I am so sorry about this accident. Before driving, I was with friends and smoked some cannabis, which was very bad decision. My mind was not clear, and I lost control of the car. The car started to drift, and I could not steer properly, then hit the barrier by the road. I know this was my fault, and I feel terrible for the damage.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-054",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Returning from a bachelor party where the driver had a lot to drink, the car hit a tree.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I was in the back seat heading home from my buddy\u2019s bachelor party\u2014we\u2019d stayed up way too late eating cold pizza and rewatching highlights from some dumb viral video from 2019. The driver caught every green light like he was trying to set a world record, but then the road kind of blurred into stripes, and before I could ask if he\u2019d checked his glasses prescription lately, there was a loud crunch and my face nearly met the dashboard. Next thing I knew, the front of the car was wrapped around a tree that definitely hadn\u2019t been there a second ago, and my phone flew out of my hand like it was auditioning for an action movie. Never thought I\u2019d owe an apology to a tree, but here we are.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-055",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver admits two glasses of wine at dinner and then clipped a bollard while parking outside the restaurant.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "Oh man, so I was just trying to park after dinner, right? Had a couple of glasses of wine\u2014probably shouldn\u2019t have, but it was this nice little Italian place, and the food was just so good. Anyway, I\u2019m backing in, feeling pretty confident, and then\u2014*crunch*\u2014I hear this awful noise, and I just knew I\u2019d messed up. There was this bollard right there, glowing in the dark like it was taunting me, and I swear I thought I had more space. My heart just sank when I got out and saw the scratch. God, I feel like such an idiot now.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-056",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had been drinking beer at a friend's wedding and misjudged a turn on the way home, hitting a divider.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I was coming back from my buddy\u2019s wedding, late, and my head was just all over the place\u2014happy, tired, a little fuzzy from the toasts and everything. The road was darker than I expected, and I swear I didn\u2019t even see the turn until it was right there, but I jerked the wheel too hard, way too late. Next thing I know, I\u2019m hitting the divider, metal screeching, my heart pounding like it was trying to break out of my chest. I just sat there for a minute, hands shaking, realizing how stupid that was\u2014I should\u2019ve just stayed put or called someone instead of trying to drive. Now I\u2019ve got this mess and all I can think is how lucky I am no one else got hurt.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-057",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "After several whiskeys at a bar, the driver drove off and hit a parked auto-rickshaw.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I\u2019d had a pretty rough day\u2014started off with my boss chewing me out over some report I\u2019d forgotten to file, then the coffee machine at work broke, and to top it off, my phone died just as I was about to order lunch. By the time I met up with a few friends at that little bar near the market, I was already two whiskeys in before I even sat down. One thing led to another, the drinks kept coming, and before I knew it, it felt like a good idea to just drive home instead of waiting for a cab. Next thing I knew, I heard this awful crunching sound\u2014turns out I\u2019d clipped the side of a parked auto-rickshaw. Honestly, I don\u2019t even remember swerving, but there it was, dented and pushed slightly into another car. I sat there for a minute, trying to process what just happened, wishing I\u2019d just crashed on my buddy\u2019s couch instead.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-058",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver had smoked cannabis with friends and then drove, drifting into a roadside barrier.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "I don\u2019t even know how this happened, honestly. I was just hanging out with the guys, you know, relaxing like we always do, and then somehow I ended up behind the wheel. Next thing I remember, my mind was all over the place, and the car just\u2026 veered. I felt this awful jolt, and suddenly there was this horrible scraping sound, and I realized I\u2019d hit the barrier. My hands were shaking so bad, I could barely grip the wheel, and all I could think was\u2014how did I let this get so out of control?",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-059",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "Returning from a bachelor party where the driver had a lot to drink, the car hit a tree.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "Oh man, I still can't believe this happened. We were coming back from my buddy's bachelor party, and yeah, we'd all had way too much to drink\u2014especially the guy driving, which I feel awful about now. I just remember hearing this horrible thud and seeing the tree right there, like it came out of nowhere. It all happened so fast, and now I just keep thinking about how stupid and reckless we were, putting everyone in danger like that. My hands were shaking so bad afterward I could barely even call for help.",
+   "verifier_flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-060",
+   "label": "intoxicated",
+   "decoy": false,
+   "flags": {
+    "intoxicated": true,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver admits two glasses of wine at dinner and then clipped a bollard while parking outside the restaurant.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "alcohol, drunk, drinking, intoxicated, beer, whiskey, wine, cannabis, drugs, high",
+   "narrative": "Honestly, the whole evening was going so well\u2014great food, even better conversation, and I was in such a good mood after that second glass of red with the steak. I remember fussing with the radio on the way out, totally distracted by some song I hadn\u2019t heard in years, and then just misjudged the space when I went to pull in. The bollard came out of nowhere, or maybe I just didn\u2019t see it, but there was this horrible scraping noise, and when I got out to check, the passenger side was all scraped up. I felt like such an idiot, especially since I\u2019d been parked perfectly fine outside my house earlier that same day\u2014no issues with the tight spots there. Just one of those nights where everything was smooth until it suddenly wasn\u2019t.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: intoxicated"
+  },
+  {
+   "id": "FF-061",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was delivering food orders for a delivery app when another car hit the side of the vehicle.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was making a delivery around 8:15 PM last night, heading south on Maple Street just past the intersection with 4th Avenue. I had the right of way and was about to turn left into the apartment complex driveway when a silver sedan ran the stop sign on 4th Ave and T-boned my passenger side. The impact pushed my car into the curb and knocked the food order right off the seat\u2014I barely had time to react before the collision happened. The other driver admitted they didn\u2019t see the stop sign, but their insurance details were exchanged on the scene.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-062",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying paying passengers booked through a ride-hailing app when the accident happened.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was driving three people in my car around 8:15 PM on Friday\u2014picked them up on Maple Street after they booked through the app, then turned onto Pine Avenue heading toward their drop-off near the riverfront. The light at Pine and 5th had just changed when a pickup truck blew right through the red from 5th and slammed into my passenger side. I\u2019d just checked my phone for the next turn, so I hadn\u2019t even hit the brakes yet. Everyone\u2019s phones flew out of their hands, and the two in the back banged against the doors pretty hard.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-063",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was transporting a customer's furniture across the city for a fee when the car hit a divider.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was just trying to do a good job, you know? Moving this guy\u2019s furniture across town, making a little extra cash\u2014thought it\u2019d be straightforward. Traffic was insane, I was checking the GPS, and next thing I know, I clipped the divider because I got distracted swerving from someone cutting in. My stomach just dropped as I heard that awful scraping noise, and now I\u2019m sitting here wondering how I\u2019m gonna explain this to the customer and fix my poor car. I feel like such an idiot, honestly\u2014should\u2019ve just kept my eyes on the road.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-064",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The car had been hired out for the weekend to a tourist for a daily rental charge, and the tourist had the accident.",
+   "style": "hedged and uncertain wording",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I think I might have made a mistake lending my car to someone I'd just met online for their trip here. They said they needed it to get around while visiting, and I agreed to let them use it for a couple of days. Apparently, they weren't used to driving on our roads and ended up hitting a curb, which seems to have damaged the front wheel area. I'm not entirely sure about all the details, but I know they were a bit shaken up afterward. I feel awful because I didn't really check if they were comfortable driving here.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: commercial_use"
+  },
+  {
+   "id": "FF-065",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver runs a small side business collecting school children for monthly payments and the accident happened on a pick-up round.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was driving my usual route to pick up the children for their school round, like every morning. The road was wet and I was taking it slow when suddenly a car came from the opposite side and hit my front bumper. I tried to brake but the other driver didn\u2019t stop in time. No one was hurt, thank God, but my van got some damage on the front. It was a bit scary with the little ones inside, but we all stayed calm.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: commercial_use"
+  },
+  {
+   "id": "FF-066",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was delivering food orders for a delivery app when another car hit the side of the vehicle.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was stopped at a red light in my car, waiting to turn left with my hazard lights on while carrying food orders on the front seat. Without warning, a vehicle collided with the driver\u2019s side door, pushing my car sideways into the intersection. The other driver admitted they hadn\u2019t noticed my indicator flashing and apologized at the scene. The impact caused visible damage to the door panel and left the window cracked. Both of us pulled over safely to exchange details afterward.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-067",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying paying passengers booked through a ride-hailing app when the accident happened.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was just trying to do my job, you know? Had a car full of passengers, all heading home after a long day, I guess, just like me. We were at a stoplight, everything seemed fine, and then\u2014BAM\u2014this guy just rear-ended us out of nowhere. I don\u2019t even know how fast he was going, but it sent us all lurching forward, and honestly, I was terrified for the people in the back. One of them even hit their head on the seat in front, and I just kept thinking, what if something worse had happened? It\u2019s not like I\u2019m some reckless driver; I was just doing my best to get them where they needed to go safe.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-068",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was transporting a customer's furniture across the city for a fee when the car hit a divider.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was helping a friend move some of their heavier furniture pieces across town\u2014specifically, a solid oak dresser and a couple of armchairs\u2014when this happened. I\u2019d just turned off Main Street onto Maplewood Avenue around 3:15 PM, heading toward their new place on Elm Drive. The road was wet from earlier rain, and I must\u2019ve taken the curve a little too fast because the rear wheels slid slightly. Before I could correct it, the back end clipped the concrete divider near the intersection, scraping the bumper and bending the tailgate where I\u2019d secured the dresser. No other cars were involved, thankfully, but the furniture shifted enough to crack the dresser\u2019s side panel.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: commercial_use"
+  },
+  {
+   "id": "FF-069",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The car had been hired out for the weekend to a tourist for a daily rental charge, and the tourist had the accident.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I had rented out my car to a tourist for the weekend. While in their possession, they were involved in a collision at an intersection, apparently failing to yield to oncoming traffic. The front passenger side of the vehicle sustained significant damage as a result of the impact. The tourist informed me they were unfamiliar with local driving rules, which may have contributed to the incident. I was not present at the time of the accident.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-070",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver runs a small side business collecting school children for monthly payments and the accident happened on a pick-up round.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was doing my morning round, collecting the kids from their usual spots like I do every weekday\u2014you know, just helping out the parents in the neighbourhood who can\u2019t always get away from work in time. It was raining again, the kind that makes the roads slick as anything, and I was being extra careful, honestly. Then this car just comes flying out of nowhere at the junction by the old post office, skidded right into the side of us. My heart just about stopped\u2014thank God none of the little ones were hurt, but I\u2019ve never been so shaken up in my life, seeing them all wide-eyed in the back. Now I\u2019m just sitting here wondering how I\u2019m supposed to explain this to everyone\u2019s parents, you know?",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: commercial_use"
+  },
+  {
+   "id": "FF-071",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was delivering food orders for a delivery app when another car hit the side of the vehicle.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "Yesterday, I was working and delivering food orders on my scooter. When I stopped at traffic light, another car not see me and hit the side of my vehicle. I was very careful but car come too fast from right side. My scooter is damaged now, and I feel little pain in my arm but okay. Sorry for trouble, I want fix my scooter to work again.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-072",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying paying passengers booked through a ride-hailing app when the accident happened.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was just trying to make a little extra to cover bills, you know? Had three folks in the backseat\u2014guy going to the airport, couple heading to a wedding\u2014when this truck just blew through the red light. I slammed the brakes but couldn\u2019t miss it, and now everyone\u2019s shaken up and my car\u2019s a mess. Wish I\u2019d had my eyes on the road instead of checking the app for the next pickup, but what\u2019s done is done. Feels wrong that something like this happened when I was just trying to help people get where they needed to go.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-073",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was transporting a customer's furniture across the city for a fee when the car hit a divider.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was driving carefully to deliver my customer's furniture safe to their new home. On the way, I took a turn too fast because I wanted to avoid being late. Suddenly, my car hit the divider on the side of the road. I felt very sorry because it was my mistake and the furniture might be damaged. I stopped immediately to check everything and make sure no one was hurt.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-074",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The car had been hired out for the weekend to a tourist for a daily rental charge, and the tourist had the accident.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was supposed to meet Dave for lunch at that new burger place by the pier, but just as I was about to leave, my phone buzzed\u2014some guy from out of town had messaged about borrowing my car for the weekend. He\u2019d picked it up Friday afternoon and I honestly forgot all about it until I saw the missed calls this morning. Turns out he took it down the coast and sideswiped a guardrail near the old lighthouse, which I only know because my buddy texted me a photo of the scratch. I was actually halfway through my milkshake when I got the update, so at least the day wasn\u2019t a total wash.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: commercial_use"
+  },
+  {
+   "id": "FF-075",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver runs a small side business collecting school children for monthly payments and the accident happened on a pick-up round.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "This morning, while I was on my usual school run route collecting children for my small side business, I stopped to pick up a child at their designated spot. As I was pulling away from the curb, another vehicle came speeding around the corner and collided with the rear passenger side of my car. I immediately stopped to check on the children in my vehicle, who were all unharmed but understandably shaken. The driver of the other vehicle apologized and admitted they had been distracted momentarily. I then proceeded to assess the damage to my car, which appears to be significant.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-076",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was delivering food orders for a delivery app when another car hit the side of the vehicle.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was driving with food orders in the car, heading to the next stop on my phone's directions. At a busy crossroad, another car didn\u2019t stop at the red light and hit my left side quite hard. I didn\u2019t see them coming because of the trucks parked on the corner. My car spun a little and now the door won\u2019t open properly. The other driver said sorry right away, but I\u2019m worried about the damage.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-077",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was carrying paying passengers booked through a ride-hailing app when the accident happened.",
+   "style": "hedged and uncertain wording",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was driving two passengers I'd picked up through the ride-hailing app when another car sort of came out of nowhere\u2014I think maybe from a side street? I'm not entirely sure if they didn't stop properly or if I just didn't see them in time, but I braked as soon as I could. There was a bit of a jolt, and I\u2019m pretty sure my front bumper clipped their rear side panel, though I\u2019m not positive how fast either of us was going. The passengers said they were okay, but I still feel awful about the whole thing\u2014I just hope everyone\u2019s alright.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-078",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver was transporting a customer's furniture across the city for a fee when the car hit a divider.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was moving a customer's sofa, dresser, and several boxes of household items from their old apartment to a new address across the city when the incident occurred. As I was driving along the main road, I misjudged the distance to the central divider while checking my side mirror for merging traffic. The front left corner of my vehicle made contact with the divider, causing damage to the bumper and fender. I immediately pulled over to assess the situation and ensure the furniture inside had not been affected. Thankfully, everything remained intact, but the car sustained visible damage.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-079",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The car had been hired out for the weekend to a tourist for a daily rental charge, and the tourist had the accident.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I'm absolutely gutted about this whole situation, honestly. So, I'd rented out my car to this tourist for the weekend\u2014just trying to make a bit of extra cash, you know? Seemed like a nice enough person at the time, but then they went and had a proper pratfall of an accident. They called me in a right state, blathering on about how it happened, but between you and me, I\u2019m not even sure they know themselves. Now my poor car\u2019s sitting there all banged up, and I\u2019m just stuck feeling like I\u2019ve been taken for a ride\u2014literally and figuratively.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-080",
+   "label": "commercial_use",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver runs a small side business collecting school children for monthly payments and the accident happened on a pick-up round.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "delivery, delivering, passengers, taxi, hire, hired, rental, fee, paid, commercial, business",
+   "narrative": "I was just doing my usual morning round, picking up the kids for their parents\u2014you know, the ones I take in my van every weekday before school. Had young Jake and little Mia already, and was pulling up to grab Oscar when this silver hatchback came out of nowhere at the T-junction near the bakery. Next thing I know, there\u2019s a bang and my side mirror\u2019s dangling like it\u2019s about to drop off. Funny thing is, I was actually running early for once\u2014even stopped to grab a coffee\u2014and now my whole schedule\u2019s thrown off, not to mention the van\u2019s a mess. Still had four more stops after that, and of course, Oscar\u2019s mum was already texting to ask if I\u2019d forgotten.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": true,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-081",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The policyholder's nephew, who does not have a driving licence yet, took the car without asking and hit a wall.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was at home on Maple Street around 4:30 PM when my nephew, Jake, took my car without my permission. He doesn\u2019t have a driving licence yet and was just trying to move it down the driveway. He lost control near the corner of Maple and Oak and crashed into Mr. Henderson\u2019s garden wall. I didn\u2019t even know he\u2019d taken the keys until I heard the noise and ran outside. It all happened so fast\u2014I\u2019m just relieved no one was hurt.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-082",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence had expired three months earlier and was not renewed. They were driving when a truck clipped the car.",
+   "style": "short and blunt, like a text message",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was behind the wheel when my paperwork from the government ran out\u2014hadn\u2019t gotten around to sorting it. Out of nowhere, this truck sideswiped me near the exit, took the mirror right off. Didn\u2019t see the guy coming, but he hit me hard enough to spin the car into the barrier. Just stood there after, waiting for the cops to show.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-083",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A learner driver was practising alone with no licensed adult in the car and rolled into a gate.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was driving my mum\u2019s car, just practising round the block cos I\u2019m learning. No one else was in the car, should\u2019ve been but wasn\u2019t. Got too close to our gate, panicked and hit it instead. Car\u2019s fine but the gate\u2019s pretty smashed. Knew I shouldn\u2019t have been out alone, my bad.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-084",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A friend borrowed the car for an errand. He has never held a driving licence. He scraped a pole.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was catching up on laundry when my friend texted asking if he could borrow the car\u2014said he needed to grab something quick from the shop down the road. I tossed him the keys without thinking, even though I\u2019ve never actually seen him drive before. Came back to him looking sheepish, holding a scratchy napkin against the passenger-side door where he\u2019d slid it right into the parking lot pole. He kept saying, \u201cIt barely touched!\u201d while I pried off a strip of silver paint stuck to the pole\u2019s base, and honestly, I was just glad he hadn\u2019t tried parallel parking. By the time we got inside, the neighbor\u2019s dog had already knocked over my trash can, which somehow felt like the perfect end to the afternoon.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: unlicensed_driver"
+  },
+  {
+   "id": "FF-085",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence was suspended after earlier traffic offences, and the accident happened during that suspension.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I want to explain what happened with this accident. I was driving my car to work when another car hit me from behind at a traffic light. I know my licence was suspended because of some old tickets I didn\u2019t take care of\u2014this was my mistake, I didn\u2019t realize how serious it was. I shouldn\u2019t have been driving, but I had to go to work and had no other way. Now I understand I made a big error, and I\u2019m very sorry for any trouble this causes.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-086",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The policyholder's nephew, who does not have a driving licence yet, took the car without asking and hit a wall.",
+   "style": "hedged and uncertain wording",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "Well, I think my nephew might have taken the car out on his own\u2014he\u2019s been talking about wanting to drive, but he hasn\u2019t had any lessons or anything yet. I\u2019d left the keys in the house, and I\u2019m pretty sure he just grabbed them while I wasn\u2019t looking. Next thing I knew, he\u2019d scraped the side of the car against the wall at the end of the street. He\u2019s okay, just a bit shaken up, but I\u2019m not entirely sure how it all happened because I wasn\u2019t there.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-087",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence had expired three months earlier and was not renewed. They were driving when a truck clipped the car.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I know I messed up\u2014I totally forgot my licence had run out months ago, and now I\u2019m kicking myself because of course that\u2019s when everything went wrong. I was just driving normally, minding my own business, when this truck just came out of nowhere and sideswiped me\u2014I didn\u2019t even see it coming. My car spun out, and I\u2019m still shaking just thinking about how close it was, like one wrong move and it could\u2019ve been so much worse. I feel awful because I know driving without a valid licence makes everything more complicated, but honestly, I was just trying to get from A to B and now everything\u2019s a mess.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-088",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A learner driver was practising alone with no licensed adult in the car and rolled into a gate.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was driving my father's car in an empty parking area to practice, but no experienced driver was with me. I got nervous when I tried to stop and pressed the wrong pedal. The car moved forward slowly and bumped into a metal gate. There is a small scratch on the gate and a dent on the front of the car. I am very sorry for the mistake and will be more careful next time.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: unlicensed_driver"
+  },
+  {
+   "id": "FF-089",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A friend borrowed the car for an errand. He has never held a driving licence. He scraped a pole.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I let my friend borrow my car to run a small errand because he needed to pick something up urgently. He told me he had some driving experience, but I later found out he never had a proper license. While he was driving, he wasn\u2019t paying enough attention and accidentally scraped the side of the car against a pole. I feel really bad about the situation, but I know it was an honest mistake. I should have checked if he was allowed to drive before letting him use my car.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-090",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence was suspended after earlier traffic offences, and the accident happened during that suspension.",
+   "style": "hedged and uncertain wording",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I think the trouble started because I wasn\u2019t technically supposed to be behind the wheel at the time\u2014I\u2019d had some earlier issues with tickets and fines, and somehow that meant I wasn\u2019t cleared to drive for a while. I know it was stupid, but I didn\u2019t really have another way to get to work that morning, so I took the chance. Next thing I know, I\u2019m at an intersection, and the other car came out of nowhere\u2014honestly, I didn\u2019t even see them until it was too late. The impact spun me sideways, and now my car\u2019s a mess, and I\u2019m pretty sure I\u2019m in way deeper trouble than just a fender bender. I guess I should\u2019ve just called a ride, but here we are.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-091",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The policyholder's nephew, who does not have a driving licence yet, took the car without asking and hit a wall.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I regret to report that my car was involved in an accident while under the care of my nephew, who took the vehicle without my knowledge or permission. He does not yet possess a valid driving licence and was unfamiliar with handling the car. While attempting to drive, he lost control and collided with a wall, resulting in damage to the front of the vehicle. I was not present at the time of the incident and only became aware of it after the fact. I take full responsibility for not securing the keys properly.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-092",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence had expired three months earlier and was not renewed. They were driving when a truck clipped the car.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was driving my car on the main road when a big truck came too close to my side. My papers for driving were old, from last year, not new. The truck touched my car and made a scratch on the door. I stopped right away and checked both cars, but nobody was hurt. I know I should have renewed my papers sooner, it was my mistake.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-093",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A learner driver was practising alone with no licensed adult in the car and rolled into a gate.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "This afternoon around 3:45 PM, I was practicing my driving on Maplewood Drive, just past the intersection with Oak Street. I got a bit too confident and didn\u2019t brake properly when slowing down near the sharp turn by number 24\u2014a house with a big wooden gate. Before I knew it, I\u2019d rolled right into it, knocking the gate slightly off its hinges. I panicked because I realized I wasn\u2019t supposed to be driving without a licensed adult in the car, and I didn\u2019t react fast enough to stop in time. The gate\u2019s post is cracked, and there\u2019s a small dent on the front left side of the car where it made contact.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-094",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A friend borrowed the car for an errand. He has never held a driving licence. He scraped a pole.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I had a pretty chilled day actually\u2014started with coffee, then sorted some laundry, and was just about to tackle the pile of emails when my mate texted asking if he could borrow the car to grab some stuff from the shop. I didn\u2019t think much of it, just tossed him the keys and carried on with my afternoon. Next thing I know, he\u2019s calling me all flustered, saying he clipped a pole in the car park while trying to squeeze into a tight spot. I hadn\u2019t even noticed he\u2019d never driven before\u2014just assumed he knew what he was doing, you know? Now there\u2019s this weird scrape down the side, and honestly, I\u2019m just relieved he didn\u2019t hit anything more serious.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: unlicensed_driver"
+  },
+  {
+   "id": "FF-095",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence was suspended after earlier traffic offences, and the accident happened during that suspension.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was driving my vehicle when I was involved in a collision with another car at the intersection. At the time of the incident, I was unaware that my driver\u2019s licence had been suspended due to previous traffic offences. I had not received formal notification of the suspension before the accident occurred. I accept full responsibility for driving while my licence was not valid and regret the situation that resulted from my actions. I cooperated fully with the authorities at the scene and provided all necessary details.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-096",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The policyholder's nephew, who does not have a driving licence yet, took the car without asking and hit a wall.",
+   "style": "short and blunt, like a text message",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "My nephew, who\u2019s never driven before, took my car while I was inside the house. Next thing I know, I hear a crash\u2014he\u2019d clipped the side mirror and hit the garden wall. No one else was around, just him panicking in the driver\u2019s seat. I didn\u2019t even know he\u2019d taken the keys until I saw the mess. Total idiot move.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-097",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence had expired three months earlier and was not renewed. They were driving when a truck clipped the car.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I would like to report accident happened yesterday afternoon. My licence was expired three months before, I know it is mistake and I feel very sorry. I was driving on main road when big truck came too close and hit side of my car. It was sudden, I did not see truck moving to my lane. I stopped car safely and checked for damages, truck driver also stopped to look.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-098",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A learner driver was practising alone with no licensed adult in the car and rolled into a gate.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was taking the car out by myself to practice driving, even though my parents always tell me I should have someone experienced with me. While I was trying to reverse, I didn\u2019t press the brake properly and the car rolled slowly backwards. It hit the neighbour\u2019s gate, and I think it made a small dent. I feel very bad and I know I shouldn\u2019t have been driving alone. I will make sure to have an adult in the car next time.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-099",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A friend borrowed the car for an errand. He has never held a driving licence. He scraped a pole.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I had an unusually quiet Saturday\u2014well, apart from the bit where my mate Dave asked if he could borrow my car to grab some snacks from the shop down the road. I didn\u2019t think much of it at the time because, honestly, how hard can driving be, right? Anyway, he\u2019s always been a bit reckless, but I figured he\u2019d at least manage a quick trip without drama. Next thing I know, he\u2019s calling me in a panic, saying he scraped the side of the car against a pole while trying to park. Typical Dave\u2014never even had a licence, but sure, let\u2019s hand him the keys. The rest of the day was a blur of me stressing over how bad the damage looked while he nonchalantly ate the crisps he\u2019d gone out for.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-100",
+   "label": "unlicensed_driver",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The driver's licence was suspended after earlier traffic offences, and the accident happened during that suspension.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "licence, license, unlicensed, learner, permit",
+   "narrative": "I was driving my blue 2018 Ford Focus down Maplewood Avenue around 3:15 PM when a white SUV pulled out suddenly from Oak Street. I hit the brakes but couldn\u2019t avoid swiping the passenger side of their vehicle. I know I shouldn\u2019t have been behind the wheel\u2014I got a notice in the mail last month saying my driving privileges were withdrawn until further notice\u2014but I only needed to drive a few blocks to pick up my kid from soccer practice. The other driver got out pretty shaken, and I admitted right away I didn\u2019t have clearance to be on the road. We exchanged info and called the police to file the report.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": true,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-101",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The engine overheated and seized on the highway. No collision, the car stopped and would not restart.",
+   "style": "detailed with times and street names",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was driving on the M40 towards Birmingham when, just past Junction 4 around 3:15 PM, I noticed the temperature gauge shooting up into the red. Before I could pull over safely, smoke started billowing from under the hood, so I managed to coast onto the hard shoulder near the Beaconsfield services exit. The engine made a horrible grinding noise, then cut out completely\u2014I tried restarting it a few times, but it wouldn\u2019t turn over at all. By then, the car had completely seized up, so I called for breakdown assistance.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-102",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The gearbox failed while driving and the car lost drive. Nothing hit the car.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was just cruising along, everything normal, when suddenly it felt like the car just\u2026 gave up. One minute I\u2019m in gear, the next there\u2019s no power, no matter how much I press the accelerator\u2014it\u2019s like it forgot how to move. The dashboard lit up like a Christmas tree, but nothing would make it go forward again. I had to coast to the side of the road, heart pounding, because it just decided to stop cooperating out of nowhere. No collision, no noise, just\u2026 dead silence where the drive used to be.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-103",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A short circuit in the wiring caused smoke and burnt the dashboard and wiring. There was no accident.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "Yesterday evening, I was driving home when suddenly I smelled something burning inside the car. I saw smoke coming from the dashboard, so I quickly pulled over and turned off the engine. The smoke was from a short circuit in the wiring, and it burned part of the dashboard and some wires. I didn\u2019t crash or hit anything, it just happened on its own. I\u2019m very worried because the car stopped working after that.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-104",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The clutch plate burnt out and the engine started making a grinding noise until the vehicle stopped.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "Oh man, this is just my luck, isn\u2019t it? I was driving along, everything was fine, and then suddenly this godawful smell started\u2014like something was burning right under the bonnet. I thought maybe it was just the heat, but then the noise kicked in, this horrible grinding, scraping sound, like metal eating itself. I pulled over as quick as I could, but by then it was too late\u2014the car just cut out completely, wouldn\u2019t budge another inch. Now I\u2019m stuck here wondering how the hell something like this just happens out of nowhere.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-105",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The engine overheated and seized on the highway. No collision, the car stopped and would not restart.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "This afternoon, while I was driving on the highway, I noticed the temperature gauge rising rapidly and steam started coming from under the hood. Before I could safely pull over, the engine made a loud knocking noise and the car lost power completely. I managed to coast to the shoulder, but despite attempts to restart it, the vehicle would not turn over. There was no collision involved\u2014just a sudden mechanical failure that left the car immobilized.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-106",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The gearbox failed while driving and the car lost drive. Nothing hit the car.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "While I was driving on the motorway, the vehicle suddenly stopped responding when I pressed the accelerator. The revs increased, but the speed dropped sharply, and I had to coast to the hard shoulder as the wheels no longer received any power. The warning lights on the dashboard illuminated, but there was no collision or impact with any other vehicle or object. I tried shifting through the gears, but the transmission did not engage properly, leaving the car stranded.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-107",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A short circuit in the wiring caused smoke and burnt the dashboard and wiring. There was no accident.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "This morning, I noticed a strange smell coming from my car's dashboard while I was driving, which quickly turned into smoke filling the cabin. I immediately pulled over to a safe location, turned off the engine, and exited the vehicle. Upon inspection, I saw that the dashboard and some of the wiring had been burnt due to what appears to be a short circuit in the electrical system. Fortunately, I was able to extinguish the small amount of smoldering material safely, but the damage to the dashboard and wiring is significant. There was no collision or accident involved in this incident.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-108",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The clutch plate burnt out and the engine started making a grinding noise until the vehicle stopped.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "While I was driving normally on the road, I noticed a strong smell like something was burning inside the car. After a few minutes, the noise under the bonnet became louder, like metal pieces rubbing together. I tried to press the clutch, but it felt very hard, and the car started shaking. Then, suddenly the car stopped moving and would not start again, even when I turned the key.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-109",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The engine overheated and seized on the highway. No collision, the car stopped and would not restart.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was driving down the highway, just trying to make it to my sister\u2019s place before rush hour turned the road into a parking lot\u2014she\u2019s been on my case about visiting for weeks. The car had been making this weird ticking noise all morning, but I figured it was just the heat or something, you know how it is in summer. Then, out of nowhere, the temperature gauge shot up like a firework, and the engine just\u2026 gave up. I coasted to the shoulder, popped the hood, and nearly burnt my hand on the steam\u2014definitely no restarting after that. Had to call a tow truck and ended up missing my nephew\u2019s little league game, which he\u2019s still sulking about, poor kid.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-110",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The gearbox failed while driving and the car lost drive. Nothing hit the car.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was just driving along, minding my own business, when suddenly the car just sort of... stopped cooperating. One minute I was changing lanes, the next it felt like I\u2019d lost all power, like someone had cut the strings on a puppet. The pedals didn\u2019t do anything, the revs wouldn\u2019t go up\u2014it was terrifying, honestly. I had to coast onto the shoulder, and the whole time I\u2019m praying nothing smashes into me because the thing just wouldn\u2019t move an inch after that. Felt like the world\u2019s worst rollercoaster, except there was no ride operator to fix it.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-111",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A short circuit in the wiring caused smoke and burnt the dashboard and wiring. There was no accident.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "Early this morning, I started my car as usual and noticed a faint smell of burning plastic. Within moments, smoke began billowing from underneath the dashboard, so I immediately turned off the ignition and stepped out. The smoke appeared to come from a short circuit in the wiring harness behind the instrument cluster. By the time the smoke cleared, the dashboard and several wiring looms were charred, but thankfully there was no fire or collision involved.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-112",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The clutch plate burnt out and the engine started making a grinding noise until the vehicle stopped.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was just driving home like normal, nothing weird, when suddenly this awful smell started coming through the vents\u2014like burnt toast but a hundred times worse. Then the car started making this horrible grinding noise, like metal scraping together under the bonnet, and I thought, \"Oh no, that\u2019s not right.\" I tried to shift gears, but it just wouldn\u2019t take, like the stick didn\u2019t even matter anymore, and then the whole thing just\u2026 died on me. Pulled over as fast as I could, but by then the damage was done\u2014I could tell just from the smell and the way it wouldn\u2019t even turn over again. Never had anything like that happen before, total nightmare.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-113",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The engine overheated and seized on the highway. No collision, the car stopped and would not restart.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "While driving on the highway, I noticed the temperature gauge rising rapidly, and shortly after, steam began to emerge from under the hood. Before I could pull over safely, the engine lost power suddenly, and the vehicle came to a complete stop in the right-hand lane. I attempted to restart the car, but the engine would not turn over, making a grinding noise instead. I had to call for roadside assistance to have the vehicle towed, as it was completely inoperable. There was no collision involved\u2014this appears to be a mechanical failure due to overheating.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-114",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The gearbox failed while driving and the car lost drive. Nothing hit the car.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "I was cruising along High Street just after the traffic lights near the bakery, around 2:45 PM, when the car suddenly stopped responding to the accelerator. The RPM needle dropped sharply, and even though I was pressing the pedal, the car just coasted as if it were in neutral. I managed to steer it onto Maple Lane before it rolled to a complete stop, but something clearly wasn\u2019t right\u2014there was no grinding noise or warning, just a total loss of power without any collision or impact. The whole thing happened in under a minute, and I had to pull over before the car became a hazard.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-115",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "A short circuit in the wiring caused smoke and burnt the dashboard and wiring. There was no accident.",
+   "style": "rambling and emotional",
+   "implicit": false,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "Oh, it was absolutely terrifying\u2014I was just driving along, everything normal, when suddenly I noticed this weird burning smell. At first, I thought maybe it was just something outside, you know? But then smoke started pouring out from under the dashboard, thick and black, and I freaked out. I pulled over as fast as I could, turned off the engine, and just sat there in shock watching the smoke clear, only to see the whole dashboard scorched and melted. Honestly, I\u2019m just glad I wasn\u2019t hurt, but now my poor car\u2019s a mess inside\u2014all the wiring\u2019s fried, and I don\u2019t even know where to start.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-116",
+   "label": "mechanical_failure",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "brief": "The clutch plate burnt out and the engine started making a grinding noise until the vehicle stopped.",
+   "style": "short and blunt, like a text message",
+   "implicit": true,
+   "forbidden": "breakdown, mechanical, engine failure, gearbox, seized",
+   "narrative": "Just pulled over when the clutch started slipping bad\u2014smelled something burning, then the whole thing jammed up. Tried moving it again, but all I got was a nasty grinding noise until it cut out completely. Car wouldn\u2019t budge after that, had to get it towed. Pretty sure the clutch\u2019s done for.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": false,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-117",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A tyre burst after driving over a nail. Nothing else on the vehicle was damaged.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "Was driving normally, heard a loud pop - tyre blew out after running over a nail. Pulled over straight away, checked the car, nothing else damaged. Got the spare on and limped to the nearest garage for a proper look. Shocked how quick it happened, didn't see the nail at all.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-118",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "The sidewall of the front tyre was cut by a kerb. The only damage is the tyre itself.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "I was pulling into that tight parking spot outside the caf\u00e9\u2014you know the one, just past the bakery with the amazing sourdough\u2014when I misjudged the kerb. The front wheel thudded up against it, but I didn\u2019t think much of it at the time because the car seemed fine. It wasn\u2019t until I got back later with my coffee and groceries that I noticed the long, deep gash in the sidewall of the front tyre, practically peeling back the rubber like an old sticker. The rest of the car looks untouched, though\u2014no scratches on the alloys, no dents, just that one tyre looking sorry for itself. Honestly, the worst part was having to unload all the shopping in the rain to even see what happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-119",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A puncture on the highway ruined the tyre. The car body and everything else are untouched.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "I was driving back from my aunt\u2019s place after what was honestly one of the most chaotic family lunches in recent memory\u2014my cousin\u2019s new puppy knocked over the trifle, and my uncle spent half the afternoon trying to explain cryptocurrency to my grandma. Anyway, I was cruising along the highway, windows down because the air con\u2019s been finicky lately, when I felt that sudden thump-thump-thump you just *know* isn\u2019t good. Pulled over as soon as it was safe, and sure enough, the front passenger tyre was completely shredded\u2014must\u2019ve hit something sharp without even realising. The rest of the car\u2019s absolutely fine, though, thank goodness, because I really didn\u2019t need another problem to deal with after today.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-120",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A tyre burst after driving over a nail. Nothing else on the vehicle was damaged.",
+   "style": "rambling and emotional",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "Oh my god, I was just driving along, minding my own business, and suddenly there\u2019s this horrible loud bang\u2014like a gunshot right under the car\u2014and then this awful flapping noise, horrible, just horrible. I pulled over as fast as I could, heart pounding, and there it was\u2014the front tyre just shredded, hanging off the rim like it\u2019d been chewed up by something. Totally wrecked. And when I looked closer, stuck right in the middle of the mess was this bloody great nail, just sitting there like it was proud of itself. The rest of the car seemed fine, thank goodness, but that tyre was absolutely done for.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-121",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "The sidewall of the front tyre was cut by a kerb. The only damage is the tyre itself.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "Was pulling into a tight parking spot and clipped the kerb hard \u2013 didn\u2019t notice until I got out. Damn thing sliced straight into the sidewall of the front tyre. No other damage, just the tyre\u2019s wrecked. Can\u2019t drive on it, obviously.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-122",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A puncture on the highway ruined the tyre. The car body and everything else are untouched.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "So I was driving back from my cousin\u2019s place, which, by the way, was an absolute nightmare because her neighbour\u2019s dog wouldn\u2019t stop barking the entire time I was there\u2014anyway, I was cruising along the highway, windows down, playlist on point, thinking about how I really should\u2019ve stopped for coffee because I was starting to feel that afternoon slump, when suddenly the steering wheel started pulling hard to the left like it had a mind of its own. At first I thought maybe the road was just uneven, but then there was this awful rhythmic thumping sound, like a flat basketball being dribbled at high speed, and I just knew something was seriously off. I managed to limp onto the shoulder without sideswiping anyone\u2014thankfully traffic was light\u2014and when I got out, I saw the front tyre was completely shredded, flapping against the rim like it had given up on life, but luckily the rest of the car looked fine, no scrapes or dents, just my mood ruined for the rest of the day.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": true,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": false,
+   "dropped_because": "the verifier disagreed: mechanical_failure"
+  },
+  {
+   "id": "FF-123",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A tyre burst after driving over a nail. Nothing else on the vehicle was damaged.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "I was just heading home from picking up the kids\u2019 school uniforms\u2014honestly, I don\u2019t know why they need three of everything\u2014when I heard this loud bang, like someone had set off a firework right next to the car. At first, I thought maybe the neighbour\u2019s kid had chucked something at my window, but then the steering went all wobbly, and I had to pull over sharpish. Turns out the front passenger tyre had gone completely\u2014just flopped onto the rim like a sad pancake. The rest of the car seems absolutely fine, though, which is a small mercy after the week I\u2019ve had.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-124",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "The sidewall of the front tyre was cut by a kerb. The only damage is the tyre itself.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "I was pulling out of a tight parking space on Maple Lane just after 7:30 this morning when the front passenger side wheel caught the kerb hard. The sharp edge sliced right into the tyre\u2019s sidewall\u2014you can see a clean, deep gash running vertically about four inches long. I didn\u2019t hear anything unusual at the time, but when I got out to check, the damage was obvious. There\u2019s no damage to the wheel itself or the bodywork\u2014just the tyre is affected.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-125",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A puncture on the highway ruined the tyre. The car body and everything else are untouched.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "I was driving on the highway when I suddenly felt a thump and noticed my car pulling slightly to the left. Upon safely pulling over to the side of the road, I discovered that the front left tyre had sustained a puncture, likely from debris on the road. The car was otherwise undamaged, with no harm to the body, wheels, or any other components. I was unable to safely change the tyre myself due to the location, so I arranged for roadside assistance to attend.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-126",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A tyre burst after driving over a nail. Nothing else on the vehicle was damaged.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "I was just coming back from dropping my sister off at the train station\u2014her car\u2019s in the shop again, so I had to play chauffeur all morning\u2014when I felt this weird thud under the wheel, like driving over a brick or something. Pulled over at the next layby, which took ages because traffic was crawling, and there it was: the front passenger tyre sagging like a deflated balloon, with this nasty-looking metal spike wedged right into the rubber. I stood there for a good five minutes, kicking myself for not taking the main road instead of that shortcut past the construction site, while the rest of the car seemed totally fine\u2014no scratches, no dents, just that one stupid tyre looking like it had given up on life. Got the spare on eventually, but now I\u2019m late for my physio appointment and my hands are covered in grime.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-127",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "The sidewall of the front tyre was cut by a kerb. The only damage is the tyre itself.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "puncture, burst",
+   "narrative": "I was parking my car near my house last night and didn\u2019t see the high kerb next to the road. When I turned the wheel, I heard a scraping noise and felt the tyre hit hard against it. After I stopped, I checked and saw a deep cut on the side of the front tyre \u2013 only the tyre is damaged, nothing else on the car. I\u2019m very sorry about this mistake; I will be more careful in the future. The tyre needs to be replaced because the cut looks serious.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-128",
+   "label": "tyre_only",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "brief": "A puncture on the highway ruined the tyre. The car body and everything else are untouched.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "puncture, burst",
+   "narrative": "I was driving on the M4 just past Exit 10 for Reading, around 2:45 PM, when I heard a loud thud and felt the car pull sharply to the left. I pulled over onto the hard shoulder near mile marker 112, and when I checked, the front driver-side tyre was completely flat\u2014there was a long, jagged piece of metal embedded in the rubber. The rest of the car seems fine, no scrapes, dents, or any other damage that I could see. Had to call for roadside assistance since I didn\u2019t have a spare tyre with me.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": true,
+    "theft": false
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-129",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The car was parked outside the house overnight and was gone in the morning.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "Left my car parked outside the house last night like always. Woke up this morning, gone. No sign of it anywhere. Didn\u2019t hear a thing, neighbors didn\u2019t either. Total bloody nightmare.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-130",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The vehicle was stolen from a mall parking lot while the owner was shopping.",
+   "style": "polite non-native English",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I parked my car in the mall parking area and went inside to do shopping. When I came back after about two hours, my car was not there where I left it. I looked around the whole parking but could not find it. I asked the security guard, but he also did not see anyone take it. The keys were in my bag the whole time, and I did not give them to anyone.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-131",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The owner left the car on the street and when they returned it had disappeared.",
+   "style": "polite non-native English",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I park my car in front of house on street yesterday evening. When I come back outside this morning, car is not there anymore. I look everywhere, but it is gone. I think maybe someone take it without permission. I am very sad because car was important for me.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-132",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The car was parked outside the house overnight and was gone in the morning.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I\u2019d just made a fresh pot of coffee when I realized my car wasn\u2019t where I\u2019d left it outside the house last night\u2014just past the broken garden light and next to the recycling bin that still hasn\u2019t been collected. I stood there in my slippers, holding my mug, thinking I must\u2019ve forgotten parking it somewhere else, but no, the space was definitely empty. My neighbor waved at me from his driveway like nothing was wrong, and I almost asked if he\u2019d seen it, but then I remembered he\u2019d been out of town all week. By the time I finished my coffee and walked down the street to check, all that was left was a faint oil stain where the car should\u2019ve been. The weirdest part was that later, when I finally sat down to eat breakfast, my toast burned because I\u2019d forgotten to set the timer\u2014just one of those days, I guess.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-133",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The vehicle was stolen from a mall parking lot while the owner was shopping.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I was at the mall picking up a last-minute birthday gift for my niece\u2014you know, the one who\u2019s obsessed with those sparkly unicorn plushies\u2014when this whole mess happened. I\u2019d grabbed a coffee and a cinnamon roll first because, let\u2019s be honest, shopping on an empty stomach is a bad idea. Left my car parked near the entrance, figured it\u2019d be fine since I\u2019d be in and out in 20 minutes. Two hours later\u2014because mall time isn\u2019t real time\u2014I came back to an empty spot where my car should\u2019ve been, and at first, I thought I\u2019d just forgotten where I parked, like some absent-minded cartoon character. Then the panic set in when I realized my keys were in my hand, and my car was just\u2026 gone.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-134",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The owner left the car on the street and when they returned it had disappeared.",
+   "style": "hedged and uncertain wording",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I parked my car right outside my house like I usually do, and when I came back later, it just wasn\u2019t there anymore. The space was empty, and I thought maybe I\u2019d gotten confused about where I\u2019d left it, but after walking up and down the street, I realized it definitely wasn\u2019t anywhere nearby. The keys were still in my pocket, and nothing seemed disturbed around where it had been parked. I\u2019m not sure what happened to it\u2014I just know it wasn\u2019t there when I went to drive it again.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-135",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The car was parked outside the house overnight and was gone in the morning.",
+   "style": "a formal incident report",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I parked my car securely outside my residence last night, as I routinely do. This morning, I discovered it was no longer in its usual parking spot. I immediately conducted a search of the surrounding area but did not locate the vehicle. I have not given anyone permission to take or use my car, and I am certain it has been stolen.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-136",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The vehicle was stolen from a mall parking lot while the owner was shopping.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I had parked my car near the main entrance of the mall and locked it before entering around lunchtime. When I returned approximately two hours later, the vehicle was no longer in the spot where I had left it. I searched the surrounding areas of the parking lot but could not locate it. The keys were in my possession the entire time, and I did not authorize anyone to take or move the car. I immediately contacted the mall security and the local authorities to report the situation.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-137",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The owner left the car on the street and when they returned it had disappeared.",
+   "style": "full of irrelevant details about the rest of the day",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I had just popped out to pick up some milk and the new book I\u2019d been waiting weeks for\u2014turns out they only had the hardcover, which was way pricier than I wanted, but I figured I\u2019d treat myself since it\u2019s been such a long week. Left the car right outside the shop, thought I\u2019d be two minutes, tops. Went in, got distracted by the sale rack, and when I finally got back to where I\u2019d parked, my car was just\u2026 gone. Some bloke on the street said he thought he\u2019d seen someone driving off a little while ago, but honestly, I was too busy trying not to drop my shopping to pay much attention.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-138",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The car was parked outside the house overnight and was gone in the morning.",
+   "style": "detailed with times and street names",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "This morning around 7:15 AM, I walked out to Parkside Avenue where I\u2019d left my car outside my house the night before\u2014it was right near the lamppost by number 42, where I always park after coming home from work. By 7:30, after checking both sides of the street and around the corner onto Maple Drive, I realized it wasn\u2019t there anymore. I asked my neighbor across the road if they\u2019d seen anything unusual overnight, but they hadn\u2019t noticed anything, though they said they were up late around midnight. The space where it had been was just empty, no broken glass or anything, and my spare key is still on the hook inside the house.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-139",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The vehicle was stolen from a mall parking lot while the owner was shopping.",
+   "style": "short and blunt, like a text message",
+   "implicit": false,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I left my car parked in the mall lot while I went inside to grab a few things. Came back out, and it was just gone\u2014no sign of it anywhere. Checked the whole row twice, then asked security, but nobody saw anything. Total mess, no idea how this happened.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  },
+  {
+   "id": "FF-140",
+   "label": "theft",
+   "decoy": false,
+   "flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "brief": "The owner left the car on the street and when they returned it had disappeared.",
+   "style": "a formal incident report",
+   "implicit": true,
+   "forbidden": "stolen, theft, thief",
+   "narrative": "I had parked my vehicle on the residential side of Maple Avenue, near the intersection with Elm Street, where I\u2019ve left it multiple times before without issue. When I returned approximately three hours later, the space was empty, and my car was no longer there. I checked both sides of the street and the adjacent roads, but the vehicle was nowhere in sight. There were no messages or notices left on the windshield, and no signs of forced entry on the surrounding area. I immediately contacted local authorities to report the situation.",
+   "verifier_flags": {
+    "intoxicated": false,
+    "commercial_use": false,
+    "unlicensed_driver": false,
+    "mechanical_failure": false,
+    "tyre_only": false,
+    "theft": true
+   },
+   "verified": true
+  }
+ ]
+}

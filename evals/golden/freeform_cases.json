@@ -1,0 +1,3944 @@
+[
+  {
+    "claim_id": "CLM-5000001",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1011",
+    "input_dir": "data/freeform/claims/CLM-5000001",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000001",
+        "policy_no": "MGI-MOT-1011",
+        "vehicle_reg": "KA09ED2489",
+        "incident_date": "2026-04-13",
+        "report_date": "2026-04-15",
+        "claimed_amount": 32500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 25350,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-001"
+  },
+  {
+    "claim_id": "CLM-5000002",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000002",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000002",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-05-12",
+        "report_date": "2026-05-14",
+        "claimed_amount": 23500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 12250,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-002"
+  },
+  {
+    "claim_id": "CLM-5000003",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000003",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000003",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2026-12-29",
+        "report_date": "2026-12-31",
+        "claimed_amount": 28000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 16600,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-003"
+  },
+  {
+    "claim_id": "CLM-5000004",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000004",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000004",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-10-28",
+        "report_date": "2026-10-30",
+        "claimed_amount": 18000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 15600,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-004"
+  },
+  {
+    "claim_id": "CLM-5000005",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000005",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000005",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2026-05-16",
+        "report_date": "2026-05-18",
+        "claimed_amount": 35300
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 20250,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-005"
+  },
+  {
+    "claim_id": "CLM-5000006",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000006",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000006",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-06-01",
+        "report_date": "2026-06-03",
+        "claimed_amount": 33800
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 27500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-006"
+  },
+  {
+    "claim_id": "CLM-5000007",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000007",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000007",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-12-18",
+        "report_date": "2026-12-20",
+        "claimed_amount": 30800
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 17680,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-007"
+  },
+  {
+    "claim_id": "CLM-5000008",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000008",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000008",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2027-02-01",
+        "report_date": "2027-02-03",
+        "claimed_amount": 36000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 21350,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-008"
+  },
+  {
+    "claim_id": "CLM-5000009",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000009",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000009",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2027-03-05",
+        "report_date": "2027-03-07",
+        "claimed_amount": 17000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 10500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-009"
+  },
+  {
+    "claim_id": "CLM-5000010",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000010",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000010",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-10-29",
+        "report_date": "2026-10-31",
+        "claimed_amount": 19000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 14920,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-010"
+  },
+  {
+    "claim_id": "CLM-5000011",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000011",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000011",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-10-08",
+        "report_date": "2026-10-10",
+        "claimed_amount": 14000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 6500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-011"
+  },
+  {
+    "claim_id": "CLM-5000012",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000012",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000012",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2026-09-15",
+        "report_date": "2026-09-17",
+        "claimed_amount": 28500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 18080,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-012"
+  },
+  {
+    "claim_id": "CLM-5000013",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000013",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000013",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2027-04-10",
+        "report_date": "2027-04-12",
+        "claimed_amount": 21000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 13400,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-013"
+  },
+  {
+    "claim_id": "CLM-5000014",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000014",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000014",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-06-04",
+        "report_date": "2026-06-06",
+        "claimed_amount": 28200
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 17900,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-014"
+  },
+  {
+    "claim_id": "CLM-5000015",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1002",
+    "input_dir": "data/freeform/claims/CLM-5000015",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000015",
+        "policy_no": "MGI-MOT-1002",
+        "vehicle_reg": "KA33EA4257",
+        "incident_date": "2026-10-13",
+        "report_date": "2026-10-15",
+        "claimed_amount": 27500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 17080,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-015"
+  },
+  {
+    "claim_id": "CLM-5000016",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1020",
+    "input_dir": "data/freeform/claims/CLM-5000016",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000016",
+        "policy_no": "MGI-MOT-1020",
+        "vehicle_reg": "KA16CF8953",
+        "incident_date": "2026-10-05",
+        "report_date": "2026-10-07",
+        "claimed_amount": 30000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 19000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-016"
+  },
+  {
+    "claim_id": "CLM-5000017",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000017",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000017",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-10-18",
+        "report_date": "2026-10-20",
+        "claimed_amount": 40000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 29875,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-017"
+  },
+  {
+    "claim_id": "CLM-5000018",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000018",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000018",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2027-04-30",
+        "report_date": "2027-05-02",
+        "claimed_amount": 31200
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 23700,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-018"
+  },
+  {
+    "claim_id": "CLM-5000019",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000019",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000019",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2026-08-15",
+        "report_date": "2026-08-17",
+        "claimed_amount": 33500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 28525,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-019"
+  },
+  {
+    "claim_id": "CLM-5000020",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000020",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000020",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-11-08",
+        "report_date": "2026-11-10",
+        "claimed_amount": 20000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 12500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-020"
+  },
+  {
+    "claim_id": "CLM-5000021",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000021",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000021",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-08-08",
+        "report_date": "2026-08-10",
+        "claimed_amount": 38600
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 22780,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-021"
+  },
+  {
+    "claim_id": "CLM-5000022",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000022",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000022",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2026-10-09",
+        "report_date": "2026-10-11",
+        "claimed_amount": 10200
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 6100,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-022"
+  },
+  {
+    "claim_id": "CLM-5000023",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000023",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000023",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-08-14",
+        "report_date": "2026-08-16",
+        "claimed_amount": 17800
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 12400,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-023"
+  },
+  {
+    "claim_id": "CLM-5000024",
+    "scenario": "ff_clean",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000024",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000024",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-08-14",
+        "report_date": "2026-08-16",
+        "claimed_amount": 27500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 19150,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-024"
+  },
+  {
+    "claim_id": "CLM-5000025",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000025",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000025",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2026-10-18",
+        "report_date": "2026-10-20",
+        "claimed_amount": 22000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 18300,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-025"
+  },
+  {
+    "claim_id": "CLM-5000026",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000026",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000026",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2026-11-29",
+        "report_date": "2026-12-01",
+        "claimed_amount": 13200
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 10100,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-026"
+  },
+  {
+    "claim_id": "CLM-5000027",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000027",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000027",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2026-07-17",
+        "report_date": "2026-07-19",
+        "claimed_amount": 26000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 20250,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-027"
+  },
+  {
+    "claim_id": "CLM-5000028",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000028",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000028",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-12-10",
+        "report_date": "2026-12-12",
+        "claimed_amount": 34500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 22900,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-028"
+  },
+  {
+    "claim_id": "CLM-5000029",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000029",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000029",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2027-03-07",
+        "report_date": "2027-03-09",
+        "claimed_amount": 31500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 18250,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-029"
+  },
+  {
+    "claim_id": "CLM-5000030",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000030",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000030",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-10-11",
+        "report_date": "2026-10-13",
+        "claimed_amount": 21600
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 15220,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-030"
+  },
+  {
+    "claim_id": "CLM-5000031",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000031",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000031",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-07-19",
+        "report_date": "2027-07-21",
+        "claimed_amount": 23500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 11250,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-031"
+  },
+  {
+    "claim_id": "CLM-5000032",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1007",
+    "input_dir": "data/freeform/claims/CLM-5000032",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000032",
+        "policy_no": "MGI-MOT-1007",
+        "vehicle_reg": "KA45FF2169",
+        "incident_date": "2027-03-15",
+        "report_date": "2027-03-17",
+        "claimed_amount": 19000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 14500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-032"
+  },
+  {
+    "claim_id": "CLM-5000033",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1020",
+    "input_dir": "data/freeform/claims/CLM-5000033",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000033",
+        "policy_no": "MGI-MOT-1020",
+        "vehicle_reg": "KA16CF8953",
+        "incident_date": "2026-02-19",
+        "report_date": "2026-02-21",
+        "claimed_amount": 16500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 10750,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-033"
+  },
+  {
+    "claim_id": "CLM-5000034",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000034",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000034",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2027-01-27",
+        "report_date": "2027-01-29",
+        "claimed_amount": 15500
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 13225,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-034"
+  },
+  {
+    "claim_id": "CLM-5000035",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000035",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000035",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-05-08",
+        "report_date": "2026-05-10",
+        "claimed_amount": 12800
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 6400,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-035"
+  },
+  {
+    "claim_id": "CLM-5000036",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000036",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000036",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-08-14",
+        "report_date": "2026-08-16",
+        "claimed_amount": 25200
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 15075,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-036"
+  },
+  {
+    "claim_id": "CLM-5000037",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000037",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000037",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-04-24",
+        "report_date": "2027-04-26",
+        "claimed_amount": 19700
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 15600,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-037"
+  },
+  {
+    "claim_id": "CLM-5000038",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000038",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000038",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2026-06-19",
+        "report_date": "2026-06-21",
+        "claimed_amount": 41000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 33225,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-038"
+  },
+  {
+    "claim_id": "CLM-5000039",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1006",
+    "input_dir": "data/freeform/claims/CLM-5000039",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000039",
+        "policy_no": "MGI-MOT-1006",
+        "vehicle_reg": "KA56AD5554",
+        "incident_date": "2027-05-23",
+        "report_date": "2027-05-25",
+        "claimed_amount": 18000
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 10500,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-039"
+  },
+  {
+    "claim_id": "CLM-5000040",
+    "scenario": "ff_clean_decoy",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000040",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000040",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2026-10-18",
+        "report_date": "2026-10-20",
+        "claimed_amount": 35100
+      },
+      "decision": "approve",
+      "clauses": [
+        "SEC1.COVER",
+        "SEC1.DEPR",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 23480,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-040"
+  },
+  {
+    "claim_id": "CLM-5000041",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000041",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000041",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2027-04-28",
+        "report_date": "2027-04-30",
+        "claimed_amount": 19500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-041"
+  },
+  {
+    "claim_id": "CLM-5000042",
+    "scenario": "ff_intoxicated_implicit",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000042",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000042",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2026-10-28",
+        "report_date": "2026-10-30",
+        "claimed_amount": 27500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-042"
+  },
+  {
+    "claim_id": "CLM-5000043",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000043",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000043",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2027-06-11",
+        "report_date": "2027-06-13",
+        "claimed_amount": 20000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-043"
+  },
+  {
+    "claim_id": "CLM-5000044",
+    "scenario": "ff_intoxicated_implicit",
+    "policy_no": "MGI-MOT-1013",
+    "input_dir": "data/freeform/claims/CLM-5000044",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000044",
+        "policy_no": "MGI-MOT-1013",
+        "vehicle_reg": "KA08CD3591",
+        "incident_date": "2026-07-16",
+        "report_date": "2026-07-18",
+        "claimed_amount": 15800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-044"
+  },
+  {
+    "claim_id": "CLM-5000045",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000045",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000045",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2026-08-18",
+        "report_date": "2026-08-20",
+        "claimed_amount": 18500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-045"
+  },
+  {
+    "claim_id": "CLM-5000046",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000046",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000046",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-05-28",
+        "report_date": "2026-05-30",
+        "claimed_amount": 29500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-047"
+  },
+  {
+    "claim_id": "CLM-5000047",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000047",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000047",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2027-02-06",
+        "report_date": "2027-02-08",
+        "claimed_amount": 14000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-049"
+  },
+  {
+    "claim_id": "CLM-5000048",
+    "scenario": "ff_intoxicated_implicit",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000048",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000048",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2027-03-30",
+        "report_date": "2027-04-01",
+        "claimed_amount": 12500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-050"
+  },
+  {
+    "claim_id": "CLM-5000049",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000049",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000049",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-07-14",
+        "report_date": "2027-07-16",
+        "claimed_amount": 27200
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-051"
+  },
+  {
+    "claim_id": "CLM-5000050",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000050",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000050",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2026-07-21",
+        "report_date": "2026-07-23",
+        "claimed_amount": 19200
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-053"
+  },
+  {
+    "claim_id": "CLM-5000051",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000051",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000051",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2027-01-31",
+        "report_date": "2027-02-02",
+        "claimed_amount": 28800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-055"
+  },
+  {
+    "claim_id": "CLM-5000052",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1013",
+    "input_dir": "data/freeform/claims/CLM-5000052",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000052",
+        "policy_no": "MGI-MOT-1013",
+        "vehicle_reg": "KA08CD3591",
+        "incident_date": "2026-05-04",
+        "report_date": "2026-05-06",
+        "claimed_amount": 44800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-057"
+  },
+  {
+    "claim_id": "CLM-5000053",
+    "scenario": "ff_intoxicated",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000053",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000053",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2027-02-24",
+        "report_date": "2027-02-26",
+        "claimed_amount": 30200
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1c"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": true,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-059"
+  },
+  {
+    "claim_id": "CLM-5000054",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1012",
+    "input_dir": "data/freeform/claims/CLM-5000054",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000054",
+        "policy_no": "MGI-MOT-1012",
+        "vehicle_reg": "KA25DE8668",
+        "incident_date": "2026-10-22",
+        "report_date": "2026-10-24",
+        "claimed_amount": 40300
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-061"
+  },
+  {
+    "claim_id": "CLM-5000055",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000055",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000055",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-11-25",
+        "report_date": "2026-11-27",
+        "claimed_amount": 35000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-062"
+  },
+  {
+    "claim_id": "CLM-5000056",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1007",
+    "input_dir": "data/freeform/claims/CLM-5000056",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000056",
+        "policy_no": "MGI-MOT-1007",
+        "vehicle_reg": "KA45FF2169",
+        "incident_date": "2026-08-16",
+        "report_date": "2026-08-18",
+        "claimed_amount": 30500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-063"
+  },
+  {
+    "claim_id": "CLM-5000057",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000057",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000057",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2027-05-29",
+        "report_date": "2027-05-31",
+        "claimed_amount": 30300
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-066"
+  },
+  {
+    "claim_id": "CLM-5000058",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000058",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000058",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2026-05-29",
+        "report_date": "2026-05-31",
+        "claimed_amount": 29500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-067"
+  },
+  {
+    "claim_id": "CLM-5000059",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000059",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000059",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2026-11-26",
+        "report_date": "2026-11-28",
+        "claimed_amount": 47300
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-069"
+  },
+  {
+    "claim_id": "CLM-5000060",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000060",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000060",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-11-13",
+        "report_date": "2026-11-15",
+        "claimed_amount": 18500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-071"
+  },
+  {
+    "claim_id": "CLM-5000061",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000061",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000061",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2026-07-25",
+        "report_date": "2026-07-27",
+        "claimed_amount": 11200
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-072"
+  },
+  {
+    "claim_id": "CLM-5000062",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000062",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000062",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-12-10",
+        "report_date": "2026-12-12",
+        "claimed_amount": 16500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-073"
+  },
+  {
+    "claim_id": "CLM-5000063",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000063",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000063",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2027-01-21",
+        "report_date": "2027-01-23",
+        "claimed_amount": 33700
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-075"
+  },
+  {
+    "claim_id": "CLM-5000064",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000064",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000064",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2026-11-07",
+        "report_date": "2026-11-09",
+        "claimed_amount": 30500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-076"
+  },
+  {
+    "claim_id": "CLM-5000065",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1015",
+    "input_dir": "data/freeform/claims/CLM-5000065",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000065",
+        "policy_no": "MGI-MOT-1015",
+        "vehicle_reg": "KA32AA6947",
+        "incident_date": "2027-03-23",
+        "report_date": "2027-03-25",
+        "claimed_amount": 20000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-077"
+  },
+  {
+    "claim_id": "CLM-5000066",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1011",
+    "input_dir": "data/freeform/claims/CLM-5000066",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000066",
+        "policy_no": "MGI-MOT-1011",
+        "vehicle_reg": "KA09ED2489",
+        "incident_date": "2026-12-05",
+        "report_date": "2026-12-07",
+        "claimed_amount": 34300
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-078"
+  },
+  {
+    "claim_id": "CLM-5000067",
+    "scenario": "ff_commercial_use",
+    "policy_no": "MGI-MOT-1015",
+    "input_dir": "data/freeform/claims/CLM-5000067",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000067",
+        "policy_no": "MGI-MOT-1015",
+        "vehicle_reg": "KA32AA6947",
+        "incident_date": "2027-02-24",
+        "report_date": "2027-02-26",
+        "claimed_amount": 30700
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-079"
+  },
+  {
+    "claim_id": "CLM-5000068",
+    "scenario": "ff_commercial_use_implicit",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000068",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000068",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-12-01",
+        "report_date": "2026-12-03",
+        "claimed_amount": 8200
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": true,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-080"
+  },
+  {
+    "claim_id": "CLM-5000069",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000069",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000069",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-05-13",
+        "report_date": "2026-05-15",
+        "claimed_amount": 15700
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-081"
+  },
+  {
+    "claim_id": "CLM-5000070",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000070",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000070",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2027-03-09",
+        "report_date": "2027-03-11",
+        "claimed_amount": 19000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-082"
+  },
+  {
+    "claim_id": "CLM-5000071",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000071",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000071",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-08-04",
+        "report_date": "2026-08-06",
+        "claimed_amount": 12500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-083"
+  },
+  {
+    "claim_id": "CLM-5000072",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000072",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000072",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-04-29",
+        "report_date": "2026-05-01",
+        "claimed_amount": 31000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-085"
+  },
+  {
+    "claim_id": "CLM-5000073",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000073",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000073",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2026-11-20",
+        "report_date": "2026-11-22",
+        "claimed_amount": 43500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-086"
+  },
+  {
+    "claim_id": "CLM-5000074",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000074",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000074",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2026-11-17",
+        "report_date": "2026-11-19",
+        "claimed_amount": 24800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-087"
+  },
+  {
+    "claim_id": "CLM-5000075",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1011",
+    "input_dir": "data/freeform/claims/CLM-5000075",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000075",
+        "policy_no": "MGI-MOT-1011",
+        "vehicle_reg": "KA09ED2489",
+        "incident_date": "2026-03-14",
+        "report_date": "2026-03-16",
+        "claimed_amount": 43000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-089"
+  },
+  {
+    "claim_id": "CLM-5000076",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1015",
+    "input_dir": "data/freeform/claims/CLM-5000076",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000076",
+        "policy_no": "MGI-MOT-1015",
+        "vehicle_reg": "KA32AA6947",
+        "incident_date": "2027-01-20",
+        "report_date": "2027-01-22",
+        "claimed_amount": 43300
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-090"
+  },
+  {
+    "claim_id": "CLM-5000077",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1020",
+    "input_dir": "data/freeform/claims/CLM-5000077",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000077",
+        "policy_no": "MGI-MOT-1020",
+        "vehicle_reg": "KA16CF8953",
+        "incident_date": "2026-06-24",
+        "report_date": "2026-06-26",
+        "claimed_amount": 36600
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-091"
+  },
+  {
+    "claim_id": "CLM-5000078",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000078",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000078",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-04-13",
+        "report_date": "2026-04-15",
+        "claimed_amount": 31000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-092"
+  },
+  {
+    "claim_id": "CLM-5000079",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1006",
+    "input_dir": "data/freeform/claims/CLM-5000079",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000079",
+        "policy_no": "MGI-MOT-1006",
+        "vehicle_reg": "KA56AD5554",
+        "incident_date": "2027-01-17",
+        "report_date": "2027-01-19",
+        "claimed_amount": 17800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-093"
+  },
+  {
+    "claim_id": "CLM-5000080",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000080",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000080",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-09-13",
+        "report_date": "2026-09-15",
+        "claimed_amount": 16800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-095"
+  },
+  {
+    "claim_id": "CLM-5000081",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000081",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000081",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2026-12-24",
+        "report_date": "2026-12-26",
+        "claimed_amount": 43500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-096"
+  },
+  {
+    "claim_id": "CLM-5000082",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1006",
+    "input_dir": "data/freeform/claims/CLM-5000082",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000082",
+        "policy_no": "MGI-MOT-1006",
+        "vehicle_reg": "KA56AD5554",
+        "incident_date": "2027-04-06",
+        "report_date": "2027-04-08",
+        "claimed_amount": 15500
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-097"
+  },
+  {
+    "claim_id": "CLM-5000083",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000083",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000083",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2026-10-01",
+        "report_date": "2026-10-03",
+        "claimed_amount": 14000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-098"
+  },
+  {
+    "claim_id": "CLM-5000084",
+    "scenario": "ff_unlicensed_driver",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000084",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000084",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-04-21",
+        "report_date": "2026-04-23",
+        "claimed_amount": 25000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-099"
+  },
+  {
+    "claim_id": "CLM-5000085",
+    "scenario": "ff_unlicensed_driver_implicit",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000085",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000085",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-07-27",
+        "report_date": "2026-07-29",
+        "claimed_amount": 48000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC5.3b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": true,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-100"
+  },
+  {
+    "claim_id": "CLM-5000086",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000086",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000086",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2026-09-27",
+        "report_date": "2026-09-29",
+        "claimed_amount": 63000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-101"
+  },
+  {
+    "claim_id": "CLM-5000087",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1007",
+    "input_dir": "data/freeform/claims/CLM-5000087",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000087",
+        "policy_no": "MGI-MOT-1007",
+        "vehicle_reg": "KA45FF2169",
+        "incident_date": "2027-01-08",
+        "report_date": "2027-01-10",
+        "claimed_amount": 44000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-102"
+  },
+  {
+    "claim_id": "CLM-5000088",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1006",
+    "input_dir": "data/freeform/claims/CLM-5000088",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000088",
+        "policy_no": "MGI-MOT-1006",
+        "vehicle_reg": "KA56AD5554",
+        "incident_date": "2027-01-17",
+        "report_date": "2027-01-19",
+        "claimed_amount": 39000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-103"
+  },
+  {
+    "claim_id": "CLM-5000089",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000089",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000089",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-12-16",
+        "report_date": "2026-12-18",
+        "claimed_amount": 20000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-104"
+  },
+  {
+    "claim_id": "CLM-5000090",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000090",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000090",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-11-20",
+        "report_date": "2026-11-22",
+        "claimed_amount": 63000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-105"
+  },
+  {
+    "claim_id": "CLM-5000091",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1011",
+    "input_dir": "data/freeform/claims/CLM-5000091",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000091",
+        "policy_no": "MGI-MOT-1011",
+        "vehicle_reg": "KA09ED2489",
+        "incident_date": "2026-05-07",
+        "report_date": "2026-05-09",
+        "claimed_amount": 41000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-106"
+  },
+  {
+    "claim_id": "CLM-5000092",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000092",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000092",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-05-08",
+        "report_date": "2026-05-10",
+        "claimed_amount": 39000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-107"
+  },
+  {
+    "claim_id": "CLM-5000093",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1013",
+    "input_dir": "data/freeform/claims/CLM-5000093",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000093",
+        "policy_no": "MGI-MOT-1013",
+        "vehicle_reg": "KA08CD3591",
+        "incident_date": "2026-12-06",
+        "report_date": "2026-12-08",
+        "claimed_amount": 20000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-108"
+  },
+  {
+    "claim_id": "CLM-5000094",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1015",
+    "input_dir": "data/freeform/claims/CLM-5000094",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000094",
+        "policy_no": "MGI-MOT-1015",
+        "vehicle_reg": "KA32AA6947",
+        "incident_date": "2026-09-11",
+        "report_date": "2026-09-13",
+        "claimed_amount": 62000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-109"
+  },
+  {
+    "claim_id": "CLM-5000095",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000095",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000095",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2026-08-23",
+        "report_date": "2026-08-25",
+        "claimed_amount": 40000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-110"
+  },
+  {
+    "claim_id": "CLM-5000096",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000096",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000096",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-09-22",
+        "report_date": "2026-09-24",
+        "claimed_amount": 42000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-111"
+  },
+  {
+    "claim_id": "CLM-5000097",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000097",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000097",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2027-01-19",
+        "report_date": "2027-01-21",
+        "claimed_amount": 24000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-112"
+  },
+  {
+    "claim_id": "CLM-5000098",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000098",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000098",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-05-18",
+        "report_date": "2026-05-20",
+        "claimed_amount": 66000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-113"
+  },
+  {
+    "claim_id": "CLM-5000099",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1002",
+    "input_dir": "data/freeform/claims/CLM-5000099",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000099",
+        "policy_no": "MGI-MOT-1002",
+        "vehicle_reg": "KA33EA4257",
+        "incident_date": "2027-03-24",
+        "report_date": "2027-03-26",
+        "claimed_amount": 41000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-114"
+  },
+  {
+    "claim_id": "CLM-5000100",
+    "scenario": "ff_mechanical_failure",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000100",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000100",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2027-03-16",
+        "report_date": "2027-03-18",
+        "claimed_amount": 42000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-115"
+  },
+  {
+    "claim_id": "CLM-5000101",
+    "scenario": "ff_mechanical_failure_implicit",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000101",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000101",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2026-09-20",
+        "report_date": "2026-09-22",
+        "claimed_amount": 24000
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1a"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": true,
+        "tyre_only": false,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-116"
+  },
+  {
+    "claim_id": "CLM-5000102",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1014",
+    "input_dir": "data/freeform/claims/CLM-5000102",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000102",
+        "policy_no": "MGI-MOT-1014",
+        "vehicle_reg": "KA56FC9317",
+        "incident_date": "2026-11-25",
+        "report_date": "2026-11-27",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-117"
+  },
+  {
+    "claim_id": "CLM-5000103",
+    "scenario": "ff_tyre_only_implicit",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000103",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000103",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2027-03-10",
+        "report_date": "2027-03-12",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-118"
+  },
+  {
+    "claim_id": "CLM-5000104",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1005",
+    "input_dir": "data/freeform/claims/CLM-5000104",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000104",
+        "policy_no": "MGI-MOT-1005",
+        "vehicle_reg": "KA19FE6925",
+        "incident_date": "2027-03-20",
+        "report_date": "2027-03-22",
+        "claimed_amount": 28800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-119"
+  },
+  {
+    "claim_id": "CLM-5000105",
+    "scenario": "ff_tyre_only_implicit",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000105",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000105",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-04-19",
+        "report_date": "2026-04-21",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-120"
+  },
+  {
+    "claim_id": "CLM-5000106",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1015",
+    "input_dir": "data/freeform/claims/CLM-5000106",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000106",
+        "policy_no": "MGI-MOT-1015",
+        "vehicle_reg": "KA32AA6947",
+        "incident_date": "2026-07-14",
+        "report_date": "2026-07-16",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-121"
+  },
+  {
+    "claim_id": "CLM-5000107",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000107",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000107",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-01-05",
+        "report_date": "2027-01-07",
+        "claimed_amount": 14800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-123"
+  },
+  {
+    "claim_id": "CLM-5000108",
+    "scenario": "ff_tyre_only_implicit",
+    "policy_no": "MGI-MOT-1008",
+    "input_dir": "data/freeform/claims/CLM-5000108",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000108",
+        "policy_no": "MGI-MOT-1008",
+        "vehicle_reg": "KA15FC1916",
+        "incident_date": "2027-06-30",
+        "report_date": "2027-07-02",
+        "claimed_amount": 28800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-124"
+  },
+  {
+    "claim_id": "CLM-5000109",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000109",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000109",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-06-26",
+        "report_date": "2026-06-28",
+        "claimed_amount": 21800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-125"
+  },
+  {
+    "claim_id": "CLM-5000110",
+    "scenario": "ff_tyre_only_implicit",
+    "policy_no": "MGI-MOT-1009",
+    "input_dir": "data/freeform/claims/CLM-5000110",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000110",
+        "policy_no": "MGI-MOT-1009",
+        "vehicle_reg": "KA14EF6155",
+        "incident_date": "2027-01-17",
+        "report_date": "2027-01-19",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-126"
+  },
+  {
+    "claim_id": "CLM-5000111",
+    "scenario": "ff_tyre_only",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000111",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000111",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-01-13",
+        "report_date": "2027-01-15",
+        "claimed_amount": 21800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-127"
+  },
+  {
+    "claim_id": "CLM-5000112",
+    "scenario": "ff_tyre_only_implicit",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000112",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000112",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2026-09-18",
+        "report_date": "2026-09-20",
+        "claimed_amount": 7800
+      },
+      "decision": "deny",
+      "clauses": [
+        "SEC1.EXCL.1b"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": true,
+        "theft": false
+      }
+    },
+    "narrative_id": "FF-128"
+  },
+  {
+    "claim_id": "CLM-5000113",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1018",
+    "input_dir": "data/freeform/claims/CLM-5000113",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000113",
+        "policy_no": "MGI-MOT-1018",
+        "vehicle_reg": "KA08BB2049",
+        "incident_date": "2026-07-05",
+        "report_date": "2026-07-07",
+        "claimed_amount": 900000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-129"
+  },
+  {
+    "claim_id": "CLM-5000114",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000114",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000114",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2026-09-06",
+        "report_date": "2026-09-08",
+        "claimed_amount": 650000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 648000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-130"
+  },
+  {
+    "claim_id": "CLM-5000115",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1003",
+    "input_dir": "data/freeform/claims/CLM-5000115",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000115",
+        "policy_no": "MGI-MOT-1003",
+        "vehicle_reg": "KA45DC5552",
+        "incident_date": "2027-02-04",
+        "report_date": "2027-02-06",
+        "claimed_amount": 650000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-131"
+  },
+  {
+    "claim_id": "CLM-5000116",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1013",
+    "input_dir": "data/freeform/claims/CLM-5000116",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000116",
+        "policy_no": "MGI-MOT-1013",
+        "vehicle_reg": "KA08CD3591",
+        "incident_date": "2026-07-07",
+        "report_date": "2026-07-09",
+        "claimed_amount": 1200000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 1199000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-132"
+  },
+  {
+    "claim_id": "CLM-5000117",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1019",
+    "input_dir": "data/freeform/claims/CLM-5000117",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000117",
+        "policy_no": "MGI-MOT-1019",
+        "vehicle_reg": "KA01AF1964",
+        "incident_date": "2026-05-31",
+        "report_date": "2026-06-02",
+        "claimed_amount": 650000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-133"
+  },
+  {
+    "claim_id": "CLM-5000118",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1017",
+    "input_dir": "data/freeform/claims/CLM-5000118",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000118",
+        "policy_no": "MGI-MOT-1017",
+        "vehicle_reg": "KA28BE4295",
+        "incident_date": "2026-09-06",
+        "report_date": "2026-09-08",
+        "claimed_amount": 900000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 898000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-134"
+  },
+  {
+    "claim_id": "CLM-5000119",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1020",
+    "input_dir": "data/freeform/claims/CLM-5000119",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000119",
+        "policy_no": "MGI-MOT-1020",
+        "vehicle_reg": "KA16CF8953",
+        "incident_date": "2026-12-13",
+        "report_date": "2026-12-15",
+        "claimed_amount": 650000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-135"
+  },
+  {
+    "claim_id": "CLM-5000120",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1004",
+    "input_dir": "data/freeform/claims/CLM-5000120",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000120",
+        "policy_no": "MGI-MOT-1004",
+        "vehicle_reg": "KA07CC5333",
+        "incident_date": "2026-09-03",
+        "report_date": "2026-09-05",
+        "claimed_amount": 450000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 448000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-136"
+  },
+  {
+    "claim_id": "CLM-5000121",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1016",
+    "input_dir": "data/freeform/claims/CLM-5000121",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000121",
+        "policy_no": "MGI-MOT-1016",
+        "vehicle_reg": "KA53AE3060",
+        "incident_date": "2027-03-18",
+        "report_date": "2027-03-20",
+        "claimed_amount": 650000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-137"
+  },
+  {
+    "claim_id": "CLM-5000122",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1001",
+    "input_dir": "data/freeform/claims/CLM-5000122",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000122",
+        "policy_no": "MGI-MOT-1001",
+        "vehicle_reg": "KA16BB2679",
+        "incident_date": "2026-12-09",
+        "report_date": "2026-12-11",
+        "claimed_amount": 450000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 448000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-138"
+  },
+  {
+    "claim_id": "CLM-5000123",
+    "scenario": "ff_theft",
+    "policy_no": "MGI-MOT-1010",
+    "input_dir": "data/freeform/claims/CLM-5000123",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000123",
+        "policy_no": "MGI-MOT-1010",
+        "vehicle_reg": "KA16FE9830",
+        "incident_date": "2026-08-14",
+        "report_date": "2026-08-16",
+        "claimed_amount": 900000
+      },
+      "decision": "refer",
+      "clauses": [
+        "SEC7.1"
+      ],
+      "payable": 0,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-139"
+  },
+  {
+    "claim_id": "CLM-5000124",
+    "scenario": "ff_theft_implicit",
+    "policy_no": "MGI-MOT-1013",
+    "input_dir": "data/freeform/claims/CLM-5000124",
+    "expected": {
+      "fields": {
+        "claim_id": "CLM-5000124",
+        "policy_no": "MGI-MOT-1013",
+        "vehicle_reg": "KA08CD3591",
+        "incident_date": "2026-08-30",
+        "report_date": "2026-09-01",
+        "claimed_amount": 1200000
+      },
+      "decision": "refer",
+      "clauses": [
+        "INT.AUTH",
+        "SEC7.1",
+        "SEC7.3a",
+        "SEC6.DEDUCT"
+      ],
+      "payable": 1199000,
+      "injection": false,
+      "flags": {
+        "intoxicated": false,
+        "commercial_use": false,
+        "unlicensed_driver": false,
+        "mechanical_failure": false,
+        "tyre_only": false,
+        "theft": true
+      }
+    },
+    "narrative_id": "FF-140"
+  }
+]
