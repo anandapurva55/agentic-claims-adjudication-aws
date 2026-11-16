@@ -1,6 +1,10 @@
 """What happens to the data when the stack is deleted. The demo is torn down on purpose, so the default deletes everything. A real deployment passes
 -c production=true, and then the audit log and the buckets must survive a stack delete and the tables must refuse deletion."""
+import shutil
+
 import pytest
+
+pytestmark = pytest.mark.skipif(not shutil.which("node"), reason="the CDK needs Node.js")
 
 
 def synth(production: bool) -> dict:
