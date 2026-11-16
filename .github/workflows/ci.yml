@@ -31,7 +31,7 @@ jobs:
         run: python evals/gate.py --mode replay
       - name: Red team (offline)
         run: python redteam/run.py --mode replay
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with: { name: eval-reports, path: "evals/reports redteam/reports" }
 
