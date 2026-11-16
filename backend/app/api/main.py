@@ -8,34 +8,38 @@ from collections import Counter
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from app import memory
+from app import auth, memory
 from app.config import settings
 from app.runner import run_claim
 from app.services import data, guardrail, stores
 from app.topology import topology
 
-app = FastAPI(title="Claims Adjudication API", version="1.0.0")
+# Every route needs a signed-in caller except the health check (see app/auth.py).
+app = FastAPI(title="Claims Adjudication API", version="1.0.0", dependencies=[Depends(auth.authenticate)])
 
 
 @app.on_event("startup")
 def _restore_state() -> None:
+    auth.check_startup()
     stores.hydrate()
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
+
+# In AWS the site and the API share one CloudFront domain, so browsers never make a cross-origin call. Only the local dev server is listed by default.
+app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST"], allow_headers=["Authorization", "Content-Type"])
 _live_lock = asyncio.Semaphore(1)  # tool state is per process, so live runs are serialised
 
 
 class Review(BaseModel):
-    """A reviewer's decision. Every field has a fixed set of values or a length limit, so a request cannot store arbitrary amounts of text in the audit log."""
+    """A reviewer's decision. Every field has a fixed set of values or a length limit, so a request cannot store arbitrary amounts of text in the audit log.
+    Who the reviewer is and which role they hold come from the sign-in token, never from this body."""
     action: Literal["accept", "override", "escalate"]
     final_decision: Literal["approve", "deny", "refer"] | None = None  # required for override
     note: str = Field(default="", max_length=1000)
-    reviewer: str = Field(default="adjuster", pattern=r"^[A-Za-z0-9][A-Za-z0-9 ._@-]{0,59}$")
-    role: Literal["adjuster", "senior"] = "adjuster"
 
 
 def _claim_summary(cid: str, st: dict | None = None) -> dict:
@@ -94,7 +98,7 @@ def _check_spend() -> None:
                                  "live runs resume tomorrow, replay and review still work", headers={"Retry-After": "3600"})
 
 
-@app.get("/api/claims/{claim_id}/run")
+@app.post("/api/claims/{claim_id}/run")  # POST: a run spends money and writes the audit log, so it is not something a link or an image tag can trigger
 async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(default=None)) -> StreamingResponse:
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
@@ -119,8 +123,10 @@ async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(defa
 
 
 @app.post("/api/claims/{claim_id}/review")
-def review(claim_id: str, body: Review) -> dict:
+def review(claim_id: str, body: Review, who: auth.Identity = Depends(auth.authenticate)) -> dict:
     """Human in the loop gate. Nothing is settled until a person decides here."""
+    if who is None:  # unreachable: only the health check is open
+        raise HTTPException(401, "sign in to use this API")
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
     st = stores.stage_for(claim_id)
@@ -140,12 +146,12 @@ def review(claim_id: str, body: Review) -> dict:
     # Four eyes: payouts above the authority limit need a senior adjuster.
     over_limit = "INT.AUTH" in ai["clauses"]
     approving = body.action == "accept" and ai["decision"] in ("approve", "refer") or (body.action == "override" and body.final_decision == "approve")
-    if over_limit and approving and body.role != "senior":
+    if over_limit and approving and who.role != "senior":
         raise HTTPException(403, "this payable is above the adjuster authority limit: a senior adjuster must approve, or you can escalate")
     final = {"accept": ai["decision"], "override": body.final_decision, "escalate": "escalated"}[body.action]
-    detail = {**body.model_dump(), "ai_decision": ai["decision"], "ai_payable": ai["payable"], "ai_clauses": ai["clauses"], "final": final}
+    detail = {**body.model_dump(), "reviewer": who.username, "role": who.role, "ai_decision": ai["decision"], "ai_payable": ai["payable"], "ai_clauses": ai["clauses"], "final": final}
     try:  # the database decides a race: exactly one reviewer gets through, before any side effect below happens
-        row = stores.audit(claim_id, f"{body.role}:{body.reviewer}", "human_review", detail)
+        row = stores.audit(claim_id, f"{who.role}:{who.username}", "human_review", detail)
     except stores.AlreadyReviewed:
         raise HTTPException(409, "this claim already has a human decision") from None
     lesson_stored = False
@@ -155,7 +161,7 @@ def review(claim_id: str, body: Review) -> dict:
         # Human decisions are the only way into long term memory.
         lesson_stored = memory.store_lesson(
             f"A human adjuster changed the AI's decision from {ai['decision']} to {final}. Their reason: {body.note.strip()}",
-            {"claim_id": claim_id, "reviewer": body.reviewer, "role": body.role})
+            {"claim_id": claim_id, "reviewer": who.username, "role": who.role})
     outcome = {"approve": f"Settlement of INR {ai['payable']:,} released for payment." if final == "approve" and body.action == "accept"
                else "Approved by reviewer. Payable to be confirmed by the senior adjuster's calculation.",
                "deny": "Denial confirmed. Letter queued for the policy holder.",

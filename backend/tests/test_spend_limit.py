@@ -43,7 +43,7 @@ def _spend(cost, mode="live", day=TODAY, run="r"):
 
 
 def _run(mode):
-    with client.stream("GET", f"/api/claims/{CLAIM}/run?mode={mode}") as r:
+    with client.stream("POST", f"/api/claims/{CLAIM}/run?mode={mode}") as r:
         return r.status_code, [json.loads(x[6:]) for x in r.iter_lines() if x.startswith("data: ") and x != "data: {}"], dict(r.headers)
 
 
@@ -58,7 +58,7 @@ def test_a_live_run_at_or_over_the_limit_gets_429_and_no_agent_starts(no_agents)
     _spend(0.40, run="b")  # exactly the limit
     status, _, headers = _run("live")
     assert status == 429 and no_agents == [] and "retry-after" in headers
-    body = client.get(f"/api/claims/{CLAIM}/run?mode=live").json()
+    body = client.post(f"/api/claims/{CLAIM}/run?mode=live").json()
     assert "daily spend limit of $1.00" in body["detail"] and "replay and review still work" in body["detail"]
 
 

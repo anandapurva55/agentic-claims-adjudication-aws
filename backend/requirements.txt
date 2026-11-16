@@ -15,3 +15,4 @@ uvicorn[standard]==0.54.0
 pydantic==2.14.3
 pydantic-settings==2.16.3
 pypdf==7.1.0                # deterministic claim form parser
+PyJWT[crypto]==2.15.1       # checks the Amazon Cognito token on every request (app/auth.py)

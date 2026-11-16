@@ -38,6 +38,12 @@ class Settings(BaseSettings):
     calls_bucket: str = ""  # per call records land here as JSON partitioned by date, for Athena and QuickSight
     replay_pace: float = 1.0  # offline replay only: 1 keeps the animation pauses, 0 removes them (tests and evals)
     daily_budget_usd: float = 5.0  # alert when one day's model spend passes this
+    # Sign-in. When a user pool is configured every endpoint except the health check needs a valid Amazon Cognito token. With none configured the API is for
+    # local development only and live mode refuses to start.
+    cognito_user_pool_id: str = ""
+    cognito_client_id: str = ""
+    # Browsers allowed to call the API from another origin. In AWS the site and the API share one CloudFront domain, so nothing else is needed there.
+    cors_origins: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
     data_dir: Path = ROOT / "data"
     # Audit log, review decisions and run metrics. DynamoDB replaces this in AWS.
     runtime_dir: Path = ROOT / "data" / "runtime"

@@ -93,12 +93,12 @@ def test_running_the_agents_again_after_a_review_does_not_reopen_the_claim(tmp_p
 
 def test_two_reviewers_posting_to_the_api_at_once_get_one_200_and_the_rest_409(ddb):
     cid = next(c["claim_id"] for c in CASES if c["scenario"] == "clean")
-    with TestClient(app) as c, c.stream("GET", f"/api/claims/{cid}/run?mode=replay") as r:
+    with TestClient(app) as c, c.stream("POST", f"/api/claims/{cid}/run?mode=replay") as r:
         list(r.iter_lines())  # the agents must have produced a recommendation before anyone can review it
 
     def post(i: int) -> int:
         with TestClient(app) as c:
-            return c.post(f"/api/claims/{cid}/review", json={"action": "accept", "reviewer": f"w{i}", "role": "senior", "note": ""}).status_code
+            return c.post(f"/api/claims/{cid}/review", json={"action": "accept", "note": ""}, headers={"X-Demo-Role": "senior", "X-Demo-User": f"w{i}"}).status_code
     codes = sorted(_race(post, workers=6))
     assert codes == [200] + [409] * 5, codes
     stage = stores.stage_for(cid)

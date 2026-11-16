@@ -18,7 +18,7 @@ def isolated_runtime(tmp_path, monkeypatch):
 
 
 def _ran() -> str:
-    with client.stream("GET", f"/api/claims/{CLEAN}/run?mode=replay") as r:
+    with client.stream("POST", f"/api/claims/{CLEAN}/run?mode=replay") as r:
         list(r.iter_lines())
     return CLEAN
 
@@ -29,23 +29,29 @@ def _review(**body):
 
 @pytest.mark.parametrize("body", [
     {"action": "approve"}, {"action": "ACCEPT"}, {"action": ""},
-    {"action": "override", "final_decision": "maybe", "note": "a perfectly good reason"},
-    {"action": "accept", "role": "admin"}, {"action": "accept", "role": "Senior"}])
+    {"action": "override", "final_decision": "maybe", "note": "a perfectly good reason"}])
 def test_unknown_values_are_rejected_before_anything_is_stored(body):
     _ran()
     assert _review(**body).status_code == 422
     assert client.get(f"/api/claims/{CLEAN}").json()["review"] is None
 
 
-@pytest.mark.parametrize("reviewer", ["", "x" * 61, "<script>alert(1)</script>", "a\nb", "ok; DROP TABLE", " leading"])
-def test_a_reviewer_name_is_short_and_plain(reviewer):
+def test_a_role_or_reviewer_name_in_the_body_is_ignored_not_trusted():
+    """Who reviews, and as what, comes from the sign-in identity. Extra body fields change nothing, so a caller cannot promote themselves by editing JSON."""
     _ran()
-    assert _review(action="accept", reviewer=reviewer).status_code == 422
+    r = client.post(f"/api/claims/{CLEAN}/review", json={"action": "accept", "role": "senior", "reviewer": "CEO"},
+                    headers={"X-Demo-User": "asha", "X-Demo-Role": "adjuster"})
+    assert r.status_code == 200
+    review = client.get(f"/api/claims/{CLEAN}").json()["review"]
+    assert (review["reviewer"], review["role"]) == ("asha", "adjuster")
 
 
-def test_a_reasonable_reviewer_name_is_accepted():
+def test_a_reviewer_name_from_the_identity_is_cleaned_before_it_reaches_the_audit_log():
     _ran()
-    assert _review(action="accept", reviewer="S. Rao", role="senior").status_code == 200
+    r = client.post(f"/api/claims/{CLEAN}/review", json={"action": "accept"}, headers={"X-Demo-User": "<script>alert(1)</script>" + "x" * 100})
+    assert r.status_code == 200
+    reviewer = client.get(f"/api/claims/{CLEAN}").json()["review"]["reviewer"]
+    assert "<" not in reviewer and ">" not in reviewer and len(reviewer) <= 60
 
 
 def test_an_override_reason_over_one_thousand_characters_is_rejected():
@@ -69,6 +75,6 @@ def test_the_attack_lab_refuses_text_over_four_thousand_characters():
 
 def test_the_run_mode_can_only_be_replay_or_live():
     for bad in ("bogus", "LIVE", "replay;live", ""):
-        assert client.get(f"/api/claims/{CLEAN}/run?mode={bad}").status_code == 422
-    with client.stream("GET", f"/api/claims/{CLEAN}/run?mode=replay") as r:
+        assert client.post(f"/api/claims/{CLEAN}/run?mode={bad}").status_code == 422
+    with client.stream("POST", f"/api/claims/{CLEAN}/run?mode=replay") as r:
         assert r.status_code == 200

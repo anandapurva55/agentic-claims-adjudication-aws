@@ -17,7 +17,7 @@ def isolated_runtime(tmp_path, monkeypatch):
 
 def _events(claim_id: str) -> list[dict]:
     out = []
-    with client.stream("GET", f"/api/claims/{claim_id}/run?mode=replay") as r:
+    with client.stream("POST", f"/api/claims/{claim_id}/run?mode=replay") as r:
         for line in r.iter_lines():
             if line.startswith("data: ") and line != "data: {}":
                 out.append(json.loads(line[6:]))
@@ -52,8 +52,9 @@ def _claim(scenario: str) -> str:
     return next(c["claim_id"] for c in CASES if c["scenario"] == scenario)
 
 
-def _review(claim_id: str, **body):
-    return client.post(f"/api/claims/{claim_id}/review", json=body)
+def _review(claim_id: str, role: str = "adjuster", reviewer: str = "tester", **body):
+    """Who is reviewing comes from the sign-in identity (demo headers locally), never from the body."""
+    return client.post(f"/api/claims/{claim_id}/review", json=body, headers={"X-Demo-Role": role, "X-Demo-User": reviewer})
 
 
 def test_no_review_before_the_agents_have_run():
