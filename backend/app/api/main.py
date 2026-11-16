@@ -82,14 +82,35 @@ def claim_file(claim_id: str, name: str) -> FileResponse:
     return FileResponse(data.claim_dir(claim_id) / name)
 
 
+def _check_spend() -> None:
+    """The daily spend limit. Live runs stop once today's model spend reaches the limit. Replay, viewing and reviewing are free and keep working. A run
+    that is already going is never cut off, so the day can overshoot by at most one run per task."""
+    try:
+        spent = stores.spend_today()
+    except Exception as exc:  # cannot verify the spend, so refuse rather than risk it
+        raise HTTPException(503, "live runs are paused because today's spend could not be checked") from exc
+    if spent >= settings.daily_budget_usd:
+        raise HTTPException(429, f"the daily spend limit of ${settings.daily_budget_usd:.2f} has been reached (${spent:.2f} spent today): "
+                                 "live runs resume tomorrow, replay and review still work", headers={"Retry-After": "3600"})
+
+
 @app.get("/api/claims/{claim_id}/run")
 async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(default=None)) -> StreamingResponse:
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
     mode = mode or settings.mode
+    if mode == "live":
+        _check_spend()  # refuse before any streaming starts, so the caller gets a real status code
 
     async def stream():
         async with _live_lock:
+            if mode == "live":  # runs queued behind another one are checked again once it is their turn
+                try:
+                    _check_spend()
+                except HTTPException as exc:
+                    yield f"data: {json.dumps({'type': 'error', 'message': exc.detail})}\n\n"
+                    yield "event: end\ndata: {}\n\n"
+                    return
             async for ev in run_claim(claim_id, mode):
                 yield f"data: {json.dumps(ev)}\n\n"
             yield "event: end\ndata: {}\n\n"

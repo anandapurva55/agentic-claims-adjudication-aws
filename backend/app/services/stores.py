@@ -102,6 +102,22 @@ def metrics() -> list[dict]:
     return _read("metrics.jsonl")
 
 
+def spend_today() -> float:
+    """What live model calls have cost today, in USD. In AWS it is summed from the DynamoDB metrics table through the by_day index, so every task sees the
+    spend of every other task; locally it is summed from the metrics file. Raises when the table cannot be read: the caller must not guess."""
+    today = time.strftime("%Y-%m-%d")
+    if not settings.metrics_table:
+        return round(sum(r.get("cost_usd", 0) for r in metrics() if r.get("day") == today and r.get("mode") == "live"), 6)
+    from boto3.dynamodb.conditions import Key
+    table, total, kw = _table(settings.metrics_table), 0.0, {}
+    while True:
+        r = table.query(IndexName="by_day", KeyConditionExpression=Key("day").eq(today), **kw)
+        total += sum(float(i.get("cost_usd", 0)) for i in r["Items"] if i.get("kind") == "run" and i.get("mode") == "live")
+        if "LastEvaluatedKey" not in r:
+            return round(total, 6)
+        kw["ExclusiveStartKey"] = r["LastEvaluatedKey"]
+
+
 def _reviews_from(rows: list[dict]) -> dict[str, dict]:
     return {r["claim_id"]: r for r in rows if r["action"] == "human_review"}
 
