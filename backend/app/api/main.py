@@ -36,10 +36,10 @@ class Review(BaseModel):
     role: str = "adjuster"  # adjuster | senior
 
 
-def _claim_summary(cid: str) -> dict:
+def _claim_summary(cid: str, st: dict | None = None) -> dict:
     ex = data.extract_claim(cid)
     pol = data.policies()[ex["policy_no"]]
-    st = stores.stage_for(cid)
+    st = st or stores.stage_for(cid)
     return {"claim_id": cid, "holder": pol["holder"], "policy_no": ex["policy_no"], "vehicle": f"{pol['make']} {pol['model']}",
             "vehicle_reg": ex["vehicle_reg"], "incident_date": ex["incident_date"], "claimed_amount": ex["claimed_amount"],
             "stage": st["stage"], "ai": st["ai"], "review": st["review"]}
@@ -58,7 +58,8 @@ def get_topology() -> dict:
 
 @app.get("/api/claims")
 def claims() -> list[dict]:
-    return [_claim_summary(c) for c in data.list_claim_ids()]
+    stages = stores.stages()  # one read of the audit log for the whole list
+    return [_claim_summary(c, stages.get(c, {"stage": "new", "ai": None, "review": None})) for c in data.list_claim_ids()]
 
 
 @app.get("/api/claims/{claim_id}")

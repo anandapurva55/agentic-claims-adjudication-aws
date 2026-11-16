@@ -11,8 +11,10 @@ Run: python scripts/generate_data.py
 from __future__ import annotations
 
 import json
+import math
 import random
 from datetime import date, timedelta
+from fractions import Fraction
 from pathlib import Path
 
 from reportlab.lib.pagesizes import A4
@@ -216,7 +218,7 @@ def make_claim(idx: int, sc: str, pol: dict, rng: random.Random) -> dict:
     report = incident + timedelta(days=notice_gap)
 
     gross = sum(c for _, _, c in lines) + labour
-    net_parts = sum(c * (100 - dep_rate(cat, age)) / 100 for _, cat, c in lines)
+    net_parts = sum(Fraction(c * (100 - dep_rate(cat, age)), 100) for _, cat, c in lines)  # exact: no float error, halves round up below
     ded = pol["deductible"]
     claimed = gross + form_amount_delta
 
@@ -241,11 +243,11 @@ def make_claim(idx: int, sc: str, pol: dict, rng: random.Random) -> dict:
     elif base == "late_notice":
         decision, cites, payable = "refer", ["INT.LATE", "SEC7.1"], 0
     else:
-        if base == "theft" or gross > 0.75 * pol["idv"]:
+        if base == "theft" or gross * 4 > 3 * pol["idv"]:
             pay = pol["idv"] - salvage - ded
             cites = ["SEC7.1", "SEC7.3a", "SEC6.DEDUCT"] if base == "theft" else ["SEC1.CTL", "SEC7.3a", "SEC6.DEDUCT"]
         else:
-            pay = round(net_parts + labour - ded)
+            pay = math.floor(net_parts + labour - ded + Fraction(1, 2))
             cites = ["SEC1.COVER", "SEC1.DEPR", "SEC6.DEDUCT"]
         if pay <= 0:
             decision, cites, payable = "deny", ["SEC6.DEDUCT"], 0

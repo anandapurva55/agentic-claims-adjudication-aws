@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass, field
 from datetime import date
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 from app.config import settings
@@ -89,23 +90,35 @@ def vehicle_age(reg_year: int, incident: str) -> float:
     return (date.fromisoformat(incident) - date(reg_year, 6, 1)).days / 365.0
 
 
+def _half_up(x: Decimal) -> int:
+    """Money rounds to the nearest rupee with halves rounded up. Python's round() rounds halves to even, which is not how money is rounded."""
+    return int(x.quantize(Decimal(1), rounding=ROUND_HALF_UP))
+
+
+def _parse_date(value: object) -> date | None:
+    try:
+        return date.fromisoformat(str(value))
+    except ValueError:
+        return None
+
+
 def compute_payable(facts: Facts, sch: Schedule) -> dict:
-    """Pure arithmetic. Returns a breakdown so the memo can show its working."""
+    """Pure arithmetic in exact decimals, so no float error can move a payout by a rupee. Returns a breakdown so the memo can show its working."""
     age = vehicle_age(sch.reg_year, facts.incident_date)
     gross = sum(ln.cost for ln in facts.lines) + facts.labour
     rows = []
-    net_parts = 0.0
+    net_parts = Decimal(0)
     for ln in facts.lines:
         d = dep_rate(ln.category, age)
-        net = ln.cost * (100 - d) / 100
+        net = Decimal(ln.cost) * (100 - d) / 100
         net_parts += net
-        rows.append({"item": ln.name, "category": ln.category, "cost": ln.cost, "depreciation_pct": d, "net": round(net)})
-    if facts.theft or gross > 0.75 * sch.idv:
+        rows.append({"item": ln.name, "category": ln.category, "cost": ln.cost, "depreciation_pct": d, "net": _half_up(net)})
+    if facts.theft or gross * 4 > 3 * sch.idv:  # more than 75 percent of the insured value, compared in exact integers
         basis = "theft" if facts.theft else "constructive_total_loss"
         payable = sch.idv - facts.salvage - sch.deductible
     else:
         basis = "partial_loss"
-        payable = round(net_parts + facts.labour - sch.deductible)
+        payable = _half_up(net_parts + facts.labour - sch.deductible)
     return {"basis": basis, "gross_repair": gross, "idv": sch.idv, "deductible": sch.deductible,
             "vehicle_age_years": round(age, 2), "lines": rows, "labour": facts.labour,
             "salvage": facts.salvage, "payable": max(payable, 0), "raw_payable": payable}
@@ -118,7 +131,12 @@ def _adjudicate(f: Facts, sch: Schedule) -> Decision:
     def step(name: str, result: str) -> None:
         steps.append({"check": name, "result": result})
 
-    if not (sch.start <= f.incident_date <= sch.end):
+    incident, reported = _parse_date(f.incident_date), _parse_date(f.report_date)
+    if incident is None or reported is None:
+        unreadable = " and ".join(n for n, v in (("incident date", incident), ("report date", reported)) if v is None)
+        step("Dates readable", f"No: the {unreadable} could not be read")
+        return Decision("refer", ["INT.CONSIST"], 0, [f"A date on the claim could not be read: the {unreadable}."], steps)
+    if not (date.fromisoformat(sch.start) <= incident <= date.fromisoformat(sch.end)):
         step("Loss within period of insurance", f"No: {f.incident_date} is outside {sch.start} to {sch.end}")
         return Decision("deny", ["PERIOD"], 0, ["Loss occurred outside the policy period."], steps)
     step("Loss within period of insurance", "Yes")
@@ -138,17 +156,22 @@ def _adjudicate(f: Facts, sch: Schedule) -> Decision:
         step("Police notice for theft", "No FIR recorded")
         return Decision("refer", ["SEC7.1"], 0, ["Theft claim has no police FIR. Refer for investigation."], steps)
 
-    if f.estimate_reg != f.vehicle_reg or f.estimate_total != f.claimed_amount:
-        why = []
-        if f.estimate_reg != f.vehicle_reg:
-            why.append(f"registration differs ({f.vehicle_reg} on the form, {f.estimate_reg} on the estimate)")
-        if f.estimate_total != f.claimed_amount:
-            why.append(f"amounts differ (INR {f.claimed_amount:,} claimed, INR {f.estimate_total:,} on the estimate)")
+    why = []
+    if f.estimate_reg != f.vehicle_reg:
+        why.append(f"registration differs ({f.vehicle_reg} on the form, {f.estimate_reg} on the estimate)")
+    if f.estimate_total != f.claimed_amount:
+        why.append(f"amounts differ (INR {f.claimed_amount:,} claimed, INR {f.estimate_total:,} on the estimate)")
+    lines_total = sum(ln.cost for ln in f.lines) + f.labour
+    if f.estimate_total != lines_total:
+        why.append(f"the estimate total of INR {f.estimate_total:,} does not equal its lines and labour, INR {lines_total:,}")
+    if reported < incident:
+        why.append(f"the report date {f.report_date} is before the incident date {f.incident_date}")
+    if why:
         step("Documents consistent", "No: " + "; ".join(why))
         return Decision("refer", ["INT.CONSIST"], 0, ["Documents disagree: " + "; ".join(why)], steps)
     step("Documents consistent", "Yes")
 
-    gap = (date.fromisoformat(f.report_date) - date.fromisoformat(f.incident_date)).days
+    gap = (reported - incident).days
     if gap > LATE_NOTICE_DAYS:
         step("Notice given promptly", f"No: reported {gap} days after the incident")
         return Decision("refer", ["INT.LATE", "SEC7.1"], 0, [f"Reported {gap} days after the incident."], steps)
@@ -175,7 +198,7 @@ def next_steps(decision: str, clauses: list[str], payable: int, reasons: list[st
         return [f"Send the denial letter citing {', '.join(clauses)}.", "Tell the policy holder how to appeal.",
                 "If you disagree with the AI, override with a written reason."]
     if "INT.CONSIST" in clauses:
-        return ["Ask the garage and the policy holder to resubmit documents that agree on registration and total.",
+        return ["Ask the policy holder and the garage to resubmit documents that agree with each other.",
                 "Do not settle until the documents match.", reasons[0] if reasons else ""]
     if "INT.LATE" in clauses:
         return ["Contact the policy holder for the reason for the delay and any supporting evidence.",

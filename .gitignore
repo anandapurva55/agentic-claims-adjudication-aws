@@ -28,3 +28,5 @@ data/heldout2/
 .idea/
 *.log
 docs/demo/node_modules/
+.coverage
+htmlcov/

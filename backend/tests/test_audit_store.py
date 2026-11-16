@@ -112,3 +112,35 @@ def test_metrics_and_calls_are_restored(monkeypatch):
     monkeypatch.setattr(stores, "_scan", lambda table: [dict(r) for r in rows])
     stores.hydrate()
     assert stores.metrics()[0]["run_id"] == "r1" and stores.calls()[0]["call_id"] == "c1"
+
+
+class _Counting:
+    """Counts DynamoDB reads so a test can state how many round trips a page load is allowed to make."""
+    def __init__(self, table, tally):
+        self.t, self.n = table, tally
+
+    def query(self, **kw):
+        self.n["query"] += 1
+        return self.t.query(**kw)
+
+    def scan(self, **kw):
+        self.n["scan"] += 1
+        return self.t.scan(**kw)
+
+    def put_item(self, **kw):
+        return self.t.put_item(**kw)
+
+
+def test_listing_claims_reads_the_audit_log_once_not_twice_per_claim(ddb, monkeypatch):
+    stores.audit("CLM-2026001", "ai", "decision", {"decision": "approve"})
+    stores.audit("CLM-2026002", "ai", "decision", {"decision": "deny"})
+    stores.audit("CLM-2026002", "adjuster:a", "human_review", {"action": "accept"})
+    real, tally = stores._table, {"query": 0, "scan": 0}
+    monkeypatch.setattr(stores, "_table", lambda name: _Counting(real(name), tally))
+    with TestClient(app) as c:
+        listing = {x["claim_id"]: x["stage"] for x in c.get("/api/claims").json()}
+    assert len(listing) == 63 and tally == {"query": 0, "scan": 1}, tally  # was 126 queries
+    assert listing["CLM-2026001"] == "ai_recommended" and listing["CLM-2026002"] == "reviewed" and listing["CLM-2026003"] == "new"
+    tally.update(query=0, scan=0)
+    stores.stage_for("CLM-2026002")
+    assert tally == {"query": 1, "scan": 0}, tally  # one query for one claim, not two

@@ -115,15 +115,28 @@ def latest(claim_id: str, action: str) -> dict | None:
     return rows[-1] if rows else None
 
 
-def stage_for(claim_id: str) -> dict:
-    """Lifecycle: new -> ai_recommended -> reviewed. A human review is the only way out of ai_recommended, and it is final: running the agents again
-    afterwards does not reopen the claim."""
-    ai, human = latest(claim_id, "decision"), latest(claim_id, "human_review")
+def _stage_from(rows: list[dict]) -> dict:
+    """Lifecycle from one claim's audit rows: new -> ai_recommended -> reviewed. A human review is the only way out of ai_recommended, and it is final:
+    running the agents again afterwards does not reopen the claim."""
+    ai = next((r for r in reversed(rows) if r["action"] == "decision"), None)
+    human = next((r for r in reversed(rows) if r["action"] == "human_review"), None)
     if human:
         return {"stage": "reviewed", "ai": ai["detail"] if ai else None, "review": human["detail"]}
     if ai:
         return {"stage": "ai_recommended", "ai": ai["detail"], "review": None}
     return {"stage": "new", "ai": None, "review": None}
+
+
+def stage_for(claim_id: str) -> dict:
+    return _stage_from(audit_for(claim_id))
+
+
+def stages() -> dict[str, dict]:
+    """The stage of every claim that has any audit row, from ONE read of the audit log. Listing claims uses this, not one query per claim."""
+    by_claim: dict[str, list[dict]] = {}
+    for r in _rows():
+        by_claim.setdefault(r["claim_id"], []).append(r)
+    return {cid: _stage_from(rows) for cid, rows in by_claim.items()}
 
 
 def review_stats() -> dict:
