@@ -285,8 +285,16 @@ body { overflow: hidden; }
 .demo-shot { display: block; width: 100%; max-width: 1180px; margin: 0 0 20px; border: 1px solid var(--line); border-radius: 12px; }
 @media (max-width: 760px) { .demo-banner { flex-direction: column; align-items: flex-start; } }
 
-.shell { min-height: 100vh; display: flex; flex-direction: column; }
-.shell > .signin, .shell > .app, .shell > .signin-loading { flex: 1; min-height: 0; }
+/* The shell holds the demo banner above the page. It is exactly one screen tall, and the app inside takes what the banner leaves, so nothing hangs below the window
+   (the page itself never scrolls on a wide screen: the queue, centre and decision panels do). On a narrow screen the page scrolls as before. */
+.shell { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+.shell > .app { height: auto; flex: 1; min-height: 0; }
+.shell > .signin, .shell > .signin-loading { flex: 1; min-height: 0; overflow-y: auto; }
+@media (max-width: 1180px) {
+  .shell { height: auto; min-height: 100dvh; overflow: visible; }
+  .shell > .app { flex: 1 0 auto; }
+  .shell > .signin, .shell > .signin-loading { flex: 1 0 auto; overflow-y: visible; }
+}
 .signin-form-fields { display: grid; gap: 14px; max-width: 380px; }
 .signin-form-fields label { display: grid; gap: 6px; font-weight: 600; font-size: 14px; color: #f4f7fc; }
 .signin-form-fields input { height: 46px; border-radius: 10px; border: 1px solid #2a3454; background: #0f1424; color: var(--text); padding: 0 14px; font: 400 15px inherit; }
