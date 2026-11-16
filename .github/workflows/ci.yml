@@ -57,6 +57,8 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: python scripts/generate_data.py
       - run: cd frontend && npm ci && npm run build
+      - name: Security properties of the synthesised stack (internal ALB, VPC origin, scoped IAM)
+        run: pytest infra/tests -q
       - name: Synthesize (no AWS lookups, so no credentials are needed)
         working-directory: infra
         env: { CDK_DEFAULT_ACCOUNT: "000000000000", CDK_DEFAULT_REGION: us-east-1 }
