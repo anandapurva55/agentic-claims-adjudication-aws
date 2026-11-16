@@ -1,17 +1,29 @@
-"""The fine-tuning dataset must be honest: the unseen test set shares no wording with training, and every label follows from the text."""
+"""The fine-tuning dataset must be honest: the unseen test set shares no wording with training, and every label follows from the text.
+
+The data is generated into a temporary directory by the same seeded generator, so these tests need no files from a previous run and never touch the
+dataset used for training.
+"""
 import json
 import sys
 from pathlib import Path
+
+import pytest
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 import make_dataset as md  # noqa: E402
 
-DATA = Path(__file__).parent / "data"
+
+@pytest.fixture(scope="module", autouse=True)
+def generated(tmp_path_factory):
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr(md, "OUT", tmp_path_factory.mktemp("finetune_data"))
+        md.main()
+        yield
 
 
 def load(name):
-    return [json.loads(line) for line in (DATA / f"{name}.jsonl").read_text().splitlines() if line.strip()]
+    return [json.loads(line) for line in (md.OUT / f"{name}.jsonl").read_text().splitlines() if line.strip()]
 
 
 def sentences(items):

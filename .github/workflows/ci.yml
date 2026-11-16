@@ -21,14 +21,12 @@ jobs:
         run: python scripts/generate_data.py
       - name: Lint
         run: ruff check backend infra evals redteam scripts docs
-      - name: Unit and API tests
-        run: pytest backend/tests -q
+      - name: All tests (backend, evaluation gate, fine-tuning data), exactly as a developer runs them
+        run: pytest -q
       - name: Evaluate against the golden set
         run: python evals/run_eval.py --mode replay
       - name: Quality gate (fails the pull request when quality drops)
         run: python evals/gate.py --mode replay
-      - name: Gate self test (a deliberately broken build must fail)
-        run: pytest evals -q
       - name: Red team (offline)
         run: python redteam/run.py --mode replay
       - uses: actions/upload-artifact@v4
