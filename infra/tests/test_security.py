@@ -73,3 +73,42 @@ def test_the_task_role_names_its_resources(template):
     assert "Converse" not in json.dumps(by_sid["InvokeModels"]["Action"])  # Converse is authorised by InvokeModel
     assert by_sid["ApplyGuardrail"]["Action"] == "bedrock:ApplyGuardrail" and by_sid["ApplyGuardrail"]["Resource"] != "*"
     assert all(a in ("bedrock:InvokeDataAutomationAsync", "bedrock:GetDataAutomationStatus") for a in by_sid["DataAutomation"]["Action"])
+
+
+def test_only_administrators_can_create_users_and_passwords_are_strong(template):
+    (pool,) = of_type(template, "AWS::Cognito::UserPool").values()
+    assert pool["AdminCreateUserConfig"]["AllowAdminCreateUserOnly"] is True
+    policy = pool["Policies"]["PasswordPolicy"]
+    assert policy["MinimumLength"] >= 12 and all(policy[k] for k in ("RequireLowercase", "RequireUppercase", "RequireNumbers", "RequireSymbols"))
+    assert pool["MfaConfiguration"] in ("OPTIONAL", "ON")
+
+
+def test_the_two_roles_exist_as_groups(template):
+    assert {g["GroupName"] for g in of_type(template, "AWS::Cognito::UserPoolGroup").values()} == {"adjuster", "senior"}
+
+
+def test_the_app_client_uses_the_code_flow_with_no_secret_and_returns_only_to_the_site(template):
+    (client,) = of_type(template, "AWS::Cognito::UserPoolClient").values()
+    assert client["AllowedOAuthFlows"] == ["code"] and client["GenerateSecret"] is False  # no implicit flow: tokens never travel in the URL
+    assert client["SupportedIdentityProviders"] == ["COGNITO"]
+    for urls in (client["CallbackURLs"], client["LogoutURLs"]):
+        assert len(urls) == 1 and "GetAtt" in json.dumps(urls) and "localhost" not in json.dumps(urls) and "http://" not in json.dumps(urls)
+
+
+def test_the_api_is_told_which_pool_to_trust(template):
+    (task,) = of_type(template, "AWS::ECS::TaskDefinition").values()
+    env = {e["Name"] for e in task["ContainerDefinitions"][0]["Environment"]}
+    assert {"CLAIMS_COGNITO_USER_POOL_ID", "CLAIMS_COGNITO_CLIENT_ID"} <= env  # without them the API would be open
+
+
+def test_cloudfront_sits_behind_a_web_acl_that_rate_limits_each_address(template):
+    (acl,) = of_type(template, "AWS::WAFv2::WebACL").values()
+    assert acl["Scope"] == "CLOUDFRONT" and acl["DefaultAction"] == {"Allow": {}}
+    rules = {r["Name"]: r for r in acl["Rules"]}
+    runs, everything = rules["RunsPerIp"]["Statement"]["RateBasedStatement"], rules["RequestsPerIp"]["Statement"]["RateBasedStatement"]
+    assert runs["AggregateKeyType"] == everything["AggregateKeyType"] == "IP"
+    assert runs["Limit"] < everything["Limit"], "starting a run costs money, so it is limited harder than ordinary requests"
+    assert runs["ScopeDownStatement"]["ByteMatchStatement"]["SearchString"] == "/run"
+    assert all("Block" in r["Action"] for r in acl["Rules"])
+    (dist,) = of_type(template, "AWS::CloudFront::Distribution").values()
+    assert "WebACLId" in dist["DistributionConfig"]

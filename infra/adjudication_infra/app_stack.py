@@ -3,10 +3,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from aws_cdk import CfnOutput, Duration, RemovalPolicy, Stack
+from aws_cdk import CfnOutput, Duration, Fn, RemovalPolicy, Stack
 from aws_cdk import aws_cloudfront as cf
 from aws_cdk import aws_cloudfront_origins as origins
 from aws_cdk import aws_cloudwatch as cw
+from aws_cdk import aws_cognito as cognito
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_ecr_assets as ecr_assets
 from aws_cdk import aws_ecs as ecs
@@ -16,6 +17,7 @@ from aws_cdk import aws_logs as logs
 from aws_cdk import aws_s3 as s3
 from aws_cdk import aws_s3_deployment as s3deploy
 from aws_cdk import aws_secretsmanager as secretsmanager
+from aws_cdk import aws_wafv2 as wafv2
 from constructs import Construct
 
 from .data_stack import DataStack
@@ -70,7 +72,7 @@ class AppStack(Stack):
         task = ecs.FargateTaskDefinition(self, "Task", cpu=1024, memory_limit_mib=2048, task_role=task_role,
                                          runtime_platform=ecs.RuntimePlatform(cpu_architecture=ecs.CpuArchitecture.ARM64,
                                                                               operating_system_family=ecs.OperatingSystemFamily.LINUX))
-        task.add_container("api", image=image, port_mappings=[ecs.PortMapping(container_port=8000)],
+        container = task.add_container("api", image=image, port_mappings=[ecs.PortMapping(container_port=8000)],
                            logging=ecs.LogDrivers.aws_logs(stream_prefix="api", log_group=log_group),
                            environment={
                                "CLAIMS_MODE": mode, "CLAIMS_REGION": self.region,
@@ -109,15 +111,62 @@ class AppStack(Stack):
                          encryption=s3.BucketEncryption.S3_MANAGED, removal_policy=RemovalPolicy.DESTROY, auto_delete_objects=True)
         api_origin = origins.VpcOrigin.with_application_load_balancer(alb, protocol_policy=cf.OriginProtocolPolicy.HTTP_ONLY, read_timeout=Duration.seconds(60),
                                                                       custom_headers={"X-Origin-Verify": origin_secret_value})
+        # Rate limiting at the edge, per client IP. Starting a run is the expensive call, so it gets a much lower limit than everything else. A web ACL for
+        # CloudFront must live in us-east-1, so any other region fails at synthesis instead of at deploy.
+        if self.region != "us-east-1" and not self.region.startswith("${Token"):
+            raise ValueError("the CloudFront web ACL must be created in us-east-1")
+
+        def rate_rule(name: str, priority: int, limit: int, window: int, only_runs: bool) -> wafv2.CfnWebACL.RuleProperty:
+            statement = wafv2.CfnWebACL.RateBasedStatementProperty(
+                limit=limit, aggregate_key_type="IP", evaluation_window_sec=window,
+                scope_down_statement=wafv2.CfnWebACL.StatementProperty(byte_match_statement=wafv2.CfnWebACL.ByteMatchStatementProperty(
+                    search_string="/run", positional_constraint="ENDS_WITH", field_to_match=wafv2.CfnWebACL.FieldToMatchProperty(uri_path={}),
+                    text_transformations=[wafv2.CfnWebACL.TextTransformationProperty(priority=0, type="NONE")])) if only_runs else None)
+            return wafv2.CfnWebACL.RuleProperty(
+                name=name, priority=priority, action=wafv2.CfnWebACL.RuleActionProperty(block={}), statement=wafv2.CfnWebACL.StatementProperty(rate_based_statement=statement),
+                visibility_config=wafv2.CfnWebACL.VisibilityConfigProperty(cloud_watch_metrics_enabled=True, sampled_requests_enabled=True, metric_name=name))
+
+        web_acl = wafv2.CfnWebACL(
+            self, "WebAcl", scope="CLOUDFRONT", default_action=wafv2.CfnWebACL.DefaultActionProperty(allow={}),
+            rules=[rate_rule("RunsPerIp", 1, limit=20, window=300, only_runs=True),  # at most 20 agent runs in 5 minutes from one address
+                   rate_rule("RequestsPerIp", 2, limit=600, window=300, only_runs=False)],
+            visibility_config=wafv2.CfnWebACL.VisibilityConfigProperty(cloud_watch_metrics_enabled=True, sampled_requests_enabled=True, metric_name="ClaimsAdjudicationWaf"))
+
         dist = cf.Distribution(
-            self, "Cdn", default_root_object="index.html",
+            self, "Cdn", default_root_object="index.html", web_acl_id=web_acl.attr_arn,
             default_behavior=cf.BehaviorOptions(origin=origins.S3BucketOrigin.with_origin_access_control(site),
                                                 viewer_protocol_policy=cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS),
             additional_behaviors={"/api/*": cf.BehaviorOptions(
                 origin=api_origin, allowed_methods=cf.AllowedMethods.ALLOW_ALL, compress=False,  # no compression keeps SSE streaming
                 cache_policy=cf.CachePolicy.CACHING_DISABLED, origin_request_policy=cf.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
                 viewer_protocol_policy=cf.ViewerProtocolPolicy.HTTPS_ONLY)})  # no SPA fallback: it rewrote API 404s into the HTML page with status 200. The app only uses / and query strings.
-        s3deploy.BucketDeployment(self, "DeploySite", sources=[s3deploy.Source.asset(str(ROOT / "frontend" / "dist"))],
+        # Sign-in. Only people an administrator creates can sign in (no self sign-up). Role is the group: adjuster or senior. The site signs in through Cognito's
+        # hosted page with the authorization code flow and PKCE, so no password ever passes through this application. The pool is created after the
+        # distribution because the app client's callback URL is the distribution's address; the distribution does not depend on the service, so there is no cycle.
+        pool = cognito.UserPool(
+            self, "Users", self_sign_up_enabled=False, sign_in_aliases=cognito.SignInAliases(username=True, email=True), mfa=cognito.Mfa.OPTIONAL,
+            mfa_second_factor=cognito.MfaSecondFactor(otp=True, sms=False), account_recovery=cognito.AccountRecovery.EMAIL_ONLY,
+            password_policy=cognito.PasswordPolicy(min_length=12, require_lowercase=True, require_uppercase=True, require_digits=True, require_symbols=True),
+            removal_policy=RemovalPolicy.DESTROY)
+        for group, description in (("adjuster", "Can review claims up to the authority limit"), ("senior", "Can also approve payouts above the authority limit")):
+            cognito.CfnUserPoolGroup(self, f"Group{group.title()}", user_pool_id=pool.user_pool_id, group_name=group, description=description)
+        site_url = f"https://{dist.distribution_domain_name}/"
+        web_client = pool.add_client(
+            "Web", generate_secret=False, prevent_user_existence_errors=True, auth_flows=cognito.AuthFlow(),
+            o_auth=cognito.OAuthSettings(flows=cognito.OAuthFlows(authorization_code_grant=True), scopes=[cognito.OAuthScope.OPENID, cognito.OAuthScope.EMAIL],
+                                         callback_urls=[site_url], logout_urls=[site_url]),
+            supported_identity_providers=[cognito.UserPoolClientIdentityProvider.COGNITO],
+            id_token_validity=Duration.hours(1), access_token_validity=Duration.hours(1), refresh_token_validity=Duration.days(1))
+        # The domain prefix must be unique across AWS. The first part of the stack's id is, and it does not put the account number in a public name.
+        prefix = Fn.join("", ["claimsadj-", Fn.select(0, Fn.split("-", Fn.select(2, Fn.split("/", self.stack_id))))])
+        hosted = pool.add_domain("Domain", cognito_domain=cognito.CognitoDomainOptions(domain_prefix=prefix))
+        container.add_environment("CLAIMS_COGNITO_USER_POOL_ID", pool.user_pool_id)
+        container.add_environment("CLAIMS_COGNITO_CLIENT_ID", web_client.user_pool_client_id)
+
+        # The page reads this at start-up to know where to sign in. Written at deploy time, so no identifier is ever committed to the repository.
+        site_config = s3deploy.Source.json_data("config.json", {"region": self.region, "userPoolId": pool.user_pool_id, "clientId": web_client.user_pool_client_id,
+                                                                  "hostedUi": hosted.base_url()})
+        s3deploy.BucketDeployment(self, "DeploySite", sources=[s3deploy.Source.asset(str(ROOT / "frontend" / "dist")), site_config],
                                   destination_bucket=site, distribution=dist, distribution_paths=["/*"])
 
         # Observability: one dashboard and the alarms an on-call engineer would want.
@@ -137,3 +186,5 @@ class AppStack(Stack):
 
         CfnOutput(self, "SiteUrl", value=f"https://{dist.distribution_domain_name}")
         CfnOutput(self, "DashboardName", value="ClaimsAdjudication")
+        CfnOutput(self, "UserPoolId", value=pool.user_pool_id)
+        CfnOutput(self, "UserPoolClientId", value=web_client.user_pool_client_id)
