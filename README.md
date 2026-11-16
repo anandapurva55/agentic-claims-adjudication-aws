@@ -36,7 +36,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
 | Automated tests | 416 (393 Python, 23 frontend) | |
 
-A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Do the agents earn their cost?](#do-the-agents-earn-their-cost) sets out the evidence, including where the agents lose.
+A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
 ---
 
@@ -56,7 +56,7 @@ A single model call followed by the same rules engine matched the agent team on 
 | [Security and red team testing](#security-and-red-team-testing) | Threat model, defence layers and 30 attacks with controls |
 | [Frontend: the workbench UI](#frontend-the-workbench-ui) | React and TypeScript app with a live agent graph |
 | [Evaluation](#evaluation) | Golden and held-out sets, an independent oracle, ablations and the quality gate |
-| [Do the agents earn their cost?](#do-the-agents-earn-their-cost) | A single call baseline, a free-form benchmark and a planted problem investigation test |
+| [Agents compared with a single call](#agents-compared-with-a-single-call) | A single call baseline, a free-form benchmark and a planted problem investigation test |
 | [Cost, latency and observability](#cost-latency-and-observability) | Telemetry lake, measured optimisations and alerting |
 | [Fine-tuning a small model with QLoRA](#fine-tuning-a-small-model-with-qlora) | Method, results and when fine-tuning pays off |
 | [Deployment](#deployment) | Acceptance test, console evidence and deploy commands |
@@ -393,9 +393,9 @@ A single run per variant had suggested that collaboration made no difference. Re
 
 ---
 
-## Do the agents earn their cost?
+## Agents compared with a single call
 
-A multi-agent design costs more than one model call, so it has to show what the extra cost buys. Three experiments test that, and the answer differs by task.
+A multi-agent design costs more than one model call, so it has to show what the extra cost buys. Three experiments measure that, and the result differs by task.
 
 ### A single call baseline
 
