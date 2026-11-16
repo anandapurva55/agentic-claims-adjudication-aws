@@ -1,3 +1,5 @@
+import { STEPS, stepStates } from '../demo/steps'
+
 // Shown on the GitHub Pages build only, on every page including sign-in. It says what is switched off, because a visitor who thinks the agents are live has been misled.
 const BASE = import.meta.env.VITE_API_URL ?? ''
 
@@ -10,6 +12,24 @@ export function DemoBanner() {
       <span><b>Interactive demo.</b> The AI agents are switched off here to avoid cost, so each run replays the rule baseline on real claim data. Sign in with any username, run a claim, review it, and switch between adjuster and senior adjuster in the account menu to try the approval rule. The live system, with the agents on Amazon Bedrock, is shown in the <a href="https://github.com/anandapurva55/agentic-claims-adjudication-aws#readme">README</a>.</span>
       <button className="btn" onClick={reset}>Reset demo</button>
     </div>
+  )
+}
+
+/** A visitor does not know to pick a claim first, so the workbench opens with the four steps, ticked off as they are done, and the next one highlighted. */
+export function DemoSteps({ selected, ran, reviewed }: { selected: boolean; ran: boolean; reviewed: boolean }) {
+  const states = stepStates({ selected, ran, reviewed })
+  return (
+    <section className="demo-steps" aria-label="How to try the demo">
+      <div className="demo-steps-title">Try it</div>
+      <ol>
+        {STEPS.map((s, i) => (
+          <li key={s.title} className={`${states[i].done ? 'done' : ''} ${states[i].current ? 'current' : ''}`} aria-current={states[i].current ? 'step' : undefined}>
+            <span className="demo-step-n" aria-hidden>{states[i].done ? '\u2713' : i + 1}</span>
+            <span><b>{s.title}.</b> {s.text}{'hint' in s && states[i].current && <small>{s.hint}</small>}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
   )
 }
 

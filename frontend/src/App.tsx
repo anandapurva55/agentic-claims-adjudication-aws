@@ -3,7 +3,7 @@ import { api } from './api'
 import { currentSession, demoSwitchRole, setDemoRole, signOut } from './auth'
 import AgentGraph, { type NodeInfo } from './components/AgentGraph'
 import ClaimQueue from './components/ClaimQueue'
-import { DEMO, DemoObservability } from './components/DemoBanner'
+import { DEMO, DemoObservability, DemoSteps } from './components/DemoBanner'
 import Logo from './components/Logo'
 import UserMenu from './components/UserMenu'
 import DecisionPanel from './components/DecisionPanel'
@@ -167,6 +167,7 @@ export default function App() {
         </div>
       </header>
 
+      {tab === 'workbench' && topo && DEMO && <DemoSteps selected={!!selected} ran={result !== null} reviewed={claim?.stage === 'reviewed'} />}
       {tab === 'workbench' && topo && (
         <main className="wb">
           <ClaimQueue claims={claims} selected={selected} onSelect={select} />
