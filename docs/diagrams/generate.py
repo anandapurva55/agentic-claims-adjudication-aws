@@ -12,7 +12,7 @@ from diagrams.aws.devtools import Codebuild
 from diagrams.aws.management import Cloudwatch
 from diagrams.aws.ml import Bedrock, Sagemaker
 from diagrams.aws.network import ALB, CloudFront
-from diagrams.aws.security import IAM
+from diagrams.aws.security import IAM, WAF, Cognito
 from diagrams.aws.storage import S3
 from diagrams.onprem.ci import GithubActions
 from diagrams.onprem.client import Users
@@ -28,12 +28,14 @@ NODE = {"fontsize": "12", "fontname": "Helvetica"}
 def aws_architecture() -> None:
     with Diagram("", filename=str(OUT / "aws_architecture"), show=False, direction="TB", graph_attr=GRAPH, node_attr=NODE, outformat="png"):
         adjuster = Users("Claims adjuster")
-        with Cluster("Edge"):
+        with Cluster("Edge and identity"):
+            waf = WAF("AWS WAF\nrate limits")
             cdn = CloudFront("CloudFront")
             site = S3("React app")
-        with Cluster("Serving path (ECS Fargate)"):
-            alb = ALB("ALB")
-            api = Fargate("FastAPI + Strands\nagent graph")
+            cognito = Cognito("Cognito\nsign-in, roles")
+        with Cluster("Private serving path (no public address)"):
+            alb = ALB("Internal ALB\n(isolated subnets)")
+            api = Fargate("FastAPI + Strands\nagent graph\n(ECS Fargate)")
         with Cluster("Amazon Bedrock"):
             models = Bedrock("Claude and\nNova models")
             guard = Bedrock("Guardrails")
@@ -53,8 +55,9 @@ def aws_architecture() -> None:
             qs = Quicksight("QuickSight\ncost and latency")
         with Cluster("Model adaptation"):
             sm = Sagemaker("SageMaker QLoRA\ntraining job")
-        adjuster >> cdn >> site
-        cdn >> Edge(label="/api") >> alb >> api
+        adjuster >> Edge(label="sign in (code flow, PKCE)") >> cognito
+        adjuster >> waf >> cdn >> site
+        cdn >> Edge(label="/api, VPC origin") >> alb >> api
         api >> Edge(label="reason") >> models
         api >> Edge(label="scan text") >> guard
         api >> Edge(label="retrieve clauses") >> mcp1 >> kb
