@@ -22,6 +22,17 @@ Built with: a **React** 19, **TypeScript** and **Vite** frontend; a **FastAPI** 
 ![FastAPI](docs/images/badges/fastapi.svg)
 ![uv](docs/images/badges/uv.svg)
 
+## Try it
+
+An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. The AI agents are switched off there to avoid cost, so each run replays the rule baseline on real claim data, and a banner says so on every page. Everything else works, and everything after the sign-in is up to the visitor.
+
+1. **Sign in.** The demo opens on the same sign-in screen as the live site, then a login page laid out like Cognito's. Any username works with any password that meets the real password rule: 12 or more characters with upper and lower case letters, a digit and a symbol. A checklist under the password box turns from red to green as each requirement is met. There is no sign up, as in the live system.
+2. **Pick a claim** in the queue. CLM-2026044 carries an injected instruction in its narrative, and CLM-2026043 needs a senior adjuster.
+3. **Run the agents** and watch the graph and the trace.
+4. **Make the call** in the Decision panel: accept, override or escalate. Then open your initials, top right, and switch to senior adjuster to try the approval rule above INR 200,000.
+
+[Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
+
 ## Summary
 
 This repository implements a decision support system for motor insurance claims. A team of AI agents reads the claim packet, reads the damage photo, retrieves policy clauses with **retrieval-augmented generation** (**RAG**), checks records over the **Model Context Protocol** (**MCP**), recalls lessons from earlier cases and recommends a decision. Deterministic code calculates the payable amount and makes the final recommendation. A human adjuster, signed in through **Amazon Cognito**, approves, overrides or escalates it, and the system records every step under the adjuster's verified name and role.
@@ -44,17 +55,6 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Automated tests | 467 (409 Python, 58 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
-
-## Try it
-
-An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. The AI agents are switched off there to avoid cost, so each run replays the rule baseline on real claim data, and a banner says so on every page. Everything else works, and everything after the sign-in is up to the visitor.
-
-1. **Sign in.** The demo opens on the same sign-in screen as the live site, then a login page laid out like Cognito's. Any username works with any password that meets the real password rule: 12 or more characters with upper and lower case letters, a digit and a symbol. A checklist under the password box turns from red to green as each requirement is met. There is no sign up, as in the live system.
-2. **Pick a claim** in the queue. CLM-2026044 carries an injected instruction in its narrative, and CLM-2026043 needs a senior adjuster.
-3. **Run the agents** and watch the graph and the trace.
-4. **Make the call** in the Decision panel: accept, override or escalate. Then open your initials, top right, and switch to senior adjuster to try the approval rule above INR 200,000.
-
-[Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
 
 ---
 
