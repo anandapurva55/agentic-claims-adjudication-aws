@@ -23,8 +23,12 @@ def _ran() -> str:
     return CLEAN
 
 
+def _run_id() -> str:
+    return (client.get(f"/api/claims/{CLEAN}").json().get("ai") or {}).get("run_id", "no-run-yet")
+
+
 def _review(**body):
-    return client.post(f"/api/claims/{CLEAN}/review", json=body)
+    return client.post(f"/api/claims/{CLEAN}/review", json={"run_id": _run_id(), **body})
 
 
 @pytest.mark.parametrize("body", [
@@ -39,7 +43,7 @@ def test_unknown_values_are_rejected_before_anything_is_stored(body):
 def test_a_role_or_reviewer_name_in_the_body_is_ignored_not_trusted():
     """Who reviews, and as what, comes from the sign-in identity. Extra body fields change nothing, so a caller cannot promote themselves by editing JSON."""
     _ran()
-    r = client.post(f"/api/claims/{CLEAN}/review", json={"action": "accept", "role": "senior", "reviewer": "CEO"},
+    r = client.post(f"/api/claims/{CLEAN}/review", json={"run_id": _run_id(), "action": "accept", "role": "senior", "reviewer": "CEO"},
                     headers={"X-Demo-User": "asha", "X-Demo-Role": "adjuster"})
     assert r.status_code == 200
     review = client.get(f"/api/claims/{CLEAN}").json()["review"]
@@ -48,7 +52,7 @@ def test_a_role_or_reviewer_name_in_the_body_is_ignored_not_trusted():
 
 def test_a_reviewer_name_from_the_identity_is_cleaned_before_it_reaches_the_audit_log():
     _ran()
-    r = client.post(f"/api/claims/{CLEAN}/review", json={"action": "accept"}, headers={"X-Demo-User": "<script>alert(1)</script>" + "x" * 100})
+    r = client.post(f"/api/claims/{CLEAN}/review", json={"run_id": _run_id(), "action": "accept"}, headers={"X-Demo-User": "<script>alert(1)</script>" + "x" * 100})
     assert r.status_code == 200
     reviewer = client.get(f"/api/claims/{CLEAN}").json()["review"]["reviewer"]
     assert "<" not in reviewer and ">" not in reviewer and len(reviewer) <= 60

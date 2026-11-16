@@ -36,6 +36,12 @@ describe('api.run', () => {
     await api.run('CLM-1', 'replay', (e) => seen.push(e), signal())
     expect(seen).toEqual([{ type: 'last' }])
   })
+  it('hands queue positions to the caller while the run waits for its turn, then the run itself', async () => {
+    fetchMock.mockResolvedValue(new Response(stream(['event: queued\ndata: {"position": 2}\n\n', 'event: queued\ndata: {"position": 1}\n\n', 'data: {"type":"start"}\n\nevent: end\ndata: {}\n\n']), { status: 200 }))
+    const seen: unknown[] = []
+    await api.run('CLM-1', 'live', (e) => seen.push(e), signal())
+    expect(seen).toEqual([{ type: 'queued', position: 2 }, { type: 'queued', position: 1 }, { type: 'start' }])
+  })
   it('shows the server message when the daily spend limit is reached', async () => {
     fetchMock.mockResolvedValue(json({ detail: 'the daily spend limit of $5.00 has been reached' }, 429))
     await expect(api.run('CLM-1', 'live', () => {}, signal())).rejects.toThrow('daily spend limit of $5.00')
@@ -54,12 +60,13 @@ describe('api.run', () => {
 describe('api.review', () => {
   it('sends the decision without a role or reviewer, which the server takes from the token', async () => {
     fetchMock.mockResolvedValue(json({ outcome: 'ok', final: 'approve' }, 200))
-    await api.review('CLM-1', { action: 'override', final_decision: 'deny', note: 'because' })
-    expect(Object.keys(JSON.parse(fetchMock.mock.calls[0][1].body)).sort()).toEqual(['action', 'final_decision', 'note'])
+    await api.review('CLM-1', { run_id: 'run-abc', action: 'override', final_decision: 'deny', note: 'because' })
+    expect(Object.keys(JSON.parse(fetchMock.mock.calls[0][1].body)).sort()).toEqual(['action', 'final_decision', 'note', 'run_id'])
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).run_id).toBe('run-abc') // the review names the run it looked at
   })
   it('surfaces the server message, such as a claim that already has a decision', async () => {
     fetchMock.mockResolvedValue(json({ detail: 'this claim already has a human decision' }, 409))
-    await expect(api.review('CLM-1', { action: 'accept' })).rejects.toThrow('already has a human decision')
+    await expect(api.review('CLM-1', { run_id: 'r', action: 'accept' })).rejects.toThrow('already has a human decision')
   })
 })
 

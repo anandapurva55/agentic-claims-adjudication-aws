@@ -266,7 +266,7 @@ async def run_claim(claim_id: str, mode: str | None = None, speed: float | None 
             if s.decision is None:  # every path sets one: a missing decision is a bug, never an approval
                 raise RuntimeError("the run finished without a decision")
             stores.audit(claim_id, "ai", "decision", {"decision": s.decision.decision, "payable": s.decision.payable,
-                                                      "clauses": s.decision.clauses, "mode": mode})
+                                                      "clauses": s.decision.clauses, "mode": mode, "run_id": s.run_id})
             events.edge("adjudicator", "human", "for review")
             events.node("human", "waiting", "awaiting adjuster")
             ms = round((time.perf_counter() - t0) * 1000)
@@ -277,7 +277,7 @@ async def run_claim(claim_id: str, mode: str | None = None, speed: float | None 
             fired = alerts.evaluate(run_row)
             stores.record_metric(run_row)
             alerts.publish(run_row)
-            events.emit("result", decision=s.decision.dict(), calc=s.calc, memo=s.memo, citations=s.citations,
+            events.emit("result", run_id=s.run_id, decision=s.decision.dict(), calc=s.calc, memo=s.memo, citations=s.citations,
                         flags=s.flags, guardrail={"alerts": s.guardrail.get("alerts", []), "engine": s.guardrail.get("engine")},
                         consistency=s.consistency, signals=s.signals, lessons=s.lessons, notes=s.notes, latency_ms=ms, mode=mode,
                         input_tokens=s.input_tokens, output_tokens=s.output_tokens, model_calls=s.model_calls,

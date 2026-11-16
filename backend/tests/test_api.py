@@ -54,6 +54,8 @@ def _claim(scenario: str) -> str:
 
 def _review(claim_id: str, role: str = "adjuster", reviewer: str = "tester", **body):
     """Who is reviewing comes from the sign-in identity (demo headers locally), never from the body."""
+    if "run_id" not in body:  # the review names the run the reviewer looked at: by default, the latest one
+        body["run_id"] = ((client.get(f"/api/claims/{claim_id}").json().get("ai")) or {}).get("run_id", "no-run-yet")
     return client.post(f"/api/claims/{claim_id}/review", json=body, headers={"X-Demo-Role": role, "X-Demo-User": reviewer})
 
 

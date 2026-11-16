@@ -98,15 +98,17 @@ def test_the_role_comes_from_the_token_and_the_body_cannot_change_it():
     h = bearer(groups=("adjuster",))
     client.post(f"/api/claims/{HIGH}/run?mode=replay", headers=h).read()
     # an adjuster who writes "senior" into the JSON is still an adjuster: above the authority limit they cannot approve
-    r = client.post(f"/api/claims/{HIGH}/review", json={"action": "accept", "role": "senior", "reviewer": "CEO"}, headers=h)
+    rid = client.get(f"/api/claims/{HIGH}", headers=h).json()["ai"]["run_id"]
+    r = client.post(f"/api/claims/{HIGH}/review", json={"run_id": rid, "action": "accept", "role": "senior", "reviewer": "CEO"}, headers=h)
     assert r.status_code == 403
-    assert client.post(f"/api/claims/{HIGH}/review", json={"action": "escalate"}, headers=h).status_code == 200
+    assert client.post(f"/api/claims/{HIGH}/review", json={"run_id": rid, "action": "escalate"}, headers=h).status_code == 200
 
 
 def test_a_senior_in_the_token_can_approve_above_the_limit_and_is_recorded_by_name():
     h = bearer(groups=("senior",), name="priya.rao")
     client.post(f"/api/claims/{HIGH}/run?mode=replay", headers=h).read()
-    assert client.post(f"/api/claims/{HIGH}/review", json={"action": "accept"}, headers=h).status_code == 200
+    rid = client.get(f"/api/claims/{HIGH}", headers=h).json()["ai"]["run_id"]
+    assert client.post(f"/api/claims/{HIGH}/review", json={"run_id": rid, "action": "accept"}, headers=h).status_code == 200
     review = client.get(f"/api/claims/{HIGH}", headers=h).json()["review"]
     assert (review["reviewer"], review["role"]) == ("priya.rao", "senior")
 

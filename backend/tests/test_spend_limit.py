@@ -23,6 +23,7 @@ def isolated(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, "runtime_dir", tmp_path)
     monkeypatch.setattr(settings, "metrics_table", "")
     monkeypatch.setattr(settings, "daily_budget_usd", 1.00)
+    monkeypatch.setattr(settings, "mode", "live")  # the spend limit is about a live deployment: a deployment runs in one mode, and replay runs are not allowed in it
 
 
 @pytest.fixture
@@ -59,14 +60,19 @@ def test_a_live_run_at_or_over_the_limit_gets_429_and_no_agent_starts(no_agents)
     status, _, headers = _run("live")
     assert status == 429 and no_agents == [] and "retry-after" in headers
     body = client.post(f"/api/claims/{CLAIM}/run?mode=live").json()
-    assert "daily spend limit of $1.00" in body["detail"] and "replay and review still work" in body["detail"]
+    assert "daily spend limit of $1.00" in body["detail"] and "viewing and reviewing still work" in body["detail"]
 
 
-def test_replay_viewing_and_reviewing_keep_working_when_the_limit_is_reached(no_agents):
+def test_viewing_and_reviewing_keep_working_when_the_limit_is_reached(no_agents):
+    _spend(50.0)
+    assert client.get("/api/claims").status_code == 200 and client.get(f"/api/claims/{CLAIM}").status_code == 200
+    assert client.get("/api/metrics").status_code == 200 and client.get("/api/review-stats").status_code == 200
+
+
+def test_a_replay_deployment_costs_nothing_so_the_spend_limit_does_not_apply_to_it(no_agents, monkeypatch):
+    monkeypatch.setattr(settings, "mode", "replay")
     _spend(50.0)
     assert _run("replay")[0] == 200 and no_agents == ["replay"]
-    assert client.get("/api/claims").status_code == 200 and client.get(f"/api/claims/{CLAIM}").status_code == 200
-    assert client.get("/api/metrics").status_code == 200
 
 
 def test_only_todays_live_spend_counts():
@@ -96,6 +102,7 @@ def test_when_the_spend_cannot_be_read_live_runs_are_refused_not_allowed(monkeyp
     monkeypatch.setattr(stores, "spend_today", broken)
     status, _, _ = _run("live")
     assert status == 503 and no_agents == []
+    monkeypatch.setattr(settings, "mode", "replay")  # a replay deployment never reads the spend
     assert _run("replay")[0] == 200
 
 

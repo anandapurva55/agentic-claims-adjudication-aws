@@ -26,6 +26,7 @@ export interface Decision {
 }
 export interface Citation { clause: string; source: string; text: string }
 export interface RunResult {
+  run_id: string  // the run a review must name, so "accept" means the result the reviewer looked at
   decision: Decision; calc: Calc; memo: string; citations: Citation[]; flags: Record<string, boolean>
   guardrail: { alerts: string[]; engine: string }; latency_ms: number; mode: string
   signals: { kind: string; severity: 'low' | 'medium' | 'high'; detail: string }[]

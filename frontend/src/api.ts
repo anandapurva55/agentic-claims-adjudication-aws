@@ -29,8 +29,8 @@ export const api = {
   claim: (id: string) => get<{ extracted: Record<string, unknown>; audit: { action: string; detail: { message?: string } }[] } & Claim>(`/api/claims/${id}`),
   reviewStats: () => get<ReviewStats>('/api/review-stats'),
   metrics: () => get<Metrics>('/api/metrics'),
-  // Who is reviewing, and as what, is decided by the server from the sign-in token. It is not part of this request.
-  review: async (id: string, body: { action: string; final_decision?: string; note?: string }) => {
+  // Who is reviewing, and as what, is decided by the server from the sign-in token. The run id says which recommendation was looked at.
+  review: async (id: string, body: { run_id: string; action: string; final_decision?: string; note?: string }) => {
     const r = await call(`/api/claims/${id}/review`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
     if (!r.ok) throw new Error(await detail(r, 'review failed'))
     return (await r.json()) as { outcome: string; final: string; lesson_stored?: boolean }
@@ -56,6 +56,7 @@ export const api = {
       buffer = rest
       for (const e of events) {
         if (e.event === 'end') return
+        if (e.event === 'queued') { onEvent({ type: 'queued', ...JSON.parse(e.data) }); continue }  // the server says where this run is in the line, which also keeps the connection alive
         if (e.data && e.data !== '{}') onEvent(JSON.parse(e.data))
       }
       if (done) return

@@ -28,6 +28,7 @@ export default function App() {
   const [error, setError] = useState('')
   const [running, setRunning] = useState(false)
   const [mode, setMode] = useState('replay')
+  const [queued, setQueued] = useState<number | null>(null)  // this run's place in the line behind other runs, when it has to wait for its turn
   const [metrics, setMetrics] = useState<Metrics | null>(null)
   const session = currentSession()
   const [role, setRole] = useState<Role>(session?.role ?? 'adjuster')
@@ -108,20 +109,24 @@ export default function App() {
         case 'log': addTrace(ev.t, ev.node, ev.text, 'log'); break
         case 'tool': addTrace(ev.t, ev.node, `tool ${ev.tool}`, 'tool'); break
         case 'note': addTrace(ev.t, ev.sender, `${ev.kind} to ${ev.to}: ${ev.text}`, 'tool'); break
+        case 'queued':
+          setQueued((q) => { if (q === null) addTrace(0, 'system', `Waiting for another run to finish (place ${ev.position} in line)`, 'log'); return ev.position })
+          break
+        case 'start': setQueued(null); break
         case 'result': setResult(ev as RunResult); break
         case 'error': setError(ev.message); addTrace(ev.t, 'system', ev.message, 'error'); break
       }
     }
     api.run(selected, mode, onEvent, ctl.signal)
       .catch((e: Error) => { if (!ctl.signal.aborted) setError(e.message) })  // includes the 429 text when the daily spend limit is reached
-      .finally(() => { if (abort.current === ctl) setRunning(false) })
+      .finally(() => { if (abort.current === ctl) { setRunning(false); setQueued(null) } })
   }
 
   useEffect(() => { if (autorun) { setAutorun(false); run() } }, [autorun]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const review = async (b: { action: string; final_decision?: string; note?: string }) => {
-    if (!selected) return
-    const r = await api.review(selected, b)
+    if (!selected || !result) return
+    const r = await api.review(selected, { ...b, run_id: result.run_id })  // the run the reviewer is looking at
     setOutcome(r.outcome + (r.lesson_stored ? ' Your reason was saved to long term memory, so the agents can recall it on similar claims.' : ''))
     setStates((s) => ({ ...s, human: { state: 'done', detail: b.action === 'accept' ? 'accepted' : b.action } }))
     // The human decision is written back to the audit store: show it as a bolt.
@@ -172,12 +177,8 @@ export default function App() {
             <div className="toolbar">
               <div><b>{claim ? claim.claim_id : 'Select a claim'}</b>{claim && <span className="muted"> · {claim.holder}</span>}</div>
               <div className="ctrls">
-                <label>Mode
-                  <select value={mode} onChange={(e) => setMode(e.target.value)}>
-                    <option value="replay">Replay (rule baseline)</option><option value="live">Live (Bedrock agents)</option>
-                  </select>
-                </label>
-                <button className="btn btn-primary" disabled={!selected || running} onClick={run}>{running ? 'Running…' : 'Run agents'}</button>
+                <span className={`chip ${mode === 'live' ? 'chip-ok' : ''}`} title="A deployment runs in one mode, set by whoever deployed it">{mode === 'live' ? 'Live (Bedrock agents)' : 'Replay (rule baseline)'}</span>
+                <button className="btn btn-primary" disabled={!selected || running} onClick={run}>{running ? (queued !== null ? `Waiting, place ${queued} in line…` : 'Running…') : 'Run agents'}</button>
               </div>
             </div>
             <AgentGraph topology={topo} states={states} pulses={pulses} still={still} />

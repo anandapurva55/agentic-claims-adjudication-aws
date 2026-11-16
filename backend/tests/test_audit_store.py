@@ -95,10 +95,12 @@ def test_two_reviewers_posting_to_the_api_at_once_get_one_200_and_the_rest_409(d
     cid = next(c["claim_id"] for c in CASES if c["scenario"] == "clean")
     with TestClient(app) as c, c.stream("POST", f"/api/claims/{cid}/run?mode=replay") as r:
         list(r.iter_lines())  # the agents must have produced a recommendation before anyone can review it
+    with TestClient(app) as c:
+        run_id = c.get(f"/api/claims/{cid}").json()["ai"]["run_id"]  # every reviewer is looking at the same run
 
     def post(i: int) -> int:
         with TestClient(app) as c:
-            return c.post(f"/api/claims/{cid}/review", json={"action": "accept", "note": ""}, headers={"X-Demo-Role": "senior", "X-Demo-User": f"w{i}"}).status_code
+            return c.post(f"/api/claims/{cid}/review", json={"action": "accept", "note": "", "run_id": run_id}, headers={"X-Demo-Role": "senior", "X-Demo-User": f"w{i}"}).status_code
     codes = sorted(_race(post, workers=6))
     assert codes == [200] + [409] * 5, codes
     stage = stores.stage_for(cid)

@@ -37,6 +37,10 @@ class Settings(BaseSettings):
     claims_bucket: str = ""  # BDA inputs and outputs
     calls_bucket: str = ""  # per call records land here as JSON partitioned by date, for Athena and QuickSight
     replay_pace: float = 1.0  # offline replay only: 1 keeps the animation pauses, 0 removes them (tests and evals)
+    # Runs are serialised per task (tool state is per process). A request waiting its turn sends a queued event this often, which also keeps the connection alive
+    # through CloudFront's 60 second origin timeout, and a queue longer than max_queue is refused up front with a clear message.
+    queue_keepalive_s: float = 10.0
+    max_queue: int = 5
     daily_budget_usd: float = 5.0  # alert when one day's model spend passes this
     # Sign-in. When a user pool is configured every endpoint except the health check needs a valid Amazon Cognito token. With none configured the API is for
     # local development only and live mode refuses to start.

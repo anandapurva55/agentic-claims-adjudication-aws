@@ -34,12 +34,14 @@ def _restore_state() -> None:
 # In AWS the site and the API share one CloudFront domain, so browsers never make a cross-origin call. Only the local dev server is listed by default.
 app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST"], allow_headers=["Authorization", "Content-Type"])
 app.add_middleware(RequestLogMiddleware)  # added last, so it is outermost and sees every request, including refused ones
-_live_lock = asyncio.Semaphore(1)  # tool state is per process, so live runs are serialised
+_live_lock = asyncio.Semaphore(1)  # tool state is per process, so runs are serialised
+_queue: list[object] = []  # requests waiting for the lock, oldest first
 
 
 class Review(BaseModel):
     """A reviewer's decision. Every field has a fixed set of values or a length limit, so a request cannot store arbitrary amounts of text in the audit log.
     Who the reviewer is and which role they hold come from the sign-in token, never from this body."""
+    run_id: str = Field(min_length=1, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")  # the run the reviewer was looking at
     action: Literal["accept", "override", "escalate"]
     final_decision: Literal["approve", "deny", "refer"] | None = None  # required for override
     note: str = Field(default="", max_length=1000)
@@ -90,7 +92,7 @@ def claim_file(claim_id: str, name: str) -> FileResponse:
 
 
 def _check_spend() -> None:
-    """The daily spend limit. Live runs stop once today's model spend reaches the limit. Replay, viewing and reviewing are free and keep working. A run
+    """The daily spend limit. Live runs stop once today's model spend reaches the limit. Viewing and reviewing cost nothing and keep working. A run
     that is already going is never cut off, so the day can overshoot by at most one run per task."""
     try:
         spent = stores.spend_today()
@@ -98,7 +100,7 @@ def _check_spend() -> None:
         raise HTTPException(503, "live runs are paused because today's spend could not be checked") from exc
     if spent >= settings.daily_budget_usd:
         raise HTTPException(429, f"the daily spend limit of ${settings.daily_budget_usd:.2f} has been reached (${spent:.2f} spent today): "
-                                 "live runs resume tomorrow, replay and review still work", headers={"Retry-After": "3600"})
+                                 "live runs resume tomorrow, viewing and reviewing still work", headers={"Retry-After": "3600"})
 
 
 @app.post("/api/claims/{claim_id}/run")  # POST: a run spends money and writes the audit log, so it is not something a link or an image tag can trigger
@@ -106,11 +108,31 @@ async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(defa
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
     chosen = mode or settings.mode
+    if chosen != settings.mode:
+        # A deployment runs in one mode. Letting a caller start a replay run in a live deployment would let anyone write the "AI recommendation" that a person then
+        # approves, and the replay baseline is the rule-of-thumb system this product exists to beat.
+        raise HTTPException(409, f"this deployment runs in {settings.mode} mode, so a {chosen} run is not allowed")
     if chosen == "live":
         _check_spend()  # refuse before any streaming starts, so the caller gets a real status code
+    if _live_lock.locked() and len(_queue) >= settings.max_queue:
+        raise HTTPException(503, f"the agents are busy: {len(_queue)} runs are already waiting, so try again in a minute", headers={"Retry-After": "30"})
 
     async def stream():
-        async with _live_lock:
+        me = object()
+        if _live_lock.locked():
+            _queue.append(me)
+            yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
+        try:
+            while True:  # wait for the turn, and say so at every interval: silence for 60 seconds would be a 504 at CloudFront
+                try:
+                    await asyncio.wait_for(_live_lock.acquire(), timeout=settings.queue_keepalive_s)
+                    break
+                except TimeoutError:
+                    yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
+        finally:
+            if me in _queue:
+                _queue.remove(me)  # also when the client gave up while waiting
+        try:
             if chosen == "live":  # runs queued behind another one are checked again once it is their turn
                 try:
                     _check_spend()
@@ -121,6 +143,8 @@ async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(defa
             async for ev in run_claim(claim_id, chosen):
                 yield f"data: {json.dumps(ev)}\n\n"
             yield "event: end\ndata: {}\n\n"
+        finally:
+            _live_lock.release()
 
     return StreamingResponse(stream(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
@@ -138,6 +162,10 @@ def review(claim_id: str, body: Review, who: auth.Identity = Depends(auth.authen
     if st["stage"] == "reviewed":
         raise HTTPException(409, "this claim already has a human decision")
     ai = st["ai"]
+    if ai.get("mode") != settings.mode:  # an older replay recommendation in a live deployment can no longer be approved
+        raise HTTPException(409, f"this recommendation came from a {ai.get('mode', 'unknown')} run, and this deployment runs in {settings.mode} mode: run the agents again")
+    if ai.get("run_id") != body.run_id:  # "accept" means accept what the reviewer looked at, not whatever is latest when the server reads it
+        raise HTTPException(409, "the recommendation changed since you looked at it (someone ran the agents again): reload the claim and review the new result")
     if body.action == "override":
         if body.final_decision is None:
             raise HTTPException(422, "override requires final_decision: approve, deny or refer")
