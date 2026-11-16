@@ -6,6 +6,7 @@ DynamoDB and S3 as configured.
 """
 from __future__ import annotations
 
+import logging
 import time
 import uuid
 
@@ -14,6 +15,8 @@ from strands.models import BedrockModel
 from app import pricing
 from app.runstate import state
 from app.services import stores
+
+log = logging.getLogger("adjudication.telemetry")
 
 
 def log_call(agent: str, model_id: str, usage: dict, latency_ms: int, wall_ms: int, error: str = "") -> dict:
@@ -53,5 +56,5 @@ class MeteredBedrockModel(BedrockModel):
         finally:
             try:
                 log_call(self._agent_name, self.config.get("model_id", ""), usage, int(latency), round((time.perf_counter() - t0) * 1000), error)
-            except Exception:  # telemetry must never break a claim
-                pass
+            except Exception:  # telemetry must never break a claim, but a lost record is worth a warning
+                log.warning("recording a model call failed", exc_info=True)

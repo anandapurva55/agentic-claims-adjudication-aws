@@ -70,9 +70,10 @@ def test_a_failing_call_is_logged_with_its_error_and_still_raises(monkeypatch):
     assert stores.calls()[-1]["error"] == "throttled"
 
 
-def test_a_telemetry_failure_never_breaks_the_claim(monkeypatch):
+def test_a_telemetry_failure_never_breaks_the_claim_but_is_logged(monkeypatch, caplog):
     monkeypatch.setattr(telemetry, "log_call", lambda *a, **k: (_ for _ in ()).throw(OSError("disk full")))
     assert _drain(_model(monkeypatch, [{"metadata": {"usage": {}}}])) == [{"metadata": {"usage": {}}}]
+    assert "recording a model call failed" in caplog.text
 
 
 # ---- Bedrock Data Automation ---------------------------------------------------------------------------------------------------------------------

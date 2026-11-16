@@ -6,10 +6,13 @@
 """
 from __future__ import annotations
 
+import logging
 import statistics
 
 from app.config import settings
 from app.services import stores
+
+log = logging.getLogger("adjudication.alerts")
 
 SPIKE_FACTOR = 3.0
 
@@ -42,5 +45,5 @@ def publish(run: dict) -> None:
             {"MetricName": "RunCostUSD", "Value": float(run.get("cost_usd", 0)), "Unit": "None"},
             {"MetricName": "RunLatencyMs", "Value": float(run.get("latency_ms", 0)), "Unit": "Milliseconds"},
             {"MetricName": "RunFailed", "Value": 0.0 if run.get("ok") else 1.0, "Unit": "Count"}])
-    except Exception:
-        pass
+    except Exception:  # metrics are an aid and must never fail a run, but a silent failure is hard to find
+        log.warning("publishing run metrics to CloudWatch failed", exc_info=True)

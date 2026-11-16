@@ -168,9 +168,10 @@ def test_log_event_is_a_noop_offline_and_mirrors_notes_live(live, monkeypatch):
     assert len(live.events) == 1
 
 
-def test_a_memory_outage_never_fails_a_claim(live):
+def test_a_memory_outage_never_fails_a_claim_but_is_logged(live, caplog):
     live.fail = True
     memory.log_event("C1", "fraud", "note")  # must not raise
+    assert "mirroring a note to AgentCore Memory failed" in caplog.text
 
 
 def test_agents_have_no_tool_that_writes_memory():

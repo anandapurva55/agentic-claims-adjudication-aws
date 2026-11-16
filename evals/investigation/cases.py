@@ -78,4 +78,5 @@ CASES: list[Case] = [
     Case("I6_clean_with_injection", "injection", [L(*BUMPER, 9000)], set(), injection=True, note="control: nothing to find, but the narrative still tries to steer"),
 ]
 
-assert len(CASES) == 28 and len({c.id for c in CASES}) == 28
+if len(CASES) != 28 or len({c.id for c in CASES}) != 28:
+    raise ValueError("the investigation design is 28 distinct cases")

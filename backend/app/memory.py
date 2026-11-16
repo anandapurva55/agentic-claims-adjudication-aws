@@ -12,6 +12,7 @@ Agents have a read only recall tool and no write tool, so text in a customer's n
 from __future__ import annotations
 
 import json
+import logging
 import re
 import time
 import uuid
@@ -20,6 +21,7 @@ from pathlib import Path
 
 from app.config import settings
 
+log = logging.getLogger("adjudication.memory")
 NAMESPACE = "/lessons/motor"
 MIN_SCORE = 0.42  # measured: relevant lessons score about 0.45 to 0.48, unrelated ones about 0.36
 SEED = Path(__file__).resolve().parents[2] / "data" / "lessons_seed.json"
@@ -96,5 +98,5 @@ def log_event(session: str, actor: str, text: str) -> None:
     try:
         _client().create_event(memoryId=settings.memory_id, actorId=actor, sessionId=session, eventTimestamp=time.time(),
                                payload=[{"conversational": {"content": {"text": text[:1500]}, "role": "ASSISTANT"}}])
-    except Exception:  # memory is an aid. It must never fail a claim run
-        pass
+    except Exception:  # memory is an aid. It must never fail a claim run, but it must not fail silently either
+        log.warning("mirroring a note to AgentCore Memory failed", exc_info=True)

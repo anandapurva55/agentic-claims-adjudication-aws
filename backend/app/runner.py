@@ -26,7 +26,8 @@ def _clean(text: str) -> str:
 
 def _memo(s: RunState) -> str:
     d = s.decision
-    assert d is not None, "a memo is only written once there is a decision"
+    if d is None:
+        raise RuntimeError("a memo is only written once there is a decision")
     head = {"approve": "APPROVE", "deny": "DENY", "refer": "REFER TO SENIOR ADJUSTER"}[d.decision]
     lines = [f"Decision: {head}. Payable: INR {d.payable:,}." if d.payable else f"Decision: {head}.",
              "Clauses: " + ", ".join(d.clauses) + ".", ""]

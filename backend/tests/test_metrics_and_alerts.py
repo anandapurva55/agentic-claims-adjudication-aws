@@ -72,3 +72,27 @@ def test_failure_rate_alert():
         _run(0.03, ok=i % 2 == 0, run=f"f{i}")
     fired = alerts.evaluate(_run(0.03, ok=False, run="last"))
     assert "failure_rate" in [a["rule"] for a in fired]
+
+
+def test_publishing_metrics_is_skipped_offline_sent_live_and_a_failure_is_logged_not_raised(monkeypatch, caplog):
+    import boto3
+    from app.config import settings
+    sent = []
+
+    class Cw:
+        def put_metric_data(self, **kw):
+            sent.append(kw)
+    monkeypatch.setattr(boto3, "client", lambda *a, **k: Cw())
+    run = {"cost_usd": 0.04, "latency_ms": 9000, "ok": True}
+    monkeypatch.setattr(settings, "mode", "replay")
+    alerts.publish(run)
+    assert sent == []  # nothing is sent from a replay run
+    monkeypatch.setattr(settings, "mode", "live")
+    alerts.publish(run)
+    assert {m["MetricName"] for m in sent[0]["MetricData"]} == {"RunCostUSD", "RunLatencyMs", "RunFailed"} and sent[0]["Namespace"] == "ClaimsAdjudication"
+
+    def broken(*a, **k):
+        raise RuntimeError("throttled")
+    monkeypatch.setattr(boto3, "client", broken)
+    alerts.publish(run)  # must not raise
+    assert "publishing run metrics to CloudWatch failed" in caplog.text
