@@ -4,6 +4,7 @@ import App from './App'
 import { DEMO, DemoBanner } from './components/DemoBanner'
 import Logo from './components/Logo'
 import SignIn from './components/SignIn'
+import type { Role } from './types'
 import { type AuthState, demoSignIn, initAuth, signIn, signOut } from './auth'
 import './styles.css'
 import './observability.css'
@@ -15,7 +16,7 @@ function Gate() {
 
   // Local development only: ?gate=preview and ?gate=noaccess show the two sign-in screens whatever the sign-in state. The buttons are the real ones, so they work when a user pool is configured. A production build ignores this.
   const preview = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('gate') : null
-  const demoLogin = DEMO ? (u: string, p: string) => { const ok = demoSignIn(u, p); if (ok) setState('signed-in'); return ok } : undefined
+  const demoLogin = DEMO ? (u: string, p: string, r: Role) => { const problem = demoSignIn(u, p, r); if (!problem) setState('signed-in'); return problem } : undefined
 
   let page
   if (preview === 'preview' || preview === 'noaccess') page = <SignIn noAccess={preview === 'noaccess'} onSignIn={() => void signIn()} onSignOut={signOut} />

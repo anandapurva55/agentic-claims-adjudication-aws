@@ -1,6 +1,6 @@
 // Sign-in with Amazon Cognito's hosted page, authorization code flow with PKCE. No password is ever typed into this application and no token appears in a URL.
 // When the site has no /config.json (local development) sign-in is off and the API runs in its open development mode.
-import { challengeFor, decodeClaims, randomString, roleOf } from './authlib'
+import { challengeFor, decodeClaims, passwordProblems, randomString, roleOf } from './authlib'
 import type { Role } from './types'
 
 type Config = { region: string; userPoolId: string; clientId: string; hostedUi: string }
@@ -15,13 +15,13 @@ let config: Config | null = null
 let session: Session | null = null
 let demoRole: Role = 'adjuster'
 
-// The interactive demo (GitHub Pages) has no server, so its accounts are fixed and checked in the browser. This is for showing the sign-in and the roles, and it
-// protects nothing: the demo holds no secrets, and the credentials are printed on the sign-in screen.
+// The interactive demo (GitHub Pages) has no server, so it has no accounts: any username works with any password that meets the real password rule, and the person
+// picks their role. This shows the sign-in and the two roles, and it protects nothing: the demo holds no secrets, and nothing typed here leaves the browser.
 const DEMO = Boolean(import.meta.env.VITE_STATIC_DEMO)
 const DEMO_KEY = 'claims.demo.session'
-export const DEMO_ACCOUNTS: { username: string; password: string; role: Role; label: string }[] = [
-  { username: 'demo.adjuster', password: 'demo', role: 'adjuster', label: 'Adjuster' },
-  { username: 'demo.senior', password: 'demo', role: 'senior', label: 'Senior adjuster' },
+export const DEMO_EXAMPLES: { username: string; password: string; role: Role; label: string }[] = [
+  { username: 'asha.iyer', password: 'Demo-Pass-2026!', role: 'adjuster', label: 'Adjuster' },
+  { username: 'priya.rao', password: 'Demo-Pass-2026!', role: 'senior', label: 'Senior adjuster' },
 ]
 
 function startDemoSession(username: string, role: Role): void {
@@ -29,20 +29,23 @@ function startDemoSession(username: string, role: Role): void {
   demoRole = role
 }
 
-/** Check the fixed demo credentials. The username is not case sensitive, the password is. */
-export function demoSignIn(username: string, password: string): boolean {
-  const a = DEMO_ACCOUNTS.find((x) => x.username === username.trim().toLowerCase())
-  if (!a || a.password !== password) return false
-  startDemoSession(a.username, a.role)
-  keep(DEMO_KEY, a.username)
-  return true
+/** Sign in to the demo with any username and a password that meets the rule. Returns null on success, or what to tell the person. */
+export function demoSignIn(username: string, password: string, role: Role): string | null {
+  const name = username.replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 40)
+  if (!name) return 'Enter a username.'
+  const missing = passwordProblems(password)
+  if (missing.length) return `The password needs ${missing.join(', ')}.`
+  startDemoSession(name, role)
+  keep(DEMO_KEY, JSON.stringify({ username: name, role }))
+  return null
 }
 
 function initDemo(): AuthState {
-  const a = DEMO_ACCOUNTS.find((x) => x.username === stored(DEMO_KEY))
-  if (!a) return 'signed-out'
-  startDemoSession(a.username, a.role)
-  return 'signed-in'
+  try {
+    const s = JSON.parse(stored(DEMO_KEY) ?? 'null') as { username?: string; role?: Role } | null
+    if (s?.username && (s.role === 'adjuster' || s.role === 'senior')) { startDemoSession(s.username, s.role); return 'signed-in' }
+  } catch { /* nothing usable saved */ }
+  return 'signed-out'
 }
 
 const redirectUri = () => `${window.location.origin}/`

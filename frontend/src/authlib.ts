@@ -47,3 +47,14 @@ export function initials(name: string): string {
   const letters = words.length >= 2 ? words[0][0] + words[1][0] : (words[0] ?? '?').slice(0, 1)
   return letters.toUpperCase()
 }
+
+/** What a password is missing, by the same rule the real user pool enforces (12 or more characters, upper and lower case, a digit and a symbol). Empty means it passes. */
+export function passwordProblems(pw: string): string[] {
+  const out: string[] = []
+  if (pw.length < 12) out.push('at least 12 characters')
+  if (!/[a-z]/.test(pw)) out.push('a lower case letter')
+  if (!/[A-Z]/.test(pw)) out.push('an upper case letter')
+  if (!/[0-9]/.test(pw)) out.push('a digit')
+  if (!/[^A-Za-z0-9]/.test(pw)) out.push('a symbol')
+  return out
+}

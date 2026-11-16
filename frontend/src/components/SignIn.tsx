@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { DEMO_ACCOUNTS } from '../auth'
+import { DEMO_EXAMPLES } from '../auth'
+import type { Role } from '../types'
 import Logo from './Logo'
 
 // Where "Request access" writes to. Set at build time (VITE_REQUEST_ACCESS_EMAIL), so no address is stored in the repository. Unset, the link is not shown.
@@ -26,34 +27,33 @@ function PreviewCard() {
   )
 }
 
-/** The interactive demo's sign-in: a form on this screen, with the demo accounts printed under it. The live site sends people to Cognito's page instead. */
-function DemoForm({ onDemoSignIn }: { onDemoSignIn: (username: string, password: string) => boolean }) {
+/** The interactive demo's sign-in: any username, any password that meets the rule, and a choice of role (a real account's role comes from its group). */
+function DemoForm({ onDemoSignIn }: { onDemoSignIn: (username: string, password: string, role: Role) => string | null }) {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
-  const [bad, setBad] = useState(false)
-  const submit = (e: React.FormEvent) => { e.preventDefault(); setBad(!onDemoSignIn(user, pass)) }
+  const [role, setRole] = useState<Role>('adjuster')
+  const [error, setError] = useState('')
+  const submit = (e: React.FormEvent) => { e.preventDefault(); setError(onDemoSignIn(user, pass, role) ?? '') }
   return (
     <form onSubmit={submit} className="signin-form-fields">
-      <label>Username<input value={user} onChange={(e) => { setUser(e.target.value); setBad(false) }} autoComplete="username" placeholder="Enter username" autoFocus /></label>
-      <label>Password<input type="password" value={pass} onChange={(e) => { setPass(e.target.value); setBad(false) }} autoComplete="current-password" placeholder="Enter password" /></label>
-      {bad && <p className="signin-error" role="alert">That username and password do not match a demo account.</p>}
-      <button type="submit" className="signin-btn signin-primary">Sign in</button>
-      <div className="signin-demo">
-        <div className="signin-demo-title">Demo accounts</div>
-        {DEMO_ACCOUNTS.map((a) => (
-          <button type="button" key={a.username} className="signin-demo-row" onClick={() => { setUser(a.username); setPass(a.password); setBad(false) }}>
-            <span><b>{a.label}</b><small>{a.role === 'senior' ? 'Can approve payouts above INR 200,000' : 'Needs a senior adjuster above INR 200,000'}</small></span>
-            <code>{a.username} / {a.password}</code>
-          </button>
+      <div className="signin-note" role="note"><b>Demo sign in.</b> Enter any username and any password that meets the rule: at least 12 characters, with upper and lower case letters, a digit and a symbol. Nothing is checked or sent anywhere. In the live system an administrator provides each person's credentials, so there is no sign up.</div>
+      <label>Username<input value={user} onChange={(e) => { setUser(e.target.value); setError('') }} autoComplete="username" placeholder="Any username" autoFocus /></label>
+      <label>Password<input type="password" value={pass} onChange={(e) => { setPass(e.target.value); setError('') }} autoComplete="new-password" placeholder="12+ characters, Aa, 1, !" /></label>
+      <fieldset className="signin-roles"><legend>Sign in as</legend>
+        {(['adjuster', 'senior'] as Role[]).map((r) => (
+          <label key={r} className={role === r ? 'on' : ''}><input type="radio" name="role" checked={role === r} onChange={() => setRole(r)} />
+            <span><b>{r === 'senior' ? 'Senior adjuster' : 'Adjuster'}</b><small>{r === 'senior' ? 'Can approve above INR 200,000' : 'Needs a senior above INR 200,000'}</small></span></label>
         ))}
-        <p className="signin-help">Click an account to fill it in. These are fixed demo accounts, checked in your browser.</p>
-      </div>
+      </fieldset>
+      {error && <p className="signin-error" role="alert">{error}</p>}
+      <button type="submit" className="signin-btn signin-primary">Sign in</button>
+      <p className="signin-help">In a hurry? <button type="button" className="signin-link" onClick={() => { const x = DEMO_EXAMPLES[0]; setUser(x.username); setPass(x.password); setRole(x.role); setError('') }}>Fill in an example</button></p>
     </form>
   )
 }
 
 /** Shown when nobody is signed in, and when someone is signed in with an account that has no role. */
-export default function SignIn({ noAccess, onSignIn, onSignOut, onDemoSignIn }: { noAccess: boolean; onSignIn: () => void; onSignOut: () => void; onDemoSignIn?: (u: string, p: string) => boolean }) {
+export default function SignIn({ noAccess, onSignIn, onSignOut, onDemoSignIn }: { noAccess: boolean; onSignIn: () => void; onSignOut: () => void; onDemoSignIn?: (u: string, p: string, r: Role) => string | null }) {
   return (
     <div className={`signin${onDemoSignIn ? ' signin-compact' : ''}`}>
       <section className="signin-form">
@@ -71,7 +71,7 @@ export default function SignIn({ noAccess, onSignIn, onSignOut, onDemoSignIn }: 
               <p className="signin-sub">Every recommendation arrives with its clauses, its calculation and its risk signals. You make the call.</p>
               {onDemoSignIn && <DemoForm onDemoSignIn={onDemoSignIn} />}
               {!onDemoSignIn && <button className="signin-btn signin-primary" onClick={onSignIn}>Continue with your account</button>}
-              {!onDemoSignIn && <p className="signin-help">Accounts are created by an administrator. You will go to a secure sign-in page and come straight back.
+              {!onDemoSignIn && <p className="signin-help">There is no sign up: an administrator provides your credentials. You will go to a secure sign-in page and come straight back.
                 {REQUEST_ACCESS && <> No account? <a href={`mailto:${REQUEST_ACCESS}?subject=${encodeURIComponent('Access request: Claims Adjudication Copilot')}`}>Request access</a>.</>}</p>}
             </>
           )}

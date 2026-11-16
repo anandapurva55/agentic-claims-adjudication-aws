@@ -13,7 +13,7 @@ Built with: a **React** 19, **TypeScript** and **Vite** frontend; a **FastAPI** 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
 ![Cognito](https://img.shields.io/badge/Cognito-sign%20in-DD344C)
-![Tests](https://img.shields.io/badge/tests-456%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-460%20passing-brightgreen)
 
 ## Summary
 
@@ -25,7 +25,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 
 *A live run on the deployed system. The photo is read at ingestion, an agent recalls a lesson from long term memory, the photo and the repair estimate disagree, and the recommendation waits for a person.*
 
-**Try it.** An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. It opens on the sign-in screen, with two demo accounts printed under the form, and everything after that is up to the visitor: pick a claim, run it, review it, try the senior approval rule. The AI agents are switched off there to avoid cost, so each run replays the rule baseline, and a banner says so on every page. [Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
+**Try it.** An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. It opens on the sign-in screen, where any username works with any password that meets the real password rule (the screen says so), and everything after that is up to the visitor: pick a claim, run it, review it, try the senior approval rule. The AI agents are switched off there to avoid cost, so each run replays the rule baseline, and a banner says so on every page. [Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
 
 | Measure | Result | n |
 |---|---|---|
@@ -36,7 +36,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 456 (409 Python, 47 frontend) | |
+| Automated tests | 460 (409 Python, 51 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -333,7 +333,7 @@ Signed out visitors see the sign in screen: the form on the left and a fixed exa
 
 ![Signing in: the app's screen, Cognito's page, the credentials, and the workbench with the account menu](docs/images/demo/sign_in.gif)
 
-**Passwords.** Sign up is off: an administrator creates each account, and its group sets the role. Someone without an account sees a "Request access" link that writes to an address set at build time. "Forgot your password?" sends a code by email, which needs a verified email address on the account, so administrators create users with one. A user created without an email has no way to reset a password, which this project found when the first test user could not.
+**Passwords.** Sign up is off: an administrator creates each account, and its group sets the role. The sign-in screen says so: there is no sign up, and an administrator provides the credentials. Someone without an account sees a "Request access" link that writes to an address set at build time. "Forgot your password?" sends a code by email, which needs a verified email address on the account, so administrators create users with one. A user created without an email has no way to reset a password, which this project found when the first test user could not.
 
 ![The forgot password page](docs/images/app/signin_forgot_password.png)
 
@@ -354,7 +354,7 @@ Signed out visitors see the sign in screen: the form on the left and a fixed exa
 
 The mode badge states whether a run was the offline baseline or live on **Bedrock**.
 
-**Tests.** 47 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) the **API** layer against a fake server, and the interactive demo's review rules and sign in (below). Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
+**Tests.** 51 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) the **API** layer against a fake server, and the interactive demo's review rules and sign in (below). Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
 
@@ -366,7 +366,7 @@ GitHub Pages serves files, so it cannot run the **FastAPI** backend, **Cognito**
 - **A fetch layer instead of an API.** A small module in the frontend (`frontend/src/demo/staticBackend.ts`) answers the app's `/api` calls from that saved output. A run plays back at a natural pace, the graph lights up, and the recommendation is stored in the visitor's own browser, so a reload keeps their work and Reset demo clears it. Nothing is sent anywhere, and nothing starts by itself: the visitor picks the claim and presses Run agents.
 - **The same sign-off rules.** The review gate is a port of the server's: a review must name the run it looked at, an adjuster cannot approve above the authority limit but can escalate, an override needs a decision and a reason, and one decision settles a claim. 16 tests pin this, and nine deliberate breakages (no four eyes check, no run match, recording at the start of a run, a second decision allowed, a short reason accepted, claiming a lesson was stored, allowing a live run, trusting an old saved state, treating escalation as approval) were each caught.
 - **What it leaves out, and says so.** The agents do not run, so decisions come from the rule baseline. A reason typed for an override is not scanned for prompt attacks and is not stored as a long term lesson, and the response says no lesson was stored. The attack lab answers the sample attacks only. The Observability tab shows screenshots from the live deployment instead of invented numbers.
-- **Sign in is a stand-in.** The demo opens on the sign-in screen and takes two fixed accounts, `demo.adjuster` and `demo.senior` (password `demo`), checked in the browser and printed on the screen. It shows the sign-in and the two roles, and it protects nothing, because a public static site holds nothing to protect. Signing out returns to the sign-in screen. 6 tests cover it, and 6 deliberate breakages (password unchecked, role ignored, case sensitive username, sign out keeping the login, a reload losing it, a network call) were each caught.
+- **Sign in is a stand-in.** The demo opens on the sign-in screen and takes any username with any password that meets the same rule as the real user pool: 12 or more characters with upper and lower case letters, a digit and a symbol. The person picks Adjuster or Senior adjuster, because a made-up user has no group to give them a role. The screen states all of this, and that in the live system an administrator provides each person's credentials, so there is no sign up. Nothing typed is checked against an account or leaves the browser, and the sign in protects nothing, because a public static site holds nothing to protect. A reload keeps the visitor signed in, and signing out returns to the sign-in screen. 10 tests cover it, and 11 deliberate breakages (the rule skipped, a shorter minimum, no symbol or digit required, the role ignored, an empty or uncleaned or over long username, sign out keeping the login, a reload losing it, a saved role not checked) were each caught.
 - **Cost.** None. The workflow `.github/workflows/pages.yml` saves the data from the backend, builds the site and publishes it on every push to `main`.
 
 ## Evaluation
@@ -704,7 +704,7 @@ uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
 uv run pytest                                   # 409 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
-(cd frontend && npm ci && npm test)             # 47 frontend tests
+(cd frontend && npm ci && npm test)             # 51 frontend tests
 
 # run the app locally, offline baseline, no AWS and no sign in needed
 CLAIMS_MODE=replay uv run uvicorn app.api.main:app --app-dir backend --port 8000 &
@@ -753,7 +753,7 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, and keep tokens in memory with a refresh cookie |
 | Password reset uses Cognito's default email sender (about 50 emails a day, from a shared address) and needs a verified email on the account | Reset suits a handful of users, and a user without an email cannot reset | Amazon SES as the sender, and an administrator process that always sets the email |
 | The styled sign in page is defined in the CDK app and covered by template tests (managed login, the Essentials plan, the branding for the app's client, sign up off). It was checked in a browser on a standalone user pool built with the same settings, and has not yet been deployed as part of the full stack | A full deployment could still reject a property the tests cannot see | The next deployment confirms it, and its result belongs in the deployment evidence |
-| The interactive demo on GitHub Pages does not run the agents, the guardrail or memory, and its sign in accepts fixed public accounts | A visitor sees rule baseline runs, not live agent runs, cannot scan their own text, and the sign in protects nothing | Run the live deployment for anyone who needs the real thing, as the demos in this document show |
+| The interactive demo on GitHub Pages does not run the agents, the guardrail or memory, and its sign in accepts any username with a rule-meeting password | A visitor sees rule baseline runs, not live agent runs, cannot scan their own text, and the sign in protects nothing | Run the live deployment for anyone who needs the real thing, as the demos in this document show |
 | The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user and reserve spend before a run |
 | The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context, and that rules alone find 79% at no cost. It does not show the agent finds problems no rule covers | More models, cases that no rule covers, and real adjuster feedback |
 | The free-form benchmark has 124 claims and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |
