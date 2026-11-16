@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { api } from './api'
+import { currentSession, setDemoRole, signOut } from './auth'
 import AgentGraph, { type NodeInfo } from './components/AgentGraph'
 import ClaimQueue from './components/ClaimQueue'
 import DecisionPanel from './components/DecisionPanel'
@@ -28,12 +29,13 @@ export default function App() {
   const [running, setRunning] = useState(false)
   const [mode, setMode] = useState('replay')
   const [metrics, setMetrics] = useState<Metrics | null>(null)
-  const [role, setRole] = useState<Role>('adjuster')
+  const session = currentSession()
+  const [role, setRole] = useState<Role>(session?.role ?? 'adjuster')
   const [outcome, setOutcome] = useState('')
   const [rstats, setRstats] = useState<ReviewStats | null>(null)
   const [autorun, setAutorun] = useState(false)
   const [still, setStill] = useState(false)
-  const es = useRef<EventSource | null>(null)
+  const abort = useRef<AbortController | null>(null)
   const ids = useRef(0)
 
   const loadClaims = useCallback(() => api.claims().then(setClaims).catch((e) => setError(String(e))), [])
@@ -71,7 +73,7 @@ export default function App() {
   useEffect(() => { if (tab === 'observability') { api.metrics().then(setMetrics).catch(() => undefined); api.reviewStats().then(setRstats).catch(() => undefined) } }, [tab, running, claims])
 
   const select = (id: string) => {
-    es.current?.close()
+    abort.current?.abort()
     setRunning(false); setSelected(id); setResult(null); setError(''); setStates({}); setPulses([]); setTrace([]); setOutcome('')
     api.claim(id).then((c) => {
       setExtracted(c.extracted)
@@ -86,12 +88,12 @@ export default function App() {
 
   const run = () => {
     if (!selected) return
-    es.current?.close()
+    abort.current?.abort()
     setResult(null); setError(''); setStates({}); setPulses([]); setTrace([]); setRunning(true)
-    const src = new EventSource(api.runUrl(selected, mode))
-    es.current = src
-    src.onmessage = (m) => {
-      const ev = JSON.parse(m.data)
+    const ctl = new AbortController()
+    abort.current = ctl
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onEvent = (ev: any) => {
       switch (ev.type) {
         case 'node':
           setStates((s) => ({ ...s, [ev.id]: { state: ev.state, detail: ev.detail ?? '' } }))
@@ -110,15 +112,16 @@ export default function App() {
         case 'error': setError(ev.message); addTrace(ev.t, 'system', ev.message, 'error'); break
       }
     }
-    src.addEventListener('end', () => { src.close(); setRunning(false) })
-    src.onerror = () => { src.close(); setRunning(false) }
+    api.run(selected, mode, onEvent, ctl.signal)
+      .catch((e: Error) => { if (!ctl.signal.aborted) setError(e.message) })  // includes the 429 text when the daily spend limit is reached
+      .finally(() => { if (abort.current === ctl) setRunning(false) })
   }
 
   useEffect(() => { if (autorun) { setAutorun(false); run() } }, [autorun]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const review = async (b: { action: string; final_decision?: string; note?: string }) => {
     if (!selected) return
-    const r = await api.review(selected, { ...b, role, reviewer: role === 'senior' ? 'S. Rao' : 'A. Iyer' })
+    const r = await api.review(selected, b)
     setOutcome(r.outcome + (r.lesson_stored ? ' Your reason was saved to long term memory, so the agents can recall it on similar claims.' : ''))
     setStates((s) => ({ ...s, human: { state: 'done', detail: b.action === 'accept' ? 'accepted' : b.action } }))
     // The human decision is written back to the audit store: show it as a bolt.
@@ -143,12 +146,21 @@ export default function App() {
           ))}
         </nav>
         <div className="env">
-          <label className="role" title="Who is signed in. Payouts above the authority limit need a senior adjuster.">
-            <span className="muted">Signed in as</span>
-            <select value={role} onChange={(e) => setRole(e.target.value as Role)} aria-label="Role">
-              <option value="adjuster">Adjuster</option><option value="senior">Senior adjuster</option>
-            </select>
-          </label>
+          {session ? (
+            // Signed in: the name and role come from the token, and the server decides what this person may do.
+            <span className="role" title="Payouts above the authority limit need a senior adjuster.">
+              <span className="muted">Signed in as</span> <b>{session.username}</b> <span className="chip">{session.role === 'senior' ? 'Senior adjuster' : 'Adjuster'}</span>
+              <button className="btn" onClick={signOut}>Sign out</button>
+            </span>
+          ) : (
+            // Local development only: sign-in is off, so the role is picked here and sent as a demo header.
+            <label className="role" title="Development mode: sign-in is off. Payouts above the authority limit need a senior adjuster.">
+              <span className="muted">Demo role</span>
+              <select value={role} onChange={(e) => { setDemoRole(e.target.value as Role); setRole(e.target.value as Role) }} aria-label="Role">
+                <option value="adjuster">Adjuster</option><option value="senior">Senior adjuster</option>
+              </select>
+            </label>
+          )}
           {health && <><span className="chip">{health.region}</span><span className={`chip ${health.mode === 'live' ? 'chip-ok' : ''}`}>{health.mode}</span></>}
         </div>
       </header>
