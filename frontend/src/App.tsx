@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { api } from './api'
-import { currentSession, setDemoRole, signOut } from './auth'
+import { currentSession, demoSwitchRole, setDemoRole, signOut } from './auth'
 import AgentGraph, { type NodeInfo } from './components/AgentGraph'
 import ClaimQueue from './components/ClaimQueue'
 import { DEMO, DemoObservability } from './components/DemoBanner'
@@ -163,7 +163,7 @@ export default function App() {
             </label>
           )}
           {health && <><span className="chip">{health.region}</span><span className={`chip ${health.mode === 'live' ? 'chip-ok' : ''}`}>{health.mode}</span></>}
-          {session && <UserMenu name={session.username} role={session.role} onSignOut={signOut} />}
+          {session && <UserMenu name={session.username} role={role} onSignOut={signOut} onSwitchRole={DEMO ? (r) => { demoSwitchRole(r); setRole(r) } : undefined} />}
         </div>
       </header>
 

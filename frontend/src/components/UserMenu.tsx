@@ -3,7 +3,7 @@ import { initials } from '../authlib'
 import type { Role } from '../types'
 
 /** The signed-in person: initials in the header, and a menu with their name, role, what that role may approve, and sign out. */
-export default function UserMenu({ name, role, onSignOut }: { name: string; role: Role; onSignOut: () => void }) {
+export default function UserMenu({ name, role, onSignOut, onSwitchRole }: { name: string; role: Role; onSignOut: () => void; onSwitchRole?: (r: Role) => void }) {
   const [open, setOpen] = useState(false)
   const box = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -20,6 +20,10 @@ export default function UserMenu({ name, role, onSignOut }: { name: string; role
         <div className="um-menu" role="menu">
           <div className="um-who"><b>{name}</b><small>{role === 'senior' ? 'Senior adjuster' : 'Adjuster'}</small>
             <small>{role === 'senior' ? 'Can approve payouts above INR 200,000' : 'Payouts above INR 200,000 need a senior adjuster'}</small></div>
+          {onSwitchRole && (
+            <button role="menuitem" className="um-item" onClick={() => { onSwitchRole(role === 'senior' ? 'adjuster' : 'senior'); setOpen(false) }}>
+              Switch to {role === 'senior' ? 'adjuster' : 'senior adjuster'} <small className="um-demo">demo</small></button>
+          )}
           <button role="menuitem" className="um-item" onClick={onSignOut}>Sign out</button>
         </div>
       )}

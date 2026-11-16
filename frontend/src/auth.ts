@@ -16,28 +16,30 @@ let session: Session | null = null
 let demoRole: Role = 'adjuster'
 
 // The interactive demo (GitHub Pages) has no server, so it has no accounts: any username works with any password that meets the real password rule, and the person
-// picks their role. This shows the sign-in and the two roles, and it protects nothing: the demo holds no secrets, and nothing typed here leaves the browser.
+// switches role from the account menu. This shows the sign-in and the two roles, and it protects nothing: the demo holds no secrets, and nothing typed here leaves the browser.
 const DEMO = Boolean(import.meta.env.VITE_STATIC_DEMO)
 const DEMO_KEY = 'claims.demo.session'
-export const DEMO_EXAMPLES: { username: string; password: string; role: Role; label: string }[] = [
-  { username: 'asha.iyer', password: 'Demo-Pass-2026!', role: 'adjuster', label: 'Adjuster' },
-  { username: 'priya.rao', password: 'Demo-Pass-2026!', role: 'senior', label: 'Senior adjuster' },
-]
-
 function startDemoSession(username: string, role: Role): void {
   session = { idToken: 'demo', expiresAt: Date.now() + 24 * 3_600_000, username, role }
   demoRole = role
 }
 
 /** Sign in to the demo with any username and a password that meets the rule. Returns null on success, or what to tell the person. */
-export function demoSignIn(username: string, password: string, role: Role): string | null {
+export function demoSignIn(username: string, password: string): string | null {
   const name = username.replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 40)
   if (!name) return 'Enter a username.'
   const missing = passwordProblems(password)
   if (missing.length) return `The password needs ${missing.join(', ')}.`
-  startDemoSession(name, role)
-  keep(DEMO_KEY, JSON.stringify({ username: name, role }))
+  startDemoSession(name, 'adjuster')  // a made-up user has no group, so they start as an adjuster and can switch from the account menu
+  keep(DEMO_KEY, JSON.stringify({ username: name, role: 'adjuster' }))
   return null
+}
+
+/** The demo's stand-in for being in a different group: the account menu switches between the two roles. */
+export function demoSwitchRole(role: Role): void {
+  if (!DEMO || !session) return
+  startDemoSession(session.username, role)
+  keep(DEMO_KEY, JSON.stringify({ username: session.username, role }))
 }
 
 function initDemo(): AuthState {

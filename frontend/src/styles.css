@@ -292,26 +292,8 @@ body { overflow: hidden; }
 .signin-form-fields input { height: 46px; border-radius: 10px; border: 1px solid #2a3454; background: #0f1424; color: var(--text); padding: 0 14px; font: 400 15px inherit; }
 .signin-form-fields input:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
 .signin-error { margin: 0; color: #fca5a5; font-size: 14px; }
-.signin-demo { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
-.signin-demo-title { font-size: 12px; font-weight: 600; letter-spacing: .4px; text-transform: uppercase; color: #8e9ac0; }
-.signin-demo-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: left; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; font: inherit; }
-.signin-demo-row:hover { border-color: var(--cyan); }
-.signin-demo-row b { display: block; font-size: 14px; } .signin-demo-row small { display: block; color: var(--mute); font-size: 12.5px; }
-.signin-demo-row code { font-size: 12px; white-space: nowrap; }
 
-/* The demo's sign-in carries a form and a role choice, so it is tighter, to fit one screen */
-.signin-note { font-size: 13.5px; line-height: 1.45; color: var(--mute); border: 1px solid rgba(251,191,36,.3); background: rgba(251,191,36,.06); border-radius: 10px; padding: 9px 12px; } .signin-note b { color: #fde68a; }
-.signin-roles { border: 0; padding: 0; margin: 2px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .signin-roles legend { font-weight: 600; font-size: 14px; color: #f4f7fc; padding: 0 0 6px; }
-.signin-roles label { display: flex; align-items: flex-start; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; cursor: pointer; font-weight: 400; background: var(--panel); }
-.signin-roles label.on { border-color: var(--cyan); } .signin-roles input { height: auto; margin-top: 3px; accent-color: #22d3ee; }
-.signin-roles b { display: block; font-size: 14px; color: var(--text); } .signin-roles small { display: block; font-size: 12px; color: var(--mute); font-weight: 400; }
-.signin-link { background: none; border: 0; padding: 0; color: var(--cyan); font: inherit; font-weight: 600; cursor: pointer; } .signin-link:hover { text-decoration: underline; }
-.signin-compact .signin-form { padding: 24px 56px 20px; }
-.signin-compact .signin-mid { padding: 14px 0 6px; }
-.signin-compact h1 { font-size: 26px; margin-bottom: 8px; }
-.signin-compact .signin-sub { font-size: 14.5px; margin-bottom: 12px; max-width: 440px; }
-.signin-compact .signin-form-fields { gap: 9px; max-width: 440px; }
-.signin-compact .signin-form-fields input[type=text], .signin-compact .signin-form-fields input[type=password], .signin-compact .signin-form-fields input:not([type]) { height: 40px; }
-.signin-compact .signin-btn { height: 42px; }
-.signin-compact .signin-help { margin: 0; font-size: 13px; }
-.signin-compact .signin-legal { padding-top: 6px; }
+
+.signin-show { display: flex !important; grid-template-columns: none; align-items: center; gap: 8px !important; font-weight: 400 !important; color: var(--text) !important; }
+.signin-show input { height: auto !important; width: 16px; accent-color: #22d3ee; }
+.um-demo { margin-left: 6px; font: 600 10px var(--mono); color: var(--amber); border: 1px solid rgba(251,191,36,.4); border-radius: 6px; padding: 1px 6px; text-transform: uppercase; }
