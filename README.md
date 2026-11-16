@@ -32,8 +32,6 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 
 *A live run on the deployed system. The photo is read at ingestion, an agent recalls a lesson from long term memory, the photo and the repair estimate disagree, and the recommendation waits for a person.*
 
-**Try it.** An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. It opens on the same sign-in screen as the live site, then a login page laid out like Cognito's, where any username works with any password that meets the real password rule, and everything after that is up to the visitor: pick a claim, run it, review it, try the senior approval rule. The AI agents are switched off there to avoid cost, so each run replays the rule baseline, and a banner says so on every page. [Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
-
 | Measure | Result | n |
 |---|---|---|
 | Decision accuracy on claims with wording the system had not seen | **98.7%** (95% interval 93.1% to 99.8%) | 78 claims in two held-out sets |
@@ -47,12 +45,24 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
+## Try it
+
+An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. The AI agents are switched off there to avoid cost, so each run replays the rule baseline on real claim data, and a banner says so on every page. Everything else works, and everything after the sign-in is up to the visitor.
+
+1. **Sign in.** The demo opens on the same sign-in screen as the live site, then a login page laid out like Cognito's. Any username works with any password that meets the real password rule: 12 or more characters with upper and lower case letters, a digit and a symbol. A checklist under the password box turns from red to green as each requirement is met. There is no sign up, as in the live system.
+2. **Pick a claim** in the queue. CLM-2026044 carries an injected instruction in its narrative, and CLM-2026043 needs a senior adjuster.
+3. **Run the agents** and watch the graph and the trace.
+4. **Make the call** in the Decision panel: accept, override or escalate. Then open your initials, top right, and switch to senior adjuster to try the approval rule above INR 200,000.
+
+[Interactive demo](#interactive-demo-on-github-pages) explains how it works and what it leaves out.
+
 ---
 
 ## Contents
 
 | Section | What it covers |
 |---|---|
+| [Try it](#try-it) | An interactive demo in the browser, with no server and no cost |
 | [Problem and scope](#problem-and-scope) | The problem, the user, and what is in and out of scope |
 | [Tenets](#tenets) | The principles that settled the design questions |
 | [Solution architecture](#solution-architecture) | AWS services, the three paths and the release pipeline |
