@@ -103,6 +103,13 @@ def _check_spend() -> None:
                                  "live runs resume tomorrow, viewing and reviewing still work", headers={"Retry-After": "3600"})
 
 
+def _abandon(waiting: asyncio.Future[bool]) -> None:
+    """A request stopped waiting for its turn. A wait that is still pending is cancelled, so it no longer holds a place in the lock's line. A wait that was granted at
+    that same moment is handed back: nobody will run, so nobody would ever release it and the lock would stay held until the task restarted."""
+    waiting.cancel()
+    waiting.add_done_callback(lambda w: _live_lock.release() if not w.cancelled() and w.exception() is None else None)
+
+
 @app.post("/api/claims/{claim_id}/run")  # POST: a run spends money and writes the audit log, so it is not something a link or an image tag can trigger
 async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(default=None)) -> StreamingResponse:
     if claim_id not in data.list_claim_ids():
@@ -119,19 +126,29 @@ async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(defa
 
     async def stream():
         me = object()
+        waiting: asyncio.Future[bool] | None = None
         if _live_lock.locked():
             _queue.append(me)
-            yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
-        try:
-            while True:  # wait for the turn, and say so at every interval: silence for 60 seconds would be a 504 at CloudFront
-                try:
-                    await asyncio.wait_for(_live_lock.acquire(), timeout=settings.queue_keepalive_s)
-                    break
-                except TimeoutError:
-                    yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
-        finally:
-            if me in _queue:
-                _queue.remove(me)  # also when the client gave up while waiting
+            # One acquire per waiter, made before anything is sent, so the lock's own line is the order the requests arrived in. Waiting again after a keepalive
+            # must never issue a new acquire: that would send the waiter to the back of the line.
+            waiting = asyncio.ensure_future(_live_lock.acquire())
+        else:
+            await _live_lock.acquire()  # free: taken at once, with no point where another request could slip in
+        if waiting is not None:
+            try:
+                yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
+                while True:  # wait for the turn, and say so at every interval: silence for 60 seconds would be a 504 at CloudFront
+                    try:
+                        await asyncio.wait_for(asyncio.shield(waiting), timeout=settings.queue_keepalive_s)  # the shield keeps a timeout from cancelling the wait
+                        break
+                    except TimeoutError:
+                        yield f"event: queued\ndata: {json.dumps({'position': _queue.index(me) + 1})}\n\n"
+            except BaseException:  # the client went away (or the request was cancelled) while waiting
+                _abandon(waiting)
+                raise
+            finally:
+                if me in _queue:
+                    _queue.remove(me)
         try:
             if chosen == "live":  # runs queued behind another one are checked again once it is their turn
                 try:

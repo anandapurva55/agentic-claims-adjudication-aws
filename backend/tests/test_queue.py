@@ -137,3 +137,50 @@ def test_a_client_that_gives_up_while_waiting_does_not_hold_a_place_or_the_lock(
     a.join(5), c.join(5)
     assert results_of(out["c"]["lines"]) == [2]  # c ran right after a: the lock was not leaked by b
     assert wait_until(lambda: not main._live_lock.locked() and main._queue == [])
+
+
+def test_waiters_run_in_arrival_order_even_when_their_keepalives_do_not_line_up(server, monkeypatch):
+    """The failure this pins: a waiter that said 'still waiting' used to issue a fresh acquire, which sent it to the back of the lock's line. Waiters whose timeouts
+    fall in a different order from their arrivals then ran out of order, and the place each was told did not match who ran next. Arrivals 0.035 s apart against a
+    0.05 s keepalive make the timeouts wrap around, so with the old code the order is scrambled on every run, not only on a slow machine."""
+    monkeypatch.setattr(settings, "max_queue", 5)
+    out = {}
+    threads = [start(server, out, "a")]
+    assert wait_until(lambda: len(server.started) == 1)
+    for key in "bcde":
+        threads.append(start(server, out, key))
+        time.sleep(0.035)
+    assert wait_until(lambda: all(len(queued(out[k]["lines"])) >= 3 for k in "bcde")), "every waiter must keep saying where it is"
+    for rank, key in enumerate("bcde", start=1):  # nobody has left yet, so each place is exactly the arrival rank, at every keepalive
+        assert set(queued(out[key]["lines"])) == {rank}, key
+    server.gate.set()
+    for t in threads:
+        t.join(5)
+    assert [results_of(out[k]["lines"]) for k in "abcde"] == [[1], [2], [3], [4], [5]]  # the place shown was who ran next
+
+
+def test_a_wait_that_is_given_up_never_holds_a_place_or_the_lock(monkeypatch):
+    """_abandon covers the three moments a request can stop waiting: after the lock was granted to it, while it is still in line, and before it ever ran."""
+    async def scenario():
+        lock = asyncio.Semaphore(1)
+        monkeypatch.setattr(main, "_live_lock", lock)
+        granted = asyncio.ensure_future(lock.acquire())  # the lock is granted at the very moment the client goes away
+        await asyncio.sleep(0)
+        assert lock.locked()
+        main._abandon(granted)
+        await asyncio.sleep(0.01)
+        assert not lock.locked(), "a grant nobody will use must be handed back, or the lock stays held until the task restarts"
+        await lock.acquire()  # someone else is running
+        pending = asyncio.ensure_future(lock.acquire())  # still in line
+        await asyncio.sleep(0)
+        assert not pending.done()
+        main._abandon(pending)
+        await asyncio.sleep(0.01)
+        lock.release()  # the runner finishes: a cancelled waiter must not take the lock
+        assert pending.cancelled() and not lock.locked()
+        early = asyncio.ensure_future(lock.acquire())  # given up before it ever started
+        main._abandon(early)
+        await asyncio.sleep(0.01)
+        assert not lock.locked()
+        await asyncio.wait_for(lock.acquire(), 0.1)  # and the next request can still run at once
+    asyncio.run(scenario())
