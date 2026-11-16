@@ -13,7 +13,7 @@ Built with: a **React** 19, **TypeScript** and **Vite** frontend; a **FastAPI** 
 ![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
 ![Cognito](https://img.shields.io/badge/Cognito-sign%20in-DD344C)
-![Tests](https://img.shields.io/badge/tests-431%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-450%20passing-brightgreen)
 
 ## Summary
 
@@ -25,6 +25,8 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 
 *A live run on the deployed system. The photo is read at ingestion, an agent recalls a lesson from long term memory, the photo and the repair estimate disagree, and the recommendation waits for a person.*
 
+**Try it.** A [recorded demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. The 63 claims, their photos and their runs are recorded from the real backend. The AI agents are not running there, to avoid cost, so each run replays the rule baseline and the site says so on every page. [Recorded demo](#recorded-demo-on-github-pages) explains how it works and what it leaves out.
+
 | Measure | Result | n |
 |---|---|---|
 | Decision accuracy on claims with wording the system had not seen | **98.7%** (95% interval 93.1% to 99.8%) | 78 claims in two held-out sets |
@@ -34,7 +36,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 431 (407 Python, 24 frontend) | |
+| Automated tests | 450 (409 Python, 41 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -323,15 +325,25 @@ With defences on, the **guardrail** flagged instruction override 5 of 5, hidden 
 
 The frontend is a **React** 19 and **TypeScript** single page application built with **Vite**. It starts a claim run with a `POST` and reads the server-sent event stream from the response with `fetch`, because `EventSource` can only send `GET` and cannot carry the sign in token. It draws the agent graph as hand-written **SVG** animation, so each node and pulse corresponds to an event emitted by a **Strands** hook or a service call. It is served from **S3** through **CloudFront**, and the `/api` path is routed to the backend.
 
-Signed out visitors see a sign in wall. The button sends them to **Amazon Cognito**'s hosted page (authorization code flow with **PKCE**), they return with a code that is exchanged for tokens, and the address bar is cleaned. The ID token is refreshed before it expires and sent on every call, and a cookie scoped to the read-only file path lets the evidence photo load, since an image tag cannot send a header. When the site has no sign in configuration, as in local development, the wall is skipped and a demo role selector appears.
+Signed out visitors see the sign in screen: the form on the left and a fixed example of the review card on the right, so a reviewer sees what they are about to work with. The button sends them to **Amazon Cognito**'s managed login page, styled to match (dark, the same wordmark and buttons, the same example card as its background), using the authorization code flow with **PKCE**. They return with a code that is exchanged for tokens, and the address bar is cleaned. The ID token is refreshed before it expires and sent on every call, and a cookie scoped to the read-only file path lets the evidence photo load, since an image tag cannot send a header. When the site has no sign in configuration, as in local development, the wall is skipped and a demo role selector appears.
 
-![The sign in wall, shown to a signed out visitor](docs/images/app/signin_gate.png)
+![The sign in screen, shown to a signed out visitor](docs/images/app/signin_gate.png)
 
-![Cognito's hosted sign in page](docs/images/app/signin_cognito_hosted_page.png)
+![Cognito's managed login page, styled to match the app](docs/images/app/signin_cognito_hosted_page.png)
+
+![Signing in: the app's screen, Cognito's page, the credentials, and the workbench with the account menu](docs/images/demo/sign_in.gif)
+
+**Passwords.** Sign up is off: an administrator creates each account, and its group sets the role. Someone without an account sees a "Request access" link that writes to an address set at build time. "Forgot your password?" sends a code by email, which needs a verified email address on the account, so administrators create users with one. A user created without an email has no way to reset a password, which this project found when the first test user could not.
+
+![The forgot password page](docs/images/app/signin_forgot_password.png)
+
+![The reset code email, as Cognito sends it](docs/images/app/password_reset_email.png)
 
 ![Workbench mid run, live](docs/images/app/workbench_live_run.png)
 
-- **Workbench.** Claim queue with filters, the live agent graph, the claim packet with the photo and detected parts, a reasoning trace, and the decision panel with checks, calculation, clause citations, risk signals, recalled lessons and review controls. The header shows who is signed in and their role from the token, which is what the four eyes rule uses.
+- **Workbench.** Claim queue with filters, the live agent graph, the claim packet with the photo and detected parts, a reasoning trace, and the decision panel with checks, calculation, clause citations, risk signals, recalled lessons and review controls. The header shows the signed in person's initials, and their menu gives the name, the role from the token (which is what the four eyes rule uses), what that role may approve, and sign out.
+
+![The account menu: name, role and approval limit](docs/images/app/account_menu.png)
 - **Architecture.** The graph, static, with the design principles.
 - **Security.** The attack lab, **red team** results and defence layers.
 - **Observability.** Cost, latency, where the money goes, alert rules and review statistics.
@@ -342,9 +354,19 @@ Signed out visitors see a sign in wall. The button sends them to **Amazon Cognit
 
 The mode badge states whether a run was the offline baseline or live on **Bedrock**.
 
-**Tests.** 24 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) and the **API** layer against a fake server. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
+**Tests.** 41 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks and the queue position events) the **API** layer against a fake server, and the recorded demo's review rules (below). Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
+
+### Recorded demo on GitHub Pages
+
+GitHub Pages serves files, so it cannot run the **FastAPI** backend, **Cognito** or the agents. The Pages site is the same **React** app built in a demo mode that needs no server, and it is honest about that: a banner on every page says the agents are not running, to avoid cost.
+
+- **Recorded, not written.** `scripts/build_static_demo.py` runs the real backend once in replay mode and saves what it said: the 63 claims, the extracted fields, every claim's photo and PDFs, each claim's run as the exact event stream, the recommendation each run stores, the 30 sample attacks with the guardrail's answer, and the red team report. If the backend changes, running the script again changes the demo.
+- **A fetch layer instead of an API.** A small module in the frontend (`frontend/src/demo/staticBackend.ts`) answers the app's `/api` calls from the recording. A run plays back at a natural pace, the graph lights up, and the recommendation is stored in the visitor's own browser, so a reload keeps their work and Reset demo clears it. Nothing is sent anywhere.
+- **The same sign-off rules.** The review gate is a port of the server's: a review must name the run it looked at, an adjuster cannot approve above the authority limit but can escalate, an override needs a decision and a reason, and one decision settles a claim. 16 tests pin this, and nine deliberate breakages (no four eyes check, no run match, recording at the start of a run, a second decision allowed, a short reason accepted, claiming a lesson was stored, allowing a live run, trusting an old recording, treating escalation as approval) were each caught.
+- **What it leaves out, and says so.** The agents do not run, so decisions come from the rule baseline. A reason typed for an override is not scanned for prompt attacks and is not stored as a long term lesson, and the response says no lesson was stored. The attack lab answers the sample attacks only. The Observability tab shows screenshots from the live deployment instead of invented numbers. There is no sign in, because nothing in a public static site could be protected by one.
+- **Cost.** None. The workflow `.github/workflows/pages.yml` records the demo and publishes it on every push to `main`.
 
 ## Evaluation
 
@@ -660,6 +682,7 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | The knowledge base is unreachable | The coverage agent has no clause text. The engine still decides, and the citation panel is empty |
 | A task restarts | The audit log is read from DynamoDB, so nothing is lost, and metrics are restored from DynamoDB when the next task starts |
 | Several people start runs at once | Runs go one at a time per task. A waiting request is told its place in line every 10 seconds, which also keeps CloudFront's 60 second response timeout from cutting it off, and the page shows "Waiting, place n in line". With 5 runs already waiting, a new one gets 503 with a retry hint |
+| A user has no verified email | Password reset cannot send a code. Create the account with a verified email, or set one with an administrator call |
 | An attacker's text is flagged | The flagged sentence is removed and logged, and the rest of the narrative proceeds |
 | A token is missing, expired or invalid | 401, and the site sends the person back to sign in. A user in no group gets 403 |
 | Today's spend cannot be read | Live runs get 503 instead of risking the money. Replay and review keep working |
@@ -678,9 +701,9 @@ git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git &
 uv sync                                         # the locked environment, no virtualenv to activate
 uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
-uv run pytest                                   # 407 tests, no AWS needed (the 16 infrastructure tests need Node.js and a built frontend)
+uv run pytest                                   # 409 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
-(cd frontend && npm ci && npm test)             # 24 frontend tests
+(cd frontend && npm ci && npm test)             # 41 frontend tests
 
 # run the app locally, offline baseline, no AWS and no sign in needed
 CLAIMS_MODE=replay uv run uvicorn app.api.main:app --app-dir backend --port 8000 &
@@ -726,7 +749,10 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | Run metrics, call records and the alert history are read from local files when a task starts, so each task shows its own; the claim list reads the whole audit table with a consistent read on every call | Observability differs between tasks and the claim list slows as the audit log grows | Read metrics from DynamoDB and Athena, and keep a per claim stage item to list from |
 | Document ingestion is a batch script, not event driven | A new claim needs the script run before its photo and form check appear | An S3 event and a Step Functions workflow |
 | The deploy and live evaluation workflows have not run, because their OIDC role is not in the CDK app | Only CI is exercised on GitHub. Deployment is done from a workstation | Add the OIDC provider and role to the CDK app, then run both workflows |
-| Sign in uses Cognito's default hosted page, MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, keep tokens in memory with a refresh cookie, and style the hosted page |
+| MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, and keep tokens in memory with a refresh cookie |
+| Password reset uses Cognito's default email sender (about 50 emails a day, from a shared address) and needs a verified email on the account | Reset suits a handful of users, and a user without an email cannot reset | Amazon SES as the sender, and an administrator process that always sets the email |
+| The styled sign in page is defined in the CDK app and covered by template tests (managed login, the Essentials plan, the branding for the app's client, sign up off). It was checked in a browser on a standalone user pool built with the same settings, and has not yet been deployed as part of the full stack | A full deployment could still reject a property the tests cannot see | The next deployment confirms it, and its result belongs in the deployment evidence |
+| The recorded demo on GitHub Pages does not run the agents, the guardrail or memory | A visitor sees recorded rule baseline runs, not live agent runs, and cannot scan their own text | Run the live deployment for anyone who needs the real thing, as the demos in this document show |
 | The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user and reserve spend before a run |
 | The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context, and that rules alone find 79% at no cost. It does not show the agent finds problems no rule covers | More models, cases that no rule covers, and real adjuster feedback |
 | The free-form benchmark has 124 claims and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |

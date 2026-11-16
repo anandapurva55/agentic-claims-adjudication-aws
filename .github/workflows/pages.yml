@@ -1,0 +1,58 @@
+name: Recorded demo on GitHub Pages
+
+# Publishes the app as a recorded demo: no server, no AWS, no cost. The claims, the photos and the runs are recorded from the real backend at build time
+# (scripts/build_static_demo.py), the agents are not called, and the site says so on every page.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build the recorded demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version-file: .python-version }
+      - uses: astral-sh/setup-uv@v10.3.3
+        with: { enable-cache: true, cache-dependency-glob: uv.lock }
+      - uses: actions/setup-node@v7
+        with: { node-version: 22, cache: npm, cache-dependency-path: frontend/package-lock.json }
+      - name: Install exactly what uv.lock says
+        run: |
+          uv sync --locked
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
+      - name: Generate the claim data (deterministic, seeded)
+        run: python scripts/generate_data.py
+      - name: Record the demo from the real backend
+        run: python scripts/build_static_demo.py
+      - name: Build the site
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build:demo
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with: { path: frontend/dist-demo }
+
+  deploy:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5.0.1
