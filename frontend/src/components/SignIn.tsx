@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { PASSWORD_RULES } from '../authlib'
 import Logo from './Logo'
 
 // Where "Request access" writes to. Set at build time (VITE_REQUEST_ACCESS_EMAIL), so no address is stored in the repository. Unset, the link is not shown.
@@ -31,7 +32,8 @@ function DemoHostedLogin({ onDemoSignIn }: { onDemoSignIn: (username: string, pa
   const [pass, setPass] = useState('')
   const [show, setShow] = useState(false)
   const [error, setError] = useState('')
-  const submit = (e: React.FormEvent) => { e.preventDefault(); setError(onDemoSignIn(user, pass) ?? '') }
+  // The checklist already shows what a password lacks, so only a problem it cannot show (no username) is spelled out.
+  const submit = (e: React.FormEvent) => { e.preventDefault(); const problem = onDemoSignIn(user, pass); setError(problem && PASSWORD_RULES.every((r) => r.ok(pass)) ? problem : '') }
   return (
     <div className="signin">
       <section className="signin-form">
@@ -43,6 +45,12 @@ function DemoHostedLogin({ onDemoSignIn }: { onDemoSignIn: (username: string, pa
             <label>Username<input value={user} onChange={(e) => { setUser(e.target.value); setError('') }} autoComplete="username" placeholder="Enter username" autoFocus /></label>
             <label>Password<input type={show ? 'text' : 'password'} value={pass} onChange={(e) => { setPass(e.target.value); setError('') }} autoComplete="current-password" placeholder="Enter password" /></label>
             <label className="signin-show"><input type="checkbox" checked={show} onChange={(e) => setShow(e.target.checked)} />Show password</label>
+            <ul className="pw-rules" aria-label="Password rules" aria-live="polite">
+              {PASSWORD_RULES.map((r) => {
+                const ok = r.ok(pass)
+                return <li key={r.need} className={ok ? 'ok' : 'bad'}><span aria-hidden>{ok ? '\u2713' : '\u2717'}</span>{r.need[0].toUpperCase() + r.need.slice(1)}<span className="sr-only">{ok ? ', met' : ', not met'}</span></li>
+              })}
+            </ul>
             {error && <p className="signin-error" role="alert">{error}</p>}
             <button type="submit" className="signin-btn signin-primary">Sign in</button>
           </form>

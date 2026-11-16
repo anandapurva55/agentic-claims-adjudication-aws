@@ -48,13 +48,14 @@ export function initials(name: string): string {
   return letters.toUpperCase()
 }
 
+/** The password rule, one entry per requirement, in the order a person reads it. The sign-in checklist and the check on submit both use this list, so they cannot disagree. */
+export const PASSWORD_RULES: { need: string; ok: (pw: string) => boolean }[] = [
+  { need: 'at least 12 characters', ok: (pw) => pw.length >= 12 },
+  { need: 'a lower case letter', ok: (pw) => /[a-z]/.test(pw) },
+  { need: 'an upper case letter', ok: (pw) => /[A-Z]/.test(pw) },
+  { need: 'a digit', ok: (pw) => /[0-9]/.test(pw) },
+  { need: 'a symbol', ok: (pw) => /[^A-Za-z0-9]/.test(pw) },
+]
+
 /** What a password is missing, by the same rule the real user pool enforces (12 or more characters, upper and lower case, a digit and a symbol). Empty means it passes. */
-export function passwordProblems(pw: string): string[] {
-  const out: string[] = []
-  if (pw.length < 12) out.push('at least 12 characters')
-  if (!/[a-z]/.test(pw)) out.push('a lower case letter')
-  if (!/[A-Z]/.test(pw)) out.push('an upper case letter')
-  if (!/[0-9]/.test(pw)) out.push('a digit')
-  if (!/[^A-Za-z0-9]/.test(pw)) out.push('a symbol')
-  return out
-}
+export const passwordProblems = (pw: string): string[] => PASSWORD_RULES.filter((r) => !r.ok(pw)).map((r) => r.need)

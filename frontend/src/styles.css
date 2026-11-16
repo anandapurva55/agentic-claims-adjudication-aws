@@ -297,3 +297,9 @@ body { overflow: hidden; }
 .signin-show { display: flex !important; grid-template-columns: none; align-items: center; gap: 8px !important; font-weight: 400 !important; color: var(--text) !important; }
 .signin-show input { height: auto !important; width: 16px; accent-color: #22d3ee; }
 .um-demo { margin-left: 6px; font: 600 10px var(--mono); color: var(--amber); border: 1px solid rgba(251,191,36,.4); border-radius: 6px; padding: 1px 6px; text-transform: uppercase; }
+
+.pw-rules { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13.5px; }
+.pw-rules li { display: flex; align-items: center; gap: 8px; transition: color .15s; }
+.pw-rules li span[aria-hidden] { width: 16px; text-align: center; font-weight: 700; }
+.pw-rules li.bad { color: #f87171; } .pw-rules li.ok { color: #34d399; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

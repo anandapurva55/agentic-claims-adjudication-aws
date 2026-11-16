@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { passwordProblems } from './authlib'
+import { PASSWORD_RULES, passwordProblems } from './authlib'
 
 // The demo has no accounts: any username works with a password that meets the real rule. A made-up user starts as an adjuster and switches role from the account menu. The module reads the demo flag when it
 // loads, so each test loads a fresh copy with the flag set.
@@ -20,6 +20,13 @@ beforeEach(() => {
 afterEach(() => { vi.unstubAllGlobals(); vi.unstubAllEnvs() })
 
 describe('the password rule', () => {
+  it('lists the five requirements in reading order, and the check on submit is built from the same list as the sign-in checklist', () => {
+    expect(PASSWORD_RULES.map((r) => r.need)).toEqual(['at least 12 characters', 'a lower case letter', 'an upper case letter', 'a digit', 'a symbol'])
+    expect(PASSWORD_RULES.every((r) => r.ok(GOOD))).toBe(true)
+    for (const pw of ['', 'abc', 'ABCdef123!', GOOD, 'x'.repeat(30)]) {
+      expect(passwordProblems(pw)).toEqual(PASSWORD_RULES.filter((r) => !r.ok(pw)).map((r) => r.need))
+    }
+  })
   it('passes a password that has everything, and names each thing a password is missing', () => {
     expect(passwordProblems(GOOD)).toEqual([])
     expect(passwordProblems('Short1!')).toEqual(['at least 12 characters'])

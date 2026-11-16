@@ -7,7 +7,7 @@ export function DemoBanner() {
   const reset = () => { try { localStorage.removeItem('claims.demo') } catch { /* nothing saved */ } window.location.reload() }
   return (
     <div className="demo-banner" role="note">
-      <span><b>Interactive demo.</b> The AI agents are switched off here to avoid cost, so each run replays the rule baseline on real claim data. Sign in with any username and a password that meets the rule (12 or more characters, upper and lower case, a digit and a symbol), run a claim, review it, and switch between adjuster and senior adjuster in the account menu to try the approval rule. The live system, with the agents on Amazon Bedrock, is shown in the <a href="https://github.com/anandapurva55/agentic-claims-adjudication-aws#readme">README</a>.</span>
+      <span><b>Interactive demo.</b> The AI agents are switched off here to avoid cost, so each run replays the rule baseline on real claim data. Sign in with any username, run a claim, review it, and switch between adjuster and senior adjuster in the account menu to try the approval rule. The live system, with the agents on Amazon Bedrock, is shown in the <a href="https://github.com/anandapurva55/agentic-claims-adjudication-aws#readme">README</a>.</span>
       <button className="btn" onClick={reset}>Reset demo</button>
     </div>
   )
