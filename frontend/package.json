@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:demo": "VITE_STATIC_DEMO=1 VITE_API_URL=/agentic-claims-adjudication-aws vite build --base=/agentic-claims-adjudication-aws/ --outDir dist-demo"
   },
   "dependencies": {
     "react": "19.3.1",

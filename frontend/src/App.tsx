@@ -3,6 +3,9 @@ import { api } from './api'
 import { currentSession, setDemoRole, signOut } from './auth'
 import AgentGraph, { type NodeInfo } from './components/AgentGraph'
 import ClaimQueue from './components/ClaimQueue'
+import { DEMO, DemoBanner, RecordedObservability } from './components/DemoBanner'
+import Logo from './components/Logo'
+import UserMenu from './components/UserMenu'
 import DecisionPanel from './components/DecisionPanel'
 import MetricsView from './components/Metrics'
 import Security from './components/Security'
@@ -142,22 +145,16 @@ export default function App() {
 
   return (
     <div className="app">
+      {DEMO && <DemoBanner />}
       <header className="top">
-        <div className="brand"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden><path d="M18 3L7 18h7l-2 11 12-16h-7z" fill="#22d3ee" /></svg>
-          <b>Claims Adjudication Copilot</b><span className="muted">multi-agent motor claims, a person decides</span></div>
+        <div className="brand"><Logo /></div>
         <nav>
           {(['workbench', 'architecture', 'security', 'observability'] as Tab[]).map((t) => (
             <button key={t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{t}</button>
           ))}
         </nav>
         <div className="env">
-          {session ? (
-            // Signed in: the name and role come from the token, and the server decides what this person may do.
-            <span className="role" title="Payouts above the authority limit need a senior adjuster.">
-              <span className="muted">Signed in as</span> <b>{session.username}</b> <span className="chip">{session.role === 'senior' ? 'Senior adjuster' : 'Adjuster'}</span>
-              <button className="btn" onClick={signOut}>Sign out</button>
-            </span>
-          ) : (
+          {!session && (
             // Local development only: sign-in is off, so the role is picked here and sent as a demo header.
             <label className="role" title="Development mode: sign-in is off. Payouts above the authority limit need a senior adjuster.">
               <span className="muted">Demo role</span>
@@ -167,6 +164,7 @@ export default function App() {
             </label>
           )}
           {health && <><span className="chip">{health.region}</span><span className={`chip ${health.mode === 'live' ? 'chip-ok' : ''}`}>{health.mode}</span></>}
+          {session && <UserMenu name={session.username} role={session.role} onSignOut={signOut} />}
         </div>
       </header>
 
@@ -207,7 +205,8 @@ export default function App() {
 
       {tab === 'security' && <main className="page"><h2>Security</h2><p className="lead">Customer text is untrusted. Try to hijack the AI below, then see how the layers contain it.</p><Security /></main>}
 
-      {tab === 'observability' && <main className="page"><h2>Observability</h2><MetricsView m={metrics} r={rstats} /></main>}
+      {tab === 'observability' && DEMO && <RecordedObservability />}
+      {tab === 'observability' && !DEMO && <main className="page"><h2>Observability</h2><MetricsView m={metrics} r={rstats} /></main>}
     </div>
   )
 }

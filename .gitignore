@@ -31,3 +31,10 @@ docs/demo/node_modules/
 .coverage
 htmlcov/
 data/freeform/
+
+# Local overrides, never committed (they can hold personal addresses and test pool ids)
+*.local
+frontend/public/config.json
+frontend/dist-demo/
+frontend/public/demo-data/
+frontend/public/api/

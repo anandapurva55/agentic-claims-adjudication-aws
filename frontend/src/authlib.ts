@@ -40,3 +40,10 @@ export function parseSse(buffer: string): { events: { event: string; data: strin
   })
   return { events, rest }
 }
+
+/** Up to two capital letters for the avatar: "Apurva Anand" gives AA, "priya.rao" gives PR, "asha" gives A. */
+export function initials(name: string): string {
+  const words = name.split(/[\s._@-]+/).filter(Boolean)
+  const letters = words.length >= 2 ? words[0][0] + words[1][0] : (words[0] ?? '?').slice(0, 1)
+  return letters.toUpperCase()
+}

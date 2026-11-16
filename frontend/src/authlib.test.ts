@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { challengeFor, decodeClaims, parseSse, randomString, roleOf } from './authlib'
+import { challengeFor, decodeClaims, initials, parseSse, randomString, roleOf } from './authlib'
 
 const enc = (o: object) => btoa(JSON.stringify(o)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 const token = (claims: object) => `${enc({ alg: 'RS256' })}.${enc(claims)}.signature`
@@ -62,5 +62,15 @@ describe('server-sent events parser', () => {
       const second = parseSse(first.rest + whole.slice(cut))
       expect([...first.events, ...second.events].map((e) => e.data)).toEqual(['{"n":1}', '{"n":2}', '{"n":3}'])
     }
+  })
+})
+
+describe('avatar initials', () => {
+  it('uses the first letters of the first two words, however the name is written', () => {
+    expect(initials('Apurva Anand')).toBe('AA')
+    expect(initials('priya.rao')).toBe('PR')
+    expect(initials('a.iyer@example.com')).toBe('AI')
+    expect(initials('asha')).toBe('A')
+    expect(initials('  ')).toBe('?')
   })
 })
