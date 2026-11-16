@@ -63,7 +63,7 @@ def main() -> None:
     report = client.get("/api/security/report")
     demo = {
         "generated": time.strftime("%Y-%m-%d"),
-        "health": {**health, "region": "recorded demo"},
+        "health": {**health, "region": "interactive demo"},
         "topology": client.get("/api/topology").json(),
         "claims": claims,  # the list as a first visitor sees it: nothing run yet
         "details": details,

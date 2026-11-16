@@ -5,7 +5,7 @@ import { type Fixtures, install } from './staticBackend'
 const CLEAN = 'CLM-1', BIG = 'CLM-2'
 const claim = (id: string) => ({ claim_id: id, holder: 'A', policy_no: 'P', vehicle: 'V', vehicle_reg: 'R', incident_date: '2026-01-01', claimed_amount: 1, stage: 'new' as const, ai: null, review: null })
 const fx = (generated = 'v1'): Fixtures => ({
-  generated, health: { status: 'ok', mode: 'replay', region: 'recorded demo' }, topology: { nodes: [], edges: [] },
+  generated, health: { status: 'ok', mode: 'replay', region: 'interactive demo' }, topology: { nodes: [], edges: [] },
   claims: [claim(CLEAN), claim(BIG)], details: { [CLEAN]: { holder: 'A' }, [BIG]: { holder: 'B' } },
   runs: {
     [CLEAN]: { events: [{ type: 'start' }, { type: 'node', id: 'intake', state: 'active' }, { type: 'result', run_id: 'run-clean' }],
@@ -42,7 +42,7 @@ describe('reading', () => {
   it('lists every claim as new before anything is run, and serves the recorded health and topology', async () => {
     const list = await (await call('/api/claims')).json() as { stage: string }[]
     expect(list.map((c) => c.stage)).toEqual(['new', 'new'])
-    expect((await (await call('/api/health')).json() as { region: string }).region).toBe('recorded demo')
+    expect((await (await call('/api/health')).json() as { region: string }).region).toBe('interactive demo')
     expect(await (await call('/api/topology')).json()).toEqual({ nodes: [], edges: [] })
   })
   it('leaves files and everything outside the API to the real fetch, and refuses what the recording does not have', async () => {

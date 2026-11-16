@@ -15,6 +15,36 @@ let config: Config | null = null
 let session: Session | null = null
 let demoRole: Role = 'adjuster'
 
+// The interactive demo (GitHub Pages) has no server, so its accounts are fixed and checked in the browser. This is for showing the sign-in and the roles, and it
+// protects nothing: the demo holds no secrets, and the credentials are printed on the sign-in screen.
+const DEMO = Boolean(import.meta.env.VITE_STATIC_DEMO)
+const DEMO_KEY = 'claims.demo.session'
+export const DEMO_ACCOUNTS: { username: string; password: string; role: Role; label: string }[] = [
+  { username: 'demo.adjuster', password: 'demo', role: 'adjuster', label: 'Adjuster' },
+  { username: 'demo.senior', password: 'demo', role: 'senior', label: 'Senior adjuster' },
+]
+
+function startDemoSession(username: string, role: Role): void {
+  session = { idToken: 'demo', expiresAt: Date.now() + 24 * 3_600_000, username, role }
+  demoRole = role
+}
+
+/** Check the fixed demo credentials. The username is not case sensitive, the password is. */
+export function demoSignIn(username: string, password: string): boolean {
+  const a = DEMO_ACCOUNTS.find((x) => x.username === username.trim().toLowerCase())
+  if (!a || a.password !== password) return false
+  startDemoSession(a.username, a.role)
+  keep(DEMO_KEY, a.username)
+  return true
+}
+
+function initDemo(): AuthState {
+  const a = DEMO_ACCOUNTS.find((x) => x.username === stored(DEMO_KEY))
+  if (!a) return 'signed-out'
+  startDemoSession(a.username, a.role)
+  return 'signed-in'
+}
+
 const redirectUri = () => `${window.location.origin}/`
 const keep = (key: string, value: string | null) => { try { value === null ? sessionStorage.removeItem(key) : sessionStorage.setItem(key, value) } catch { /* private mode */ } }
 const stored = (key: string) => { try { return sessionStorage.getItem(key) } catch { return null } }
@@ -42,6 +72,7 @@ async function tokenRequest(body: Record<string, string>): Promise<{ id_token: s
 }
 
 export async function initAuth(): Promise<AuthState> {
+  if (DEMO) return initDemo()
   try {
     const r = await fetch(`${BASE}/config.json`)
     const c = r.ok ? await r.json() : null
@@ -94,6 +125,7 @@ export async function signIn(): Promise<void> {
 }
 
 export function signOut(): void {
+  if (DEMO) { keep(DEMO_KEY, null); session = null; window.location.reload(); return }
   const hosted = config?.hostedUi, id = config?.clientId
   remember(null)
   if (hosted && id) window.location.assign(`${hosted}/logout?${new URLSearchParams({ client_id: id, logout_uri: redirectUri() })}`)

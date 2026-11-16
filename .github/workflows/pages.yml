@@ -1,6 +1,6 @@
-name: Recorded demo on GitHub Pages
+name: Interactive demo on GitHub Pages
 
-# Publishes the app as a recorded demo: no server, no AWS, no cost. The claims, the photos and the runs are recorded from the real backend at build time
+# Publishes the app as an interactive demo: no server, no AWS, no cost. The claims, the photos and the runs are recorded from the real backend at build time
 # (scripts/build_static_demo.py), the agents are not called, and the site says so on every page.
 on:
   push:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build the recorded demo
+    name: Build the interactive demo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

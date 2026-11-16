@@ -3,7 +3,7 @@ import { api } from './api'
 import { currentSession, setDemoRole, signOut } from './auth'
 import AgentGraph, { type NodeInfo } from './components/AgentGraph'
 import ClaimQueue from './components/ClaimQueue'
-import { DEMO, DemoBanner, RecordedObservability } from './components/DemoBanner'
+import { DEMO, DemoObservability } from './components/DemoBanner'
 import Logo from './components/Logo'
 import UserMenu from './components/UserMenu'
 import DecisionPanel from './components/DecisionPanel'
@@ -145,7 +145,6 @@ export default function App() {
 
   return (
     <div className="app">
-      {DEMO && <DemoBanner />}
       <header className="top">
         <div className="brand"><Logo /></div>
         <nav>
@@ -205,7 +204,7 @@ export default function App() {
 
       {tab === 'security' && <main className="page"><h2>Security</h2><p className="lead">Customer text is untrusted. Try to hijack the AI below, then see how the layers contain it.</p><Security /></main>}
 
-      {tab === 'observability' && DEMO && <RecordedObservability />}
+      {tab === 'observability' && DEMO && <DemoObservability />}
       {tab === 'observability' && !DEMO && <main className="page"><h2>Observability</h2><MetricsView m={metrics} r={rstats} /></main>}
     </div>
   )

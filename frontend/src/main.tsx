@@ -1,25 +1,29 @@
 import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { DEMO, DemoBanner } from './components/DemoBanner'
 import Logo from './components/Logo'
 import SignIn from './components/SignIn'
-import { type AuthState, initAuth, signIn, signOut } from './auth'
+import { type AuthState, demoSignIn, initAuth, signIn, signOut } from './auth'
 import './styles.css'
 import './observability.css'
 
 // The app only loads once the sign-in state is known. With no sign-in configured (local development) it loads straight away.
 function Gate() {
   const [state, setState] = useState<AuthState | 'loading'>('loading')
-  // The recorded demo has no accounts: nothing to sign in to, so it never looks for a sign-in configuration.
-  useEffect(() => { if (import.meta.env.VITE_STATIC_DEMO) setState('disabled'); else initAuth().then(setState).catch(() => setState('signed-out')) }, [])
+  useEffect(() => { initAuth().then(setState).catch(() => setState('signed-out')) }, [])
 
   // Local development only: ?gate=preview and ?gate=noaccess show the two sign-in screens whatever the sign-in state. The buttons are the real ones, so they work when a user pool is configured. A production build ignores this.
   const preview = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('gate') : null
-  if (preview === 'preview' || preview === 'noaccess') return <SignIn noAccess={preview === 'noaccess'} onSignIn={() => void signIn()} onSignOut={signOut} />
+  const demoLogin = DEMO ? (u: string, p: string) => { const ok = demoSignIn(u, p); if (ok) setState('signed-in'); return ok } : undefined
 
-  if (state === 'loading') return <div className="signin-loading" role="status"><Logo size="lg" /></div>
-  if (state === 'disabled' || state === 'signed-in') return <App />
-  return <SignIn noAccess={state === 'no-access'} onSignIn={() => void signIn()} onSignOut={signOut} />
+  let page
+  if (preview === 'preview' || preview === 'noaccess') page = <SignIn noAccess={preview === 'noaccess'} onSignIn={() => void signIn()} onSignOut={signOut} />
+  else if (state === 'loading') page = <div className="signin-loading" role="status"><Logo size="lg" /></div>
+  else if (state === 'disabled' || state === 'signed-in') page = <App />
+  else page = <SignIn noAccess={state === 'no-access'} onSignIn={() => void signIn()} onSignOut={signOut} onDemoSignIn={demoLogin} />
+  // The demo's banner sits above every page, the sign-in screen included, so nobody signs in believing the agents are live.
+  return <div className="shell">{DEMO && <DemoBanner />}{page}</div>
 }
 
 // The GitHub Pages build has no API: its /api calls are answered from a recording, installed before anything renders.

@@ -1,4 +1,4 @@
-// The recorded demo. GitHub Pages serves files only, so there is no API behind this build. This module answers the app's /api calls from a recording of the real
+// The interactive demo. GitHub Pages serves files only, so there is no API behind this build. This module answers the app's /api calls from a recording of the real
 // backend (scripts/build_static_demo.py) and keeps each visitor's runs and reviews in their own browser. The agents are never called, and nothing here costs money.
 // The review rules below are a port of the server's, because the demo has to refuse what the server would refuse. Two differences, both shown in the banner:
 // a reason written for an override is not scanned for prompt attacks, and it is not stored as a long term lesson.
@@ -146,7 +146,7 @@ export function install(base: string, loadFixtures: () => Promise<Fixtures>, opt
     if (method === 'POST' && path === '/api/security/scan') {
       const text = (JSON.parse(String(init.body ?? '{}')) as { text?: string }).text ?? ''
       const known = f.scans[text]
-      return known ? json(200, known) : json(422, { detail: 'This recorded demo can only scan the sample attacks. The live system runs any text through the guardrail.' })
+      return known ? json(200, known) : json(422, { detail: 'This demo can only scan the sample attacks. The live system runs any text through the guardrail.' })
     }
     if (parts[0] === 'api' && parts[1] === 'claims' && parts[2]) {
       const id = parts[2]
@@ -165,7 +165,7 @@ export function install(base: string, loadFixtures: () => Promise<Fixtures>, opt
         return json(r.status, r.body)
       }
     }
-    return json(404, { detail: 'not part of the recorded demo' })
+    return json(404, { detail: 'not part of the demo' })
   }) as typeof fetch
 
   return { reset: () => { store.clear(); state = null } }
