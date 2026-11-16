@@ -1,13 +1,13 @@
 """Model prices and cost of one call. USD per million tokens.
 
-Prices are for the global Bedrock endpoints, taken from third party price trackers and checked November 2026. They are NOT from
-AWS's own price page: verify them before using the totals for billing. Prompt cache reads cost 10 percent of the input price and
-cache writes 125 percent for Claude models, as listed on the AWS Marketplace page for Sonnet 4.6.
+Prices are the on-demand rates for the global Bedrock inference profiles in us-east-1, read from the AWS Price List API (scripts/check_prices.py reads them again
+and compares) and last checked 16 November 2026. Cache reads and writes are priced separately by AWS. Nova 2 Lite has no cache write charge. Rates change:
+rerun the script before quoting these as current.
 """
 from __future__ import annotations
 
 PRICES: dict[str, dict[str, float]] = {
-    "global.amazon.nova-2-lite-v1:0": {"in": 0.33, "out": 2.75, "cache_read": 0.33, "cache_write": 0.33},
+    "global.amazon.nova-2-lite-v1:0": {"in": 0.30, "out": 2.50, "cache_read": 0.075, "cache_write": 0.0},
     "global.anthropic.claude-haiku-4-5-20251001-v1:0": {"in": 1.00, "out": 5.00, "cache_read": 0.10, "cache_write": 1.25},
     "global.anthropic.claude-sonnet-4-6": {"in": 3.00, "out": 15.00, "cache_read": 0.30, "cache_write": 3.75},
 }
