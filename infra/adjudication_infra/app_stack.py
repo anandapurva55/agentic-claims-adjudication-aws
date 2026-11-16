@@ -21,6 +21,7 @@ from aws_cdk import aws_wafv2 as wafv2
 from aws_cdk import custom_resources as cr
 from constructs import Construct
 
+from .branding import style_sign_in_page
 from .data_stack import DataStack
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -159,7 +160,8 @@ class AppStack(Stack):
         # hosted page with the authorization code flow and PKCE, so no password ever passes through this application. The pool is created after the
         # distribution because the app client's callback URL is the distribution's address; the distribution does not depend on the service, so there is no cycle.
         pool = cognito.UserPool(
-            self, "Users", self_sign_up_enabled=False, sign_in_aliases=cognito.SignInAliases(username=True, email=True), mfa=cognito.Mfa.OPTIONAL,
+            self, "Users", self_sign_up_enabled=False, feature_plan=cognito.FeaturePlan.ESSENTIALS,  # Essentials is what managed login (the styled page) needs; it is free at this scale
+             sign_in_aliases=cognito.SignInAliases(username=True, email=True), mfa=cognito.Mfa.OPTIONAL,
             mfa_second_factor=cognito.MfaSecondFactor(otp=True, sms=False), account_recovery=cognito.AccountRecovery.EMAIL_ONLY,
             password_policy=cognito.PasswordPolicy(min_length=12, require_lowercase=True, require_uppercase=True, require_digits=True, require_symbols=True),
             removal_policy=RemovalPolicy.DESTROY)
@@ -174,7 +176,8 @@ class AppStack(Stack):
             id_token_validity=Duration.hours(1), access_token_validity=Duration.hours(1), refresh_token_validity=Duration.days(1))
         # The domain prefix must be unique across AWS. The first part of the stack's id is, and it does not put the account number in a public name.
         prefix = Fn.join("", ["claimsadj-", Fn.select(0, Fn.split("-", Fn.select(2, Fn.split("/", self.stack_id))))])
-        hosted = pool.add_domain("Domain", cognito_domain=cognito.CognitoDomainOptions(domain_prefix=prefix))
+        hosted = pool.add_domain("Domain", cognito_domain=cognito.CognitoDomainOptions(domain_prefix=prefix), managed_login_version=cognito.ManagedLoginVersion.NEWER_MANAGED_LOGIN)
+        style_sign_in_page(self, pool, web_client).node.add_dependency(hosted)
         container.add_environment("CLAIMS_COGNITO_USER_POOL_ID", pool.user_pool_id)
         container.add_environment("CLAIMS_COGNITO_CLIENT_ID", web_client.user_pool_client_id)
 

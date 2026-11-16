@@ -137,3 +137,22 @@ def test_the_lookup_of_the_cloudfront_group_has_one_narrow_permission_and_waits_
     assert policies, "the lookup needs a policy"
     actions = {a for p in policies for s in p["PolicyDocument"]["Statement"] for a in ([s["Action"]] if isinstance(s["Action"], str) else s["Action"])}
     assert actions == {"ec2:DescribeSecurityGroups"}  # the only wildcard resource besides metrics and image pull, and the action is read-only
+
+
+def test_the_sign_in_page_is_the_styled_managed_login_page_for_the_apps_client(template):
+    (domain,) = of_type(template, "AWS::Cognito::UserPoolDomain").values()
+    assert domain["ManagedLoginVersion"] == 2  # the newer page: the classic one cannot be styled this far
+    (pool,) = of_type(template, "AWS::Cognito::UserPool").values()
+    assert pool["UserPoolTier"] == "ESSENTIALS"  # managed login needs it
+    (client_id,) = [k for k in of_type(template, "AWS::Cognito::UserPoolClient")]
+    (branding,) = of_type(template, "AWS::Cognito::ManagedLoginBranding").values()
+    assert branding["ClientId"] == {"Ref": client_id} and branding["UseCognitoProvidedValues"] is False
+    assert branding["Settings"]["categories"]["global"]["colorSchemeMode"] == "DARK"
+    assets = {(a["Category"], a["ColorMode"], a["Extension"]) for a in branding["Assets"]}
+    assert assets == {("PAGE_BACKGROUND", "DARK", "PNG"), ("FORM_LOGO", "DARK", "PNG")}
+    assert all(len(a["Bytes"]) > 1000 for a in branding["Assets"])  # real images, not empty placeholders
+
+
+def test_sign_up_stays_off_so_only_an_administrator_creates_accounts(template):
+    (pool,) = of_type(template, "AWS::Cognito::UserPool").values()
+    assert pool["AdminCreateUserConfig"]["AllowAdminCreateUserOnly"] is True

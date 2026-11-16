@@ -3,6 +3,7 @@
 // Scenes a to c: guardrail, human gate, attack lab. Scenes d to f: live run on a claim with a photo, observability tab, architecture tab.
 // Run it against the deployed site while the agents are live, so every frame is a real run.
 // The deployed site needs a sign-in. Pass test users with ADJUSTER_USER/ADJUSTER_PASS and SENIOR_USER/SENIOR_PASS (created for the recording and deleted after).
+// VIEW_W and VIEW_H set the layout size (default 1180x900). 1512x826 at SCALE 2 is a 14 inch MacBook screen at full resolution, 3024 pixels wide.
 // SCALE sets the device pixel ratio: 2 (the default) captures 2360x1800 frames of the 1180x900 layout, so text is rendered sharp, not enlarged.
 import puppeteer from 'puppeteer-core'
 import fs from 'node:fs'
@@ -42,7 +43,7 @@ async function film(page, until, { timeout = 90000, hold = 1500 } = {}) {
   while (Date.now() - t1 < hold) await snap(page)
 }
 
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', defaultViewport: { width: 1180, height: 900, deviceScaleFactor: SCALE }, args: ['--disable-gpu', '--hide-scrollbars'] })
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', defaultViewport: { width: Number(process.env.VIEW_W || 1180), height: Number(process.env.VIEW_H || 900), deviceScaleFactor: SCALE }, args: ['--disable-gpu', '--hide-scrollbars'] })
 const page = await browser.newPage()
 const has = (sel) => () => page.$(sel).then(Boolean)
 const clickText = (txt) => page.evaluate((t) => [...document.querySelectorAll('button')].find((b) => b.textContent.includes(t))?.click(), txt)
@@ -51,8 +52,8 @@ const clickText = (txt) => page.evaluate((t) => [...document.querySelectorAll('b
 async function signInAs(user, pass) {
   if (!user) return
   await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
-  if (await page.$('.gate-card')) {
-    await clickText('Sign in')
+  if (await page.$('.signin')) {
+    await clickText('Continue with your account')
     await page.waitForFunction(() => location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
     await sleep(1500)
     // The hosted page can carry two copies of the form (desktop and mobile): use the visible one.
@@ -67,11 +68,12 @@ async function signInAs(user, pass) {
   }
 }
 async function signOut() {
-  if (!(await page.$('.role .btn'))) return
+  if (!(await page.$('.um-av'))) return
+  await page.click('.um-av')
   await clickText('Sign out')
-  await page.waitForFunction(() => !!document.querySelector('.gate-card') || location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+  await page.waitForFunction(() => !!document.querySelector('.signin') || location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
   await sleep(1500)
-  if (!(await page.$('.gate-card'))) await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
+  if (!(await page.$('.signin'))) await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
 }
 await signInAs(process.env.ADJUSTER_USER, process.env.ADJUSTER_PASS)
 
@@ -174,6 +176,45 @@ await page.goto(`${base}/?tab=security`, { waitUntil: 'networkidle0' })
 await sleep(900)
 await still(page, 'security_tab')
 
+}
+if (on('g')) {
+// Scene G: signing in. The app's sign-in screen, Cognito's hosted page, typing the credentials, and the workbench with the account menu.
+// Needs SIGNIN_USER and SIGNIN_PASS. Starts signed out.
+scene = 'g'
+await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
+await sleep(600)
+await film(page, async () => false, { timeout: 1800, hold: 0 })
+await still(page, 'sign_in_app')
+await clickText('Continue with your account')
+await page.waitForFunction(() => location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+await sleep(1500)
+const visible = async (sel) => { for (const h of await page.$$(sel)) if (await h.isIntersectingViewport()) return h; return null }
+const u = await visible('input[name="username"]'), pw = await visible('input[name="password"]')
+if (!u || !pw) throw new Error('hosted sign-in form not found')
+await film(page, async () => false, { timeout: 1500, hold: 0 })
+await still(page, 'sign_in_hosted')
+{ // The "Forgot your password?" page, in a second tab so the sign-in below carries on undisturbed.
+  const ctx = await browser.createBrowserContext()  // its own cookies: sharing them would invalidate the sign-in form on the first tab
+  const tab = await ctx.newPage()
+  await tab.setViewport({ width: Number(process.env.VIEW_W || 1180), height: Number(process.env.VIEW_H || 900), deviceScaleFactor: SCALE })
+  await tab.goto(page.url(), { waitUntil: 'networkidle0' })
+  await sleep(1200)
+  const clicked = await tab.evaluate(() => { const el = [...document.querySelectorAll('a')].find((a) => a.textContent.includes('Forgot') && a.offsetParent); el?.click(); return !!el })
+  if (clicked) { await sleep(2200); await tab.screenshot({ path: `${stills}/sign_in_forgot_password.png`, type: 'png' }) }
+  await tab.close()
+  await ctx.close()
+}
+await u.type(process.env.SIGNIN_USER, { delay: 70 })
+await snap(page)
+await pw.type(process.env.SIGNIN_PASS, { delay: 70 })
+await film(page, async () => false, { timeout: 800, hold: 0 })
+await page.keyboard.press('Enter')
+await page.waitForFunction(() => !location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+await page.waitForSelector('.top .um-av', { timeout: 30000 })
+await film(page, async () => false, { timeout: 2200, hold: 0 })
+await page.click('.um-av')
+await film(page, async () => false, { timeout: 800, hold: 1800 })
+await still(page, 'account_menu')
 }
 await browser.close()
 console.log('frames:', n)
