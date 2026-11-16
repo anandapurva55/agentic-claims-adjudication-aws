@@ -1,6 +1,6 @@
 # Agentic Motor Claims Adjudication on AWS: Full-Stack Multi-Agent AI with RAG, MCP, Memory, Guardrails and Human in the Loop
 
-Built with: a **React** 18, **TypeScript** and **Vite** frontend; a **FastAPI** and **Python** backend; **Amazon Bedrock**, **Strands Agents**, **Bedrock AgentCore Memory**, **Bedrock Knowledge Bases** on **S3 Vectors** (**retrieval-augmented generation**), **Bedrock Guardrails** and **Bedrock Data Automation**; the **Model Context Protocol**; **QLoRA** **fine-tuning** on **Amazon SageMaker**; **Amazon ECS** on **Fargate**, **AWS CDK**, **Amazon Athena** and **Amazon QuickSight**.
+Built with: a **React** 19, **TypeScript** and **Vite** frontend; a **FastAPI** and **Python** backend with a locked **uv** environment; **Amazon Bedrock**, **Strands Agents**, **Bedrock AgentCore Memory**, **Bedrock Knowledge Bases** on **S3 Vectors** (**retrieval-augmented generation**), **Bedrock Guardrails** and **Bedrock Data Automation**; the **Model Context Protocol**; **QLoRA** **fine-tuning** on **Amazon SageMaker**; **Amazon Cognito** sign in and **AWS WAF** rate limiting; **Amazon ECS** on **Fargate** behind a private load balancer, **AWS CDK**, **Amazon Athena** and **Amazon QuickSight**.
 
 [![CI](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
@@ -9,16 +9,17 @@ Built with: a **React** 18, **TypeScript** and **Vite** frontend; a **FastAPI** 
 ![MCP](https://img.shields.io/badge/MCP-2%20servers-0F766E)
 ![RAG](https://img.shields.io/badge/RAG-Bedrock%20Knowledge%20Bases-0EA5E9)
 ![Guardrails](https://img.shields.io/badge/Bedrock-Guardrails-DC2626)
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-188%20passing-brightgreen)
+![Cognito](https://img.shields.io/badge/Cognito-sign%20in-DD344C)
+![Tests](https://img.shields.io/badge/tests-416%20passing-brightgreen)
 
 ## Summary
 
-This repository implements a decision support system for motor insurance claims. A team of AI agents reads the claim packet, reads the damage photo, retrieves policy clauses with **retrieval-augmented generation** (**RAG**), checks records over the **Model Context Protocol** (**MCP**), recalls lessons from earlier cases and recommends a decision. Deterministic code calculates the payable amount and makes the final recommendation. A human adjuster approves, overrides or escalates it, and the system records every step.
+This repository implements a decision support system for motor insurance claims. A team of AI agents reads the claim packet, reads the damage photo, retrieves policy clauses with **retrieval-augmented generation** (**RAG**), checks records over the **Model Context Protocol** (**MCP**), recalls lessons from earlier cases and recommends a decision. Deterministic code calculates the payable amount and makes the final recommendation. A human adjuster, signed in through **Amazon Cognito**, approves, overrides or escalates it, and the system records every step under the adjuster's verified name and role.
 
-It is a full stack application. A **React** and **TypeScript** single page app streams a live agent run from a **FastAPI** backend that hosts the **Strands** agent graph, and the whole system runs on **AWS** and is defined in **AWS CDK**. It uses synthetic claim data, real policy wording and real damage photographs. Status: built, deployed, verified end to end by an automated check, and measured against held-out claims, a **red team** suite and a cost model.
+It is a full stack application. A **React** and **TypeScript** single page app streams a live agent run from a **FastAPI** backend that hosts the **Strands** agent graph, and the whole system runs on **AWS** and is defined in **AWS CDK**. It uses synthetic claim data, real policy wording and real damage photographs. Status: built, deployed to **AWS**, verified end to end by an automated check (29 of 29 checks on the latest deployment) and then torn down. It is measured against held-out claims, a free-form benchmark written by other model families, a **red team** suite and a cost model.
 
 ![A live run on the deployed system: Bedrock Data Automation and a vision model read the photo, agents use memory and MCP tools, risk signals appear, and a person decides](docs/images/demo/photo_evidence_and_signals.gif)
 
@@ -27,12 +28,15 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Measure | Result | n |
 |---|---|---|
 | Decision accuracy on claims with wording the system had not seen | **98.7%** (95% interval 93.1% to 99.8%) | 78 claims in two held-out sets |
-| Unsafe approvals (a claim that must be denied, approved) | 0 on the golden set and on held-out set 2. 1 on held-out set 1, caused by a defect in the test data, analysed below | 63 + 78 claims |
-| Payable amount exact | 100% | 141 claims |
+| Decision accuracy on 124 free-form narratives written and labelled by other model families | Agent team **98.4%** and a single model call **98.4%** | 124 claims |
+| Unsafe approvals (a claim that must be denied, approved) | 0 on the golden set and on held-out set 2. 1 on held-out set 1, caused by a defect in the test data, analysed below. 1 each for the agent team and the single call on the free-form set | 63 + 78 + 124 claims |
+| Payable amount exact | 100% on the template sets. The rules engine also reproduces 20 hand-calculated boundary claims | 141 + 20 claims |
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 188 | |
+| Automated tests | 416 (393 Python, 23 frontend) | |
+
+A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Do the agents earn their cost?](#do-the-agents-earn-their-cost) sets out the evidence, including where the agents lose.
 
 ---
 
@@ -51,7 +55,8 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | [Human in the loop](#human-in-the-loop) | The sign-off gate that the API enforces |
 | [Security and red team testing](#security-and-red-team-testing) | Threat model, defence layers and 30 attacks with controls |
 | [Frontend: the workbench UI](#frontend-the-workbench-ui) | React and TypeScript app with a live agent graph |
-| [Evaluation](#evaluation) | Golden and held-out sets, ablations and the quality gate |
+| [Evaluation](#evaluation) | Golden and held-out sets, an independent oracle, ablations and the quality gate |
+| [Do the agents earn their cost?](#do-the-agents-earn-their-cost) | A single call baseline, a free-form benchmark and a planted problem investigation test |
 | [Cost, latency and observability](#cost-latency-and-observability) | Telemetry lake, measured optimisations and alerting |
 | [Fine-tuning a small model with QLoRA](#fine-tuning-a-small-model-with-qlora) | Method, results and when fine-tuning pays off |
 | [Deployment](#deployment) | Acceptance test, console evidence and deploy commands |
@@ -96,7 +101,7 @@ These resolved the design questions below.
 
 | Path | Purpose | Services |
 |---|---|---|
-| **Serving** | Answer the adjuster | Amazon CloudFront, an Application Load Balancer reachable only from CloudFront, Amazon ECS on Fargate (arm64) running FastAPI and the agent graph |
+| **Serving** | Answer the adjuster | AWS WAF and Amazon CloudFront at the edge, Amazon Cognito for sign in, a CloudFront VPC origin to an internal Application Load Balancer, Amazon ECS on Fargate (arm64) running FastAPI and the agent graph |
 | **Reasoning** | Decide | Amazon Bedrock models, Guardrails, Knowledge Bases, Bedrock Data Automation, AgentCore Memory |
 | **Learning and operations** | Measure and improve | S3 telemetry lake, AWS Glue, Amazon Athena, Amazon QuickSight, Amazon CloudWatch, Amazon SageMaker |
 
@@ -107,18 +112,21 @@ These resolved the design questions below.
 | Bedrock Knowledge Bases on Amazon S3 Vectors | Policy clause retrieval with Titan Text Embeddings V2 ([RAG](#retrieval-augmented-generation-rag)) |
 | Amazon Bedrock Data Automation | Reads the claim form and the damage photo into structured fields with two custom blueprints |
 | Bedrock AgentCore Memory | Short term notes per claim, long term lessons (semantic strategy) writable only by a human |
-| Amazon ECS on Fargate, ALB, CloudFront | Serving. The ALB accepts traffic only from CloudFront, and the listener rejects requests without a secret header |
+| Amazon ECS on Fargate, internal ALB, CloudFront | Serving. The load balancer is internal, in isolated subnets with no route to the internet. CloudFront reaches it through a VPC origin, its security group admits only the group CloudFront attaches to that origin, and the listener rejects requests without a secret header |
+| Amazon Cognito | Sign in. Only administrators create users. Two groups, `adjuster` and `senior`, become the reviewer's role. The site signs in through Cognito's hosted page with the authorization code flow and PKCE |
+| AWS WAF | Rate limits per client address on CloudFront: 20 agent runs and 600 requests in 5 minutes |
+| AWS Secrets Manager | Generates the secret header value at deploy time, so it never appears in the repository |
 | Amazon DynamoDB | Policies, per claim extraction records, the human audit log, run metrics |
 | Amazon S3 | Claim inputs and outputs, policy corpus, telemetry lake, fine-tuning artifacts |
 | AWS Glue, Amazon Athena, Amazon QuickSight | One JSON record per model call lands in S3. Athena queries it with partition projection. QuickSight shows cost and latency |
 | Amazon CloudWatch | Dashboard, latency and 5xx alarms, and a cost spike alarm fed by a custom metric |
 | Amazon SageMaker | QLoRA fine-tuning job on one GPU instance |
-| AWS CDK (Python) | Two stacks, `ClaimsAdjudicationData` and `ClaimsAdjudicationApp`. Synthesis needs no credentials |
-| GitHub Actions | Workflows for lint, tests, the eval gate, the red team and deploy. Deploy and live evaluation authenticate through OIDC with a role supplied as a repository variable, so no long lived keys are stored |
+| AWS CDK (Python) | Two stacks, `ClaimsAdjudicationData` and `ClaimsAdjudicationApp`. Synthesis needs no credentials, and tests assert the security properties of the synthesised template. The task role names its models, guardrail and resources instead of using wildcards. `-c production=true` keeps the data and logs when the stack is deleted |
+| GitHub Actions | Workflows for lint, types, tests, the eval gate, the red team, CodeQL and deploy. The Python environment comes from `uv.lock`. Deploy and live evaluation authenticate through OIDC with a role supplied as a repository variable, so no long lived keys are stored |
 
 ![Release path](docs/images/release_path.png)
 
-The **CI** workflow runs on every push and pull request in **GitHub Actions** and passes: lint, the backend and evaluation tests, the replay quality gate, the **red team** in replay mode, the frontend type check and build, and **CDK** synthesis. Deploy and live evaluation are manual workflows. They need an **OIDC** provider and a deploy role that this **CDK** app does not create.
+The **CI** workflow runs on every push and pull request in **GitHub Actions** and passes: lint with the security rules, **mypy**, the **Python** tests, the replay quality gate, the **red team** in replay mode, the frontend tests, an **npm** audit, the type check and build, the infrastructure security tests, and **CDK** synthesis. A separate **CodeQL** workflow scans the **Python** and **TypeScript** on every push. Deploy and live evaluation are manual workflows. They need an **OIDC** provider and a deploy role that this **CDK** app does not create.
 
 The architecture diagrams are written as code with the **Python** `diagrams` library ([docs/diagrams/generate.py](docs/diagrams/generate.py)), so they are versioned and reviewed with the system.
 
@@ -128,10 +136,13 @@ The architecture diagrams are written as code with the **Python** `diagrams` lib
 
 | Decision | Alternatives considered | Rationale | Cost of the choice |
 |---|---|---|---|
-| A rules engine decides, models set flags | Let an agent decide and calculate | Money and exclusions need exactness and resistance to injection. The engine reproduces all 63 golden outcomes exactly given correct flags | The engine must be maintained as policy changes. Novel situations route to a human instead of being guessed |
+| A rules engine decides, models set flags | Let an agent decide and calculate | Money and exclusions need exactness and resistance to injection. The engine reproduces all 63 golden outcomes and 20 hand-calculated boundary claims exactly given correct flags | The engine must be maintained as policy changes. Novel situations route to a human instead of being guessed |
 | ECS on Fargate | EC2, Lambda | No servers to patch, scales per task, costs nothing when scaled to zero. Agent runs last 20 to 40 seconds with streaming, which suits a long lived container better than Lambda | Live runs are serialised per task because tool state is per process. Scaling out means more tasks |
 | S3 Vectors | OpenSearch Serverless, pgvector | The corpus is small (hundreds of chunks). S3 Vectors has no standing hourly charge | No hybrid (keyword plus vector) search |
-| Public subnets, no NAT gateway | Private subnets with NAT | Saves roughly one dollar a day for a workload with no private resources. The ALB is reachable only from CloudFront and tasks accept traffic only from the ALB | Tasks have public IPs. Acceptable here, not for a regulated workload |
+| Public subnets for tasks, isolated subnets for the load balancer, no NAT gateway | Private subnets with NAT | Saves roughly one dollar a day for a workload with no private resources. The load balancer is internal, so it has no public address at all, and tasks accept traffic only from it | Tasks have public IPs. Acceptable here, not for a regulated workload |
+| CloudFront reaches the API through a VPC origin to an internal ALB | A public ALB limited by CloudFront's prefix list and a secret header. HTTPS to the origin, which needs a certificate and a domain name | Traffic never crosses the public internet, the load balancer cannot be reached except through CloudFront, and no domain has to be bought. The secret header stays as a second check | More moving parts: CloudFront attaches its own security group to the origin's network interfaces, and the load balancer has to admit that group by id (see [issues found and resolved](#issues-found-and-resolved)) |
+| Cognito hosted sign in, authorization code flow with PKCE | A login form in the app, a shared API key | No password passes through the application, tokens never appear in a URL, and the role is a group inside a token the API verifies | The hosted page has Cognito's default look. Administrators create users |
+| Python dependencies locked with uv | pip and requirements files | `uv sync` rebuilds the exact environment CI tests, down to the hash of every package. A warm install took 1 second against 27 for pip on the same requirements | Contributors need one extra tool |
 | Bedrock Data Automation for documents | A local PDF parser, Amazon Textract | Managed, handles forms and images with one project, custom blueprints give typed fields. A deterministic parser runs beside it as an independent second reader | 15 to 30 seconds per job, so it runs at ingestion, not on click. Two readers can disagree, which is the point of the check |
 | Two MCP servers, stdio | Direct function calls | One protocol for tools. The same servers can be reused by another agent. Tool access is scoped per agent | Process startup per run |
 | Human write only long term memory | Let agents store lessons | Closes the memory poisoning route | Lessons arrive only through human review and seeding |
@@ -148,7 +159,7 @@ The architecture diagrams are written as code with the **Python** `diagrams` lib
 3. **Intake agent.** Recalls lessons from memory and records six judgement flags (intoxicated, commercial use, unlicensed driver, mechanical failure, tyre only, theft), quoting the sentence behind each. It respects negation.
 4. **Coverage and Investigator agents run in parallel.** Coverage retrieves clauses through an **MCP** server and calls the payable calculator. The Investigator checks garage history, benchmark repair costs, repeat claims and the police report through a second **MCP** server and records advisory risk signals.
 5. **Bounded collaboration.** Agents may post questions to each other for a limited number of rounds.
-6. **Photo check.** Code compares the parts the photo shows as damaged with the parts on the estimate and adds an advisory signal if they disagree.
+6. **Photo check and rule checks.** Code compares the parts the photo shows as damaged with the parts on the estimate and adds an advisory signal if they disagree. It also adds any finding the Investigator should have recorded and did not: a repair cost above its benchmark, a flagged garage, a repeat claim, a missing police report. Every signal carries its source, `agent` or `rules`.
 7. **Adjudicator.** The deterministic engine applies the rules in precedence order and produces the decision, calculation and next step. A model writes the memo.
 8. **Human adjuster.** Accepts, overrides or escalates. An override becomes a candidate evaluation case and a lesson in long term memory.
 
@@ -161,6 +172,8 @@ If an agent does not finish, the claim is referred to a person with reason `INT.
 **Strands agent graph.** Four agents are nodes in a **Strands** graph. Hooks emit an event for every model call, tool call and handoff, and the animated graph in the UI is drawn from that stream, so every pulse corresponds to something that ran. A call budget of 40 model calls per run bounds a runaway agent.
 
 **MCP servers.** Two servers expose tools over stdio: `policy_records` (policy wording search, schedule, claim history) and `claims_ops` (garage check, repair cost benchmark, police report verification). Each agent receives only the tools it needs, and no tool pays money, edits a policy or reaches another customer.
+
+**Findings the agent does not record.** Looking things up is code's job, and an agent is asked to record what it finds. The investigation test ([below](#where-the-agents-do-earn-their-place-investigating-records)) showed that a model sometimes describes a finding without calling the tool that records it. In a traced run the Investigator received a flagged garage with six flagged estimates, wrote in its summary that it had recorded a medium risk signal, and never called `record_risk_signal`, so the adjuster would have seen nothing. Across the 9 single-finding garage runs it recorded none. The run therefore ends with `add_rule_signals`, which adds every finding the rules can reach that the agent did not record, keeps the agent's own signals, and recognises a second inflated repair line when the agent flagged only the first. Applied to the 84 stored agent runs, exact matches rose from 62 to 73 at no extra cost. This guarantees delivery of what the rules can find. It does not make the agent better at judgement, which is what the agent is for.
 
 **Memory in two tiers.**
 
@@ -245,19 +258,19 @@ Small chunks gave better recall at 1 and lost context by 5. Large chunks did the
 
 The AI recommends and a person decides. The **API** enforces this, so it cannot be bypassed by calling an endpoint directly.
 
-![The human sign-off gate: a high value claim is routed to a senior adjuster, who accepts it, and the decision is logged](docs/images/demo/human_in_the_loop.gif)
+![The human sign-off gate: an adjuster is blocked above the authority limit, a senior adjuster signs in through Cognito and accepts, and the decision is logged](docs/images/demo/human_in_the_loop.gif)
 
 | Rule | Mechanism |
 |---|---|
 | Nothing is settled without a human | A claim moves new, AI recommended, reviewed. The only exit from AI recommended is a recorded human decision. Reviewing before the agents ran returns 409 |
 | Four eyes above the authority limit | A payable above INR 200,000 can be approved only by a senior adjuster. An adjuster receives 403 and can always escalate |
 | Overrides need a reason | An override carries a final decision and a written reason of at least 10 characters, stored beside the AI recommendation |
-| One decision per claim | A second review returns 409, so the trail cannot be rewritten |
-| Attributable | Each record holds who, their role, the AI recommendation and clauses, the final decision and the outcome |
+| One decision per claim | A conditional DynamoDB write allows exactly one human review per claim. Two reviewers deciding at the same moment get one success and one 409, tested with eight concurrent writers and mutation checked, so the trail cannot be rewritten even with several tasks running |
+| Attributable | Each record holds who, their role, the AI recommendation and clauses, the final decision and the outcome. The name and role come from the sign in token, never from the request body, so a caller cannot promote themselves by editing JSON |
 | Never a dead end | Every referral names the next action: a senior adjuster, resubmitted documents when form and estimate disagree, a delay investigation, a police report for theft |
 | Disagreement becomes data | An override is saved as a candidate evaluation case and as a lesson in long term memory |
 
-The audit log is stored in **DynamoDB** and restored when a task starts, so it survives restarts and redeployments.
+The audit log lives in **DynamoDB**, which is the single source of truth. Every task reads it directly, so scaling out cannot split it, and listing the claims takes one read of the log instead of one per claim.
 
 ---
 
@@ -275,6 +288,9 @@ The audit log is stored in **DynamoDB** and restored when a task starts, so it s
 | 4. Code decides | Agents set flags and an engine decides, so a hijacked agent cannot produce a payout |
 | 5. Memory is human write only | Agents recall lessons and cannot write them |
 | 6. Human in the loop | Every recommendation is reviewed and logged |
+| 7. Sign in and input limits | Every route except the health check needs a valid Amazon Cognito ID token, checked for signature against the pool's keys, issuer, audience, expiry and token type. A caller in no group gets 403. Review actions, decisions and run modes are fixed value types, free text has length limits, and the reviewer's name is cleaned before it reaches the audit log |
+| 8. Private network | The load balancer has no public address. CloudFront reaches it through a VPC origin, and its security group admits only the group CloudFront attaches to that origin. The task role names the three models, the guardrail and the resources it uses |
+| 9. Rate and spend limits | AWS WAF limits each address to 20 agent runs and 600 requests in 5 minutes. A daily spend limit (5 USD by default, summed from DynamoDB across all tasks) refuses new live runs with 429 and fails closed with 503 if the spend cannot be read |
 
 ![Attack lab: scan an attack and see exactly which sentence the guardrail removed](docs/images/demo/attack_lab.gif)
 
@@ -297,15 +313,23 @@ With defences on, the **guardrail** flagged instruction override 5 of 5, hidden 
 - The **guardrail** flags only 52% of attacks. It is weakest on attacks that use ordinary words: fabrication, tool misuse and memory poisoning. That is the reason the controls do not rely on it, and why layers 3 to 6 exist.
 - 0 of 30 is a result against attacks written by the system's author, with one **guardrail** configuration. It shows the pipeline held against these attacks. It does not show that the system cannot be attacked.
 
+**Verified on the deployed stack.** Layers 7 to 9 were checked on **AWS**, not only in tests. A headless browser followed the real sign in flow: a wrong password was refused, a valid login returned to the app with the right name and role, the token worked on the **API**, the session survived a reload, the evidence photo loaded through the cookie, sign out cleared the session, and a senior adjuster received the senior role. A review sent with a body claiming another role and name was recorded under the role and name in the token. A burst of 30 run requests without a token all reached the **API** and received 401. A minute later the same 30 were blocked at the edge with 403, while ordinary requests such as the health check still passed. The first deployment also exposed a defect that no test had caught, described in [issues found and resolved](#issues-found-and-resolved).
+
 ---
 
 ## Frontend: the workbench UI
 
-The frontend is a **React** 18 and **TypeScript** single page application built with **Vite**. It consumes a claim run as a server-sent event stream from the **FastAPI** backend and draws the agent graph as hand-written **SVG** animation, so each node and pulse corresponds to an event emitted by a **Strands** hook or a service call. It is served from **S3** through **CloudFront**, and the `/api` path is routed to the backend.
+The frontend is a **React** 19 and **TypeScript** single page application built with **Vite**. It starts a claim run with a `POST` and reads the server-sent event stream from the response with `fetch`, because `EventSource` can only send `GET` and cannot carry the sign in token. It draws the agent graph as hand-written **SVG** animation, so each node and pulse corresponds to an event emitted by a **Strands** hook or a service call. It is served from **S3** through **CloudFront**, and the `/api` path is routed to the backend.
+
+Signed out visitors see a sign in wall. The button sends them to **Amazon Cognito**'s hosted page (authorization code flow with **PKCE**), they return with a code that is exchanged for tokens, and the address bar is cleaned. The ID token is refreshed before it expires and sent on every call, and a cookie scoped to the read-only file path lets the evidence photo load, since an image tag cannot send a header. When the site has no sign in configuration, as in local development, the wall is skipped and a demo role selector appears.
+
+![The sign in wall, shown to a signed out visitor](docs/images/app/signin_gate.png)
+
+![Cognito's hosted sign in page](docs/images/app/signin_cognito_hosted_page.png)
 
 ![Workbench mid run, live](docs/images/app/workbench_live_run.png)
 
-- **Workbench.** Claim queue with filters, the live agent graph, the claim packet with the photo and detected parts, a reasoning trace, and the decision panel with checks, calculation, clause citations, risk signals, recalled lessons and review controls. A role switcher shows the four eyes rule.
+- **Workbench.** Claim queue with filters, the live agent graph, the claim packet with the photo and detected parts, a reasoning trace, and the decision panel with checks, calculation, clause citations, risk signals, recalled lessons and review controls. The header shows who is signed in and their role from the token, which is what the four eyes rule uses.
 - **Architecture.** The graph, static, with the design principles.
 - **Security.** The attack lab, **red team** results and defence layers.
 - **Observability.** Cost, latency, where the money goes, alert rules and review statistics.
@@ -315,6 +339,8 @@ The frontend is a **React** 18 and **TypeScript** single page application built 
 ![Architecture tab](docs/images/app/architecture_tab.png)
 
 The mode badge states whether a run was the offline baseline or live on **Bedrock**.
+
+**Tests.** 23 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks) and the **API** layer against a fake server. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
 
@@ -334,6 +360,10 @@ The mode badge states whether a run was the offline baseline or live on **Bedroc
 | Held-out 1 and 2 together, 78 claims | | **98.7%** (77 of 78), 95% interval 93.1% to 99.8% | | | |
 
 **Root cause of the one miss.** In held-out 1 the narrative reads: "Another motorist reversed into the parked car outside the owner's house. The driver admitted to having had several drinks at a party before the trip." The label says deny. The agents approved. The insured car was parked and nobody was driving it, so approving is defensible. The generator had combined an accident sentence that implies a parked car with a driver-condition clause. The label was not changed after the result, because that would tune the test to the answer. The result stands as measured and it fails the live gate. The generator was fixed (the insured must be driving in every accident sentence), held-out 1 is kept byte for byte reproducible, and held-out 2 was produced by the fixed generator, a new seed and the same agents. No agent code or prompt changed between the two runs.
+
+**An independent oracle.** The golden labels were produced by the same logic that implements the rules, so matching them cannot catch a rule that is wrong in both places. [evals/golden/independent_cases.json](evals/golden/independent_cases.json) holds 20 claims whose answers were worked out by hand from the policy wording and the standard age depreciation schedule, with the working written beside each. Every case sits on a boundary: the age bands, exactly 75% of the insured value (which is not a total loss) and one rupee over, the authority limit, notice on day 15 and day 16, half a rupee rounding up, and the first and last day of the policy. Eight deliberate engine bugs, each on one of those boundaries, were each caught by exactly one case.
+
+**The engine under random testing.** A random test of 20,000 claims found four defects that the golden set had hidden, all now fixed and pinned by tests that fail on the old engine: a report date before the incident date was approved (2,801 cases), an estimate whose total did not match its own lines was approved, an unreadable date raised an exception, and float arithmetic with banker's rounding left 1,916 of 19,005 partial payables one rupee off. Money now uses exact decimals with halves rounded up, and the repository keeps property tests over 10,000 random claims.
 
 **Gate.** Thresholds live in [evals/thresholds.json](evals/thresholds.json) and are versioned with the code:
 
@@ -363,6 +393,82 @@ A single run per variant had suggested that collaboration made no difference. Re
 
 ---
 
+## Do the agents earn their cost?
+
+A multi-agent design costs more than one model call, so it has to show what the extra cost buys. Three experiments test that, and the answer differs by task.
+
+### A single call baseline
+
+[evals/single_call_baseline.py](evals/single_call_baseline.py) makes one structured **Claude Haiku 4.5** call per claim that sets the same six flags, using the **fine-tuning** study's prompt with four fixed examples (none of their sentences appear in the evaluation sets), and then runs the same rules engine. Any difference in outcome comes from how the flags were produced and nothing else.
+
+| Set | Single call plus engine | Agent team |
+|---|---|---|
+| Golden, 63 claims | 100%, 0 unsafe approvals | 100% |
+| Held-out 1, 39 claims | 100%, 0 unsafe approvals | 97.4% |
+| Held-out 2, 39 claims | 100%, 0 unsafe approvals | 100% |
+| Cost and time per claim | 0.0007 USD, 0.8 s, 1 call | 0.035 to 0.049 USD, 21 to 25 s, about 20 calls |
+
+The template narratives do not need tools, so one call does the whole job. The held-out set the agents scored 97.4% on is the one with the flawed label described above, and the single call scored its label as written. The baseline also handled all 14 injection claims in these sets with no **guardrail**, so those claims do not measure what the **guardrail** adds. The **red team** suite does that.
+
+### A harder set written by other model families
+
+Template sets cannot tell understanding from learned wording, so [evals/freeform](evals/freeform) builds a different kind of set. **Mistral Large 3** wrote 140 first-person narratives from short fact briefs, in seven styles (formal report, rambling, blunt text message, non-native English, full of irrelevant detail, hedged and so on). Fifty are implicit, with the obvious words forbidden so the fact has to be inferred, and 16 are negated decoys such as a school run that is not commercial use, a favour that looks like delivery work, or a permitted spouse driving whose licence was shown to the police. **gpt-oss-120b** then labelled every narrative without seeing the intended label, and only the 124 where the two agreed were kept, with every drop recorded. Neither model is one the product or the baseline uses. The expected decision for each claim comes from the rules engine on the verified labels.
+
+| System | Correct | Unsafe approvals | Cost per claim | Time per claim (agent team: median) | Model calls |
+|---|---|---|---|---|---|
+| Single call plus engine | 122 of 124 (98.4%) | 1 | 0.0008 USD | 0.8 s | 1 |
+| Agent team | 122 of 124 (98.4%) | 1 | 0.045 USD | 22.5 s | 21.3 |
+
+The two systems tie, and each falls for a different trap. The single call denied the favour that looked like delivery work and approved a learner practising alone, a fact the narrative only hints at. The agent team denied a school run as commercial use and also missed a learner driver. So this benchmark does not separate them on accuracy, and the agent team costs about 58 times as much.
+
+**A construction error that the first run exposed.** The first agent run scored 92.7% with 9 unsafe approvals, and every miss was a tyre-only or breakdown claim. The cause was in the builder: it gave every claim random body-repair lines, so a tyre-only narrative arrived with an estimate listing a windshield and a radiator. The agents cross-check the estimate against the narrative and refused to call it tyre-only, which scored them against a contradiction built into the test. The single call never reads the estimate, so it could not be fooled. The builder now writes estimates that agree with the narrative, a test pins that, and the corrected run is the result above. The first run's reports are kept, labelled, because the finding is real: the agents notice contradictions the single call cannot see.
+
+**Limits.** 15 of the 16 dropped narratives were implicit ones the verifier could not agree on, so the set is somewhat easier than intended (35 of the 50 implicit narratives survive). Agreement between two models is not human ground truth. The claims are 124, so a difference of one or two is within noise.
+
+### Where the agents do earn their place: investigating records
+
+Investigation is a different task: the facts live in records the narrative does not contain (repair cost benchmarks, a garage's flagged estimates, other claims on the policy, the police report). [evals/investigation](evals/investigation) plants problems in real claim PDFs and records and compares three contenders on the investigator's model (**Nova 2 Lite**), at temperature 0, with the same plain brief and no thresholds written into it:
+
+| Contender | What it is given |
+|---|---|
+| One call, documents only | The claim packet and the narrative |
+| One call, records pasted in | The packet plus every reference record in the prompt, the strongest single-call baseline |
+| The investigator agent | The product's own agent with its tools and MCP servers, looking things up |
+
+There are 28 cases: 14 with a single problem (an inflated repair line, a flagged garage, a theft with no police report, documents that disagree) including controls where nothing is wrong, 4 repeat-claim cases, 4 that combine problems and 6 where the narrative tells the reviewer to skip its checks. Each answer key is checked against the product's own deterministic investigator, and the case design was corrected once before any full run, after a smoke test showed that a 5 day against 6 day pair scored the models on guessing an internal threshold they were never told.
+
+| Contender | Planted problems found | Runs with a false alarm | Exactly right | Cost per case |
+|---|---|---|---|---|
+| One call, documents only | 30 of 72 (42%) | 50 of 84 | 22 of 84 | 0.0003 USD |
+| One call, records pasted in | 69 of 72 (96%) | 53 of 84 | 31 of 84 | 0.0007 USD |
+| Investigator agent | 58 of 72 (81%) | 11 of 84 | 62 of 84 | 0.0080 USD |
+| Investigator agent plus the rule safety net | 69 of 72 (96%) | 11 of 84 | 73 of 84 | 0.0080 USD |
+
+Each case ran three times. Pasting the records finds nearly everything and raises a false alarm in most runs: it mixes up other policies' rows, reporting "policy INV-00014 also had a claim two days before" for a claim on a different policy. The agent finds fewer but is right far more often, and found all 24 of the problems that needed several lookups combined. The last row applies `add_rule_signals` to the stored agent runs, as described in [Agents, MCP and memory](#agents-mcp-and-memory).
+
+**Scale.** The claims history grows in real deployments, and pasting it into the prompt grows with it. The same history cases ran with 37, 1,037 and 10,037 claims on file:
+
+| Claims on file | Records pasted in: tokens and cost per case | Runs with a false alarm | Agent: tokens and cost per case | Runs with a false alarm |
+|---|---|---|---|---|
+| 37 (all 28 cases) | 1,480 and 0.0007 USD | 53 of 84 | 22,183 and 0.0080 USD | 11 of 84 |
+| 1,037 (6 cases) | 23,472 and 0.0073 USD | 9 of 18 | 23,791 and 0.0084 USD | 4 of 18 |
+| 10,037 (6 cases) | 221,472 and 0.0669 USD | 17 of 18 | 23,423 and 0.0083 USD | 3 of 18 |
+
+The agent's cost does not move, because it does a point lookup. At 10,037 claims the pasted prompt costs about 95 times what it did at 37 and 8 times the agent's cost per case, takes 14.6 seconds against the agent's 10.6, and raises a false alarm in 17 of 18 runs. The costs meet at around 1,000 claims on file. Below that the single call is cheaper and finds more, at the price of more false alarms.
+
+**The agent's weaknesses.** It recorded a lone flagged garage in 0 of 9 runs (and in a traced run claimed in its summary to have recorded it), and it filed an amount mismatch under the wrong kind of problem. In the injection group it found 10 of 15: the flagged garage was missed in all 3 runs and a repeat claim and a missing police report once each, with no false alarms. It was not steered into reporting things, but it may have been steered out of reporting some. The garage weakness is what `add_rule_signals` removes.
+
+**Limits.** One model, 28 cases written by the author, and a deterministic investigator in the product (`services/signals.py`) that solves this same task by construction, so the comparison is between the agent and stuffing the context. It does not show that the agent beats code. Costs were recomputed from the recorded tokens at prices checked against the **AWS** Price List.
+
+### What this means
+
+- On template and free-form narratives a single call is as accurate as the agent team at about one fiftieth of the cost. Accuracy does not justify the agents.
+- When the facts live in records, and the records grow, the agent holds its cost and its precision while a single call with everything pasted in degrades. That is the case for tool use, and it needed a code safety net to be reliable.
+- The agents also add what a single call cannot: citations from retrieval, long term memory fed by human review, a full audit trail of tool calls, and the cross-check between narrative and estimate that exposed the benchmark error above.
+- If the only job were reading narratives, a single call and a rules engine would be enough. The agents are justified by the investigation and audit work, and the evidence for that is the last experiment, with the limits stated there.
+
+---
+
 ## Cost, latency and observability
 
 Every model call writes a **JSON** record (agent, model, input and output tokens, latency, cost) to the **S3** telemetry lake, partitioned by day. **Athena** queries it in place and **QuickSight** presents it.
@@ -378,6 +484,8 @@ Every model call writes a **JSON** record (agent, model, input and output tokens
 | Plus the memo written by Claude Haiku 4.5 instead of Sonnet 4.6 | **0.0347 USD** | **0.0351 USD** | 25% and 28% lower |
 
 Both changes are configuration switches (`CLAIMS_PARALLEL_TOOLS` and `CLAIMS_ORCHESTRATOR_MODEL`). The deployed system and the held-out evaluations run the baseline configuration, so enabling the optimised one would need the held-out sets rerun first. Prompt caching had no measurable effect because the prompts fall below the caching threshold. That is a negative result. At these prices a claim costs about 3 to 4 Indian rupees.
+
+**Prices.** The rates in `backend/app/pricing.py` came from third party trackers until [scripts/check_prices.py](scripts/check_prices.py) compared all twelve against the **AWS** Price List **API** on 16 November 2026. **Claude Haiku 4.5** and **Claude Sonnet 4.6** matched exactly. **Nova 2 Lite** did not: the file held the regional rates (0.33 USD per million input tokens, 2.75 output) while the code calls the global inference profile (0.30 and 2.50), and its cache rates were wrong. The file is corrected. **Nova** is close to half of a claim's tokens, so the per-claim costs measured before that date are about 4 percent high, and the investigation experiment's costs were recomputed from recorded tokens at the corrected rates.
 
 **Latency.** The account's **Bedrock** request quotas are small, and throttling inflated latency in the large sharded batches, so those timings are not reported. Latency was re-measured sequentially: one claim at a time, nothing else calling **Bedrock**, 22 claims per variant.
 
@@ -441,7 +549,9 @@ With 150 narratives the 95% uncertainty on an accuracy near 88% is about 5 point
 
 ## Deployment
 
-The system was deployed to us-east-1 with two **CDK** stacks, which were destroyed after the evidence below was recorded. The commands at the end of this section recreate them. [scripts/verify_deployment.py](scripts/verify_deployment.py) is the acceptance test: it discovers every resource from the **CloudFormation** outputs and calls each service. It invokes three **Bedrock** models, applies the **guardrail** to an attack, retrieves from all four **knowledge bases**, recalls from **AgentCore** memory, runs a **Bedrock Data Automation** job, reads every **DynamoDB** table, queries **Athena**, checks **QuickSight**, and runs one live claim through the agents. It exits non-zero if any check fails. The latest run passed 23 of 23 checks ([docs/verification.json](docs/verification.json)). The screenshots below are from the console. The account identifier and the operator's name are redacted by [scripts/redact_screenshots.py](scripts/redact_screenshots.py).
+The system was deployed to us-east-1 with two **CDK** stacks, which were destroyed after the evidence below was recorded. The commands at the end of this section recreate them. [scripts/verify_deployment.py](scripts/verify_deployment.py) is the acceptance test: it discovers every resource from the **CloudFormation** outputs and calls each service. It creates two temporary **Cognito** users and signs them in, then checks that the load balancer is private, that the **API** refuses a caller with no token (401) and a user in no group (403), that starting a run is `POST` only, that the site publishes its sign in settings and that **AWS WAF** is attached. It invokes three **Bedrock** models, applies the **guardrail** to an attack, retrieves from all four **knowledge bases**, recalls from **AgentCore** memory, runs a **Bedrock Data Automation** job, runs one live claim through the agents, reviews it through the **API** with a senior token while the request body claims another role and name (which must be ignored), then reads every **DynamoDB** table and queries **Athena**. It deletes the temporary users even if a check fails, and exits non-zero if any check fails. The latest run passed 29 of 29 checks ([docs/verification.json](docs/verification.json)); the **QuickSight** check reports a skip, because that account was cancelled to stop billing. The screenshots below are from the console. The account identifier and the operator's name are redacted by [scripts/redact_screenshots.py](scripts/redact_screenshots.py), and every screenshot in the folder was scanned by **OCR** for the account number.
+
+The first run of this script on the new network design failed 12 of 27 checks, six of them because every **API** call through **CloudFront** returned 504, and that is how the defect described in [issues found and resolved](#issues-found-and-resolved) was found. The rest were empty tables and an empty telemetry lake that nothing had written to yet, and a check that wrongly scanned an untracked file.
 
 **Compute and delivery**
 
@@ -449,10 +559,19 @@ The system was deployed to us-east-1 with two **CDK** stacks, which were destroy
 |---|---|
 | ![ECS service](docs/images/aws/ecs_service_deployments.png) | ![ECS cluster](docs/images/aws/ecs_cluster_services.png) |
 | ECS service on Fargate, one task running, deployment succeeded | ECS cluster, service active |
-| ![CloudFront](docs/images/aws/cloudfront_distribution.png) | ![CloudFront metrics](docs/images/aws/cloudfront_metrics.png) |
-| CloudFront distribution in front of the application | CloudFront request and error metrics |
+| ![CloudFront origins](docs/images/aws/cloudfront_origins.png) | ![CloudFront metrics](docs/images/aws/cloudfront_metrics.png) |
+| CloudFront distribution with an S3 origin for the site and a VPC origin for the API | CloudFront request and error metrics |
 | ![App stack](docs/images/aws/cloudformation_app_stack.png) | ![Data stack](docs/images/aws/cloudformation_data_stack.png) |
-| CloudFormation, application stack | CloudFormation, data stack |
+| CloudFormation, application stack resources, including Cognito, the web ACL and the VPC origin | CloudFormation, data stack |
+
+**Identity and private network**
+
+| | |
+|---|---|
+| ![Cognito groups](docs/images/aws/cognito_user_pool_groups.png) | ![WAF rules](docs/images/aws/waf_web_acl_rules.png) |
+| Cognito user pool with the adjuster and senior groups | Web ACL with the two rate limit rules |
+| ![Internal ALB](docs/images/aws/alb_internal.png) | ![ALB security group](docs/images/aws/alb_security_group_inbound.png) |
+| Load balancer with scheme Internal, in the isolated subnets | Its security group admits one source, the CloudFront VPC origin service group |
 
 **Bedrock: guardrails, knowledge base, document automation**
 
@@ -490,24 +609,31 @@ The system was deployed to us-east-1 with two **CDK** stacks, which were destroy
 **Deploy and verify**
 
 ```bash
-source .venv/bin/activate                      # the CDK app runs with the active interpreter
+uv sync                                        # the exact locked environment, Python 3.12
+export PATH="$PWD/.venv/bin:$PATH"             # the CDK app runs with the active interpreter
 cd frontend && npm ci && npm run build && cd ../infra
 npx aws-cdk@2 bootstrap aws://<account>/us-east-1 --qualifier claimsadj --toolkit-stack-name CDKToolkit-claimsadj
-npx aws-cdk@2 deploy --all -c region=us-east-1 -c mode=live
+npx aws-cdk@2 deploy --all -c region=us-east-1 -c mode=live    # add -c production=true to keep the data when the stack is deleted
 
 # load data into the new stacks (names come from the stack outputs)
 aws s3 sync data/real/policies s3://<policy-docs-bucket>/policies/
 aws s3 sync data/clause_cards  s3://<policy-docs-bucket>/clause_cards/
 # start one ingestion job per knowledge base data source, in sequence, then
-python scripts/seed_dynamodb.py <policies-table> <claims-table>
-CLAIMS_MODE=live CLAIMS_MEMORY_ID=<memory-id> python scripts/seed_memory.py
-python scripts/run_bda_ingest.py                # Bedrock Data Automation and the vision model on every form and photo
+uv run python scripts/seed_dynamodb.py <policies-table> <claims-table>
+CLAIMS_MODE=live CLAIMS_MEMORY_ID=<memory-id> uv run python scripts/seed_memory.py
+# Bedrock Data Automation results for every form and photo are cached in data/bda;
+# uv run python scripts/run_bda_ingest.py regenerates them
 
-python scripts/verify_deployment.py             # acceptance test across every service
+# create the people who can sign in (there is no self sign up), then put each in a group
+aws cognito-idp admin-create-user --user-pool-id <pool-id> --username <name> --message-action SUPPRESS
+aws cognito-idp admin-set-user-password --user-pool-id <pool-id> --username <name> --password '<strong password>' --permanent
+aws cognito-idp admin-add-user-to-group --user-pool-id <pool-id> --username <name> --group-name senior    # or adjuster
+
+uv run python scripts/verify_deployment.py     # acceptance test across every service
 npx aws-cdk@2 destroy --all -c region=us-east-1
 ```
 
-Pass the region explicitly: the **CDK** command line otherwise takes it from the **AWS** profile, which once sent a deploy to the wrong region. The **CDK** app uses a dedicated bootstrap qualifier. The workflows authenticate to **AWS** through **OIDC** with a role supplied as a repository variable, so no long lived keys are stored in **GitHub**. That role and the **OIDC** provider are not created by this app. The **QuickSight** account is created once in the console and must be cancelled after use because it bills after its trial.
+Pass the region explicitly: the **CDK** command line otherwise takes it from the **AWS** profile, which once sent a deploy to the wrong region. A deployment costs roughly 2 to 3 US dollars a day while it runs, plus model calls (an estimate from list prices, not a bill). Destroying the data stack fails on the **Athena** workgroup once queries have run: delete it with `aws athena delete-work-group --work-group claims-adjudication --recursive-delete-option` and retry. The bootstrap stack keeps its asset bucket and container repository, which have to be emptied before that stack can be deleted. The **CDK** app uses a dedicated bootstrap qualifier. The workflows authenticate to **AWS** through **OIDC** with a role supplied as a repository variable, so no long lived keys are stored in **GitHub**. That role and the **OIDC** provider are not created by this app. The **QuickSight** account is created once in the console and must be cancelled after use because it bills after its trial.
 
 ---
 
@@ -518,7 +644,7 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | Run cost above three times the median of the previous twenty | CloudWatch alarm `RunCostSpike` | Inspect the Observability tab for the agent or model that grew. Likely causes: a looping agent (bounded by the 40 call budget) or a prompt that grew |
 | Failure rate above 20% of recent runs | Alert rule | Check the error on the failing runs. Throttling shows as retries and latency, a permission change as an access denied |
 | API 5xx or p95 latency above 30 seconds | CloudWatch alarms | Check the ECS service events and task health |
-| Daily model spend above 5 USD | Alert rule | Review per call records in Athena |
+| Daily model spend reaches 5 USD (`CLAIMS_DAILY_BUDGET_USD`) | Hard limit and an alert | New live runs get 429 until tomorrow, and replay, viewing and reviewing keep working. The spend is summed from DynamoDB across every task. A run already going is never cut off, so a day can overshoot by one run per task. Review per call records in Athena |
 
 | Failure mode | Behaviour |
 |---|---|
@@ -526,31 +652,38 @@ Pass the region explicitly: the **CDK** command line otherwise takes it from the
 | An agent does not record its judgement | The claim is referred to a person with reason `INT.AGENT` |
 | Bedrock Data Automation output is missing for a claim | The claim runs without photo evidence and the UI says so |
 | The knowledge base is unreachable | The coverage agent has no clause text. The engine still decides, and the citation panel is empty |
-| A task restarts | The audit log and metrics are restored from DynamoDB when the next task starts |
+| A task restarts | The audit log is read from DynamoDB, so nothing is lost, and metrics are restored from DynamoDB when the next task starts |
 | An attacker's text is flagged | The flagged sentence is removed and logged, and the rest of the narrative proceeds |
+| A token is missing, expired or invalid | 401, and the site sends the person back to sign in. A user in no group gets 403 |
+| Today's spend cannot be read | Live runs get 503 instead of risking the money. Replay and review keep working |
+| The investigator describes a finding without recording it | The rules add it, marked as coming from the rules |
+| One address starts too many runs | The web ACL answers 403 at the edge until the 5 minute window passes |
+| A request fails | Every request has an id in `X-Request-ID`, carried on every log line from that request, and ends with one JSON log line with method, path, status, milliseconds and user. Failures log their traceback |
 
 ---
 
 ## Quick start
 
-Dependencies are pinned and split by purpose: `backend/requirements.txt` (runtime, what the container installs), `infra/requirements.txt` (**AWS CDK**), `requirements-dev.txt` (tests and tooling, which includes the other two) and `finetune/requirements.txt` (the versions the **SageMaker** job installed). The diagram generator needs **Graphviz** and the screenshot redaction script needs **Tesseract**. The demo recorder needs **Node.js** and **Google Chrome** (`cd docs/demo && npm install`).
+The **Python** environment is defined in `pyproject.toml` and locked in `uv.lock`: 104 packages, transitive ones included, with hashes. `uv sync` builds exactly the environment that **CI** tests, on **Python** 3.12 (`.python-version`), and installs **uv**'s managed **Python** if the machine has none. `finetune/requirements.txt` stays separate because it lists the versions the **SageMaker** job installed on a **GPU** machine. The diagram generator needs **Graphviz** and the screenshot redaction script needs **Tesseract**. The demo recorder needs **Node.js** and **Google Chrome** (`cd docs/demo && npm ci`).
 
 ```bash
 git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git && cd agentic-claims-adjudication-aws
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements-dev.txt
-python scripts/generate_data.py                 # 63 claims, 20 policies, golden set
-python scripts/generate_data.py --heldout       # held-out set 1 (and --heldout2 for set 2)
-pytest                                          # 188 tests, no AWS needed
-python evals/run_eval.py --mode replay && python evals/gate.py --mode replay
+uv sync                                         # the locked environment, no virtualenv to activate
+uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
+uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
+uv run pytest                                   # 393 tests, no AWS needed (the 16 infrastructure tests need Node.js and a built frontend)
+uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
+(cd frontend && npm ci && npm test)             # 23 frontend tests
 
-# run the app locally, offline baseline, no AWS needed
-CLAIMS_MODE=replay uvicorn app.api.main:app --app-dir backend --port 8000 &
-cd frontend && npm install && npm run dev       # http://localhost:5173
+# run the app locally, offline baseline, no AWS and no sign in needed
+CLAIMS_MODE=replay uv run uvicorn app.api.main:app --app-dir backend --port 8000 &
+cd frontend && npm ci && npm run dev            # http://localhost:5173
 
 # score a held-out set against the live agents
-CLAIMS_MODE=live CLAIMS_DATA_DIR=data/heldout CLAIMS_CASES=evals/golden/heldout_cases.json python evals/run_eval.py --mode live --label heldout
+CLAIMS_MODE=live CLAIMS_DATA_DIR=data/heldout CLAIMS_CASES=evals/golden/heldout_cases.json uv run python evals/run_eval.py --mode live --label heldout
 ```
+
+Locally, with no user pool configured, sign in is off: the app shows a demo role selector and the **API** takes the role from the `X-Demo-Role` header. Live mode refuses to start without a user pool, so the open mode cannot be run against real models by accident.
 
 A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The photographs are not redistributed: download the **Kaggle** dataset listed in the references into `data/real/car_damage_coco` and run `python scripts/attach_real_photos.py`.
 
@@ -566,6 +699,16 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | Accuracy rested on a set that had been iterated on | Review of the evaluation design | Two held-out sets with new wording, scored once. A root cause analysis of the single miss traced it to an incoherent test narrative, so the generator was fixed and the label was left alone |
 | The red team overstated attack success | A 70% result looked wrong. A no-attack control then showed the naive agent erring without any attack | The harness now appends the attack to a genuine narrative, and the report separates attributable successes from baseline errors |
 | The API returned 200 with HTML for unknown claims | Probing endpoints on the deployed site | CloudFront custom error responses apply to the whole distribution, so the single page app fallback also rewrote API errors. The app has no client routes, so the fallback was removed |
+| Every API call through CloudFront timed out (504) on the first deployment of the private network design, while the site, sign in settings, WAF and the internal load balancer all passed | Target health was fine and the app answered its own health checks, but no request from CloudFront ever reached it. The load balancer's security group admitted the isolated subnets' address ranges, on the assumption that the VPC origin's network interfaces are sourced from them. They are not: CloudFront attaches a managed security group to those interfaces, and the load balancer has to admit that group. Confirmed by adding the rule by hand (200 in 0.4 s) | The stack looks the group up with a small custom resource after the distribution exists, as the CDK documentation describes, with a read-only permission and a dependency on the distribution, then admits it. Tests now assert who the load balancer admits (a source group, never an address range). They passed on the broken design because none of them asserted this, and the old rule was reintroduced as a mutation to prove the new tests catch it |
+| The first agent run on the free-form benchmark scored 92.7% with 9 unsafe approvals, against 98.4% for a single call | Every miss was a tyre-only or breakdown claim. The benchmark builder gave all claims random body-repair estimates, so a tyre-only narrative came with an estimate listing a windshield and a radiator. The agents cross-check the two and correctly declined to call it tyre-only | The builder writes estimates that agree with the narrative and a test pins it. The corrected run ties the single call at 98.4%. The first run is kept, labelled, as evidence that the agents notice contradictions a single call cannot |
+| The investigator reached the adjuster with no flagged garage signal | In a traced run the agent received the garage record, wrote in its summary that it had recorded a medium risk signal, and never called the tool that records one. The same happened in all 9 single-finding garage runs | `add_rule_signals` adds every finding the rules can reach that the agent did not record, marked by source. Tested through the real live path with an agent that records nothing |
+| Listing the claims made 126 DynamoDB queries | A regression of mine: the stage of each claim was read with two queries per claim | One read of the audit log per request, with a test that counts the reads |
+| Two reviewers deciding at the same moment could both succeed once the API ran as several tasks | The audit log was a per-task local copy, so the one decision per claim rule held only within a process | DynamoDB is the source of truth and the review is a conditional write on a fixed key, so exactly one wins. Tested with eight concurrent writers against DynamoDB and the local store, and mutation checked |
+| The rules engine approved a claim reported before its incident, one whose estimate total did not match its lines, and paid some claims a rupee off | Found by running 20,000 random claims through it, which the golden set had not covered. Float arithmetic with banker's rounding, no check of the printed total, and no date validation | Exact decimals with halves rounded up, referral on inconsistent or unreadable dates and totals, an independent implementation in the data generator, and 20 hand-calculated boundary claims |
+| The model price table was wrong for one model | It was copied from third party trackers. Nova 2 Lite carried the regional rates while the code calls the global profile | `scripts/check_prices.py` compares all twelve rates with the AWS Price List API. Claude Haiku 4.5 and Sonnet 4.6 matched, Nova was corrected, and earlier per-claim costs are about 4 percent high |
+| CI failed on the frontend after upgrading to Vite 8 and React 19 | A lockfile written on macOS lacked two optional WebAssembly packages that Vite 8's bundler needs on Linux, so `npm ci` failed on the Linux runner although it worked locally | The lockfile was regenerated, and CI's exact frontend steps are now replayed on Linux with Node 22 in Docker before pushing |
+| A test passed alone and failed in the full run | An earlier test left an event bus bound to a closed event loop, and a later test's tool emitted onto it | The affected fixtures reset the bus, and the suites also run in the opposite order |
+
 ---
 
 ## Limitations
@@ -579,7 +722,10 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | Live runs are serialised per task, about 2 to 3 claims a minute | Throughput per task | More tasks, or a queue with workers |
 | Document ingestion is a batch script, not event driven | A new claim needs the script run before its photo and form check appear | An S3 event and a Step Functions workflow |
 | The deploy and live evaluation workflows have not run, because their OIDC role is not in the CDK app | Only CI is exercised on GitHub. Deployment is done from a workstation | Add the OIDC provider and role to the CDK app, then run both workflows |
-| Roles come from a dropdown, not a sign in | The four eyes rule is enforced by the API, but identity is not verified | Amazon Cognito and a verified role claim |
+| Sign in uses Cognito's default hosted page, MFA is optional and tokens live in the browser's session storage | A script injected into the page could read a token for the hour it is valid | Enforce MFA, keep tokens in memory with a refresh cookie, and style the hosted page |
+| The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user and reserve spend before a run |
+| The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows the agent beats stuffing the context. It does not show it beats code | More models, cases that no rule covers, and real adjuster feedback |
+| The free-form benchmark has 124 claims and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |
 | One region, one account, direct query QuickSight | Not a production topology | A second region, and SPICE for the dashboard |
 | No hybrid search on S3 Vectors | A vocabulary gap in retrieval | Evaluate a managed search cluster on cost and recall |
 
@@ -587,14 +733,15 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 
 ## What I would do next
 
-1. Add **Amazon Cognito** sign in and per adjuster audit identity.
+1. Enforce **MFA** and keep tokens out of session storage, limit by signed in user instead of by address, and show each adjuster only their own queue.
 2. Drive ingestion from **S3** events and **AWS Step Functions**, so **Bedrock Data Automation** and the vision model run when a document arrives.
 3. Improve retrieval with query rewriting, a reranker and a **hybrid search** comparison.
 4. Use adjuster overrides as an evaluation set that is never tuned against.
 5. Move agent hosting to **Bedrock AgentCore** Runtime, with **AgentCore** Observability for tracing.
 6. Add an **LLM** judge for memo quality, calibrated against hand graded samples.
 7. Add a voice note path using **Bedrock Data Automation** transcription.
-8. Strengthen the **fine-tuning** study: replace the compositional training data with paraphrases checked by people and then real adjuster-labelled narratives, repeat across seeds with a rank and learning-rate sweep and a reported spread, distil from the strong model if volume justifies self-hosting, and evaluate on the whole pipeline.
+8. Run the investigation test on more models and on cases that no rule covers, and compare the agent with the deterministic investigator on the cases where a rule does not exist.
+9. Strengthen the **fine-tuning** study: replace the compositional training data with paraphrases checked by people and then real adjuster-labelled narratives, repeat across seeds with a rank and learning-rate sweep and a reported spread, distil from the strong model if volume justifies self-hosting, and evaluate on the whole pipeline.
 
 ---
 
@@ -602,16 +749,18 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 
 ```
 agentic-claims-adjudication-aws/
-  backend/            FastAPI service, Strands agent graph, rules engine, MCP servers, tools, tests
+  backend/            FastAPI service, token checks (auth.py), Strands agent graph, rules engine, MCP servers, tools, tests
   frontend/           React and TypeScript workbench
   infra/              AWS CDK app: ClaimsAdjudicationData and ClaimsAdjudicationApp stacks
-  evals/              golden and held-out cases, scorer, quality gate, retrieval and photo evaluations, reports
+  evals/              golden and held-out cases, hand-calculated oracle claims, scorer, quality gate, retrieval and photo
+                      evaluations, the free-form benchmark (freeform/), the investigation test (investigation/), reports
   redteam/            30 attacks, the harness, the naive control, reports
   finetune/           QLoRA data, training, SageMaker launcher, baselines
   scripts/            data generator, photo attachment, Bedrock Data Automation batch job, DynamoDB and memory
-                      seeding, QuickSight setup, deployment verification, screenshot redaction
+                      seeding, QuickSight setup, deployment verification, price check, screenshot redaction
   docs/               diagram generator, demo recorder, images, verification results
-  .github/workflows/  CI, live eval, deploy
+  .github/            workflows (CI, CodeQL, live eval, deploy) and the Dependabot configuration
+  pyproject.toml      dependencies and tool settings; uv.lock pins every package; .python-version is 3.12
 ```
 
 ---
