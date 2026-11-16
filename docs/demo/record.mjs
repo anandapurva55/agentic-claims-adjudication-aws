@@ -2,6 +2,8 @@
 // Usage: node docs/demo/record.mjs <baseUrl> <outDir> [stillsDir]   (needs: cd docs/demo && npm install)
 // Scenes a to c: guardrail, human gate, attack lab. Scenes d to f: live run on a claim with a photo, observability tab, architecture tab.
 // Run it against the deployed site while the agents are live, so every frame is a real run.
+// The deployed site needs a sign-in. Pass test users with ADJUSTER_USER/ADJUSTER_PASS and SENIOR_USER/SENIOR_PASS (created for the recording and deleted after).
+// SCALE sets the device pixel ratio: 2 (the default) captures 2360x1800 frames of the 1180x900 layout, so text is rendered sharp, not enlarged.
 import puppeteer from 'puppeteer-core'
 import fs from 'node:fs'
 
@@ -10,6 +12,7 @@ const CHROME = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Conte
 fs.mkdirSync(out, { recursive: true })
 fs.mkdirSync(stills, { recursive: true })
 
+const SCALE = Number(process.env.SCALE || 2)
 const only = process.env.ONLY || ''
 const on = (s) => !only || only.includes(s)
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -39,9 +42,38 @@ async function film(page, until, { timeout = 90000, hold = 1500 } = {}) {
   while (Date.now() - t1 < hold) await snap(page)
 }
 
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', defaultViewport: { width: 1180, height: 900, deviceScaleFactor: 1 }, args: ['--disable-gpu', '--hide-scrollbars'] })
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', defaultViewport: { width: 1180, height: 900, deviceScaleFactor: SCALE }, args: ['--disable-gpu', '--hide-scrollbars'] })
 const page = await browser.newPage()
 const has = (sel) => () => page.$(sel).then(Boolean)
+const clickText = (txt) => page.evaluate((t) => [...document.querySelectorAll('button')].find((b) => b.textContent.includes(t))?.click(), txt)
+
+// Sign in through Cognito's hosted page, the way a person does. A no-op when no user is given (local development has no sign-in).
+async function signInAs(user, pass) {
+  if (!user) return
+  await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
+  if (await page.$('.gate-card')) {
+    await clickText('Sign in')
+    await page.waitForFunction(() => location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+    await sleep(1500)
+    // The hosted page can carry two copies of the form (desktop and mobile): use the visible one.
+    const visible = async (sel) => { for (const h of await page.$$(sel)) if (await h.isIntersectingViewport()) return h; return null }
+    const u = await visible('input[name="username"]'), pw = await visible('input[name="password"]')
+    if (!u || !pw) throw new Error('hosted sign-in form not found')
+    await u.type(user, { delay: 10 })
+    await pw.type(pass, { delay: 10 })
+    await page.keyboard.press('Enter')
+    await page.waitForFunction(() => !location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+    await page.waitForSelector('.top', { timeout: 30000 })
+  }
+}
+async function signOut() {
+  if (!(await page.$('.role .btn'))) return
+  await clickText('Sign out')
+  await page.waitForFunction(() => !!document.querySelector('.gate-card') || location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+  await sleep(1500)
+  if (!(await page.$('.gate-card'))) await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
+}
+await signInAs(process.env.ADJUSTER_USER, process.env.ADJUSTER_PASS)
 
 if (on('a')) {
 // Scene A: a prompt injection attack is caught, and the claim is denied.
@@ -64,8 +96,23 @@ await page.evaluate(() => document.querySelector('.hitl')?.scrollIntoView({ bloc
 await film(page, async () => false, { timeout: 1500, hold: 0 })
 await page.type('.hitl textarea', 'Reviewed estimate and photos, repairs are consistent.', { delay: 12 })
 await film(page, async () => false, { timeout: 1200, hold: 0 })
-await page.select('select[aria-label="Role"]', 'senior')
-await film(page, async () => false, { timeout: 1500, hold: 0 })
+if (process.env.SENIOR_USER) {
+  // The adjuster cannot approve above the authority limit (the panel says so). A senior adjuster signs in, and their role comes from their token.
+  await film(page, async () => false, { timeout: 2200, hold: 0 })
+  await signOut()
+  await signInAs(process.env.SENIOR_USER, process.env.SENIOR_PASS)
+  await page.goto(`${base}/?claim=${process.env.HV_CLAIM || 'CLM-2026043'}`, { waitUntil: 'networkidle0' })
+  await sleep(600)
+  // The recommendation lives in the browser, so the senior runs the agents on the claim and reviews their own fresh result.
+  await clickText('Run agents')
+  await film(page, has('.verdict'), { hold: 2000 })
+  await page.evaluate(() => document.querySelector('.hitl')?.scrollIntoView({ block: 'center' }))
+  await page.type('.hitl textarea', 'Reviewed estimate and photos, repairs are consistent.', { delay: 12 })
+  await film(page, async () => false, { timeout: 1500, hold: 0 })
+} else {
+  await page.select('select[aria-label="Role"]', 'senior')
+  await film(page, async () => false, { timeout: 1500, hold: 0 })
+}
 await page.evaluate(() => [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Accept recommendation'))?.click())
 await film(page, has('.outcome'), { hold: 3000 })
 
