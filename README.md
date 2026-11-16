@@ -52,7 +52,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 30 attacks |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 469 (411 Python, 58 frontend) | |
+| Automated tests | 489 (431 Python, 58 frontend) | |
 
 A single model call followed by the same rules engine matched the agent team on every accuracy benchmark at roughly one fiftieth of the cost, so the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records: [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -709,7 +709,7 @@ git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git &
 uv sync                                         # the locked environment, no virtualenv to activate
 uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
-uv run pytest                                   # 411 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
+uv run pytest                                   # 431 tests, no AWS needed (the 18 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
 (cd frontend && npm ci && npm test)             # 58 frontend tests
 
