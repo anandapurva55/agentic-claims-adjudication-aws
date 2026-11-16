@@ -30,6 +30,6 @@ jobs:
       - name: Red team against live agents
         env: { CLAIMS_MODE: live, CLAIMS_GUARDRAIL_ID: "${{ vars.GUARDRAIL_ID }}", CLAIMS_KNOWLEDGE_BASE_ID: "${{ vars.KB_ID }}" }
         run: python redteam/run.py --mode live
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with: { name: live-reports, path: "evals/reports redteam/reports" }
