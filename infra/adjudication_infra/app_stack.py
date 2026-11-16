@@ -152,7 +152,7 @@ class AppStack(Stack):
             cognito.CfnUserPoolGroup(self, f"Group{group.title()}", user_pool_id=pool.user_pool_id, group_name=group, description=description)
         site_url = f"https://{dist.distribution_domain_name}/"
         web_client = pool.add_client(
-            "Web", generate_secret=False, prevent_user_existence_errors=True, auth_flows=cognito.AuthFlow(),
+            "Web", generate_secret=False, prevent_user_existence_errors=True, auth_flows=cognito.AuthFlow(admin_user_password=True),  # IAM-signed admin calls only: scripts/verify_deployment.py signs in a test user. Browsers cannot use it.
             o_auth=cognito.OAuthSettings(flows=cognito.OAuthFlows(authorization_code_grant=True), scopes=[cognito.OAuthScope.OPENID, cognito.OAuthScope.EMAIL],
                                          callback_urls=[site_url], logout_urls=[site_url]),
             supported_identity_providers=[cognito.UserPoolClientIdentityProvider.COGNITO],

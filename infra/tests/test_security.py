@@ -91,6 +91,8 @@ def test_the_app_client_uses_the_code_flow_with_no_secret_and_returns_only_to_th
     (client,) = of_type(template, "AWS::Cognito::UserPoolClient").values()
     assert client["AllowedOAuthFlows"] == ["code"] and client["GenerateSecret"] is False  # no implicit flow: tokens never travel in the URL
     assert client["SupportedIdentityProviders"] == ["COGNITO"]
+    # no password flow a browser or script could call without AWS credentials: only the admin flow (IAM signed) and token refresh
+    assert sorted(client["ExplicitAuthFlows"]) == ["ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
     for urls in (client["CallbackURLs"], client["LogoutURLs"]):
         assert len(urls) == 1 and "GetAtt" in json.dumps(urls) and "localhost" not in json.dumps(urls) and "http://" not in json.dumps(urls)
 
