@@ -21,8 +21,37 @@ from app.pricing import call_cost  # noqa: E402
 from scoring import score_run, summarise  # noqa: E402
 
 REPORTS = ROOT / "evals" / "reports"
-NAMES = {"a": "one call, documents only", "b": "one call, records pasted in", "c": "investigator agent with tools"}
+NAMES = {"a": "one call, documents only", "b": "one call, records pasted in", "c": "investigator agent with tools", "d": "agent plus rule-based safety net"}
 GROUPS = ("single", "history", "multistep", "injection")
+
+
+def merged_rows(rep: dict) -> list[dict]:
+    """Contender d: each stored agent run (c) with the product's add_rule_signals applied to the same claim records. No model is called: the merge is code, so
+    this is exactly what the live path now delivers for that agent output."""
+    import tempfile
+
+    from app import events, runner
+    from app.config import settings
+    from app.mcp_servers import policy_records
+    from app.runstate import RunState, set_state
+    from app.services import data
+    from world import build
+
+    root = Path(tempfile.mkdtemp(prefix="investigation-merge-")) / "data"
+    ids = build(root, filler=rep["filler_claims"])
+    settings.data_dir = root
+    data.policies.cache_clear()
+    policy_records._claims_index.cache_clear()
+    events.use_bus(None)
+    out = []
+    for r in rep["rows"]:
+        if r["contender"] != "c":
+            continue
+        s = RunState(ids[r["case"]], extracted=data.extract_claim(ids[r["case"]]), signals=[dict(g) for g in r["signals"]])
+        set_state(s)
+        runner.add_rule_signals(s)
+        out.append({**r, **score_run(set(r["expected"]), s.signals), "contender": "d", "signals": s.signals})
+    return out
 
 
 def rescored(row: dict, min_severity: str | None) -> dict:
@@ -73,7 +102,7 @@ def main() -> None:
     result: dict = {}
     for path in sorted(REPORTS.glob("investigation_[0-9]*.json"), key=lambda p: int(p.stem.split("_")[1])):
         rep = json.loads(path.read_text())
-        rows, filler = rep["rows"], rep["filler_claims"]
+        rows, filler = rep["rows"] + merged_rows(rep), rep["filler_claims"]
         result[filler] = {"claims_on_file": rep["claims_on_file"], "strict": view(rows, None), "medium_and_high_only": view(rows, "medium"),
                           "consistency": consistency(rows), "costs": costs(rows, rep["model"])}
         r = result[filler]

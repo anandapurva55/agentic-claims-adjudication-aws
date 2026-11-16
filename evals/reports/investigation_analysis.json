@@ -187,6 +187,68 @@
      "exact": 13,
      "exact_rate": 0.722
     }
+   },
+   "d": {
+    "overall": {
+     "runs": 84,
+     "planted": 72,
+     "found": 69,
+     "recall": 0.958,
+     "runs_with_a_false_alarm": 11,
+     "false_alarm_rate": 0.131,
+     "control_runs": 27,
+     "controls_clean": 22,
+     "exact": 73,
+     "exact_rate": 0.869
+    },
+    "single": {
+     "runs": 42,
+     "planted": 27,
+     "found": 24,
+     "recall": 0.889,
+     "runs_with_a_false_alarm": 5,
+     "false_alarm_rate": 0.119,
+     "control_runs": 15,
+     "controls_clean": 13,
+     "exact": 37,
+     "exact_rate": 0.881
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 12,
+     "planted": 24,
+     "found": 24,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 3,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "injection": {
+     "runs": 18,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 3,
+     "controls_clean": 3,
+     "exact": 18,
+     "exact_rate": 1.0
+    }
    }
   },
   "medium_and_high_only": {
@@ -375,12 +437,75 @@
      "exact": 13,
      "exact_rate": 0.722
     }
+   },
+   "d": {
+    "overall": {
+     "runs": 84,
+     "planted": 72,
+     "found": 69,
+     "recall": 0.958,
+     "runs_with_a_false_alarm": 9,
+     "false_alarm_rate": 0.107,
+     "control_runs": 27,
+     "controls_clean": 24,
+     "exact": 75,
+     "exact_rate": 0.893
+    },
+    "single": {
+     "runs": 42,
+     "planted": 27,
+     "found": 24,
+     "recall": 0.889,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.071,
+     "control_runs": 15,
+     "controls_clean": 15,
+     "exact": 39,
+     "exact_rate": 0.929
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 12,
+     "planted": 24,
+     "found": 24,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 3,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "injection": {
+     "runs": 18,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 3,
+     "controls_clean": 3,
+     "exact": 18,
+     "exact_rate": 1.0
+    }
    }
   },
   "consistency": {
    "a": 0.929,
    "b": 0.643,
-   "c": 0.893
+   "c": 0.893,
+   "d": 0.964
   },
   "costs": {
    "a": {
@@ -396,6 +521,12 @@
     "mean_tool_calls": 0.0
    },
    "c": {
+    "mean_cost_usd": 0.00795,
+    "mean_seconds": 8.44,
+    "mean_input_tokens": 22183,
+    "mean_tool_calls": 8.1
+   },
+   "d": {
     "mean_cost_usd": 0.00795,
     "mean_seconds": 8.44,
     "mean_input_tokens": 22183,
@@ -469,6 +600,68 @@
     }
    },
    "c": {
+    "overall": {
+     "runs": 18,
+     "planted": 21,
+     "found": 21,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 4,
+     "false_alarm_rate": 0.222,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 14,
+     "exact_rate": 0.778
+    },
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 1,
+     "false_alarm_rate": 0.167,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 5,
+     "exact_rate": 0.833
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
+   },
+   "d": {
     "overall": {
      "runs": 18,
      "planted": 21,
@@ -655,11 +848,74 @@
      "exact": 0,
      "exact_rate": null
     }
+   },
+   "d": {
+    "overall": {
+     "runs": 18,
+     "planted": 21,
+     "found": 21,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.167,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 15,
+     "exact_rate": 0.833
+    },
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 6,
+     "exact_rate": 1.0
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
    }
   },
   "consistency": {
    "b": 0.833,
-   "c": 0.833
+   "c": 0.833,
+   "d": 0.833
   },
   "costs": {
    "b": {
@@ -669,6 +925,12 @@
     "mean_tool_calls": 0.0
    },
    "c": {
+    "mean_cost_usd": 0.00845,
+    "mean_seconds": 8.82,
+    "mean_input_tokens": 23791,
+    "mean_tool_calls": 8.6
+   },
+   "d": {
     "mean_cost_usd": 0.00845,
     "mean_seconds": 8.82,
     "mean_input_tokens": 23791,
@@ -742,6 +1004,68 @@
     }
    },
    "c": {
+    "overall": {
+     "runs": 18,
+     "planted": 21,
+     "found": 21,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.167,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 15,
+     "exact_rate": 0.833
+    },
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 6,
+     "exact_rate": 1.0
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
+   },
+   "d": {
     "overall": {
      "runs": 18,
      "planted": 21,
@@ -928,11 +1252,74 @@
      "exact": 0,
      "exact_rate": null
     }
+   },
+   "d": {
+    "overall": {
+     "runs": 18,
+     "planted": 21,
+     "found": 21,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.167,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 15,
+     "exact_rate": 0.833
+    },
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 6,
+     "exact_rate": 1.0
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
    }
   },
   "consistency": {
    "b": 0.833,
-   "c": 1.0
+   "c": 1.0,
+   "d": 1.0
   },
   "costs": {
    "b": {
@@ -942,6 +1329,12 @@
     "mean_tool_calls": 0.0
    },
    "c": {
+    "mean_cost_usd": 0.00833,
+    "mean_seconds": 10.61,
+    "mean_input_tokens": 23423,
+    "mean_tool_calls": 8.5
+   },
+   "d": {
     "mean_cost_usd": 0.00833,
     "mean_seconds": 10.61,
     "mean_input_tokens": 23423,

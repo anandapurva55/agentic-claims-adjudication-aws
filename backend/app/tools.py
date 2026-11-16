@@ -129,7 +129,7 @@ def record_risk_signal(kind: str, severity: str, detail: str) -> str:
     """
     if severity not in ("low", "medium", "high"):
         severity = "low"
-    state().signals.append({"kind": kind, "severity": severity, "detail": detail[:300]})
+    state().signals.append({"kind": kind, "severity": severity, "detail": detail[:300], "source": "agent"})
     return "recorded"
 
 

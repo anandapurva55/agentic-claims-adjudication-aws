@@ -108,7 +108,7 @@ async def _replay(s: RunState, speed: float) -> None:
     events.node("calc", "done", f"INR {s.calc['payable']:,}")
     events.edge("fraud", "mcp_ops", "benchmark, FIR, garage")
     events.node("mcp_ops", "active", "benchmark_repair_cost")
-    s.signals = signals.investigate(s.extracted)
+    s.signals = [{**g, "source": "rules"} for g in signals.investigate(s.extracted)]
     await _pause(speed, 0.9)
     events.node("mcp_ops", "done", f"{len(s.signals)} signal(s)")
     events.edge("fraud", "mcp_policy", "claim history")
@@ -175,6 +175,32 @@ async def _naive(s: RunState) -> None:
     events.node("adjudicator", "done", decision)
 
 
+def _covered(finding: dict, recorded: list[dict]) -> bool:
+    """Has the agent already reported this finding? Same kind counts, and for repair costs it must be the same part, so a second inflated line is not lost."""
+    for r in recorded:
+        if r.get("kind") != finding["kind"]:
+            continue
+        if finding["kind"] == "repair_cost":
+            if finding["detail"].split(" quoted at")[0].lower() in str(r.get("detail", "")).lower():
+                return True
+            continue
+        return True
+    return False
+
+
+def add_rule_signals(s: RunState) -> None:
+    """Looking things up is code's job. The agent is asked to record what it finds, but a model sometimes describes a finding without calling the tool, and
+    then the adjuster never sees it (measured: a flagged garage was missed in 9 of 9 single-finding runs). So every finding the rules can reach (repair
+    cost against the benchmark, garage record, repeat claim, missing FIR, document checks) is added here if the agent did not record it. The agent keeps
+    the judgement: what the rules cannot see, and the explanation."""
+    from app.services import signals
+    recorded = list(s.signals)
+    for g in signals.investigate(s.extracted):
+        if not _covered(g, recorded):
+            s.signals.append({**g, "source": "rules"})
+            events.log("fraud", f"rules check added: {g['detail']}")
+
+
 def add_document_signals(s: RunState) -> None:
     """Document findings (photo versus estimate, two readers disagreeing on a form) are facts from ingestion, so code adds them in every mode."""
     from app.services import signals
@@ -192,7 +218,7 @@ async def _live(s: RunState) -> None:
     for name, nr in result.results.items():
         _usage(s, nr.result, team.model_of.get(name, "unknown"))
     await _collaborate(s, team)
-    add_document_signals(s)
+    add_rule_signals(s)
     for src in ("policy", "fraud", "calc"):
         events.edge(src, "adjudicator", "")
     events.node("adjudicator", "active", "deciding")
