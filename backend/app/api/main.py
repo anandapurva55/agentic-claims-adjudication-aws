@@ -124,7 +124,10 @@ def review(claim_id: str, body: Review) -> dict:
         raise HTTPException(403, "this payable is above the adjuster authority limit: a senior adjuster must approve, or you can escalate")
     final = {"accept": ai["decision"], "override": body.final_decision, "escalate": "escalated"}[body.action]
     detail = {**body.model_dump(), "ai_decision": ai["decision"], "ai_payable": ai["payable"], "ai_clauses": ai["clauses"], "final": final}
-    row = stores.audit(claim_id, f"{body.role}:{body.reviewer}", "human_review", detail)
+    try:  # the database decides a race: exactly one reviewer gets through, before any side effect below happens
+        row = stores.audit(claim_id, f"{body.role}:{body.reviewer}", "human_review", detail)
+    except stores.AlreadyReviewed:
+        raise HTTPException(409, "this claim already has a human decision") from None
     lesson_stored = False
     if body.action == "override":
         stores.add_override_candidate({"claim_id": claim_id, "ai_decision": ai["decision"], "human_decision": final, "reason": body.note,
