@@ -22,12 +22,15 @@ jobs:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: us-east-1
       - uses: actions/setup-python@v7
-        with: { python-version: "3.12" }
-      - uses: astral-sh/setup-uv@v10
-        with: { enable-cache: true, cache-dependency-glob: requirements-dev.txt }
+        with: { python-version-file: .python-version }
+      - uses: astral-sh/setup-uv@v10.3.3
+        with: { enable-cache: true, cache-dependency-glob: uv.lock }
       - uses: actions/setup-node@v7
         with: { node-version: 22 }
-      - run: uv pip install --system -r requirements-dev.txt
+      - name: Install exactly what uv.lock says
+        run: |
+          uv sync --locked
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
       - run: python scripts/generate_data.py
       - run: cd frontend && npm ci && npm run build
       - name: Deploy both stacks

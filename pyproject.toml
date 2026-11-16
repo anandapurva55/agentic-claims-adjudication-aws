@@ -1,3 +1,46 @@
+[project]
+name = "agentic-claims-adjudication-aws"
+version = "1.0.0"
+description = "Agentic motor claims adjudication on AWS: multi-agent AI with RAG, MCP, memory, guardrails and a human in the loop"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+# What the API and the agent graph need at run time. The container image installs exactly this, from uv.lock.
+dependencies = [
+    "strands-agents==1.65.0",     # agent graph, hooks, Bedrock model provider
+    "mcp==2.3.0",                 # Model Context Protocol servers and client (stdio)
+    "boto3==1.44.3",              # one client library for every AWS service the system calls
+    "fastapi==0.163.0",
+    "uvicorn[standard]==0.54.0",
+    "pydantic==2.14.3",
+    "pydantic-settings==2.16.3",
+    "pypdf==7.1.0",               # deterministic claim form parser
+    "PyJWT[crypto]==2.15.1",      # checks the Amazon Cognito token on every request (app/auth.py)
+]
+
+[dependency-groups]
+# `uv sync` installs the dev group, which includes the infrastructure libraries.
+dev = [
+    "pytest==9.2.0",
+    "pytest-asyncio==1.5.0",
+    "httpx==0.28.1",              # FastAPI TestClient
+    "moto[dynamodb]==5.2.5",      # in-memory DynamoDB for the audit store race tests
+    "ruff==0.17.5",
+    "mypy==2.4.1",
+    "reportlab==5.1.0",           # scripts/generate_data.py writes the claim PDFs
+    "pillow==13.0.0",             # photo handling and screenshot redaction
+    "diagrams==0.25.1",           # docs/diagrams/generate.py. Needs the Graphviz binary (brew install graphviz)
+    {include-group = "infra"},    # scripts/redact_screenshots.py also needs the Tesseract binary (brew install tesseract)
+]
+# AWS CDK for the ClaimsAdjudicationData and ClaimsAdjudicationApp stacks. The CDK command line needs Node.js: npx aws-cdk@2 ...
+infra = [
+    "aws-cdk-lib==2.277.0",
+    "constructs==10.8.1",
+]
+
+[tool.uv]
+package = false  # an application, not a library: the source is run from backend/ with PYTHONPATH, never installed
+
 [tool.ruff]
 line-length = 130
 target-version = "py312"

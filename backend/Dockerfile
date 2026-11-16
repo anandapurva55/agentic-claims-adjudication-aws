@@ -1,12 +1,12 @@
 # Build from the repository root: docker build -f backend/Dockerfile -t claims-adjudication-api .
 FROM python:3.12-slim AS base
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+# The image installs exactly what uv.lock pins (runtime packages only, no dev tools) into /srv/.venv, so what runs here is what was tested.
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_LINK_MODE=copy PATH="/srv/.venv/bin:$PATH"
 WORKDIR /srv
 
-# uv installs the pinned requirements several times faster than pip, so image builds are quicker
 COPY --from=ghcr.io/astral-sh/uv:0.13.8 /uv /bin/uv
-COPY backend/requirements.txt backend/requirements.txt
-RUN uv pip install --system --no-cache -r backend/requirements.txt
+COPY pyproject.toml uv.lock .python-version ./
+RUN uv sync --locked --no-dev --no-install-project --no-cache
 
 COPY backend/app backend/app
 COPY data/rules.json data/policies.json data/lessons_seed.json data/

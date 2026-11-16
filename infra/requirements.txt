@@ -1,4 +1,0 @@
-# AWS CDK (Python) for the ClaimsAdjudicationData and ClaimsAdjudicationApp stacks.
-# Needs Node.js for the CDK command line: npx aws-cdk@2 ...
-aws-cdk-lib==2.277.0
-constructs==10.8.1
