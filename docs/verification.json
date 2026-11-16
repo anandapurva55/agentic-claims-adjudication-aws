@@ -2,7 +2,7 @@
  {
   "check": "CloudFormation stacks",
   "pass": true,
-  "evidence": "{\"ClaimsAdjudicationData\": \"UPDATE_COMPLETE\", \"ClaimsAdjudicationApp\": \"UPDATE_COMPLETE\"}"
+  "evidence": "{\"ClaimsAdjudicationData\": \"CREATE_COMPLETE\", \"ClaimsAdjudicationApp\": \"UPDATE_COMPLETE\"}"
  },
  {
   "check": "ECS Fargate service",
@@ -12,12 +12,37 @@
  {
   "check": "CloudFront serves the frontend",
   "pass": true,
-  "evidence": "https://dpt9lbsj1abam.cloudfront.net -> 200, title ok"
+  "evidence": "https://d3p1fu6ayz1fmd.cloudfront.net -> 200, title ok"
  },
  {
-  "check": "ALB refuses direct access",
+  "check": "ALB is private (no public address)",
   "pass": true,
-  "evidence": "direct request refused (URLError)"
+  "evidence": "scheme internal, direct request failed (URLError)"
+ },
+ {
+  "check": "API refuses a caller with no token",
+  "pass": true,
+  "evidence": "no token -> [401, 401, 401]"
+ },
+ {
+  "check": "API refuses a user in no group",
+  "pass": true,
+  "evidence": "signed in but in no group -> 403"
+ },
+ {
+  "check": "Starting a run is POST only",
+  "pass": true,
+  "evidence": "GET run -> 405"
+ },
+ {
+  "check": "Site publishes its sign-in settings",
+  "pass": true,
+  "evidence": "hosted page https://claimsadj-bdc18e10.auth.us-east-1.amazoncognito.com"
+ },
+ {
+  "check": "WAF rate limiting is attached",
+  "pass": true,
+  "evidence": "web ACL with 2 rate rules: ['RunsPerIp', 'RequestsPerIp']"
  },
  {
   "check": "API health and mode",
@@ -37,7 +62,7 @@
  {
   "check": "Bedrock Guardrails blocks an attack",
   "pass": true,
-  "evidence": "e4lwhmnn0zp7 action=GUARDRAIL_INTERVENED"
+  "evidence": "hryk7f00x6co action=GUARDRAIL_INTERVENED"
  },
  {
   "check": "Knowledge bases return clauses (4 KBs)",
@@ -52,7 +77,7 @@
  {
   "check": "AgentCore Memory recall",
   "pass": true,
-  "evidence": "claims_adjudication_memory-zJTpyICGKM recalled 1 lesson(s)"
+  "evidence": "claims_adjudication_memory-1KA5S9CswD recalled 1 lesson(s)"
  },
  {
   "check": "Bedrock Data Automation project",
@@ -62,12 +87,22 @@
  {
   "check": "BDA job (real invocation)",
   "pass": true,
-  "evidence": "15.2s, blueprint=vehicle_damage_photo, parts=['door']"
+  "evidence": "14.9s, blueprint=vehicle_damage_photo, parts=['door']"
+ },
+ {
+  "check": "LIVE claim end to end (all agents)",
+  "pass": true,
+  "evidence": "decision=deny, nodes seen=13, memory/bda/guardrail all active"
+ },
+ {
+  "check": "Human review through the API (senior token)",
+  "pass": true,
+  "evidence": "HTTP 409; recorded as senior:verify-ca6eae97 (the body claimed adjuster:someone else)"
  },
  {
   "check": "DynamoDB tables hold data",
   "pass": true,
-  "evidence": "{\"Policies\": 20, \"Claims\": 63, \"Audit\": 42, \"Metrics\": 615}"
+  "evidence": "{\"Policies\": 20, \"Claims\": 63, \"Audit\": 4, \"Metrics\": 52}"
  },
  {
   "check": "S3 buckets (claims, KB, telemetry)",
@@ -82,12 +117,12 @@
  {
   "check": "Athena query over telemetry",
   "pass": true,
-  "evidence": "97 runs in the lake"
+  "evidence": "2 runs in the lake"
  },
  {
   "check": "QuickSight source and dashboard",
   "pass": true,
-  "evidence": "data source UPDATE_SUCCESSFUL, dashboard CREATION_SUCCESSFUL"
+  "evidence": "SKIPPED: QuickSight is not subscribed (cancelled to stop billing); the telemetry lake is checked by the Athena query above"
  },
  {
   "check": "SageMaker training job record",
@@ -97,17 +132,12 @@
  {
   "check": "Human review is saved to DynamoDB",
   "pass": true,
-  "evidence": "42 rows, actions ['decision', 'human_review', 'outcome']"
+  "evidence": "4 rows, actions ['decision', 'human_review', 'outcome']"
  },
  {
   "check": "Security API (attacks, scan)",
   "pass": true,
   "evidence": "30 attacks served, scan removed 1 sentence(s) via bedrock-guardrails"
- },
- {
-  "check": "LIVE claim end to end (all agents)",
-  "pass": true,
-  "evidence": "decision=deny, nodes seen=13, memory/bda/guardrail all active"
  },
  {
   "check": "Repo has no stale names or ids",

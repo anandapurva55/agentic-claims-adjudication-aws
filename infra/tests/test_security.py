@@ -114,3 +114,26 @@ def test_cloudfront_sits_behind_a_web_acl_that_rate_limits_each_address(template
     assert all("Block" in r["Action"] for r in acl["Rules"])
     (dist,) = of_type(template, "AWS::CloudFront::Distribution").values()
     assert "WebACLId" in dist["DistributionConfig"]
+
+
+def test_the_load_balancer_admits_only_the_cloudfront_vpc_origin_group_never_an_address_range(template):
+    """Found in the first deployment: admitting the interfaces' subnet ranges left every API call timing out (504). CloudFront attaches a managed security
+    group to the VPC origin's interfaces, and the load balancer has to admit that group."""
+    alb_sgs = {k for k, v in template["Resources"].items() if v["Type"] == "AWS::EC2::SecurityGroup" and "Alb" in k}
+    assert alb_sgs
+    ingress = [r for r in of_type(template, "AWS::EC2::SecurityGroupIngress").values() if json.dumps(r["GroupId"]).count("Alb") and r.get("FromPort") == 80]
+    assert ingress, "the ALB must admit CloudFront on port 80"
+    for rule in ingress:
+        assert "CidrIp" not in rule and "CidrIpv6" not in rule, "no address range may admit traffic to the ALB"
+        assert "FindVpcOriginSecurityGroup" in json.dumps(rule["SourceSecurityGroupId"]), "the source is the group the lookup returns"
+
+
+def test_the_lookup_of_the_cloudfront_group_has_one_narrow_permission_and_waits_for_the_distribution(template):
+    custom = [(k, v) for k, v in template["Resources"].items() if v["Type"] == "Custom::AWS" and k.startswith("FindVpcOriginSecurityGroup")]
+    assert len(custom) == 1
+    key, res = custom[0]
+    assert any(d.startswith("Cdn") for d in res["DependsOn"]), "the group only exists once the distribution is deployed"
+    policies = [p for k, p in of_type(template, "AWS::IAM::Policy").items() if k.startswith("FindVpcOriginSecurityGroup")]
+    assert policies, "the lookup needs a policy"
+    actions = {a for p in policies for s in p["PolicyDocument"]["Statement"] for a in ([s["Action"]] if isinstance(s["Action"], str) else s["Action"])}
+    assert actions == {"ec2:DescribeSecurityGroups"}  # the only wildcard resource besides metrics and image pull, and the action is read-only
