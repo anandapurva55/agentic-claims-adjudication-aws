@@ -341,7 +341,7 @@ Signed out visitors see the sign in screen: the form on the left and a fixed exa
 
 ![Signing in: the app's screen, Cognito's page, the credentials, and the workbench with the account menu](docs/images/demo/sign_in.gif)
 
-**Passwords.** Sign up is off: an administrator creates each account, and its group sets the role. The sign-in screen says so: there is no sign up, and an administrator provides the credentials. Someone without an account sees a "Request access" link that writes to an address set at build time. "Forgot your password?" sends a code by email, which needs a verified email address on the account, so administrators create users with one. A user created without an email has no way to reset a password, which this project found when the first test user could not.
+**Passwords.** Sign up is off: an administrator creates each account, and its group sets the role. The sign-in screen says so: there is no sign up, and an administrator provides the credentials. Someone without an account sees a "Request access" link that writes to an address set at build time (on the Pages site, from the repository variable `REQUEST_ACCESS_EMAIL`, so it is in the repository's settings and not in the code). "Forgot your password?" sends a code by email, which needs a verified email address on the account, so administrators create users with one. A user created without an email has no way to reset a password, which this project found when the first test user could not.
 
 ![The forgot password page](docs/images/app/signin_forgot_password.png)
 

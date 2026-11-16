@@ -36,6 +36,9 @@ jobs:
         run: python scripts/build_static_demo.py
       - name: Build the site
         working-directory: frontend
+        env:
+          # Where "Request access" writes to. A repository variable, so the address is set in the repository's settings and not written in the code.
+          VITE_REQUEST_ACCESS_EMAIL: ${{ vars.REQUEST_ACCESS_EMAIL }}
         run: |
           npm ci
           npm run build:demo

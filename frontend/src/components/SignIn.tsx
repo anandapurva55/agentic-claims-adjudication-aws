@@ -88,7 +88,7 @@ export default function SignIn({ noAccess, onSignIn, onSignOut, onDemoSignIn }: 
               <p className="signin-sub">Every recommendation arrives with its clauses, its calculation and its risk signals. You make the call.</p>
               <button className="signin-btn signin-primary" onClick={onDemoSignIn ? () => setHosted(true) : onSignIn}>Continue with your account</button>
               <p className="signin-help">There is no sign up: an administrator provides your credentials. You will go to a secure sign-in page and come straight back.
-                {!onDemoSignIn && REQUEST_ACCESS && <> No account? <a href={`mailto:${REQUEST_ACCESS}?subject=${encodeURIComponent('Access request: Claims Adjudication Copilot')}`}>Request access</a>.</>}</p>
+                {REQUEST_ACCESS && <> {onDemoSignIn ? 'Want a login for the live system?' : 'No account?'} <a href={`mailto:${REQUEST_ACCESS}?subject=${encodeURIComponent('Access request: Claims Adjudication Copilot')}`}>Request access</a>.</>}</p>
             </>
           )}
         </div>
