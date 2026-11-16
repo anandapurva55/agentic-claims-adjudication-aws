@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="133" height="20" role="img" aria-label="Strands: Agents">
+  <title>Strands: Agents</title>
+  <clipPath id="r"><rect width="133" height="20" rx="3"/></clipPath>
+  <g clip-path="url(#r)"><rect width="70" height="20" fill="#555"/><rect x="70" width="63" height="20" fill="#7C3AED"/></g>
+  <g font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11" fill="#fff" text-anchor="middle">
+    <text x="35.0" y="15" fill="#010101" fill-opacity=".3" textLength="50" lengthAdjust="spacingAndGlyphs">Strands</text>
+    <text x="35.0" y="14" textLength="50" lengthAdjust="spacingAndGlyphs">Strands</text>
+    <text x="101.5" y="15" fill="#010101" fill-opacity=".3" textLength="43" lengthAdjust="spacingAndGlyphs">Agents</text>
+    <text x="101.5" y="14" textLength="43" lengthAdjust="spacingAndGlyphs">Agents</text>
+  </g>
+</svg>

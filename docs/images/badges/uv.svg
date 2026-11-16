@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182" height="20" role="img" aria-label="uv: locked environment">
+  <title>uv: locked environment</title>
+  <clipPath id="r"><rect width="182" height="20" rx="3"/></clipPath>
+  <g clip-path="url(#r)"><rect width="34" height="20" fill="#555"/><rect x="34" width="148" height="20" fill="#DE5FE9"/></g>
+  <g font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11" fill="#fff" text-anchor="middle">
+    <text x="17.0" y="15" fill="#010101" fill-opacity=".3" textLength="14" lengthAdjust="spacingAndGlyphs">uv</text>
+    <text x="17.0" y="14" textLength="14" lengthAdjust="spacingAndGlyphs">uv</text>
+    <text x="108.0" y="15" fill="#010101" fill-opacity=".3" textLength="128" lengthAdjust="spacingAndGlyphs">locked environment</text>
+    <text x="108.0" y="14" textLength="128" lengthAdjust="spacingAndGlyphs">locked environment</text>
+  </g>
+</svg>
