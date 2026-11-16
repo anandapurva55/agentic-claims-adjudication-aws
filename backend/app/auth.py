@@ -90,8 +90,11 @@ def authenticate(request: Request) -> Identity | None:
         return None
     if not enabled():
         role = request.headers.get("x-demo-role", "adjuster")
-        return Identity(_plain_name(request.headers.get("x-demo-user", "local-dev")), "senior" if role == "senior" else "adjuster")
-    token = _token(request)
-    if not token:
-        raise HTTPException(401, "sign in to use this API", headers={"WWW-Authenticate": "Bearer"})
-    return verify(token)
+        who = Identity(_plain_name(request.headers.get("x-demo-user", "local-dev")), "senior" if role == "senior" else "adjuster")
+    else:
+        token = _token(request)
+        if not token:
+            raise HTTPException(401, "sign in to use this API", headers={"WWW-Authenticate": "Bearer"})
+        who = verify(token)
+    request.state.user = who.username  # read by the request log
+    return who

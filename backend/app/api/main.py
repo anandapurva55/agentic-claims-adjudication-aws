@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 
 from app import auth, memory
 from app.config import settings
+from app.observability import RequestLogMiddleware, configure_logging
 from app.runner import run_claim
 from app.services import data, guardrail, stores
 from app.topology import topology
@@ -25,12 +26,14 @@ app = FastAPI(title="Claims Adjudication API", version="1.0.0", dependencies=[De
 
 @app.on_event("startup")
 def _restore_state() -> None:
+    configure_logging()
     auth.check_startup()
     stores.hydrate()
 
 
 # In AWS the site and the API share one CloudFront domain, so browsers never make a cross-origin call. Only the local dev server is listed by default.
 app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_methods=["GET", "POST"], allow_headers=["Authorization", "Content-Type"])
+app.add_middleware(RequestLogMiddleware)  # added last, so it is outermost and sees every request, including refused ones
 _live_lock = asyncio.Semaphore(1)  # tool state is per process, so live runs are serialised
 
 
