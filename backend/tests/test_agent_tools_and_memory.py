@@ -4,7 +4,7 @@ import json
 import uuid
 
 import pytest
-from app import memory, tools
+from app import events, memory, tools
 from app.agents import naive
 from app.config import settings
 from app.rules import adjudicate
@@ -19,6 +19,7 @@ CLEAN = next(c for c in CASES if c["expected"]["decision"] == "approve")
 def run(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, "runtime_dir", tmp_path)
     monkeypatch.setattr(settings, "mode", "replay")
+    events.use_bus(None)  # tools emit events to the current bus: never one left bound to a closed loop by an earlier test
     s = RunState(claim_id=CLEAN["claim_id"], extracted=data.extract_claim(CLEAN["claim_id"]))
     set_state(s)
     return s

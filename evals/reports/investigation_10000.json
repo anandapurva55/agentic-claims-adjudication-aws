@@ -1,0 +1,1508 @@
+{
+ "model": "global.amazon.nova-2-lite-v1:0",
+ "repeats": 3,
+ "filler_claims": 10000,
+ "claims_on_file": 10037,
+ "generated": "2026-11-16 15:03:28",
+ "contenders": {
+  "b": {
+   "name": "one call, records pasted in",
+   "overall": {
+    "runs": 18,
+    "planted": 21,
+    "found": 21,
+    "recall": 1.0,
+    "runs_with_a_false_alarm": 17,
+    "false_alarm_rate": 0.944,
+    "control_runs": 6,
+    "controls_clean": 0,
+    "exact": 1,
+    "exact_rate": 0.056
+   },
+   "by_group": {
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 11,
+     "false_alarm_rate": 0.917,
+     "control_runs": 6,
+     "controls_clean": 0,
+     "exact": 1,
+     "exact_rate": 0.083
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 6,
+     "false_alarm_rate": 1.0,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": 0.0
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
+   },
+   "mean_cost_usd": 0.06685,
+   "mean_seconds": 14.6,
+   "mean_model_calls": 1.0,
+   "mean_tool_calls": 0.0,
+   "mean_input_tokens": 221472
+  },
+  "c": {
+   "name": "investigator agent with tools",
+   "overall": {
+    "runs": 18,
+    "planted": 21,
+    "found": 21,
+    "recall": 1.0,
+    "runs_with_a_false_alarm": 3,
+    "false_alarm_rate": 0.167,
+    "control_runs": 6,
+    "controls_clean": 3,
+    "exact": 15,
+    "exact_rate": 0.833
+   },
+   "by_group": {
+    "single": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    },
+    "history": {
+     "runs": 12,
+     "planted": 6,
+     "found": 6,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 3,
+     "false_alarm_rate": 0.25,
+     "control_runs": 6,
+     "controls_clean": 3,
+     "exact": 9,
+     "exact_rate": 0.75
+    },
+    "multistep": {
+     "runs": 6,
+     "planted": 15,
+     "found": 15,
+     "recall": 1.0,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": 0.0,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 6,
+     "exact_rate": 1.0
+    },
+    "injection": {
+     "runs": 0,
+     "planted": 0,
+     "found": 0,
+     "recall": null,
+     "runs_with_a_false_alarm": 0,
+     "false_alarm_rate": null,
+     "control_runs": 0,
+     "controls_clean": 0,
+     "exact": 0,
+     "exact_rate": null
+    }
+   },
+   "mean_cost_usd": 0.00833,
+   "mean_seconds": 10.61,
+   "mean_model_calls": 9.0,
+   "mean_tool_calls": 8.5,
+   "mean_input_tokens": 23423
+  }
+ },
+ "rows": [
+  {
+   "contender": "b",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 12.66,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 134,
+   "cost_usd": 0.066777,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There is another claim (INVHIST-015-1) on the same policy close in time (2026-06-13)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claimed amount (INR 12,000) matches the estimate total, but the front bumper repair cost (INR 9,000) is at the upper end of typical costs for that part."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 12.43,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 133,
+   "cost_usd": 0.066774,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There are multiple claims on the same policy within a short time frame, including INVCASE-015 and INVHIST-015-1."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claimed amount of INR 12,000 matches the estimate total, but the front bumper repair cost (INR 9,000) is at the upper limit of typical costs for that part."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 13.25,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 68,
+   "cost_usd": 0.066612,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There is another claim (INVHIST-015-1) on the same policy close in time (2026-06-13)."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 14.06,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 149,
+   "cost_usd": 0.066813,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There is another claim (INVHIST-016-1) on the same policy close in time (2026-06-11 vs 2026-06-17)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claimed amount (INR 12,000) matches the estimate total, but the front bumper cost (INR 9,000) is at the upper end of typical costs (range INR 6,500-13,000)."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 14.59,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 134,
+   "cost_usd": 0.066775,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00015 has multiple claims within a short timeframe: INVCASE-015 on 2026-06-15 and INVHIST-016-1 on 2026-06-11."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claim form states 'Not applicable' for police FIR, but the incident description suggests a collision; verification of documentation is needed."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 13.18,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 155,
+   "cost_usd": 0.066828,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00015 has multiple claims within a short timeframe, including INVHIST-016-1 on 2026-06-11 and the current claim on 2026-06-17."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claimed amount of INR 12,000 matches the estimate total, but the front bumper cost (INR 9,000) is at the upper limit of typical costs (6,500-13,000), warranting verification."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 22.03,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221468,
+   "output_tokens": 142,
+   "cost_usd": 0.066795,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There is another claim (INVHIST-016-1) on the same policy close in time (2026-06-11 vs 2026-04-16)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claimed amount of INR 12,000 matches the estimate total, but the front bumper repair cost (INR 9,000) is at the upper end of typical costs for that part type."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 24.76,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221468,
+   "output_tokens": 156,
+   "cost_usd": 0.06683,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "There is another claim on the same policy (INV-00016) from 2026-04-16 for INR 12,000, which is relatively close in time to the current claim dated 2026-06-15."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claim amount of INR 12,000 is well above the typical cost for a front bumper (plastic), which ranges from INR 6,500 to INR 13,000 according to the provided data."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 24.17,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221468,
+   "output_tokens": 132,
+   "cost_usd": 0.06677,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00016 has multiple claims within a short timeframe: INVCASE-016 (2026-06-15) and INVCASE-017 (2026-04-16)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "The claim form states 'Police FIR filed: Not applicable,' but the claim is categorized as a theft, which typically requires a police report."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 0,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 22.28,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 157,
+   "cost_usd": 0.066834,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Three claims (INVHIST-018-1, INVHIST-018-2, INVHIST-018-3) on policy INV-00017 within a short timeframe."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "Claim INVCASE-018 has a claimed amount of INR 12,000, matching the estimate total, but the front bumper cost (INR 9,000) is at the upper end of typical costs (range INR 6,500\u201313,000)."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 1,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 11.3,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 138,
+   "cost_usd": 0.066787,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "high",
+     "detail": "Three claims (INVHIST-018-1, INVHIST-018-2, INVHIST-018-3) on policy INV-00017 within a short timeframe."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Discrepancy between claim amount (INR 12,000) and typical repair cost range for a bumper (INR 6,500 to 13,000)."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 2,
+   "expected": [],
+   "predicted": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 10.86,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221472,
+   "output_tokens": 131,
+   "cost_usd": 0.066769,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Three claims (INVHIST-018-1, INVHIST-018-2, INVHIST-018-3) on policy INV-00017 within a short timeframe."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "Discrepancy between registration number on claim form (KA01AB1017) and policy schedule (KA01AB1017)."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 0,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 13.12,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 209,
+   "cost_usd": 0.066963,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Estimated bumper repair cost of INR 22,000 exceeds typical range of INR 6,500 to 13,000."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a record of flagged estimates (6 flags last year)."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00018 has another claim (INVCASE-018) on the same date as this claim (2026-06-15)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Registration number on claim form (KA01AB1018) matches vehicle schedule, but no police FIR documented despite claim being reported."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 1,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 13.14,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 210,
+   "cost_usd": 0.066965,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Front bumper repair cost of INR 22,000 exceeds typical range of INR 6,500 to INR 13,000."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a record of flagged estimates (6 flags last year)."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00018 has another claim (INVCASE-018) on the same date as this claim (2026-06-15)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Registration number on claim form (KA01AB1018) matches vehicle schedule, but no police FIR documented despite claim being reported."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 2,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency"
+   ],
+   "exact": false,
+   "seconds": 3.92,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221467,
+   "output_tokens": 198,
+   "cost_usd": 0.066935,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Front bumper repair cost of INR 22,000 exceeds typical range of INR 6,500 to 13,000."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a record of flagged estimates (6 in the last year)."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Another claim (INVCASE-018) on the same policy occurred close in time (2026-06-15)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "low",
+     "detail": "Policy schedule shows vehicle use as private, but incident description mentions traffic signal, suggesting possible inconsistency."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 0,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "garage"
+   ],
+   "exact": false,
+   "seconds": 12.88,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221483,
+   "output_tokens": 239,
+   "cost_usd": 0.067042,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Estimated windshield repair cost (INR 27,000) is significantly above typical range (INR 8,000-18,000)."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "AutoCare Works has no flagged estimates on record, but its network status and rating (4.1) warrant verification against recent performance."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00020 has another claim (INVCASE-009) on the same date (2026-06-15) for a very high amount (INR 480,000)."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Discrepancy between claimed amount (INR 51,000) and detailed estimate total (INR 51,000) suggests possible rounding or documentation error needing clarification."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 1,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "garage"
+   ],
+   "exact": false,
+   "seconds": 12.85,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221483,
+   "output_tokens": 209,
+   "cost_usd": 0.066967,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Estimated windshield repair cost (INR 27,000) is significantly above typical range (INR 8,000-18,000)."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "AutoCare Works has zero flagged estimates in the past year, but is not part of the company's network, warranting extra scrutiny."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00017 shows three claims within the past year, indicating potential fraud risk."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Discrepancy between claim form registration (KA01AB1020) and repair estimate registration (same) needs verification."
+    }
+   ]
+  },
+  {
+   "contender": "b",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 2,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "consistency",
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [
+    "consistency",
+    "garage"
+   ],
+   "exact": false,
+   "seconds": 11.29,
+   "model_calls": 1,
+   "tool_calls": 0,
+   "input_tokens": 221483,
+   "output_tokens": 228,
+   "cost_usd": 0.067015,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Estimated windshield repair cost (INR 27,000) is significantly above typical range (INR 8,000-18,000)."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "AutoCare Works has zero flagged estimates in the past year, but this claim involves unusually high repair costs that merit extra scrutiny."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Policy INV-00020 shows multiple claims clustered around June 2026 (INVCASE-015 to INVCASE-021), suggesting potential fraud patterns."
+    },
+    {
+     "kind": "consistency",
+     "severity": "medium",
+     "detail": "Discrepancy between claim form registration (KA01AB1020) and repair estimate registration (same KA01AB1020) needs verification against policy schedule."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 40.79,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23322,
+   "output_tokens": 509,
+   "cost_usd": 0.008269,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Two claims on the same policy within 3 days: INVCASE-015 for INR 12,000 and INVHIST-015-1 for INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 9.01,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23322,
+   "output_tokens": 526,
+   "cost_usd": 0.008311,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Two claims on the same policy within 3 days: INVCASE-015 for INR 12,000 and INVHIST-015-1 for INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H1_repeat_2_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.6,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23335,
+   "output_tokens": 540,
+   "cost_usd": 0.008349,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Two claims within 3 days on same policy: INVCASE-015 for INR 12,000 and INVHIST-015-1 for INR 12,000, only 2 days apart."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.8,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23289,
+   "output_tokens": 519,
+   "cost_usd": 0.008285,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Second claim in 4 days on same policy: INVCASE-016 for INR 12,000 and INVHIST-016-1 for INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.64,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23283,
+   "output_tokens": 505,
+   "cost_usd": 0.008247,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Second claim in 4 days on same policy: INVCASE-016 for INR 12,000 and INVHIST-016-1 for INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H2_repeat_4_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.49,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23283,
+   "output_tokens": 489,
+   "cost_usd": 0.008207,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Second claim in 4 days on same policy: INVCASE-016 for INR 12,000 and INVHIST-016-1 for INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 0,
+   "expected": [],
+   "predicted": [],
+   "found": [],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 7.7,
+   "model_calls": 8,
+   "tool_calls": 7,
+   "input_tokens": 20275,
+   "output_tokens": 459,
+   "cost_usd": 0.007229,
+   "signals": []
+  },
+  {
+   "contender": "c",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 1,
+   "expected": [],
+   "predicted": [],
+   "found": [],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 7.61,
+   "model_calls": 8,
+   "tool_calls": 7,
+   "input_tokens": 20275,
+   "output_tokens": 448,
+   "cost_usd": 0.007202,
+   "signals": []
+  },
+  {
+   "contender": "c",
+   "case": "H3_repeat_60_days",
+   "group": "history",
+   "repeat": 2,
+   "expected": [],
+   "predicted": [],
+   "found": [],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 7.89,
+   "model_calls": 8,
+   "tool_calls": 7,
+   "input_tokens": 20275,
+   "output_tokens": 475,
+   "cost_usd": 0.007269,
+   "signals": []
+  },
+  {
+   "contender": "c",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 0,
+   "expected": [],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 8.82,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23644,
+   "output_tokens": 473,
+   "cost_usd": 0.008276,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Three prior claims on same policy in last 12 months, all for INR 12,000, and the current claim is also INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 1,
+   "expected": [],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 9.0,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23644,
+   "output_tokens": 514,
+   "cost_usd": 0.008378,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Three prior claims on same policy in last 12 months, all for INR 12,000, and the current claim is also INR 12,000."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "H4_old_claims_only",
+   "group": "history",
+   "repeat": 2,
+   "expected": [],
+   "predicted": [
+    "repeat_claim"
+   ],
+   "found": [],
+   "missed": [],
+   "false_alarms": [
+    "repeat_claim"
+   ],
+   "exact": false,
+   "seconds": 8.38,
+   "model_calls": 9,
+   "tool_calls": 8,
+   "input_tokens": 23637,
+   "output_tokens": 499,
+   "cost_usd": 0.008338,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Three prior claims of identical amount (12,000 INR) within the last year, the most recent 40 days ago."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 0,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 10.15,
+   "model_calls": 11,
+   "tool_calls": 10,
+   "input_tokens": 29583,
+   "output_tokens": 604,
+   "cost_usd": 0.010385,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Front bumper quoted at 22,000 INR is well above the typical range of 6,500-13,000 INR."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a low rating of 2.7 and 6 flagged estimates last year."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Another claim occurred only 3 days before this one on the same policy."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 1,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 10.99,
+   "model_calls": 11,
+   "tool_calls": 10,
+   "input_tokens": 29574,
+   "output_tokens": 584,
+   "cost_usd": 0.010331,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Front bumper quoted at 22000 INR is well above the typical range of 6500-13000 INR."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a low rating of 2.7 and 6 flagged estimates last year."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Another claim occurred only 3 days before this one on the same policy."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M1_three_problems",
+   "group": "multistep",
+   "repeat": 2,
+   "expected": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "garage",
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 9.75,
+   "model_calls": 11,
+   "tool_calls": 10,
+   "input_tokens": 29590,
+   "output_tokens": 588,
+   "cost_usd": 0.010347,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Front bumper quoted at 22,000 INR is well above the typical range of 6,500-13,000 INR."
+    },
+    {
+     "kind": "garage",
+     "severity": "medium",
+     "detail": "Garage Speedfix Motors has a low rating of 2.7 and 6 flagged estimates last year."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Another claim of 12,000 INR was reported only 3 days before this one on the same policy."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 0,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.39,
+   "model_calls": 8,
+   "tool_calls": 10,
+   "input_tokens": 18280,
+   "output_tokens": 435,
+   "cost_usd": 0.006571,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Windshield quoted at 27,000 INR (typical 8,000-18,000) and Fender at 21,000 INR (typical 7,000-14,000) - both above typical range."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Prior claim of 12,000 INR just one day before current claim."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 1,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 9.24,
+   "model_calls": 8,
+   "tool_calls": 10,
+   "input_tokens": 21500,
+   "output_tokens": 595,
+   "cost_usd": 0.007937,
+   "signals": [
+    {
+     "kind": "repair_cost",
+     "severity": "medium",
+     "detail": "Windshield quoted at 27,000 INR is above typical range of 8,000-18,000 INR; Fender quoted at 21,000 INR is above typical range of 7,000-14,000 INR."
+    },
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Prior claim INVHIST-021-1 occurred only one day before current claim."
+    }
+   ]
+  },
+  {
+   "contender": "c",
+   "case": "M3_two_inflated_and_repeat",
+   "group": "multistep",
+   "repeat": 2,
+   "expected": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "predicted": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "found": [
+    "repair_cost",
+    "repeat_claim"
+   ],
+   "missed": [],
+   "false_alarms": [],
+   "exact": true,
+   "seconds": 8.79,
+   "model_calls": 8,
+   "tool_calls": 10,
+   "input_tokens": 21496,
+   "output_tokens": 589,
+   "cost_usd": 0.007921,
+   "signals": [
+    {
+     "kind": "repeat_claim",
+     "severity": "medium",
+     "detail": "Prior claim of 12,000 INR just one day before current claim."
+    },
+    {
+     "kind": "repair_cost",
+     "severity": "high",
+     "detail": "Windshield quoted at 27,000 INR (typical 8,000-18,000) and Fender at 21,000 INR (typical 7,000-14,000) - both above normal range."
+    }
+   ]
+  }
+ ]
+}
