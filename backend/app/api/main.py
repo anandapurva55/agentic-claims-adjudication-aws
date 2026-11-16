@@ -6,11 +6,12 @@ import json
 import time
 from collections import Counter
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app import memory
 from app.config import settings
@@ -29,11 +30,12 @@ _live_lock = asyncio.Semaphore(1)  # tool state is per process, so live runs are
 
 
 class Review(BaseModel):
-    action: str  # accept | override | escalate
-    final_decision: str | None = None  # required for override: approve | deny | refer
-    note: str = ""
-    reviewer: str = "adjuster"
-    role: str = "adjuster"  # adjuster | senior
+    """A reviewer's decision. Every field has a fixed set of values or a length limit, so a request cannot store arbitrary amounts of text in the audit log."""
+    action: Literal["accept", "override", "escalate"]
+    final_decision: Literal["approve", "deny", "refer"] | None = None  # required for override
+    note: str = Field(default="", max_length=1000)
+    reviewer: str = Field(default="adjuster", pattern=r"^[A-Za-z0-9][A-Za-z0-9 ._@-]{0,59}$")
+    role: Literal["adjuster", "senior"] = "adjuster"
 
 
 def _claim_summary(cid: str, st: dict | None = None) -> dict:
@@ -81,7 +83,7 @@ def claim_file(claim_id: str, name: str) -> FileResponse:
 
 
 @app.get("/api/claims/{claim_id}/run")
-async def run(claim_id: str, mode: str = Query(default=None)) -> StreamingResponse:
+async def run(claim_id: str, mode: Literal["replay", "live"] | None = Query(default=None)) -> StreamingResponse:
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
     mode = mode or settings.mode
@@ -100,10 +102,6 @@ def review(claim_id: str, body: Review) -> dict:
     """Human in the loop gate. Nothing is settled until a person decides here."""
     if claim_id not in data.list_claim_ids():
         raise HTTPException(404, "unknown claim")
-    if body.action not in ("accept", "override", "escalate"):
-        raise HTTPException(422, "action must be accept, override or escalate")
-    if body.role not in ("adjuster", "senior"):
-        raise HTTPException(422, "role must be adjuster or senior")
     st = stores.stage_for(claim_id)
     if st["stage"] == "new" or not st["ai"]:
         raise HTTPException(409, "run the agents first: there is no AI recommendation to review")
@@ -111,7 +109,7 @@ def review(claim_id: str, body: Review) -> dict:
         raise HTTPException(409, "this claim already has a human decision")
     ai = st["ai"]
     if body.action == "override":
-        if body.final_decision not in ("approve", "deny", "refer"):
+        if body.final_decision is None:
             raise HTTPException(422, "override requires final_decision: approve, deny or refer")
         if len(body.note.strip()) < 10:
             raise HTTPException(422, "an override needs a reason of at least 10 characters")
@@ -208,7 +206,7 @@ _REDTEAM = Path(__file__).resolve().parents[3] / "redteam"
 
 
 class Scan(BaseModel):
-    text: str
+    text: str = Field(max_length=4000)
 
 
 @app.get("/api/security/attacks")
@@ -219,8 +217,6 @@ def security_attacks() -> list[dict]:
 @app.post("/api/security/scan")
 def security_scan(body: Scan) -> dict:
     """Attack lab: run any text through the same guardrail the pipeline uses and show what was removed."""
-    if len(body.text) > 4000:
-        raise HTTPException(413, "text too long")
     return guardrail.sanitize(body.text)
 
 
