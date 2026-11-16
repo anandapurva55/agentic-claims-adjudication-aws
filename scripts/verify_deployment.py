@@ -16,6 +16,7 @@ import time
 import urllib.error
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlparse
 
 import boto3
 
@@ -144,7 +145,7 @@ def run_checks(a, d: dict, app: dict, visitor_token: str) -> int:
     @check("Site publishes its sign-in settings")
     def _():
         c = json.loads(get(f"{site}/config.json", token="")[1])
-        return c["userPoolId"] == app["UserPoolId"] and c["clientId"] == app["UserPoolClientId"] and "amazoncognito.com" in c["hostedUi"], f"hosted page {c['hostedUi'][:60]}"
+        return c["userPoolId"] == app["UserPoolId"] and c["clientId"] == app["UserPoolClientId"] and urlparse(c["hostedUi"]).hostname.endswith(".amazoncognito.com"), f"hosted page {c['hostedUi'][:60]}"
 
     @check("WAF rate limiting is attached")
     def _():

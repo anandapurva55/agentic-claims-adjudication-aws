@@ -54,7 +54,7 @@ async function signInAs(user, pass) {
   await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
   if (await page.$('.signin')) {
     await clickText('Continue with your account')
-    await page.waitForFunction(() => location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+    await page.waitForFunction(() => location.hostname.endsWith('.amazoncognito.com'), { timeout: 30000 })
     await sleep(1500)
     // The hosted page can carry two copies of the form (desktop and mobile): use the visible one.
     const visible = async (sel) => { for (const h of await page.$$(sel)) if (await h.isIntersectingViewport()) return h; return null }
@@ -63,7 +63,7 @@ async function signInAs(user, pass) {
     await u.type(user, { delay: 10 })
     await pw.type(pass, { delay: 10 })
     await page.keyboard.press('Enter')
-    await page.waitForFunction(() => !location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+    await page.waitForFunction(() => !location.hostname.endsWith('.amazoncognito.com'), { timeout: 30000 })
     await page.waitForSelector('.top', { timeout: 30000 })
   }
 }
@@ -71,7 +71,7 @@ async function signOut() {
   if (!(await page.$('.um-av'))) return
   await page.click('.um-av')
   await clickText('Sign out')
-  await page.waitForFunction(() => !!document.querySelector('.signin') || location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+  await page.waitForFunction(() => !!document.querySelector('.signin') || location.hostname.endsWith('.amazoncognito.com'), { timeout: 30000 })
   await sleep(1500)
   if (!(await page.$('.signin'))) await page.goto(`${base}/`, { waitUntil: 'networkidle0' })
 }
@@ -186,7 +186,7 @@ await sleep(600)
 await film(page, async () => false, { timeout: 1800, hold: 0 })
 await still(page, 'sign_in_app')
 await clickText('Continue with your account')
-await page.waitForFunction(() => location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+await page.waitForFunction(() => location.hostname.endsWith('.amazoncognito.com'), { timeout: 30000 })
 await sleep(1500)
 const visible = async (sel) => { for (const h of await page.$$(sel)) if (await h.isIntersectingViewport()) return h; return null }
 const u = await visible('input[name="username"]'), pw = await visible('input[name="password"]')
@@ -209,7 +209,7 @@ await snap(page)
 await pw.type(process.env.SIGNIN_PASS, { delay: 70 })
 await film(page, async () => false, { timeout: 800, hold: 0 })
 await page.keyboard.press('Enter')
-await page.waitForFunction(() => !location.hostname.includes('amazoncognito.com'), { timeout: 30000 })
+await page.waitForFunction(() => !location.hostname.endsWith('.amazoncognito.com'), { timeout: 30000 })
 await page.waitForSelector('.top .um-av', { timeout: 30000 })
 await film(page, async () => false, { timeout: 2200, hold: 0 })
 await page.click('.um-av')

@@ -86,9 +86,12 @@ _FILES = {"damage_photo.jpg", "claim_form.pdf", "repair_estimate.pdf"}
 
 @app.get("/api/claims/{claim_id}/files/{name}")
 def claim_file(claim_id: str, name: str) -> FileResponse:
-    if claim_id not in data.list_claim_ids() or name not in _FILES:  # whitelist: no path traversal
+    # The path is built from values this service already knows, found by comparing the request's text against them, and never from the request's text itself.
+    known_claim = next((c for c in data.list_claim_ids() if c == claim_id), None)
+    known_file = next((f for f in sorted(_FILES) if f == name), None)
+    if known_claim is None or known_file is None:
         raise HTTPException(404, "not found")
-    return FileResponse(data.claim_dir(claim_id) / name)
+    return FileResponse(data.claim_dir(known_claim) / known_file)
 
 
 def _check_spend() -> None:
