@@ -54,10 +54,14 @@ class DataStack(Stack):
     def __init__(self, scope: Construct, cid: str, **kw) -> None:
         super().__init__(scope, cid, **kw)
 
+        # The demo is deployed and torn down, so by default everything is deleted with the stack. A real deployment passes -c production=true: the data
+        # (above all the audit log) is then kept when the stack is deleted, and the tables refuse deletion until protection is switched off by hand.
+        production = str(self.node.try_get_context("production")).lower() == "true"
+        removal = RemovalPolicy.RETAIN if production else RemovalPolicy.DESTROY
+
         def bucket(name: str) -> s3.Bucket:
             return s3.Bucket(self, name, versioned=True, enforce_ssl=True, block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-                             encryption=s3.BucketEncryption.S3_MANAGED, removal_policy=RemovalPolicy.DESTROY,
-                             auto_delete_objects=True)
+                             encryption=s3.BucketEncryption.S3_MANAGED, removal_policy=removal, auto_delete_objects=not production)
 
         self.claims_bucket = bucket("ClaimsBucket")
         self.kb_bucket = bucket("PolicyDocsBucket")
@@ -65,7 +69,7 @@ class DataStack(Stack):
         def table(name: str, pk: str, sk: str | None = None) -> ddb.Table:
             return ddb.Table(self, name, partition_key=ddb.Attribute(name=pk, type=ddb.AttributeType.STRING),
                              sort_key=ddb.Attribute(name=sk, type=ddb.AttributeType.STRING) if sk else None,
-                             billing_mode=ddb.BillingMode.PAY_PER_REQUEST, removal_policy=RemovalPolicy.DESTROY,
+                             billing_mode=ddb.BillingMode.PAY_PER_REQUEST, removal_policy=removal, deletion_protection=production,
                              point_in_time_recovery_specification=ddb.PointInTimeRecoverySpecification(point_in_time_recovery_enabled=True),
                              time_to_live_attribute="ttl")
 

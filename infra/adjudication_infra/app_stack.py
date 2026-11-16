@@ -68,7 +68,9 @@ class AppStack(Stack):
         task_role.add_to_policy(iam.PolicyStatement(sid="PublishMetrics", actions=["cloudwatch:PutMetricData"], resources=["*"],
                                                     conditions={"StringEquals": {"cloudwatch:namespace": "ClaimsAdjudication"}}))
 
-        log_group = logs.LogGroup(self, "ApiLogs", retention=logs.RetentionDays.ONE_WEEK, removal_policy=RemovalPolicy.DESTROY)
+        production = str(self.node.try_get_context("production")).lower() == "true"  # see data_stack.py: -c production=true keeps data and logs
+        log_group = logs.LogGroup(self, "ApiLogs", retention=logs.RetentionDays.THREE_MONTHS if production else logs.RetentionDays.ONE_WEEK,
+                                  removal_policy=RemovalPolicy.RETAIN if production else RemovalPolicy.DESTROY)
         task = ecs.FargateTaskDefinition(self, "Task", cpu=1024, memory_limit_mib=2048, task_role=task_role,
                                          runtime_platform=ecs.RuntimePlatform(cpu_architecture=ecs.CpuArchitecture.ARM64,
                                                                               operating_system_family=ecs.OperatingSystemFamily.LINUX))
