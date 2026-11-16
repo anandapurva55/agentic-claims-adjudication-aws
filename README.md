@@ -63,6 +63,7 @@ A single model call followed by the same rules engine matched the agent team on 
 | Section | What it covers |
 |---|---|
 | [Try it](#try-it) | An interactive demo in the browser, with no server and no cost |
+| [Summary](#summary) | What the system does, how it is built and the headline measurements |
 | [Problem and scope](#problem-and-scope) | The problem, the user, and what is in and out of scope |
 | [Tenets](#tenets) | The principles that settled the design questions |
 | [Solution architecture](#solution-architecture) | AWS services, the three paths and the release pipeline |
