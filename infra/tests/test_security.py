@@ -24,7 +24,7 @@ def template():
 
 
 def of_type(template, kind):
-    return {k: v["Properties"] for k, v in template["Resources"].items() if v["Type"] == kind}
+    return {k: v.get("Properties", {}) for k, v in template["Resources"].items() if v["Type"] == kind}
 
 
 def test_the_load_balancer_is_internal_and_sits_in_isolated_subnets(template):
@@ -156,3 +156,69 @@ def test_the_sign_in_page_is_the_styled_managed_login_page_for_the_apps_client(t
 def test_sign_up_stays_off_so_only_an_administrator_creates_accounts(template):
     (pool,) = of_type(template, "AWS::Cognito::UserPool").values()
     assert pool["AdminCreateUserConfig"]["AllowAdminCreateUserOnly"] is True
+
+
+# ---- what the README's AWS architecture diagram draws ---------------------------------------------------------------------------------------------------
+# The diagram is a claim about the deployed system, so each thing it shows that can be read from the template is pinned here.
+
+@pytest.fixture(scope="module")
+def data_template():
+    import aws_cdk as cdk
+    from adjudication_infra.data_stack import DataStack
+    from aws_cdk import assertions
+    env = cdk.Environment(account="000000000000", region="us-east-1")
+    return assertions.Template.from_stack(DataStack(cdk.App(context={"account": "000000000000"}), "Data", env=env)).to_json()
+
+
+def _subnets_named(template, name):
+    return {k for k, v in of_type(template, "AWS::EC2::Subnet").items() if any(t["Key"] == "aws-cdk:subnet-name" and t["Value"] == name for t in v["Tags"])}
+
+
+def test_there_is_no_nat_gateway_and_the_task_runs_in_public_subnets_with_a_public_address_while_only_the_load_balancer_is_isolated(template):
+    assert not of_type(template, "AWS::EC2::NatGateway")
+    (service,) = of_type(template, "AWS::ECS::Service").values()
+    network = service["NetworkConfiguration"]["AwsvpcConfiguration"]
+    assert network["AssignPublicIp"] == "ENABLED"
+    assert {s["Ref"] for s in network["Subnets"]} == _subnets_named(template, "public")
+    assert service["DeploymentConfiguration"]["DeploymentCircuitBreaker"] == {"Enable": True, "Rollback": True}  # the release path says a failed update rolls back
+    (alb,) = of_type(template, "AWS::ElasticLoadBalancingV2::LoadBalancer").values()
+    assert {s["Ref"] for s in alb["Subnets"]} == _subnets_named(template, "origin")
+
+
+def test_the_task_admits_only_the_load_balancer_and_the_load_balancer_admits_only_the_cloudfront_origin_group(template):
+    rules = list(of_type(template, "AWS::EC2::SecurityGroupIngress").values())
+    assert all("SourceSecurityGroupId" in r and "CidrIp" not in r for r in rules), "every inbound rule names a security group, never an address"
+    assert sorted(r["FromPort"] for r in rules) == [80, 8000]
+    to_task = next(r for r in rules if r["FromPort"] == 8000)
+    to_alb = next(r for r in rules if r["FromPort"] == 80)
+    assert "AlbSecurityGroup" in json.dumps(to_task["SourceSecurityGroupId"]) and "ServiceSecurityGroup" in json.dumps(to_task["GroupId"])
+    assert "FindVpcOriginSecurityGroup" in json.dumps(to_alb["SourceSecurityGroupId"]) and "AlbSecurityGroup" in json.dumps(to_alb["GroupId"])
+
+
+def test_the_task_is_a_single_container_and_the_listener_refuses_requests_without_the_origin_secret_header(template):
+    (task,) = of_type(template, "AWS::ECS::TaskDefinition").values()
+    assert [c["Name"] for c in task["ContainerDefinitions"]] == ["api"]  # the MCP servers are subprocesses of this container, not services
+    (listener,) = of_type(template, "AWS::ElasticLoadBalancingV2::Listener").values()
+    assert listener["DefaultActions"][0]["FixedResponseConfig"]["StatusCode"] == "403"
+    (rule,) = of_type(template, "AWS::ElasticLoadBalancingV2::ListenerRule").values()
+    assert rule["Conditions"][0]["HttpHeaderConfig"]["HttpHeaderName"] == "X-Origin-Verify"
+    assert "secretsmanager" in json.dumps(rule["Conditions"][0]["HttpHeaderConfig"]["Values"])
+
+
+def test_cloudwatch_has_a_dashboard_and_the_three_alarms_the_diagram_and_readme_name(template):
+    assert len(of_type(template, "AWS::CloudWatch::Dashboard")) == 1
+    names = " ".join(k for k in of_type(template, "AWS::CloudWatch::Alarm"))
+    assert all(n in names for n in ("Api5xx", "ApiSlow", "RunCostSpike")) and len(of_type(template, "AWS::CloudWatch::Alarm")) == 3
+
+
+def test_the_data_stack_holds_what_the_diagram_names(data_template):
+    tables = sorted(tuple(k["AttributeName"] for k in t["KeySchema"]) for t in of_type(data_template, "AWS::DynamoDB::Table").values())
+    assert tables == [("claim_id",), ("claim_id", "ts"), ("policy_no",), ("request_id",)]  # claims, audit, policies, metrics
+    assert len(of_type(data_template, "AWS::S3::Bucket")) == 4  # claim packets, policy documents, telemetry lake, fine-tuning
+    assert len(of_type(data_template, "AWS::S3Vectors::VectorBucket")) == 1
+    assert sorted(t["TableInput"]["Name"] for t in of_type(data_template, "AWS::Glue::Table").values()) == ["calls", "runs"]
+    assert len(of_type(data_template, "AWS::Athena::WorkGroup")) == 1
+    for kind in ("AWS::Bedrock::Guardrail", "AWS::BedrockAgentCore::Memory", "AWS::Bedrock::DataAutomationProject"):
+        assert len(of_type(data_template, kind)) == 1, kind
+    assert len(of_type(data_template, "AWS::Bedrock::Blueprint")) == 2  # the claim form and the damage photo
+    assert of_type(data_template, "AWS::Bedrock::KnowledgeBase")

@@ -20,7 +20,7 @@ NODES = [
 EDGES = [
     ("upload", "bda"), ("bda", "guardrail"), ("guardrail", "intake"), ("intake", "policy"), ("intake", "fraud"),
     ("intake", "memory"), ("policy", "mcp_policy"), ("mcp_policy", "kb"), ("policy", "calc"),
-    ("fraud", "mcp_ops"), ("fraud", "mcp_policy"), ("policy", "adjudicator"), ("fraud", "adjudicator"), ("calc", "adjudicator"),
+    ("fraud", "mcp_ops"), ("fraud", "mcp_policy"), ("fraud", "ddb"), ("policy", "adjudicator"), ("fraud", "adjudicator"), ("calc", "adjudicator"),
     ("adjudicator", "human"), ("adjudicator", "ddb"), ("human", "ddb"), ("human", "memory"),
 ]
 

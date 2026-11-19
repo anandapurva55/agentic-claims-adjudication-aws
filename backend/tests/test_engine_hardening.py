@@ -103,3 +103,12 @@ def test_invariants_hold_on_random_claims():
         if d.decision == "deny":
             assert d.payable == 0
         assert d.decision in {"approve", "deny", "refer"} and d.next_steps
+
+
+def test_the_first_and_last_day_of_the_policy_are_covered_and_the_days_just_outside_it_are_not():
+    """The independent oracle checks the last day and the day after it. This pins the first day and the day before it, so both ends of the period are tested."""
+    for incident, reported in [("2026-01-01", "2026-01-02"), ("2026-12-31", "2027-01-01")]:
+        assert adjudicate(facts(incident=incident, reported=reported), SCHEDULE).decision == "approve", incident
+    for incident, reported in [("2025-12-31", "2026-01-01"), ("2027-01-01", "2027-01-02")]:
+        d = adjudicate(facts(incident=incident, reported=reported), SCHEDULE)
+        assert (d.decision, d.clauses) == ("deny", ["PERIOD"]), incident
