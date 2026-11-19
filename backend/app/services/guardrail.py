@@ -37,3 +37,30 @@ def sanitize(text: str) -> dict:
         else:
             keep.append(sentence)
     return {"clean": " ".join(keep), "alerts": alerts, "engine": engine}
+
+
+REMOVED = "[removed by guardrail: prompt attack]"
+
+
+def sanitize_fields(extracted: dict) -> list[str]:
+    """The garage and the claimant both write text the agents read, so the free-text fields from the form and the estimate are scanned like the narrative.
+
+    A field that is flagged is replaced as a whole. Returns the flagged text, each prefixed with the field it came from."""
+    alerts: list[str] = []
+
+    def scan(value: object, label: str) -> object:
+        if not isinstance(value, str) or not value.strip():
+            return value
+        g = sanitize(value)
+        if not g["alerts"]:
+            return value
+        alerts.extend(f"{label}: {a}" for a in g["alerts"])
+        return REMOVED
+
+    for key in ("holder", "garage", "police_fir"):
+        if key in extracted:
+            extracted[key] = scan(extracted[key], key)
+    for line in extracted.get("lines", []):
+        for key in ("name", "category"):
+            line[key] = scan(line.get(key), f"estimate line {key}")
+    return alerts

@@ -222,3 +222,16 @@ def test_the_data_stack_holds_what_the_diagram_names(data_template):
         assert len(of_type(data_template, kind)) == 1, kind
     assert len(of_type(data_template, "AWS::Bedrock::Blueprint")) == 2  # the claim form and the damage photo
     assert of_type(data_template, "AWS::Bedrock::KnowledgeBase")
+
+
+def test_the_task_can_add_to_the_audit_log_but_never_change_or_delete_a_row(template, data_template):
+    audit = next(k for k, v in of_type(data_template, "AWS::DynamoDB::Table").items() if "audit" in k.lower())
+    actions = set()
+    for key, policy in of_type(template, "AWS::IAM::Policy").items():
+        if not key.startswith("TaskRole"):
+            continue
+        for s in policy["PolicyDocument"]["Statement"]:
+            if audit in json.dumps(s.get("Resource", "")):
+                actions |= {s["Action"]} if isinstance(s["Action"], str) else set(s["Action"])
+    assert "dynamodb:PutItem" in actions and "dynamodb:Query" in actions
+    assert not actions & {"dynamodb:UpdateItem", "dynamodb:DeleteItem", "dynamodb:BatchWriteItem"}

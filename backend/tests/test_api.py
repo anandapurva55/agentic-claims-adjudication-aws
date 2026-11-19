@@ -103,6 +103,25 @@ def test_senior_can_approve_above_the_limit():
     assert _review(cid, action="accept", role="senior").status_code == 200
 
 
+@pytest.mark.parametrize("scenario", ["intoxicated", "theft_no_fir", "reg_mismatch", "outside_period"])
+def test_an_adjuster_cannot_override_a_denial_or_referral_to_approve(scenario):
+    """The authority limit is only computed on the path that reaches a payable, so a denial or referral carries no limit.
+    Approving against the AI's call is therefore a senior decision whatever the claim size."""
+    cid = _claim(scenario)
+    _events(cid)
+    r = _review(cid, action="override", final_decision="approve", note="Reviewed the file and the claim is valid", role="adjuster")
+    assert r.status_code == 403
+    stage = next(c for c in client.get("/api/claims").json() if c["claim_id"] == cid)["stage"]
+    assert stage == "ai_recommended", "a refused review must leave the claim open"
+    assert _review(cid, action="override", final_decision="approve", note="Reviewed the file and the claim is valid", role="senior").status_code == 200
+
+
+def test_an_adjuster_can_still_override_towards_caution():
+    cid = _claim("clean")
+    _events(cid)
+    assert _review(cid, action="override", final_decision="refer", note="Needs a second look at the garage", role="adjuster").status_code == 200
+
+
 def test_review_history_is_in_the_audit_trail():
     cid = _claim("clean")
     _events(cid)

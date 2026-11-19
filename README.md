@@ -52,7 +52,7 @@ It is a full stack application. A **React** and **TypeScript** single page app s
 | Red team attacks that succeeded against the hardened system | 0 | 29 completed attacks (a model error ended the 30th) |
 | Policy retrieval, recall at 3 (the default) and at 5 | 79.2% and 85.4% with clause cards (66.7% and 77.1% without) | 48 questions |
 | Model cost per claim | 0.046 to 0.049 USD at the baseline, 0.035 USD with the optimised configuration (measured twice) | 22 claims, twice |
-| Automated tests | 510 (452 Python, 58 frontend) | |
+| Automated tests | 523 (463 Python, 60 frontend) | |
 
 A single model call followed by the same rules engine matched or beat the agent team on every accuracy benchmark, at about one fiftieth of the cost. So the case for the agents does not rest on accuracy. It rests on what they add when the facts live in records. [Agents compared with a single call](#agents-compared-with-a-single-call) sets out the evidence, including where the agents lose.
 
@@ -283,10 +283,10 @@ The AI recommends and a person decides. The **API** enforces this, so it cannot 
 | Rule | Mechanism |
 |---|---|
 | Nothing is settled without a human | A claim moves new, AI recommended, reviewed. The only exit from AI recommended is a recorded human decision. Reviewing before the agents ran returns 409 |
-| Four eyes above the authority limit | A payable above INR 200,000 can be approved only by a senior adjuster. An adjuster receives 403 and can always escalate |
+| Four eyes | A payable above INR 200,000 can be approved only by a senior adjuster. Overriding a denial or a referral to approve also needs a senior adjuster at any amount, because those outcomes have no payable and so carry no limit. An adjuster receives 403 and can always escalate, refer or deny. A senior's override to approve records no payable, and the outcome says the amount must be set before payment |
 | Overrides need a reason | An override carries a final decision and a written reason of at least 10 characters, stored beside the AI recommendation |
 | A review names the run it looked at | Every review carries the id of the run the reviewer was shown. The API refuses the review with 409 if the latest recommendation has a different id. So "accept" always means the result on screen, and not a newer result that a colleague produced a moment later. A recommendation from a different mode than the deployment's, or one that has no run id, cannot be approved either |
-| One decision per claim | A conditional DynamoDB write allows exactly one human review per claim. If two reviewers decide at the same moment, one succeeds and the other gets 409. This is tested with eight concurrent writers and was mutation checked. The audit trail cannot be overwritten, even with several tasks running |
+| One decision per claim | A conditional DynamoDB write allows exactly one human review per claim. If two reviewers decide at the same moment, one succeeds and the other gets 409. This is tested with eight concurrent writers and was mutation checked. The task's role can add rows to the audit table but cannot update or delete them, and this is checked on the deployment template. The audit trail cannot be overwritten, even with several tasks running |
 | Attributable | Each record holds who decided, their role, the AI recommendation and clauses, the final decision and the outcome. The name and role come from the sign in token and never from the request body, so a caller cannot promote themselves by editing the JSON |
 | Never a dead end | Every referral names the next action: a senior adjuster, resubmitted documents when form and estimate disagree, a delay investigation, a police report for theft |
 | Disagreement becomes data | An override is saved as a candidate evaluation case and as a lesson in long term memory |
@@ -303,7 +303,7 @@ The audit log is stored in **DynamoDB**, which is the single source of truth. Ev
 
 | Layer | Control |
 |---|---|
-| 1. Input guardrail | Bedrock Guardrails scans text for prompt attacks. If a whole text is blocked, each sentence is checked alone so only offending sentences are removed |
+| 1. Input guardrail | Bedrock Guardrails scans the narrative and the free text fields of the form and the estimate (holder, garage, police reference, line names) for prompt attacks. A flagged field is replaced as a whole. If a whole text is blocked, each sentence is checked alone so only offending sentences are removed |
 | 2. Data, not instructions | Prompts state that the narrative is data. Instructions inside it are reported, never followed |
 | 3. Least privilege tools | Each agent reads only the claim in front of it. No tool pays money, edits a policy or reaches another customer |
 | 4. Code decides | Agents set flags and an engine decides, so a hijacked agent cannot produce a payout |
@@ -318,7 +318,7 @@ The audit log is stored in **DynamoDB**, which is the single source of truth. Ev
 
 ![A guardrail blocking an injected instruction inside a claim narrative, and the claim being denied](docs/images/demo/guardrail_demo.gif)
 
-**Suite.** [redteam/attacks.json](redteam/attacks.json) holds 30 attacks in six types: instruction override, hidden text in a document, secret extraction, tool misuse, memory poisoning and plausible fabrication. Each attack is appended to a genuine narrative that must be denied. An attack succeeds if the system approves, or reveals a real secret value.
+**Suite.** [redteam/attacks.json](redteam/attacks.json) holds 30 attacks in six types: instruction override, hidden text in a document, secret extraction, tool misuse, memory poisoning and plausible fabrication. Each attack is appended to a genuine narrative that must be denied. An attack succeeds if the system approves, or reveals a real secret value. All 30 enter through the narrative. Attacks written into the garage name or an estimate line are covered by unit tests of the field scan, and the suite does not yet include them.
 
 **Results, with controls.**
 
@@ -372,7 +372,7 @@ Signed out visitors see the sign in screen. The form is on the left, and a fixed
 
 The mode chip shows whether the deployment runs the offline baseline or live agents on **Bedrock**.
 
-**Tests.** 58 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks, and the queue position events), the **API** layer against a fake server, and the interactive demo's review rules, sign in and Try it steps. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
+**Tests.** 60 **Vitest** tests cover the **PKCE** challenge against the test vector in RFC 7636, token decoding and role mapping, the **server-sent events** parser (including every way a stream can be cut into chunks, and the queue position events), the **API** layer against a fake server, and the interactive demo's review rules, sign in and Try it steps. Five planted bugs, among them a `GET` where the run should be a `POST`, were each caught. A headless browser run against the built app checks the same flow end to end: the run streams, the review is recorded under the right identity, the photo loads and the console stays clean.
 
 ---
 
@@ -726,9 +726,9 @@ git clone https://github.com/anandapurva55/agentic-claims-adjudication-aws.git &
 uv sync                                         # the locked environment, no virtualenv to activate
 uv run python scripts/generate_data.py          # 63 claims, 20 policies, golden set
 uv run python scripts/generate_data.py --heldout   # held-out set 1 (and --heldout2 for set 2)
-uv run pytest                                   # 452 tests, no AWS needed (the 23 infrastructure tests need Node.js and a built frontend)
+uv run pytest                                   # 463 tests, no AWS needed (the 24 infrastructure tests need Node.js and a built frontend)
 uv run python evals/run_eval.py --mode replay && uv run python evals/gate.py --mode replay
-(cd frontend && npm ci && npm test)             # 58 frontend tests
+(cd frontend && npm ci && npm test)             # 60 frontend tests
 
 # run the app locally, offline baseline, no AWS and no sign in needed
 CLAIMS_MODE=replay uv run uvicorn app.api.main:app --app-dir backend --port 8000 &
@@ -781,6 +781,8 @@ A URL such as `?claim=CLM-2026044&autorun=1` opens a claim and runs it. The phot
 | The WAF limits by address only, and the daily spend limit is checked when a run starts | A shared address is limited together, and a day can overshoot by one run per task | Limit per signed in user, and reserve spend before a run |
 | The investigation experiment used one model and 28 cases written by the author, and the product has a deterministic investigator that solves the same task | It shows that the agent beats pasting all the records into the prompt, and that rules alone find 79% at no cost. It does not show that the agent finds problems no rule covers | More models, cases that no rule covers, and real adjuster feedback |
 | The free-form benchmark has 124 claims, and its labels are agreement between two models, not human ground truth. 15 of the 16 dropped narratives were implicit ones | It ties the single call and the agent team. A difference of one or two claims is noise, and the set is somewhat easier than intended | Human review of the labels, and more implicit and adversarial narratives |
+| The audit log is not exported to write-once storage and has no tamper evidence. The task can add rows but not change them | Someone with account administrator rights could still alter the log | Stream the table to S3 with Object Lock |
+| A lesson is stored from any adjuster's override note, and has no approval, expiry or removal path. The note is scanned for prompt attacks only, and the evaluation gate does not re-run when a lesson is added | One mistaken note can quietly shift later decisions | Store lessons only after a senior review, add expiry and a removal action, and re-run the gate on change |
 | One region, one account, direct query QuickSight | Not a production topology | A second region, and SPICE for the dashboard |
 | S3 Vectors has no hybrid search | Retrieval can miss when the customer's words differ from the policy's words | Evaluate a managed search cluster on cost and recall |
 

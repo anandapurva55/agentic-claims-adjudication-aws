@@ -128,3 +128,26 @@ def test_the_live_path_delivers_the_signal_even_when_the_agent_records_nothing(m
     assert "police_fir" in kinds(s), "the theft with no FIR must reach the adjuster even though the agent said nothing"
     assert s.decision is not None  # the decision still never depends on the agent
     assert all(g["source"] == "rules" for g in s.signals)
+
+
+def test_the_adjudicator_is_told_the_signals_and_notes_its_memo_must_mention(monkeypatch):
+    monkeypatch.setattr(settings, "collab_rounds", 0)
+    from app.agents import graph
+    seen: list[str] = []
+
+    class Recorder(SilentAgent):
+        async def invoke_async(self, prompt):
+            seen.append(prompt)
+            return await super().invoke_async(prompt)
+    team = SimpleNamespace(graph=SimpleNamespace(invoke_async=SilentAgent().invoke_async), adjudicator=Recorder(), agents={}, model_of={"adjudicator": "x"})
+    monkeypatch.setattr(graph, "build_team", lambda: team)
+
+    async def go():
+        events.use_bus(events.EventBus())
+        s = RunState(THEFT, extracted=data.extract_claim(THEFT))
+        s.notes.append({"sender": "fraud", "to": "intake", "kind": "question", "text": "Is the driver the policy holder?"})
+        set_state(s)
+        await runner._live(s)
+    asyncio.run(go())
+    assert "police_fir" in seen[0] and "Is the driver the policy holder?" in seen[0]
+    assert seen[0].startswith(f"Finalise motor claim {THEFT}.")

@@ -124,6 +124,11 @@ def compute_payable(facts: Facts, sch: Schedule) -> dict:
             "salvage": facts.salvage, "payable": max(payable, 0), "raw_payable": payable}
 
 
+def _plate(reg: str) -> str:
+    """A registration compared without case, spaces or hyphens, so formatting alone never causes a referral."""
+    return "".join(ch for ch in reg.upper() if ch.isalnum())
+
+
 def _adjudicate(f: Facts, sch: Schedule) -> Decision:
     """Apply the rules in precedence order. Each step is recorded for the audit trail."""
     steps: list[dict] = []
@@ -157,6 +162,8 @@ def _adjudicate(f: Facts, sch: Schedule) -> Decision:
         return Decision("refer", ["SEC7.1"], 0, ["Theft claim has no police FIR. Refer for investigation."], steps)
 
     why = []
+    if _plate(f.vehicle_reg) != _plate(sch.vehicle_reg):
+        why.append(f"the vehicle on the claim, {f.vehicle_reg}, is not the insured vehicle, {sch.vehicle_reg}")
     if f.estimate_reg != f.vehicle_reg:
         why.append(f"registration differs ({f.vehicle_reg} on the form, {f.estimate_reg} on the estimate)")
     if f.estimate_total != f.claimed_amount:

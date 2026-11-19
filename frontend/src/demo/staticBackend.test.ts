@@ -118,6 +118,19 @@ describe('the human sign-off gate keeps the real server rules', () => {
     expect((await claimOf(BIG)).stage).toBe('ai_recommended')  // refused means undecided
     expect((await review(BIG, { run_id: 'run-big', action: 'accept' }, 'senior')).status).toBe(200)
   })
+  it("an adjuster cannot override a denial or referral to approve, and a senior can", async () => {
+    await run(CLEAN)
+    const attempt = { run_id: 'run-clean', action: 'override', final_decision: 'approve', note: 'the file looks fine to me' }
+    expect((await review(CLEAN, attempt)).status).toBe(403)
+    expect((await claimOf(CLEAN)).stage).toBe('ai_recommended')
+    expect((await review(CLEAN, { ...attempt, final_decision: 'refer' })).status).toBe(200)
+  })
+  it("a senior's override to approve is recorded without inventing a payable", async () => {
+    await run(CLEAN)
+    const r = await review(CLEAN, { run_id: 'run-clean', action: 'override', final_decision: 'approve', note: 'the file looks fine to me' }, 'senior')
+    expect(r.status).toBe(200)
+    expect(((await r.json()) as { outcome: string }).outcome).toContain('No payable was calculated')
+  })
   it('an adjuster may escalate a payable above the limit', async () => {
     await run(BIG)
     const r = await review(BIG, { run_id: 'run-big', action: 'escalate' })

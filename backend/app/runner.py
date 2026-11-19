@@ -55,6 +55,8 @@ async def _ingest(s: RunState, speed: float, override: str | None = None, defenc
     events.edge("bda", "guardrail", "narrative")
     events.node("guardrail", "active", "scanning narrative")
     g = guardrail.sanitize(s.extracted["narrative"]) if defences else {"clean": s.extracted["narrative"], "alerts": [], "engine": "disabled"}
+    if defences:  # the same scan for every other free-text field, which the garage and the claimant write too
+        g["alerts"] = g["alerts"] + guardrail.sanitize_fields(s.extracted)
     s.guardrail = g
     s.extracted["narrative"] = g["clean"]
     await _pause(speed, 0.7)
@@ -211,6 +213,16 @@ def add_document_signals(s: RunState) -> None:
             events.log("fraud", f"document check: {g['detail']}")
 
 
+def _adjudicator_brief(s: RunState) -> str:
+    """The adjudicator's only tool returns the decision, so the risk signals and the agents' notes reach its memo through this message."""
+    lines = [f"Finalise motor claim {s.claim_id}."]
+    if s.signals:
+        lines += ["", "Risk signals recorded for this claim:"] + [f"- {g['severity']} {g['kind']}: {g['detail']}" for g in s.signals]
+    if s.notes:
+        lines += ["", "Notes the agents exchanged:"] + [f"- {n['sender']} to {n['to']} ({n['kind']}): {n['text']}" for n in s.notes]
+    return "\n".join(lines)
+
+
 async def _live(s: RunState) -> None:
     from app.agents.graph import build_team
     team = build_team()
@@ -222,7 +234,7 @@ async def _live(s: RunState) -> None:
     for src in ("policy", "fraud", "calc"):
         events.edge(src, "adjudicator", "")
     events.node("adjudicator", "active", "deciding")
-    final = await team.adjudicator.invoke_async(f"Finalise motor claim {s.claim_id}.")
+    final = await team.adjudicator.invoke_async(_adjudicator_brief(s))
     _usage(s, final, team.model_of["adjudicator"])
     events.node("adjudicator", "done", s.decision.decision if s.decision else "")
     s.memo = _clean(str(final))

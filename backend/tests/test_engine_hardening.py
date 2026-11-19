@@ -112,3 +112,19 @@ def test_the_first_and_last_day_of_the_policy_are_covered_and_the_days_just_outs
     for incident, reported in [("2025-12-31", "2026-01-01"), ("2027-01-01", "2027-01-02")]:
         d = adjudicate(facts(incident=incident, reported=reported), SCHEDULE)
         assert (d.decision, d.clauses) == ("deny", ["PERIOD"]), incident
+
+
+def test_a_vehicle_that_is_not_the_insured_one_is_referred_even_when_the_documents_agree_with_each_other():
+    d = adjudicate(_with_reg("MH12AB1234"), SCHEDULE)
+    assert d.decision == "refer" and d.clauses == ["INT.CONSIST"]
+    assert "not the insured vehicle" in d.reasons[0]
+
+
+def test_a_registration_written_with_spaces_or_lower_case_still_matches_the_insured_vehicle():
+    assert adjudicate(_with_reg("ka 01"), SCHEDULE).decision == "approve"
+    assert adjudicate(_with_reg("KA-01"), SCHEDULE).decision == "approve"
+
+
+def _with_reg(reg: str) -> Facts:
+    f = facts()
+    return Facts(**{**f.__dict__, "vehicle_reg": reg, "estimate_reg": reg})

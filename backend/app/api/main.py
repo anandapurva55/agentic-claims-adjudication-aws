@@ -199,6 +199,9 @@ def review(claim_id: str, body: Review, who: auth.Identity = Depends(auth.authen
     approving = body.action == "accept" and ai["decision"] in ("approve", "refer") or (body.action == "override" and body.final_decision == "approve")
     if over_limit and approving and who.role != "senior":
         raise HTTPException(403, "this payable is above the adjuster authority limit: a senior adjuster must approve, or you can escalate")
+    # A denial or referral has no payable, so it never carries the limit above. Approving against the AI's call is a senior decision at any size.
+    if body.action == "override" and body.final_decision == "approve" and who.role != "senior":
+        raise HTTPException(403, "approving against the AI's recommendation needs a senior adjuster: you can escalate or refer instead")
     final = {"accept": ai["decision"], "override": body.final_decision, "escalate": "escalated"}[body.action]
     detail = {**body.model_dump(), "reviewer": who.username, "role": who.role, "ai_decision": ai["decision"], "ai_payable": ai["payable"], "ai_clauses": ai["clauses"], "final": final}
     try:  # the database decides a race: exactly one reviewer gets through, before any side effect below happens
@@ -214,7 +217,7 @@ def review(claim_id: str, body: Review, who: auth.Identity = Depends(auth.authen
             f"A human adjuster changed the AI's decision from {ai['decision']} to {final}. Their reason: {body.note.strip()}",
             {"claim_id": claim_id, "reviewer": who.username, "role": who.role})
     outcome = {"approve": f"Settlement of INR {ai['payable']:,} released for payment." if final == "approve" and body.action == "accept"
-               else "Approved by reviewer. Payable to be confirmed by the senior adjuster's calculation.",
+               else "Approved by a senior adjuster against the AI's recommendation. No payable was calculated, so the amount must be set before payment.",
                "deny": "Denial confirmed. Letter queued for the policy holder.",
                "refer": "Referred to a senior adjuster.", "escalated": "Escalated to a senior adjuster."}[final]
     stores.audit(claim_id, "system", "outcome", {"final": final, "message": outcome})

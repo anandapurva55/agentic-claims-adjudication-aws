@@ -57,10 +57,12 @@ export function applyReview(st: DemoState, id: string, body: ReviewBody, who: { 
   const overLimit = ai.clauses.includes(AUTHORITY_CLAUSE)
   const approving = (body.action === 'accept' && (ai.decision === 'approve' || ai.decision === 'refer')) || (body.action === 'override' && body.final_decision === 'approve')
   if (overLimit && approving && who.role !== 'senior') return fail(403, 'this payable is above the adjuster authority limit: a senior adjuster must approve, or you can escalate')
+  // A denial or referral has no payable, so it never carries the limit above. Approving against the AI's call is a senior decision at any size.
+  if (body.action === 'override' && body.final_decision === 'approve' && who.role !== 'senior') return fail(403, "approving against the AI's recommendation needs a senior adjuster: you can escalate or refer instead")
   const final = body.action === 'accept' ? ai.decision : body.action === 'override' ? (body.final_decision as string) : 'escalated'
   const outcome = ({
     approve: final === 'approve' && body.action === 'accept' ? `Settlement of INR ${ai.payable.toLocaleString('en-IN')} released for payment.`
-      : "Approved by reviewer. Payable to be confirmed by the senior adjuster's calculation.",
+      : "Approved by a senior adjuster against the AI's recommendation. No payable was calculated, so the amount must be set before payment.",
     deny: 'Denial confirmed. Letter queued for the policy holder.', refer: 'Referred to a senior adjuster.', escalated: 'Escalated to a senior adjuster.',
   } as Record<string, string>)[final]
   const ts = now.toISOString()

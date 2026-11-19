@@ -63,8 +63,11 @@ class AppStack(Stack):
             sid="AgentMemory", actions=["bedrock-agentcore:CreateEvent", "bedrock-agentcore:ListEvents", "bedrock-agentcore:RetrieveMemoryRecords",
                                         "bedrock-agentcore:BatchCreateMemoryRecords", "bedrock-agentcore:ListMemoryRecords", "bedrock-agentcore:GetMemory"],
             resources=[data.memory.attr_memory_arn]))
-        for t in (data.claims_table, data.audit_table, data.policies_table, data.metrics_table):
+        for t in (data.claims_table, data.policies_table, data.metrics_table):
             t.grant_read_write_data(task_role)
+        # The audit log is append only: the API reads it and adds rows, and nothing it runs can change or delete one.
+        data.audit_table.grant_read_data(task_role)
+        data.audit_table.grant(task_role, "dynamodb:PutItem")
         data.claims_bucket.grant_read_write(task_role)
         data.telemetry_bucket.grant_put(task_role)
         task_role.add_to_policy(iam.PolicyStatement(sid="PublishMetrics", actions=["cloudwatch:PutMetricData"], resources=["*"],
