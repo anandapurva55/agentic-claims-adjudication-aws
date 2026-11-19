@@ -156,7 +156,7 @@ These principles settled the design questions below.
 | AWS CDK (Python) | Two stacks, `ClaimsAdjudicationData` and `ClaimsAdjudicationApp`. Synthesis needs no credentials. Tests check the security properties of the synthesised template and the facts the architecture diagram shows. The task role names its models, guardrail and resources. It has two wildcards: the region in foundation model ARNs, which global inference profiles need, and the CloudWatch metrics call, which is limited to one namespace. `-c production=true` keeps the data and logs when the stack is deleted |
 | GitHub Actions | Workflows for lint, types, tests, the eval gate, the red team, CodeQL, the interactive demo, live evaluation and deploy. The Python environment comes from `uv.lock`. Deploy and live evaluation sign in to AWS through OIDC, using role ARNs stored as repository variables, so no long lived keys are stored |
 
-![Release path](docs/images/release_path.png)
+<img src="docs/images/release_path.png" alt="Release path" width="560">
 
 The **CI** workflow runs on every push and pull request. It runs lint with the security rules, **mypy**, the **Python** tests, the replay quality gate, the **red team** in replay mode, the frontend tests, an **npm** audit, the type check and build, the infrastructure security tests, and **CDK** synthesis. The infrastructure job waits for the frontend build. A separate **CodeQL** workflow scans the **Python** and **TypeScript** code on every push. A third workflow publishes the interactive demo to **GitHub Pages** on every push to `main`. Deploy and live evaluation are manual workflows, and CI does not gate them. They need an **OIDC** provider and a deploy role that this **CDK** app does not create.
 

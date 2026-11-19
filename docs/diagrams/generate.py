@@ -31,9 +31,9 @@ EDGE = {"fontsize": "14", "fontname": "Helvetica", "color": "#5F6B76", "fontcolo
 BLUE = "#E5F5FD"
 
 
-def group(label: str, colour: str = BLUE) -> Cluster:
+def group(label: str, colour: str = BLUE, margin: str = "24") -> Cluster:
     """A group inside a frame. The colour is set here because a nested group would otherwise take the next colour in the library's cycle."""
-    return Cluster(label, graph_attr={"bgcolor": colour, "pencolor": "#9AA9B5", "fontsize": "15", "fontname": "Helvetica", "margin": "24"})
+    return Cluster(label, graph_attr={"bgcolor": colour, "pencolor": "#9AA9B5", "fontsize": "15", "fontname": "Helvetica", "margin": margin})
 
 
 def aws_cloud() -> Cluster:
@@ -101,32 +101,33 @@ def aws_architecture() -> None:
 
 
 def release_path() -> None:
-    """The three workflows that run on GitHub, as .github/workflows defines them. CI does not gate the deploy: deploy is started by hand."""
-    graph = GRAPH | {"rankdir": "TB", "splines": "spline", "ranksep": "0.7", "nodesep": "0.7"}
+    """The workflows that run on GitHub, as .github/workflows defines them. CI does not gate the deploy: deploy is started by hand.
+    The three lanes stand side by side and each one reads from top to bottom."""
+    graph = GRAPH | {"rankdir": "TB", "splines": "spline", "ranksep": "0.5", "nodesep": "0.35"}
     with Diagram("", filename=str(OUT / "release_path"), show=False, direction="TB", graph_attr=graph, node_attr=NODE, edge_attr=EDGE, outformat="png"):
-        with group("On every push and pull request"):
+        with group("On every push and pull request", margin="44"):
+            codeql = GithubActions("CodeQL workflow\n(code scanning)")
             ci = GithubActions("CI workflow")
             backend = Codebuild("Backend\nlint, types, tests,\neval gate, red team")
             frontend = Codebuild("Frontend\ntests, audit, build")
             infra = Codebuild("Infrastructure\nsecurity tests, CDK synth\n(after the frontend build)")
             ci >> [backend, frontend]
             frontend >> infra
-            codeql = GithubActions("CodeQL workflow")
-            codeql >> Github("Code scanning\nPython and TypeScript")
-        with group("On every push to main"):
+        with group("On every push to main", margin="44"):
             pages = GithubActions("Pages workflow")
             demo = Github("GitHub Pages\ninteractive demo")
             pages >> Edge(label="records data\nfrom the backend,\nbuilds the site") >> demo
-        with group("Started by hand"):
+        with group("Started by hand", margin="44"):
             deploy = GithubActions("Deploy workflow")
             live = GithubActions("Live eval and\nred team workflow")
-            role = IAM("OIDC roles for deploy\nand evaluation,\nno long lived keys")
             cdk = Codebuild("cdk deploy\nboth stacks")
             ecr = ECR("Image in ECR")
             ecs = Fargate("ECS rolling update,\nrollback on failure")
             site = S3("React app\nin S3")
-            [deploy, live] >> Edge(style="dashed") >> role
-            role >> cdk >> ecr >> ecs
+            oidc = Edge(style="dashed", label="OIDC role,\nno long lived keys")
+            deploy >> oidc >> cdk
+            live >> oidc >> cdk
+            cdk >> ecr >> ecs
             cdk >> site
 
 
