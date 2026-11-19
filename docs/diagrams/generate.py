@@ -139,7 +139,7 @@ def agent_graph() -> None:
         bda = Bedrock("Data Automation\n(read at ingestion)")
         guard = Bedrock("Guardrails\n(narrative is untrusted)")
         mem = Bedrock("AgentCore Memory")
-        with group("Strands graph\n(agents may question each other, one round)"):
+        with group("Strands graph\n(each node is a Strands agent)"):
             intake = Python("Intake agent")
             coverage = Python("Coverage agent")
             investigator = Python("Investigator agent")

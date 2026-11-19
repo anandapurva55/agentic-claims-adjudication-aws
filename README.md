@@ -1,7 +1,5 @@
 # Agentic Motor Claims Adjudication on AWS: Full-Stack Multi-Agent AI with RAG, MCP, Memory, Guardrails and Human in the Loop
 
-Built with: a **React** 19, **TypeScript** and **Vite** frontend, and a **FastAPI** and **Python** backend with a locked **uv** environment. AI: **Amazon Bedrock**, **Strands Agents**, **Bedrock AgentCore Memory**, **Bedrock Knowledge Bases** on **S3 Vectors** for retrieval-augmented generation, **Bedrock Guardrails**, **Bedrock Data Automation** and the **Model Context Protocol**. Fine-tuning: **QLoRA** on **Amazon SageMaker**. Sign in and edge: **Amazon Cognito** managed login, **AWS WAF** rate limiting, and **Amazon CloudFront** with a VPC origin to an internal load balancer. Compute and data: **Amazon ECS** on **Fargate** in a **VPC**, **Amazon ECR**, **AWS Secrets Manager**, **Amazon DynamoDB**, **Amazon S3** and **Amazon CloudWatch**, all defined in **AWS CDK**. Analytics: **AWS Glue**, **Amazon Athena** and **Amazon QuickSight** over a telemetry lake. Automation: **GitHub Actions**, **CodeQL**, **Dependabot** and **GitHub Pages** for CI, security scanning and the interactive demo.
-
 [![CI](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/codeql.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/codeql.yml)
 [![Interactive demo](docs/images/badges/interactive-demo.svg)](https://anandapurva55.github.io/agentic-claims-adjudication-aws/)
@@ -22,6 +20,23 @@ Built with: a **React** 19, **TypeScript** and **Vite** frontend, and a **FastAP
 ![FastAPI](docs/images/badges/fastapi.svg)
 ![uv](docs/images/badges/uv.svg)
 
+## From claim to decision
+
+This project helps an insurance adjuster decide a motor insurance claim. A claim arrives as a claim form, a repair estimate, a short description of the accident and a photo of the damage. The system reads them, checks them against the policy, and recommends approve, deny or refer. A person always makes the final decision. Here is what happens, from start to finish, and which tool does each part.
+
+1. **The files are read.** The claim files sit in **Amazon S3**. Before any run, **Bedrock Data Automation** reads the claim form and the damage photo and turns them into fields, and a vision model also reads the photo. The results are stored, so a run does not wait for them.
+2. **The adjuster signs in.** The app is a **React** and **TypeScript** web page, built with **Vite**. Sign in goes through **Amazon Cognito**. **Amazon CloudFront** serves the page and passes every request on to the backend, and **AWS WAF** limits how many requests one address can send. The backend is a **FastAPI** service written in **Python**. It runs as a container on **Amazon ECS** with **Fargate**, in a **VPC**, behind an internal load balancer. **Amazon ECR** stores the container image, and **AWS Secrets Manager** holds the secret that proves a request came through CloudFront.
+3. **The text is cleaned.** When the adjuster starts a run, **Bedrock Guardrails** checks the accident description and the other free text for hidden instructions aimed at the AI, and removes them.
+4. **A team of AI agents reads the claim.** **Strands Agents** does the orchestration. It builds each agent on a model from **Amazon Bedrock** and runs the first three as a graph, deciding which agent goes first and which run together. The Intake agent reads the description and sets six yes or no flags, such as drunk driving or commercial use. The Coverage agent and the Investigator then work at the same time. The Coverage agent looks up the policy clauses that apply and works out the payable amount. The Investigator checks repair costs, the garage, the police report and earlier claims on the policy.
+5. **The agents use tools and memory.** The tools reach the agents through the **Model Context Protocol** (**MCP**), a standard way to give an AI tools. The policy wording is found with **retrieval-augmented generation** (**RAG**): **Bedrock Knowledge Bases** search the policy text, which is kept in **S3 Vectors**, and return the right clause with its identifier. **Bedrock AgentCore Memory** lets the Intake agent recall lessons from earlier cases that adjusters corrected.
+6. **Plain code makes the decision.** Rule checks add warnings the agents may have missed, such as a photo that does not match the estimate. Then a rules engine, which is ordinary code and not an AI model, calculates the payable amount and makes the decision. The last agent only writes a short memo that explains it.
+7. **A person decides.** The recommendation appears in the app as it is produced. The adjuster accepts it, overrides it with a written reason, or escalates it to a senior adjuster. Each claim gets exactly one human decision, stored in **Amazon DynamoDB** under the name and role from the sign-in token. An override also becomes a lesson in memory.
+8. **Everything is measured.** Every model call is recorded with its tokens, time and cost. The records go to S3, and **AWS Glue**, **Amazon Athena** and **Amazon QuickSight** let people query and chart them. **Amazon CloudWatch** raises alarms when errors, speed or cost go wrong.
+
+Around this, **AWS CDK** defines all of the AWS resources as code. **GitHub Actions** runs the tests on every change, **CodeQL** and **Dependabot** look for security problems, and **GitHub Pages** hosts the interactive demo. **uv** locks the Python packages. **Amazon SageMaker** ran one experiment: it fine-tuned a small model with **QLoRA** to see whether it could replace a prompted model, and it could not do so economically.
+
+The system was built, deployed to AWS, checked end to end by an automated script (29 of 29 checks), and then torn down. It uses synthetic claims, real policy wording and real damage photos.
+
 ## Try it
 
 An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudication-aws/) of the app runs on GitHub Pages, with no server and no cost. The AI agents are switched off there to avoid cost, so each run replays the rule baseline on real claim data. A banner says so on every page. Everything else works, and the visitor does each step.
@@ -33,11 +48,7 @@ An [interactive demo](https://anandapurva55.github.io/agentic-claims-adjudicatio
 
 The demo data is saved from the real backend when the site is built. A small fetch layer in the frontend answers the app's calls from that data, so nothing is sent anywhere. [Limitations](#limitations) lists what the demo leaves out.
 
-## Summary
-
-This repository implements a decision support system for motor insurance claims. Before a run, **Bedrock Data Automation** and a vision model read the claim form and the damage photo, and their output is stored. When a run starts, the system loads that output. It compares the form reading with a second, rule based reading of the same form, and turns the damage photo into an advisory signal. Any disagreement or signal is shown to the adjuster, and none of them changes the decision. During a run, a team of AI agents reads the claim, retrieves policy clauses with **retrieval-augmented generation** (**RAG**), checks records through the **Model Context Protocol** (**MCP**), recalls lessons from earlier cases and recommends a decision. Deterministic code calculates the payable amount and makes the decision. A human adjuster, signed in through **Amazon Cognito**, approves, overrides or escalates it. The system records the human decision under the adjuster's verified name and role.
-
-It is a full stack application. A **React** and **TypeScript** single page app shows a live agent run, streamed from a **FastAPI** backend that hosts the **Strands** agent graph. The system was deployed on **AWS** and is defined in **AWS CDK**. It uses synthetic claim data, real policy wording and real damage photographs. Status: built, deployed to **AWS**, checked end to end by an automated script (29 of 29 checks on the latest deployment), and then torn down. It is measured against held-out claims, a free-form benchmark written by other model families, a **red team** suite, and a cost measurement.
+## Results at a glance
 
 ![A live run on the deployed system: Bedrock Data Automation and a vision model read the photo, agents use memory and MCP tools, risk signals appear, and a person decides](docs/images/demo/photo_evidence_and_signals.gif)
 
@@ -62,8 +73,9 @@ A single model call followed by the same rules engine matched or beat the agent 
 
 | Section | What it covers |
 |---|---|
+| [From claim to decision](#from-claim-to-decision) | What happens to a claim from start to finish, and what each tool does |
 | [Try it](#try-it) | An interactive demo in the browser, with no server and no cost |
-| [Summary](#summary) | What the system does, how it is built and the headline measurements |
+| [Results at a glance](#results-at-a-glance) | A live run, and the headline measurements |
 | [Problem and scope](#problem-and-scope) | The problem, the user, and what is in and out of scope |
 | [Tenets](#tenets) | The principles that settled the design questions |
 | [Solution architecture](#solution-architecture) | AWS services, the three paths and the release pipeline |
@@ -189,7 +201,7 @@ If an agent does not finish, the claim is referred to a person with reason `INT.
 
 ## Agents, MCP and memory
 
-**Strands agent graph.** Intake, Coverage and Investigator are the nodes of a **Strands** graph: Intake runs first, then the other two in parallel. The Adjudicator is a fourth agent that runs after the graph and the rule checks. Hooks emit an event for every model call, tool call and handoff, and the animated graph in the UI is drawn from that stream, so every pulse corresponds to something that ran. A call budget of 40 model calls per run bounds a runaway agent.
+**Strands agent graph.** Intake, Coverage and Investigator are the nodes of a **Strands** graph: Intake runs first, then the other two in parallel. The Adjudicator is a fourth agent that runs after the graph and the rule checks. Each of the four agents is a Strands `Agent` with its own system prompt, tool list and **Bedrock** model, and each MCP server is attached to the agents that need it through Strands' MCP client. Strands does the orchestration of the graph. The rest is ordinary Python in the runner: the rule and photo checks, the one round of questions that agents may ask each other after the graph finishes, and the call to the rules engine that decides. Hooks emit an event for every model call, tool call and handoff, and the animated graph in the UI is drawn from that stream, so every pulse corresponds to something that ran. A call budget of 40 model calls per run bounds a runaway agent.
 
 **MCP servers.** Two servers expose tools over stdio: `policy_records` (policy wording search, schedule, claim history) and `claims_ops` (garage check, repair cost benchmark, police report verification). Each agent receives only the tools it needs, and no tool pays money, edits a policy or reaches another customer.
 
