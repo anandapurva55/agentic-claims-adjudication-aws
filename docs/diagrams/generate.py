@@ -14,7 +14,7 @@ from diagrams.aws.devtools import Codebuild
 from diagrams.aws.management import Cloudwatch
 from diagrams.aws.ml import Bedrock, Sagemaker
 from diagrams.aws.network import ALB, CloudFront
-from diagrams.aws.security import IAM, WAF, Cognito, SecretsManager
+from diagrams.aws.security import WAF, Cognito, SecretsManager
 from diagrams.aws.storage import S3
 from diagrams.onprem.ci import GithubActions
 from diagrams.onprem.client import Users
@@ -106,7 +106,7 @@ def release_path() -> None:
     graph = GRAPH | {"rankdir": "TB", "splines": "spline", "ranksep": "0.5", "nodesep": "0.35"}
     with Diagram("", filename=str(OUT / "release_path"), show=False, direction="TB", graph_attr=graph, node_attr=NODE, edge_attr=EDGE, outformat="png"):
         with group("On every push and pull request", margin="44"):
-            codeql = GithubActions("CodeQL workflow\n(code scanning)")
+            GithubActions("CodeQL workflow\n(code scanning)")
             ci = GithubActions("CI workflow")
             backend = Codebuild("Backend\nlint, types, tests,\neval gate, red team")
             frontend = Codebuild("Frontend\ntests, audit, build")
