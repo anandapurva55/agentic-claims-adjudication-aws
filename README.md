@@ -153,7 +153,7 @@ These principles settled the design questions below.
 | AWS Glue, Amazon Athena, Amazon QuickSight | One JSON record per model call lands in S3. Athena queries it with partition projection. QuickSight shows cost and latency |
 | Amazon CloudWatch | Dashboard, latency and 5xx alarms, and a cost spike alarm fed by a custom metric |
 | Amazon SageMaker | QLoRA fine-tuning job on one GPU instance |
-| AWS CDK (Python) | Two stacks, `ClaimsAdjudicationData` and `ClaimsAdjudicationApp`. Synthesis needs no credentials. Tests check the security properties of the synthesised template and the facts the architecture diagram shows. The task role names its models, guardrail and resources. It has two wildcards: the region in foundation model ARNs, which global inference profiles need, and the CloudWatch metrics call, which is limited to one namespace. `-c production=true` keeps the data and logs when the stack is deleted |
+| AWS CDK (Python) | Defines all the AWS resources as Infrastructure as Code, in two stacks: `ClaimsAdjudicationData` for the data and AI services, and `ClaimsAdjudicationApp` for the service, network and sign in. It runs without AWS credentials, so tests check the synthesised template in CI |
 | GitHub Actions | Workflows for lint, types, tests, the eval gate, the red team, CodeQL, the interactive demo, live evaluation and deploy. The Python environment comes from `uv.lock`. Deploy and live evaluation sign in to AWS through OIDC, using role ARNs stored as repository variables, so no long lived keys are stored |
 
 <img src="docs/images/release_path.png" alt="Release path" width="560">
@@ -317,7 +317,7 @@ The audit log is stored in **DynamoDB**, which is the single source of truth. Ev
 |---|---|
 | 1. Input guardrail | Bedrock Guardrails scans the narrative and the free text fields of the form and the estimate (holder, garage, police reference, line names) for prompt attacks. A flagged field is replaced as a whole. If a whole text is blocked, each sentence is checked alone so only offending sentences are removed |
 | 2. Data, not instructions | Prompts state that the narrative is data. Instructions inside it are reported, never followed |
-| 3. Least privilege tools | Each agent reads only the claim in front of it. No tool pays money, edits a policy or reaches another customer |
+| 3. Least privilege tools | Each agent reads only the claim in front of it. No tool pays money, edits a policy or reaches another customer. The task role names its models, guardrail and tables. Two permissions use a wildcard: the region in foundation model addresses, which global inference profiles need, and the CloudWatch metrics call, which AWS requires and which is limited to one namespace |
 | 4. Code decides | Agents set flags and an engine decides, so a hijacked agent cannot produce a payout |
 | 5. Memory is human write only | Agents recall lessons and cannot write them |
 | 6. Human in the loop | Every recommendation is reviewed and logged |
@@ -693,6 +693,8 @@ aws cognito-idp admin-add-user-to-group --user-pool-id <pool-id> --username <nam
 uv run python scripts/verify_deployment.py     # acceptance test across every service
 npx aws-cdk@2 destroy --all -c region=us-east-1
 ```
+
+By default, deleting the stacks deletes the data, which suits a demo that is deployed and torn down. Passing `-c production=true` keeps the data and the buckets, turns on delete protection for the tables and keeps logs for three months instead of one week.
 
 Pass the region explicitly. Without it, the **CDK** command line takes the region from the **AWS** profile, which once sent a deploy to the wrong region. A deployment costs roughly 2 to 3 US dollars a day while it runs, plus model calls (an estimate from list prices, not a bill). The **CDK** app uses a dedicated bootstrap qualifier.
 
