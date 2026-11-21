@@ -1,4 +1,4 @@
-# Agentic Motor Claims Adjudication on AWS: Full-Stack Multi-Agent AI with RAG, MCP, Memory, Guardrails and Human in the Loop
+# Agentic Motor Claims Adjudication on AWS: Full-Stack Multi-Agent AI with RAG, MCP, Memory, Guardrails, QLoRA Fine-Tuning and Human in the Loop
 
 [![CI](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/codeql.yml/badge.svg)](https://github.com/anandapurva55/agentic-claims-adjudication-aws/actions/workflows/codeql.yml)
