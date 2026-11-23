@@ -1,8 +1,8 @@
 # QLoRA fine-tuning. The versions are the ones the SageMaker training job installed on the PyTorch 2.8 training image,
 # which supplies torch and CUDA. A local run (a Mac smoke test) needs torch installed separately.
 transformers==5.23.0
-peft==0.21.3
-trl==1.18.0
+peft==0.22.0
+trl==1.18.2
 datasets==5.2.0
 bitsandbytes==0.50.2        # 4-bit NF4 kernels, CUDA only
 accelerate                  # version supplied by the training image

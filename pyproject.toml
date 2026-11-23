@@ -9,12 +9,12 @@ license = { text = "MIT" }
 dependencies = [
     "strands-agents==1.65.0",     # agent graph, hooks, Bedrock model provider
     "mcp==2.3.0",                 # Model Context Protocol servers and client (stdio)
-    "boto3==1.44.3",              # one client library for every AWS service the system calls
-    "fastapi==0.163.0",
+    "boto3==1.44.8",              # one client library for every AWS service the system calls
+    "fastapi==0.165.0",
     "uvicorn[standard]==0.54.0",
-    "pydantic==2.14.3",
+    "pydantic==2.14.4",
     "pydantic-settings==2.16.3",
-    "pypdf==7.1.0",               # deterministic claim form parser
+    "pypdf==7.1.1",               # deterministic claim form parser
     "PyJWT[crypto]==2.15.1",      # checks the Amazon Cognito token on every request (app/auth.py)
 ]
 
@@ -25,7 +25,7 @@ dev = [
     "pytest-asyncio==1.5.0",
     "httpx==0.28.1",              # FastAPI TestClient
     "moto[dynamodb]==5.2.5",      # in-memory DynamoDB for the audit store race tests
-    "ruff==0.17.5",
+    "ruff==0.17.6",
     "mypy==2.4.1",
     "reportlab==5.1.0",           # scripts/generate_data.py writes the claim PDFs
     "pillow==13.0.0",             # photo handling and screenshot redaction
@@ -34,7 +34,7 @@ dev = [
 ]
 # AWS CDK for the ClaimsAdjudicationData and ClaimsAdjudicationApp stacks. The CDK command line needs Node.js: npx aws-cdk@2 ...
 infra = [
-    "aws-cdk-lib==2.277.0",
+    "aws-cdk-lib==2.278.0",
     "constructs==10.8.1",
 ]
 
